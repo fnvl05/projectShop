@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<insert id="insert" parameterType="UsersDto">
+		insert into tbl_member(userId, userPass, userName, userPhon)
+  		values(#{userId}, #{userPass}, #{userName}, #{userPhon}) 
+	</insert>
+	<select id="isExist" parameterType="java.lang.String" resultType="String">
+		select userId
+		from tbl_member
+		where userId=#{inputUserId}
+	</select>
+	<select id="getPassHash" parameterType="String" resultType="String">
+		select userPass
+		from tbl_member
+		where userId=#{inputUserId}
+	</select>
+	<select id="login" parameterType="String" resultType="UsersDto">
+		select 
+			userId,userName,userPass,regiDate,verify
+			from tbl_member
+			where userId=#{inputUserId}	
+	</select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+	<select id="list" resultType="categoryDto">
+ 	select  cateLevel, cateName, cateCode, cateCodeRef
+ 		from goods_category
+     start with cateCodeRef is null connect by prior cateCode = cateCodeRef
+</select>
+	<insert id="itemInsert" parameterType="ItemDto">
+		insert into tbl_items (itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemThumbImg)
+		values (tbl_item_seq.nextval, #{itemName}, #{cateCode}, #{itemPrice}, #{itemCount}, #{itemDes}, #{itemImg}, #{itemThumbImg})
+	</insert>
+	<select id="itemSelect"  resultType="ItemDto">
+		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ 		from tbl_items
+ 		order by itemNum desc
+	</select>
+	<select id="itemViewContent" parameterType="ItemDto" resultType="ItemDto">
+		 select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+     	from tbl_Items
+         where itemNum = #{itemNum}
+	</select>
+	<select id="itemViewData" parameterType="ItemViewDto" resultType="ItemViewDto">
+		 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName, itemPrice, itemCount, itemDes, itemImg, itemDate, itemThumbImg
+         from tbl_items i
+         inner join goods_category c
+         on i.cateCode = c.cateCode          
+         where i.itemNum = #{itemNum}
+	</select>
+	<update id="itemUpDate" parameterType="ItemDto">
+		 update tbl_Items
+     	 set itemName = #{itemName},
+         cateCode = #{cateCode},
+         itemPrice = #{itemPrice},
+         itemCount = #{itemCount},
+         itemDes = #{itemDes},
+         itemImg = #{itemImg},
+         itemThumbImg = #{itemThumbImg}
+         where itemNum = #{itemNum}
+	</update>
+	<delete id="itemDelete">
+		delete from tbl_items where itemNum = #{itemNum}
+	</delete>
+</mapper>
