@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 class="title"><a href="#">연습용 쇼핑몰</a></h1>
+	<h1 class="title"><a href="${pageContext.request.contextPath}/home.do">연습용 쇼핑몰</a></h1>
 </body>
 </html>

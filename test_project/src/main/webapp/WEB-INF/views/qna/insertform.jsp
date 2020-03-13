@@ -7,7 +7,6 @@
 <title>/qna/private/insertform.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <style>
-	/* textarea 의 크기가 SmartEditor 의 크기가 된다. */
 	#content{
 		
 		width: 100%;
