@@ -46,6 +46,8 @@ public class UsersServiceImpl implements UsersService{
 		if(isValid) {
 			UsersDto userdto = dao.logIn(dto.getUserId());
 			session.setAttribute("userDto", userdto);
+			String id=userdto.getUserId();
+			session.setAttribute("id", id);
 			return true;
 		}
 		else {

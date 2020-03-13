@@ -8,10 +8,17 @@
   		<typeAlias type="com.test.project01.master.category.Dto.categoryDto" alias="categoryDto"/>
   		<typeAlias type="com.test.project01.master.category.Dto.ItemDto" alias="itemDto"/>
   		<typeAlias type="com.test.project01.master.category.Dto.ItemViewDto" alias="itemViewDto"/>
+  		<typeAlias type="com.test.project01.qna.dto.QnaDto" alias="qnaDto"/>
+  		<typeAlias type="com.test.project01.qna.dto.QnaCommentDto" alias="qnaCommentDto"/>
+  		<typeAlias type="com.test.project01.notice.dto.NoticeDto" alias="noticeDto"/>
   		<typeAlias type="com.test.project01.utils.UpLoadFileUtils" alias="UpLoadFileUtils"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/categoryMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/NoticeMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/QnaMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/QnaCommentMapper.xml"/>
+  		
   	</mappers>	
   </configuration>
