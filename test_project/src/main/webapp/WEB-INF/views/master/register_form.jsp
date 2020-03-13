@@ -54,12 +54,23 @@
 				</div>
 				<div class="inputArea">
 					<label for="itmePrice">상품가격</label>
-					<input type="text" name="itemPrice">
+					<input type="text" name="itemPrice" id="itemPrice">
 				</div>
 				<div class="inputArea">
 					<label for="itemCount">상품수량</label>
-					<input type="text" name="itemCount">
+					<input type="text" name="itemCount" id="itemCount">
 				</div>
+					<script>
+					var regExp = /[^0-9]/gi;
+					
+					$("#itemPrice").keyup(function(){ numCheck($(this)); });
+					$("#itemCount").keyup(function(){ numCheck($(this)); });
+					
+					function numCheck(selector) {
+					 var tempVal = selector.val();
+					 selector.val(tempVal.replace(regExp, ""));
+					}
+					</script>
 				<div class="inputArea">
 					<label for="itemDes">상품설명</label>
 					<textarea name="itemDes" id="itemDes"></textarea>
