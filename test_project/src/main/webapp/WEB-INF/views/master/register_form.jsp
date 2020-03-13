@@ -87,7 +87,7 @@
 					<label for="itemImg">이미지</label>
 					<input type="file" id="itemImg" name="file"/>
 					<div class="select_img">
-						<img src=""/>
+						<img src="../resources{dto.itemImg}"/>
 					</div>
 					<script>
 						$("#itemImg").change(function() {

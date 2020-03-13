@@ -9,9 +9,11 @@
   		<typeAlias type="com.test.project01.master.category.Dto.ItemDto" alias="itemDto"/>
   		<typeAlias type="com.test.project01.master.category.Dto.ItemViewDto" alias="itemViewDto"/>
   		<typeAlias type="com.test.project01.utils.UpLoadFileUtils" alias="UpLoadFileUtils"/>
+  		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/categoryMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
   	</mappers>	
   </configuration>
