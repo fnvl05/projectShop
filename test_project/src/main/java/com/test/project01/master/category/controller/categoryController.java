@@ -58,12 +58,14 @@ public class categoryController{
 
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UpLoadFileUtils.fileUpload(imgUpLoadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
+		 dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-		 fileName = upLoadPath + File.separator + "images" + File.separator + "none.png";
+		 fileName = File.separator + "images" + File.separator + "none.png";
+		 dto.setItemImg(fileName);
+		 dto.setItemThumbImg(fileName);
 		}
 
-		dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
-		dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		service.itemInsert(dto);
 		return new ModelAndView("redirect:itemList.do");
 	}

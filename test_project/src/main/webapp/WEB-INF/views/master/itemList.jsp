@@ -10,6 +10,7 @@
 
 <style>
 	#container_box table td { width:150px; text-align: center }
+	.thumbImg{width: 100px; height: 70px;}
 </style>
 
 </head>
@@ -44,7 +45,7 @@
 					<table>
 						 <thead>
 							 <tr>
-							   <th>번호</th>
+							   <th>이미지</th>
 							   <th>이름</th>
 							   <th>카테고리</th>
 							   <th>가격</th>
@@ -55,7 +56,7 @@
 						 <tbody>
 						  <c:forEach items="${list}" var="list">
 							  <tr>
-								   <td>${list.itemNum}</td>
+								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
 								   <td><a href="itemView_form.do?itemNum=${list.itemNum}">${list.itemName}</a></td>
 								   <td>${list.cateCode}</td>
 								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> </td>

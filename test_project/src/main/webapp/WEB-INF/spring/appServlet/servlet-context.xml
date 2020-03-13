@@ -61,7 +61,11 @@
 	 <beans:constructor-arg value="C:/Users/user/Desktop/test_project/src/main/webapp/resources" />
 	</beans:bean>
 	
+	<!-- ck에디터 경로 -->
 	<resources location="/resources/ckUpLoad/" mapping="/ckUpLoad/**"></resources>
+
+	<!-- 대체 이미지 경로 -->
+	<resources mapping="/images/**" location="/resources/images/" />
 
 	<!-- 파일 업로드 폼 전송 처리를 위한 bean 설정 -->
 	<resources mapping="/imgUpLoad/**" location="/resources/imgUpLoad/" />
