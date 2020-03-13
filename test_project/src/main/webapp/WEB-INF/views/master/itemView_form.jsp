@@ -93,6 +93,8 @@
 					});
 				</script>
 			</form>
+			
+			<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">

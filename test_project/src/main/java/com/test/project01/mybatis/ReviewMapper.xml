@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<select id="getCount" resultType="int">
+		select nvl(max(ROWNUM),0)
+		from board_review 
+	</select>
+	<select id="getList" resultType="reviewJoinDto" parameterType="reviewJoinDto">
+		SELECT * 
+			FROM
+    			(SELECT result1.*, ROWNUM AS rnum
+    			FROM
+        			(select reviewNum,reviewWriter,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+					from board_review,tbl_items
+					where board_review.itemNum=tbl_items.itemNum
+					order by reviewNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
+		
+		
+	</select>
+	<select id="getCount2" resultType="int" parameterType="reviewJoinDto">
+		select nvl(max(ROWNUM),0)
+		from board_review 
+		where itemNum=#{itemNum}
+	</select>
+	<select id="getList2" resultType="reviewJoinDto" parameterType="reviewJoinDto">
+		SELECT * 
+			FROM
+    			(SELECT result1.*, ROWNUM AS rnum
+    			FROM
+        			(select reviewNum,reviewWriter,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+					from board_review,tbl_items
+					where board_review.itemNum=tbl_items.itemNum and board_review.itemNum=#{itemNum}
+					order by reviewNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
+		
+		
+	</select>
+	<insert id="insert" parameterType="reviewDto">
+		insert into board_review
+		(reviewNum,reviewWriter,itemNum,reviewContent,likeCount,upCount,regdate)
+		values(board_review_seq.NEXTVAL,#{reviewWriter},#{itemNum},#{reviewContent},#{likeCount},0,sysdate)
+	</insert>
+	<select id="getData" parameterType="int" resultType="reviewDto">
+		select reviewNum,reviewWriter,itemNum,reviewCount,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+		from board_review
+		where reviewNum=#{reviewNum}
+		order by reviewNum DESC
+	</select>
+	<update id="update" parameterType="reviewDto"> 
+		update board_review
+		set reviewContent=#{reviewContent},likeCount=#{likeCount}
+		where reviewNum=#{reviewNum}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from board_review
+		where reviewNum=#{reviewNum}
+	</delete>
+</mapper>
+
