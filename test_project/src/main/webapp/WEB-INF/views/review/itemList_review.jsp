@@ -30,7 +30,7 @@
 					<td>
 						<a href="detail.do?num=${tmp.itemNum }">${tmp.itemName }</a>
 					</td>
-					<td>${tmp.itemImg }</td>
+					<td><img src=../resources"${tmp.itemImg }"/></td>
 					<td>${tmp.likeCount }</td>
 					<td>${tmp.upCount }</td>
 					<td>${tmp.reviewWriter }</td>

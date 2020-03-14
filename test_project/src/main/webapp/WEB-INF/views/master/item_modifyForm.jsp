@@ -41,7 +41,7 @@
 			<form action="item_modify.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="itemNum" value="${dto.itemNum} "/>
 				<div id="container_box">
-					<h2>상품 등록</h2>
+					<h2>상품 수정</h2>
 					 <label>1차 분류</label>
 					 <select class="category1">
 					  <option value="">전체</option>
@@ -58,12 +58,23 @@
 				</div>
 				<div id="inputArea">
 					<label for="itmePrice">상품가격</label>
-					<input type="text" name="itemPrice" value="${dto.itemPrice }"/>
+					<input type="text" name="itemPrice" value="${dto.itemPrice }" id="itemPrice"/>
 				</div>
 				<div id="inputArea">
 					<label for="itemCount">상품수량</label>
-					<input type="text" name="itemCount" value="${dto.itemCount }"/>
+					<input type="text" name="itemCount" value="${dto.itemCount }" id="itemCount"/>
 				</div>
+				<script>
+					var regExp = /[^0-9]/gi;
+					
+					$("#itemPrice").keyup(function(){ numCheck($(this)); });
+					$("#itemCount").keyup(function(){ numCheck($(this)); });
+					
+					function numCheck(selector) {
+					 var tempVal = selector.val();
+					 selector.val(tempVal.replace(regExp, ""));
+					}
+				</script>
 				<div id="inputArea">
 					<label for="itemDes">상품설명</label>
 					<textarea rows="10" cols="50" name="itemDes" id="itemDes">${dto.itemDes }</textarea>
