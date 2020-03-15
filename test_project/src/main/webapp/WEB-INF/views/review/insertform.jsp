@@ -12,7 +12,6 @@
 	<form action="insert.do" method="post">
 		<input type="hidden" name="itemNum" value="${itemNum }" />
 		<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId}" />
-		<p>${sessionScope.userDto.userId}</p>
 		<div class="container">
 			<label for="reviewContent">상품 리뷰</label>
 			<input type="text" name="reviewContent" id="reviewContent" />
@@ -21,9 +20,9 @@
 			<label for="likeCount">별점</label>
 			<input type="text" name="likeCount" id="likeCount" />
 		</div>
-		<button type="submit" onclick="submitContents(this);" >등록</button>
+		<button type="submit" >등록</button>
 		<button type="reset">취소</button>
-		<button><a href="list.do">돌아가기</a></button>
+		<button><a href="itemList_review.do?itemNum=${itemNum }">돌아가기</a></button>
 	</form>
 </div>
 

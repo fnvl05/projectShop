@@ -6,6 +6,64 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/detail.jsp</title>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+<style>
+	/* 글 내용을 출력할 div에 적용할 css */
+		.contents {
+			width:100%; 
+			border:1px dotted #cecece;
+			box-shadow:3px 3px 5px 6px #ccc;
+		}
+	/* 댓글에 관련된 css */
+	.comments ul{
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+	}
+	.comments ul li{
+		border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
+	}
+	.comments dt{
+		margin-top: 5px;
+	}
+	.comments dd{
+		margin-left: 26px;
+	}
+	.comments form textarea, .comments form button{
+		float: left;
+	}
+	.comments li{
+		clear: left;
+	}
+	.comments form textarea{
+		width: 85%;
+		height: 100px;
+	}
+	.comments form button{
+		width: 15%;
+		height: 100px;
+	}
+	/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
+	.comment form{
+		display: none;
+	}
+	.comment{
+		position: relative;
+	}
+	.comment .reply_icon{
+		width: 8px;
+		height: 8px;
+		position: absolute;
+		top: 10px;
+		left: 30px;
+	}
+	.comments .user-img{
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+	}
+</style>
 </head>
 <body>
 <h3>리뷰 글 상세 보기</h3>
@@ -35,15 +93,20 @@
 			<th>등록일</th>
 			<td>${dto.regdate }</td>
 		</tr>
-		
+		<tr>
+			<th>내용</th>
+			<td>${dto.reviewContent }</td>
+		</tr>
 	</table>
 	<br/>
 	<br/>
-	<div class="contents">${dto.reviewContent }</div>
+
 	<c:if test="${dto.reviewWriter eq userDto.userId }">
-		<a href="delete.do?reviewNum=${dto.reviewNum} ">삭제하기</a>
-		<a href="update.do?reviewNum=${dto.reviewNum} ">수정하기</a>
+		<a href="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum } ">삭제하기</a>
+		<a href="update.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
 	</c:if>
+	</br>
+	</br>
 	<div class="comments">	
 	<ul>
 		<c:forEach items="${commentList }" var="tmp">
@@ -56,13 +119,12 @@
 						<dl>
 							<dt>
 								
-
 								<span>${tmp.writer }</span>
 								<c:if test="${tmp.num ne tmp.comment_group }">
 									to <strong>${tmp.target_id }</strong>
 								</c:if>
 								<span>${tmp.regdate }</span>
-								<a href="javascript:" class="reply_link">답글</a> |
+								<a href="javascript:" class="reply_link">답글</a> 
 								<c:choose>
 									<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
 									<c:when test="${userDto.userId eq tmp.writer }">
@@ -78,9 +140,9 @@
 								<pre>${tmp.content }</pre>
 							</dd>
 						</dl>
-						<form class="comment-insert-form" action="comment_insert.do" method="post">
+						<form class="comment-insert-form" action="comment_insert.do" method="post"> 
 							<!-- 덧글 그룹 -->
-							<input type="hidden" name="ref_group" value="${dto.num }" />
+							<input type="hidden" name="ref_group" value="${dto.reviewNum }" /> 
 							<!-- 덧글 대상 -->
 							<input type="hidden" name="target_id" value="${tmp.writer }" />
 							<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
@@ -88,6 +150,7 @@
 							<button type="submit">등록</button>
 						</form>	
 						<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
+
 						<c:if test="${userDto.userId eq tmp.writer }">
 							<form class="comment-update-form" action="comment_update.do" method="post">
 								<input type="hidden" name="num" value="${tmp.num }" />
@@ -103,14 +166,16 @@
 			</c:choose>
 		</c:forEach>
 		</ul>
-		<div class="clearfix"></div>
+		<div class="clearfix"></div>  
+
 		<!-- 원글에 댓글을 작성할 수 있는 폼 -->
+	  
 		<div class="comment_form">
-			<form action="comment_insert.do" method="post">
-				<!-- 댓글의 그룹번호는 원글의 글번호가 된다. -->
-				<input type="hidden" name="ref_group" value="${dto.num }" />
+			<form action="comment_insert.do" method="post"> 
+				<!-- 댓글의 그룹번호는 원글의 글번호가 된다.-->
+				<input type="hidden" name="ref_group" value="${dto.reviewNum }" /> 
 				<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
-				<input type="hidden" name="target_id" value="${dto.writer}" />
+				<input type="hidden" name="target_id" value="${dto.reviewWriter}" />
 				<textarea name="content">
 					<c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if>
 				</textarea>
@@ -118,7 +183,8 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div> 
+
 <script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
@@ -182,7 +248,7 @@
 		var isLogin=${not empty userDto.userId};
 		if(isLogin==false){
 			alert("로그인 페이지로 이동 합니다.");
-			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/review/detail.do?num=${dto.num}";
+			location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/review/detail.do?reviewNum=${dto.reviewNum}";
 			return false;//폼 전송 막기 
 		}
 	});
@@ -194,7 +260,7 @@
 		if(isLogin==false){
 			var isMove=confirm("로그인 페이지로 이동 하시겠습니까?");
 			if(isMove){
-				location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/review/detail.do?num=${dto.num}";
+				location.href="${pageContext.request.contextPath}/users/loginform.do?url=${pageContext.request.contextPath}/review/detail.do?reviewNum=${dto.reviewNum}";
 			}
 		}
 	});
@@ -216,10 +282,9 @@
 	function deleteConfirm(){
 		var isDelete=confirm("글을 삭제하시겠습니까?");
 		if(isDelete){
-			location.href="delete.do?num=${dto.num}";
+			location.href="delete.do?reviewNum=${dto.reviewNum}";
 		}
 	}
 </script>
-	
 </body>
 </html>

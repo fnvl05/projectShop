@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>review/list.jsp</title>
+<style>
+	img{
+		width:100px;
+		height:auto;
+	}
+</style>
 </head>
 <body>
 <div class="container">
@@ -27,9 +33,9 @@
 				<tr>
 					<td>${tmp.reviewNum }</td>
 					<td>
-						<a href="detail.do?num=${tmp.itemNum }">${tmp.itemName }</a>
+						<a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a>
 					</td>
-					<td><img src=../resources"${tmp.itemImg }"/></td>
+					<td><img src="../resources${tmp.itemImg }"/></td>
 					<td>${tmp.reviewContent }</td>
 					<td>${tmp.likeCount }</td>
 					<td>${tmp.upCount }</td>
@@ -39,7 +45,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<a href="insertform.do">새 글 작성</a>  
 	<div class="page-display">
 		<ul class="pagination pagination-sm">
 			<c:choose>
@@ -72,7 +77,7 @@
 			<c:choose>
 				<c:when test="${endPageNum < totalPageCount }">
 					<li>
-						<a href="list.do?pageNum=${endPageNum+1}">&raquo;</a>
+						<a href="list.do?pageNum=${endPageNum+1}&itemNum=${itemNum}">&raquo;</a>
 					</li>
 				</c:when>
 				<c:otherwise>

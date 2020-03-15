@@ -65,8 +65,8 @@ public class ReviewController {
 	
 	//업데이트 폼
 	@RequestMapping("/review/updateform")
-	public ModelAndView authUpdateform(HttpServletRequest request,ModelAndView mView,@RequestParam int num) {
-		service.getUpdateData(mView,num);
+	public ModelAndView authUpdateform(HttpServletRequest request,ModelAndView mView,@RequestParam int reviewNum) {
+		service.getUpdateData(mView,reviewNum);
 		mView.setViewName("review/updateform");
 		return mView;
 	}
@@ -81,9 +81,9 @@ public class ReviewController {
 	
 	//삭제
 	@RequestMapping("/review/delete")
-	public ModelAndView authDelete(HttpServletRequest request,@RequestParam int reviewNum) {
+	public ModelAndView authDelete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.delete(request, reviewNum);
-		return new ModelAndView("redirect:/review/list.do");
+		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
 	}
 	
 	@ResponseBody
@@ -102,7 +102,7 @@ public class ReviewController {
 	public ModelAndView authCommentInsert(HttpServletRequest request,
 			@RequestParam int ref_group) {
 		service.saveComment(request);
-		return new ModelAndView("redirect:/review/detail.do?num="+ref_group);
+		return new ModelAndView("redirect:/review/detail.do?reviewNum="+ref_group);
 	}
 	
 	@ResponseBody

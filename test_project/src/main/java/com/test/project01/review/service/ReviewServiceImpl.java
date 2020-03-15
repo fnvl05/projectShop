@@ -169,9 +169,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public void getReviewData(HttpServletRequest request) {
 		int reviewNum=Integer.parseInt(request.getParameter("reviewNum"));
 		
-		ReviewDto dto=new ReviewDto();
-		dto.setReviewNum(reviewNum);
-		dao.getData(reviewNum);
+		ReviewDto dto=dao.getData(reviewNum);
 		
 		request.setAttribute("dto",dto);
 		
@@ -203,7 +201,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	@Override
-	public void getUpdateData(ModelAndView mView, int reviewNum) {
+	public void getUpdateData(ModelAndView mView,int reviewNum) {
+		
 		ReviewDto dto=dao.getData(reviewNum);
 		mView.addObject("dto",dto);
 	}
@@ -215,9 +214,9 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public void saveComment(HttpServletRequest request) {
-		UsersDto usersDto=(UsersDto)request.getSession()
+		UsersDto userDto=(UsersDto)request.getSession()
 				.getAttribute("userDto");
-		String writer=usersDto.getUserId();
+		String writer=userDto.getUserId();
 	
 		int ref_group=
 			Integer.parseInt(request.getParameter("ref_group"));

@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/itemList_review.jsp</title>
+<style>
+	img{
+		width:100px;
+		height:auto;
+	}
+</style>
 </head>
 <body>
 <div class="container">
@@ -28,9 +34,9 @@
 				<tr>
 					<td>${tmp.reviewNum }</td>
 					<td>
-						<a href="detail.do?num=${tmp.itemNum }">${tmp.itemName }</a>
+						<a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a>
 					</td>
-					<td><img src=../resources"${tmp.itemImg }"/></td>
+					<td><img src="../resources${tmp.itemImg }"/></td>
 					<td>${tmp.likeCount }</td>
 					<td>${tmp.upCount }</td>
 					<td>${tmp.reviewWriter }</td>
@@ -46,7 +52,7 @@
 			<c:choose>
 				<c:when test="${startPageNum ne 1 }">
 					<li>
-						<a href="list.do?pageNum=${startPageNum-1 }">&laquo;</a>
+						<a href="itemList_review.do?pageNum=${startPageNum-1 }&itemNum=${itemNum}">&laquo;</a>
 					</li>
 				</c:when>
 				<c:otherwise>
@@ -60,12 +66,12 @@
 				<c:choose>
 					<c:when test="${i eq pageNum }">
 						<li class="active">
-							<a href="list.do?pageNum=${i }">${i }</a>
+							<a href="itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="list.do?pageNum=${i }">${i }</a>
+							<a href="itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -73,7 +79,7 @@
 			<c:choose>
 				<c:when test="${endPageNum < totalPageCount }">
 					<li>
-						<a href="list.do?pageNum=${endPageNum+1}">&raquo;</a>
+						<a href="itemList_review.do?pageNum=${endPageNum+1}&itemNum=${itemNum}">&raquo;</a>
 					</li>
 				</c:when>
 				<c:otherwise>
@@ -85,6 +91,7 @@
 			</c:choose>
 		</ul>
 	</div>
+</div>	
 	<a href="insertform.do?itemNum=${itemNum }">해당 상품 리뷰쓰기</a>
 </body>
 </html>

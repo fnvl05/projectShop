@@ -42,7 +42,7 @@
 		values(board_review_seq.NEXTVAL,#{reviewWriter},#{itemNum},#{reviewContent},#{likeCount},0,sysdate)
 	</insert>
 	<select id="getData" parameterType="int" resultType="reviewDto">
-		select reviewNum,reviewWriter,itemNum,reviewCount,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+		select reviewNum,reviewWriter,itemNum,reviewContent,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
 		from board_review
 		where reviewNum=#{reviewNum}
 		order by reviewNum DESC
