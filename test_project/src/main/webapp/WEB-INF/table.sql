@@ -75,8 +75,6 @@ create sequence tbl_item_seq;
 
  <썸네일 칼럼 추가>
  alter table tbl_items add(itemThumbImg varchar2(300));
-
- 
  
 <공지 게시판>
 CREATE TABLE board_notice(
@@ -88,8 +86,20 @@ CREATE TABLE board_notice(
 	regdate DATE
 );
 
+--리뷰 테이블
+create table board_review(
+reviewNum number primary key,
+reviewWriter varchar2(50) not null,
+itemNum number not null,
+reviewContent CLOB not null,
+likeCount number,
+upCount number,
+regdate date);
+>>>>>>> refs/heads/hyewon
+
 CREATE SEQUENCE board_notice_seq;
 
+<<<<<<< HEAD
 <QnA 게시판>
 CREATE TABLE board_qna(
 	num NUMBER PRIMARY KEY,
@@ -115,6 +125,46 @@ CREATE TABLE board_qna_comment(
 );
 
 CREATE SEQUENCE board_qna_comment_seq;
+=======
+--리뷰 테이블의 시퀀스
+create sequence board_review_seq;
+
+alter table board_review
+    add constraint board_review_itemNum foreign key(itemNum)
+    references tbl_items(itemNum);
+   
+alter table board_review
+    add constraint board_review_reviewWriter foreign key(reviewWriter)
+    references tbl_member(userId);
+
+--review comment table
+CREATE TABLE board_review_comment(
+	num NUMBER PRIMARY KEY, 
+	writer VARCHAR2(100), 
+	content VARCHAR2(500), 
+	target_id VARCHAR2(100), 
+	ref_group NUMBER, 
+	comment_group NUMBER, 
+	deleted CHAR(3) DEFAULT 'no', 
+	regdate DATE 
+);
+
+--review comment sequence
+CREATE SEQUENCE board_review_comment_seq;
+
+
+--order table
+create table order(
+	orderNum number primary key,
+	userId varchar2(50) not null,
+	orderRec varchar2(50) not null,   --수신자
+	userAddr1 varchar2(50) not null,
+	userAddr2 varchar2(50) not null,
+	userAddr3 varchar2(50) not null,
+	amount number not null,
+	orderDate date default sysdate,
+);
+
 
 
 

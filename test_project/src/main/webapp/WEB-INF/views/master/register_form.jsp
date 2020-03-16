@@ -60,6 +60,7 @@
 					<label for="itemCount">상품수량</label>
 					<input type="text" name="itemCount" id="itemCount">
 				</div>
+
 					<script>
 					var regExp = /[^0-9]/gi;
 					

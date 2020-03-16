@@ -38,6 +38,7 @@
 		<li><a href="${pageContext.request.contextPath }/notice/list.do">Notice</a></li>
 		<li><a href="#">상품 소감</a></li>
 		<li><a href="#">유저 목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/review/list.do">상품 리뷰</a></li>
 	</ul>
 </body>
 </html>

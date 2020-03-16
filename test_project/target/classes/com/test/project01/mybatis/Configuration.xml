@@ -12,6 +12,9 @@
   		<typeAlias type="com.test.project01.qna.dto.QnaCommentDto" alias="qnaCommentDto"/>
   		<typeAlias type="com.test.project01.notice.dto.NoticeDto" alias="noticeDto"/>
   		<typeAlias type="com.test.project01.utils.UpLoadFileUtils" alias="UpLoadFileUtils"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewDto" alias="reviewDto"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewJoinDto" alias="reviewJoinDto"/>
+  		<typeAlias type="com.test.project01.review.dto.ReviewCommentDto" alias="reviewCommentDto"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
@@ -19,6 +22,7 @@
   		<mapper resource="com/test/project01/mybatis/NoticeMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/QnaMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/QnaCommentMapper.xml"/>
-  		
+  		<mapper resource="com/test/project01/mybatis/ReviewMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/ReviewCommentMapper.xml"/>
   	</mappers>	
   </configuration>
