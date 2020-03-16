@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+	<insert id="addCart" parameterType="cartlistDto">
+ 		insert into cartList
+ 		 (cartNum, userId, itemNum, cartStock)
+    	 values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock})
+	</insert>
+	
+	<select id="cartList" resultType="cartlistDto">
+		select
+     		row_number() over(order by c.cartNum desc) as num,
+     		c.cartNum, c.userId, c.itemNum, c.cartStock, c.addDate,
+    		 i.itemName, i.itemPrice, i.itemImg
+		 from cartList c
+    		 inner join tbl_items i
+    		     on c.itemNum = i.itemNum   
+   		  where c.userId = #{userId}	
+	</select>
+</mapper>

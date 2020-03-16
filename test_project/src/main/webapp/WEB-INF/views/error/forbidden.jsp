@@ -12,7 +12,7 @@
 	<h1>금지된 요청입니다.</h1>
 	<p class="alert alert-danger">
 		${msg }
-		<a class="alert-link" href="${pageContext.request.contextPath }/home.do">확인</a>
+		<a class="alert-link" href="${pageContext.request.contextPath }/home.do">홈으로</a>
 	</p>
 </div>
 </body>

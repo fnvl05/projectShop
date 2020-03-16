@@ -125,7 +125,7 @@ CREATE TABLE board_qna_comment(
 );
 
 CREATE SEQUENCE board_qna_comment_seq;
-=======
+
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
@@ -152,7 +152,6 @@ CREATE TABLE board_review_comment(
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
-
 --order table
 create table order(
 	orderNum number primary key,
@@ -163,8 +162,30 @@ create table order(
 	userAddr3 varchar2(50) not null,
 	amount number not null,
 	orderDate date default sysdate,
+	
+--카트
+create table cartList(
+	cartNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	cartStock number not null, -- 카트 수량 -- 
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(cartNum, userId)
 );
 
+create sequence cartList_seq;
+
+alter table cartList
+add constraint cartList_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table cartList
+add constraint cartList_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
 
 
 
