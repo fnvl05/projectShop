@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="unknown">
-	<select id="itemSelect"  resultType="unknown_ItemDto">
+	<select id="itemSelect"  resultType="unknown_itemDto">
 		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
  		from tbl_items
  		order by itemNum desc
+	</select>
+	<select id="itemViewContent" parameterType="unknown_itemDto" resultType="unknown_itemDto">
+		 select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+     	from tbl_Items
+         where itemNum = #{itemNum}
 	</select>
 </mapper>

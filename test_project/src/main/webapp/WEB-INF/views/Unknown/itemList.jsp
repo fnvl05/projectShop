@@ -45,7 +45,7 @@
 						  <c:forEach items="${list}" var="list">
 							  <tr>
 								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
-								   <td>${list.itemName}</td>
+								   <td><a href="itemView_form.do?itemNum=${list.itemNum}">${list.itemName}</a></td>
 								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> </td>
 								   <td>${list.itemCount}</td>
 							  </tr> 
