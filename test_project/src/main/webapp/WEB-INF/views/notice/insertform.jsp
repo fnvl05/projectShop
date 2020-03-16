@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>/cafe/insertform.jsp</title>
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <jsp:include page="../include/resource.jsp"></jsp:include>
+
 <style>
 	/* tetarea 의 크기가 SmartEditor 의 크기가 된다. */
 	#content{
@@ -13,6 +15,7 @@
 		height: 400px;
 	}
 </style>
+
 </head>
 <body>
 <div class="container">
@@ -23,7 +26,7 @@
 	<form action="insert.do" method="post">
 		<div class="form-group">
 			<label for="writer">작성자</label>
-			<input class="form-control" type="text" name="writer" value="${id }" disabled/> <!-- 보여주기 용도  -->
+			<input class="form-control" type="text" name="writer" value="${id }" disabled/>
 		</div>
 		<div class="form-group">
 			<label for="title">제목</label>
@@ -31,12 +34,24 @@
 		</div>
 		<div class="form-group">
 			<label for="content">내용</label>
-			<textarea class="form-control" name="content" id="content" rows="30" cols="10"></textarea>
+			<textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+			<script type="text/javascript">
+			$(function(){
+				CKEDITOR.replace('content',{
+					filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+				});
+			});
+			</script>
 		</div>
 		<button class="btn btn-primary" type="submit" onclick="submitContents(this);">저장</button>
-		<button class="btn btn-warning" type="reset">취소</button>
+		<button class="btn btn-warning" type="reset">초기화</button>
+		<button class="btn btn-danger" type="button" id="back-btn">뒤로가기</button>
+		<script>
+			$("#back-btn").click(function () {
+				location.href="list.do";
+			})	
+		</script>
 	</form>
 </div>
-
 </body>
 </html>

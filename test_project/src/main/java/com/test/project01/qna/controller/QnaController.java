@@ -33,7 +33,14 @@ public class QnaController {
 		
 		// view page 로 forward 이동해서 글 목록 출력하기 
 		return new ModelAndView("qna/list");
-	}	
+	}
+	//리뷰 목록보기 (상품 디테일에서)
+		@RequestMapping("/qna/itemList_qna")
+		public ModelAndView getList2(HttpServletRequest request,ModelAndView mView) {
+			service.getList2(request);
+			mView.setViewName("qna/itemList_qna");
+			return mView;
+		}
 	//새글 추가 폼 요청 처리
 	@RequestMapping("/qna/insertform")
 	public ModelAndView authInsertform
@@ -54,7 +61,7 @@ public class QnaController {
 		//서비스를 이용해서 DB 에 저장
 		service.saveContent(dto);
 		//글 목록 보기로 리다일렉트 이동 
-		return new ModelAndView("redirect:/qna/list.do");
+		return new ModelAndView("redirect:qna/list.do");
 	}
 	//글 자세히 보기 요청 처리
 	@RequestMapping("/qna/detail")

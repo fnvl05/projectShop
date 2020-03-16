@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/private/insertform.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
+
 <style>
 	#content{
 		
@@ -13,6 +13,8 @@
 		height: 400px;
 	}
 </style>
+
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div class="container">
@@ -21,6 +23,7 @@
 		<li>새글 작성</li>
 	</ol>
 	<form action="insert.do" method="post">
+		<input type="hidden" name="itemNum" value="${itemNum }" />
 		<div class="form-group">
 			<label for="writer">작성자</label>
 			<input class="form-control" type="text" value="${id }" disabled/>
@@ -33,9 +36,22 @@
 		<div class="form-group">
 			<label for="content">내용</label>
 			<textarea class="form-control" name="content" id="content" cols="30" rows="10"></textarea>
+			<script type="text/javascript">
+					$(function(){
+						CKEDITOR.replace('content',{
+							filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+						});
+					});
+			</script>
 		</div>
 		<button class="btn btn-primary" type="submit" onclick="submitContents(this);">저장</button>
-		<button class="btn btn-warning" type="reset">취소</button>
+		<button class="btn btn-warning" type="reset">초기화</button>
+		<button class="btn btn-danger" type="button" id = "btn_back" >뒤로가기</button>
+		<script>
+			$("#btn_back").click(function(){
+				location.href="list.do";
+			})
+		</script>
 	</form>
 </div>
 

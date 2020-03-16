@@ -55,9 +55,7 @@
 <body>
 	<div id="root">
 		<header id="heder_box">
-			<div>
-				<%@ include file="include/header.jsp" %>
-			</div>
+			<h1 class="title"><a href="home.do">연습용 쇼핑몰</a></h1>
 		</header>
 		<nav id="nav">
 			<div id="nav_box">
@@ -66,7 +64,14 @@
 		</nav>
 		<section id="container">
 			<aside>
-				<%@ include file="include/user_aside.jsp" %>
+				<c:choose>
+					<c:when test="${not empty sessionScope.userDto.userId }">
+							<%@ include file="include/users_aside.jsp" %>						
+					</c:when>
+					<c:otherwise>
+							<%@ include file="include/unknown_aside.jsp" %>			
+					</c:otherwise>
+				</c:choose>
 			</aside>
 			<div id="container_box">
 				본문 영역

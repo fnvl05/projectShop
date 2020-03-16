@@ -58,12 +58,12 @@
 	
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="upLoadPath">
-	 <beans:constructor-arg value="C:/Users/user/Desktop/test_project/src/main/webapp/resources" />
+	 <beans:constructor-arg value="C:/Users/gpdnj/git/projectShop/test_project/src/main/webapp/resources" />
 	</beans:bean>
 	
 	<!-- ck에디터 경로 -->
 	<resources location="/resources/ckUpLoad/" mapping="/ckUpLoad/**"></resources>
-
+	
 	<!-- 대체 이미지 경로 -->
 	<resources mapping="/images/**" location="/resources/images/" />
 

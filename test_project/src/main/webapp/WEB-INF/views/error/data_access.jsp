@@ -10,8 +10,10 @@
 <body>
 <div class="container">
 	<h1>DB 관리 예외 발생!</h1>
-	<p class="alert alert-danger">${exception.message }</p>
-	<a href="${pageContext.request.contextPath }/home.do">인덱스로 가기</a>
+	<div>
+		<p class="alert alert-danger">${exception.message }</p>
+	</div>
+	<p><a href="${pageContext.request.contextPath }/home.do">홈으로</a></p>
 </div>
 </body>
 </html>

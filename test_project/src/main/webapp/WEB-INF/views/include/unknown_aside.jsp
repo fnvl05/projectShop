@@ -1,10 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 	<style>
 		 body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
 		 ul { padding:0; margin:0; list-style:none;  }
@@ -17,7 +12,7 @@
 		 nav#nav { padding:10px; text-align:right; }
 		 nav#nav ul li { display:inline-block; margin-left:10px; }
 		
-		  section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
+		 section#container { padding:20px 0; border-top:2px solid #eee; border-bottom:2px solid #eee; }
 		 section#container::after { content:""; display:block; clear:both; }
 		 aside { float:left; width:200px; }
 		 div#container_box { float:right; width:calc(100% - 200px - 20px); }
@@ -30,13 +25,10 @@
 		 aside ul li a:hover { background:#eee; }
 	</style>
 </head>
-<body>
+<body>	
 	<ul>
-		<li><a href="#">상품 목록</a></li>
-		<li><a href="${pageContext.request.contextPath }/qna/list.do">QnA</a></li>
-		<li><a href="${pageContext.request.contextPath }/notice/list.do">Notice</a></li>
-		<li><a href="#">상품 소감</a></li>
-		<li><a href="#">유저 목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/Unknown/itemList.do">상품 목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/Users/login_form.do">상품 리뷰</a></li>
 	</ul>
 </body>
 </html>

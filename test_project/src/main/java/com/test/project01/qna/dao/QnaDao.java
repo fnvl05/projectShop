@@ -3,12 +3,11 @@ package com.test.project01.qna.dao;
 import java.util.List;
 
 import com.test.project01.qna.dto.QnaDto;
+import com.test.project01.qna.dto.QnaJoinDto;
+import com.test.project01.review.dto.ReviewJoinDto;
 
 public interface QnaDao {
-	//글의 갯수 
-	public int getCount(QnaDto dto);
-	//글의 목록
-	public List<QnaDto> getList(QnaDto dto);
+	
 	//글 추가 
 	public void insert(QnaDto dto);
 	//글 정보 얻어오기 
@@ -21,4 +20,9 @@ public interface QnaDao {
 	public QnaDto getData(int num);
 	//글 수정 
 	public void update(QnaDto dto);
+	
+	public int getCount(QnaJoinDto dto);
+	public List<QnaJoinDto> getList(QnaJoinDto dto);
+	public int getCount2(QnaJoinDto dto);
+	public List<QnaJoinDto> getList2(QnaJoinDto dto);
 }

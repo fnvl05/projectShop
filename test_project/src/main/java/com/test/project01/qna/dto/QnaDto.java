@@ -2,6 +2,7 @@ package com.test.project01.qna.dto;
 
 public class QnaDto {
 	private int num;
+	private int itemNum;
 	private String writer;
 	private String title;
 	private String content;
@@ -14,10 +15,11 @@ public class QnaDto {
 	
 	public QnaDto() {}
 
-	public QnaDto(int num, String writer, String title, String content, int viewCount, String regdate, int startRowNum,
-			int endRowNum, int prevNum, int nextNum) {
+	public QnaDto(int num, int itemNum, String writer, String title, String content, int viewCount, String regdate,
+			int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
+		this.itemNum = itemNum;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
@@ -35,6 +37,14 @@ public class QnaDto {
 
 	public void setNum(int num) {
 		this.num = num;
+	}
+
+	public int getItemNum() {
+		return itemNum;
+	}
+
+	public void setItemNum(int itemNum) {
+		this.itemNum = itemNum;
 	}
 
 	public String getWriter() {
@@ -108,6 +118,7 @@ public class QnaDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
+
 	
 	
 }

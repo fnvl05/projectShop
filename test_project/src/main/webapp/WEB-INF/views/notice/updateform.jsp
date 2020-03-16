@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>/cafe/updateform.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <!-- 3. 글 수정 폼을 응답한다. -->
@@ -32,15 +33,19 @@
 		</div>
 		<div class="form-group">
 			<label for="content">내용</label>
-			<textarea class="form-control" name="content" id="content" cols="30" rows="10">
-			${content } <!-- 텍스트 에어리어에 뿌리는 코드를 갖다놓고 스마트 에디터를 아래에 붙여놓으면 적용된다.-->
-			</textarea>
+			<textarea class="form-control" name="content" id="content" cols="30" rows="10">${content }</textarea>
+			<script type="text/javascript">
+					$(function(){
+						CKEDITOR.replace('content',{
+							filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+						});
+					});
+			</script>
 		</div>
 		<input type="hidden" name="pageNum" value="${pageNum }" />
 		<button class="btn btn-primary" type="submit" onclick="submitContents(this);">수정확인</button>
 		<a class="btn btn-warning" href="${pageContext.request.contextPath }/notice/list.do">취소</a>
 	</form>
 </div>
-	
 </body>
 </html>

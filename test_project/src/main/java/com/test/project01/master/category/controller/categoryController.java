@@ -104,8 +104,7 @@ public class categoryController{
 		  dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		  dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		  
-		 } else {  // 새로운 파일이 등록되지 않았다면
-		  // 기존 이미지를 그대로 사용
+		 } else { 
 		  dto.setItemImg(request.getParameter("itemImg"));
 		  dto.setItemThumbImg(request.getParameter("itemThumbImg"));
 		  

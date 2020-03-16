@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -23,7 +23,25 @@
 					<%@ include file="../include/nav.jsp" %>
 				</div>
 	</nav>
-<div class="container">
+	<section id="container">
+	<aside>
+		<div id="aside_box">
+			<c:choose>
+					<c:when test="${not empty sessionScope.userDto.userId }">
+						<c:if test="${sessionScope.userDto.verify eq 1}">
+							<%@ include file="../include/master_aside.jsp" %>													
+						</c:if>
+						<c:if test="${sessionScope.userDto.verify eq 0}">
+							<%@ include file="../include/users_aside.jsp" %>						
+						</c:if>
+					</c:when>
+					<c:otherwise>
+							<%@ include file="../include/unknown_aside.jsp" %>			
+					</c:otherwise>
+				</c:choose>
+		</div>
+	</aside>
+		<div id="container_box">
 	<c:if test="${not empty keyword }">
 		<p>
 			<strong>${keyword }</strong> 라는 검색어로 
@@ -32,19 +50,21 @@
 		</p>
 	</c:if>
 	<h1>QnA</h1>
-	<table class="table table-striped table-condensed">
+	<table class="table table-hover">
 		<colgroup>
 			<col class="col-xs-1"/>
-			<col class="col-xs-2"/>
-			<col class="col-xs-5"/>
+			<col class="col-xs-1"/>
+			<col class="col-xs-4"/>
+			<col class="col-xs-1"/>
 			<col class="col-xs-1"/>
 			<col class="col-xs-3"/>
 		</colgroup>
 		<thead>
 			<tr>
 				<th>글번호</th>
-				<th>작성자</th>
+				<th>상품정보</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>조회수</th>
 				<th>등록일</th>
 			</tr>
@@ -53,12 +73,13 @@
 		<c:forEach var="tmp" items="${requestScope.list }">
 			<tr>
 				<td>${tmp.num }</td>
-				<td>${tmp.writer }</td>
+				<td><img src="../resources${tmp.itemImg }"/></td>
 				<td>
 					<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
 						${tmp.title }
 					</a>
 				</td>
+				<td>${tmp.writer }</td>
 				<td>${tmp.viewCount }</td>
 				<td>${tmp.regdate }</td>
 			</tr>
@@ -125,6 +146,7 @@
 			placeholder="검색어 입력..." value="${keyword }"/>
 		<button type="submit">검색</button>
 	</form>
-</div>
+	</div>
+	</section>
 </body>
 </html>

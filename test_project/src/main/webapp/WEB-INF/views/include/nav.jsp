@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <ul>
@@ -11,6 +10,7 @@
 			</c:if>
 			<li>${userDto.userId}님 환영합니다.</li>
 			<li><a href="${pageContext.request.contextPath }/Users/logout.do">로그아웃</a></li>
+			<li><a href="${pageContext.request.contextPath }/shop/cartList.do" >장바구니</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a href="${pageContext.request.contextPath }/Users/login_form.do">로그인</a>
