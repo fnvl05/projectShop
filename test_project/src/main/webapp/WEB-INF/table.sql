@@ -185,6 +185,24 @@ alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
+<!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
 
 
 

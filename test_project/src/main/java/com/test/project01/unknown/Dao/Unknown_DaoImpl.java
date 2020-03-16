@@ -24,5 +24,11 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 	public Unknown_itemDto itemViewData(int itemNum) {
 		return session.selectOne("unknown.itemViewContent", itemNum);
 	}
+
+	@Override
+	public List<Unknown_itemDto> cateList(int cateCode) {
+		List<Unknown_itemDto> dto = session.selectList("unknown.cateList", cateCode);
+		return dto;
+	}
 	
 }

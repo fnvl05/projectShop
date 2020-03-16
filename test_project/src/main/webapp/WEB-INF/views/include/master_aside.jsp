@@ -24,7 +24,6 @@
 		 aside ul li a { display:block; width:100%; padding:10px 0;}
 		 aside ul li a:hover { background:#eee; }
 	</style>
-</head>
 <body>	
 	<ul>
 		<li><a href="${pageContext.request.contextPath }/master/register_form.do">상품 등록</a></li>
@@ -35,4 +34,3 @@
 		<li><a href="#">유저 관리</a></li>	
 	</ul>
 </body>
-</html>

@@ -11,4 +11,21 @@
      	from tbl_Items
          where itemNum = #{itemNum}
 	</select>
+	<select id="cateList" resultType="unknown_itemDto">
+		select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+	</select>
+	<select id="cateList2" resultType="unknown_itemDto">
+		select  i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+	</select>
 </mapper>
