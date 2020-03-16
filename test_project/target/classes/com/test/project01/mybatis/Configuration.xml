@@ -16,6 +16,8 @@
   		<typeAlias type="com.test.project01.review.dto.ReviewJoinDto" alias="reviewJoinDto"/>
   		<typeAlias type="com.test.project01.review.dto.ReviewCommentDto" alias="reviewCommentDto"/>
   		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
+  		<typeAlias type="com.test.project01.unknown.Dto.Unknown_itemDto" alias="unknown_itemDto"/>
+  		<typeAlias type="com.test.project01.users_item.Dto.Users_item_Dto" alias="users_item_Dto"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
@@ -26,5 +28,7 @@
   		<mapper resource="com/test/project01/mybatis/ReviewMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/ReviewCommentMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/UnknownMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/Users_item_Mapper.xml"/>
   	</mappers>	
   </configuration>

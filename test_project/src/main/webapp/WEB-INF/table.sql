@@ -95,11 +95,9 @@ reviewContent CLOB not null,
 likeCount number,
 upCount number,
 regdate date);
->>>>>>> refs/heads/hyewon
 
 CREATE SEQUENCE board_notice_seq;
 
-<<<<<<< HEAD
 <QnA 게시판>
 CREATE TABLE board_qna(
 	num NUMBER PRIMARY KEY,

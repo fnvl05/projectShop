@@ -99,7 +99,6 @@ public class NoticeServiceImpl implements NoticeService{
 		request.setAttribute("totalRow", totalRow);
 //		Client IP주소 얻어오기
 		String ipAddress=request.getRemoteAddr();
-		System.out.println("아이디 :"+(String)request.getSession().getAttribute("id")+", 클라이언트 IP 주소: "+ipAddress);
 		request.setAttribute("ipAddress", ipAddress);
 	}
 

@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 
-<style>
-	
+<style>	
 		body { margin:0; padding:0; font-family:'맑은 고딕', verdana; }
 		a { color:#05f; text-decoration:none; }
 		a:hover { text-decoration:underline; }
@@ -64,12 +63,6 @@
 	
 	
 	<style>
-		/*
-		section#content ul li { display:inline-block; margin:10px; }
-		section#content div.goodsThumb img { width:200px; height:200px; }
-		section#content div.goodsName { padding:10px 0; text-align:center; }
-		section#content div.goodsName a { color:#000; }
-		*/
 		section#content ul li { margin:10px 0; padding:10px 0; border-bottom:1px solid #999; }
 		section#content ul li img { width:250px; height:250px; }
 		section#content ul li::after { content:""; display:block; clear:both; }
@@ -183,11 +176,9 @@
 							
 						</div>
 						
-					</li>
-				
+					</li>				
 					<%-- jsp상의 변수 선언 --%>
-					<c:set var="sum" value="0" />
-				
+					<c:set var="sum" value="0" />			
 					<c:forEach items="${cartList}" var="cartList">
 					<li>
 						<div class="checkBox">
@@ -245,17 +236,11 @@
 					<c:set var="sum" value="${sum + (cartList.itemPrice * cartList.cartStock)}" />
 					
 					</c:forEach>
-				</ul>
-			
-			
-			
-				
-			</section>
-			
-			<aside id="aside">
-				<%@ include file="../include/user_aside.jsp" %>
-			</aside>
-			
+				</ul>			
+			</section>	
+			<aside>
+				<%@ include file="../include/users_aside.jsp" %>
+			</aside>	
 		</div>
 	</section>
 

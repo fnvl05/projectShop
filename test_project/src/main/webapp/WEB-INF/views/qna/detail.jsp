@@ -122,15 +122,13 @@
 		<c:forEach items="${commentList }" var="tmp">
 			<c:choose>
 				<c:when test="${tmp.deleted ne 'yes' }">
-					<li class="comment" id="comment${tmp.num }" <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >
-						
-								
+					<li class="comment" id="comment${tmp.num }" <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >						
 								<span>${tmp.writer }</span>
 								<c:if test="${tmp.num ne tmp.comment_group }">
 									to <strong>${tmp.target_id }</strong>
 								</c:if>
 								<span>${tmp.regdate }</span>
-								<a href="javascript:" class="reply_link">답글</a> |
+								<a href="javascript:" class="reply_link">답글</a>
 								<c:choose>
 									<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
 									<c:when test="${id eq tmp.writer }">
@@ -141,7 +139,8 @@
 										<a href="javascript:">신고</a>
 									</c:otherwise>
 								</c:choose>
-							</dt>
+						<dl>		
+							<dt></dt>
 							<dd>
 								<pre>${tmp.content }</pre>
 							</dd>

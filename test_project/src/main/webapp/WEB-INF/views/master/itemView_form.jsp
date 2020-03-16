@@ -30,16 +30,7 @@
 		</nav>
 		<section id="container">
 			<aside>
-				<c:choose>
-					<c:when test="${not empty sessionScope.userDto.userId }">
-						<c:if test="${sessionScope.userDto.verify eq 1}">
-							<%@ include file="../include/master_aside.jsp" %>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-							<%@ include file="../include/user_aside.jsp" %>
-					</c:otherwise>
-				</c:choose>
+				<%@ include file="../include/master_aside.jsp" %>
 			</aside>
 			<form role="form" action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
 			<input type="hidden" name="itemNum" value="${dto.itemNum }"/>
