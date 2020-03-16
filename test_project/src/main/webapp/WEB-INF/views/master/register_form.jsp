@@ -70,7 +70,7 @@
 					 var tempVal = selector.val();
 					 selector.val(tempVal.replace(regExp, ""));
 					}
-					</script>
+				</script>
 				<div class="inputArea">
 					<label for="itemDes">상품설명</label>
 					<textarea name="itemDes" id="itemDes"></textarea>
