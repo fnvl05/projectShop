@@ -87,7 +87,7 @@
 		</tbody>
 	</table>
 	
-	<a href="insertform.do">새글 작성</a>
+	<a href="insertform.do?itemNum=?${itemNum }">새글 작성</a>
 	
 	<div class="page-display">
 		<ul class="pagination">

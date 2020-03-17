@@ -36,16 +36,17 @@ public class QnaController {
 	}
 	//리뷰 목록보기 (상품 디테일에서)
 		@RequestMapping("/qna/itemList_qna")
-		public ModelAndView getList2(HttpServletRequest request,ModelAndView mView) {
-			service.getList2(request);
+		public ModelAndView getList2(HttpServletRequest request,ModelAndView mView,@RequestParam String itemNum) {
+			service.getList2(request,itemNum);
 			mView.setViewName("qna/itemList_qna");
 			return mView;
 		}
 	//새글 추가 폼 요청 처리
 	@RequestMapping("/qna/insertform")
 	public ModelAndView authInsertform
-			(HttpServletRequest request){
+			(HttpServletRequest request,@RequestParam String itemNum){
 		
+		request.setAttribute("itemNum", itemNum);
 		return new ModelAndView("qna/insertform");
 	}
 	
@@ -61,7 +62,7 @@ public class QnaController {
 		//서비스를 이용해서 DB 에 저장
 		service.saveContent(dto);
 		//글 목록 보기로 리다일렉트 이동 
-		return new ModelAndView("redirect:qna/list.do");
+		return new ModelAndView("redirect:/qna/list.do");
 	}
 	//글 자세히 보기 요청 처리
 	@RequestMapping("/qna/detail")

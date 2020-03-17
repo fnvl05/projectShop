@@ -53,13 +53,14 @@
 	<select id="getList2" resultType="qnaJoinDto" parameterType="qnaJoinDto">
 		SELECT * 
 			FROM
-    			(SELECT result1.*, ROWNUM AS rnum
-    			FROM
-        			(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
-					TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
-					FROM board_qna,tbl_items
+   			(
+   				SELECT result1.*, ROWNUM AS rnum
+   				FROM
+       			(SELECT num, (select itemImg from tbl_items where itemNum=#{itemNum}) as itemImg, writer, title, viewCount, 
+				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+				FROM board_qna
 		
-		where board_qna.itemNum=tbl_items.itemNum and board_qna.itemNum=#{itemNum}
+		where board_qna.itemNum=#{itemNum}
 		ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 		
@@ -77,7 +78,7 @@
 		resultType="qnaDto">
 		SELECT result1.*
 		FROM
-			(SELECT num, itemImg, itemName, writer, title, content, viewCount, 
+			(SELECT num, writer, title, content, viewCount, 
 			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
 			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
 			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
@@ -101,7 +102,7 @@
 		resultType="qnaDto">
 		SELECT result1.*
 		FROM
-			(SELECT num, itemImg, itemName, writer, title, content, viewCount, 
+			(SELECT num, writer, title, content, viewCount, 
 			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
 			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
 			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum

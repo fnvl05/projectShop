@@ -53,12 +53,12 @@ public class QnaServiceImpl implements QnaService{
 			
 			if(keyword != null) {//검색 키워드가 전달된 경우
 				if(condition.equals("titlecontent")) {//제목+내용 검색
-					dto.setTitle(keyword);
-					dto.setContent(keyword);
+					dto2.setTitle(keyword);
+					dto2.setContent(keyword);
 				}else if(condition.equals("title")) {//제목 검색
-					dto.setTitle(keyword);
+					dto2.setTitle(keyword);
 				}else if(condition.equals("writer")) {//작성자 검색
-					dto.setWriter(keyword);
+					dto2.setWriter(keyword);
 				}
 				//request 에 검색 조건과 키워드 담기
 				request.setAttribute("condition", condition);
@@ -106,8 +106,8 @@ public class QnaServiceImpl implements QnaService{
 				endPageNum=totalPageCount; //보정해준다. 
 			}
 			// startRowNum 과 endRowNum 을 CafeDto 객체에 담고 
-			dto.setStartRowNum(startRowNum);
-			dto.setEndRowNum(endRowNum);
+			dto2.setStartRowNum(startRowNum);
+			dto2.setEndRowNum(endRowNum);
 			
 			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
 			List<QnaJoinDto> list=qnaDao.getList(dto2);
@@ -249,12 +249,12 @@ public class QnaServiceImpl implements QnaService{
 		}
 
 		@Override
-		public void getList2(HttpServletRequest request) {
+		public void getList2(HttpServletRequest request,String itemNum) {
 			QnaJoinDto dto=new QnaJoinDto();
 			
 			//보여줄 페이지의 번호
 			int pageNum=1;
-			//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
+			
 			String strPageNum=request.getParameter("pageNum");
 			if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
 				//페이지 번호를 설정한다.
@@ -283,8 +283,9 @@ public class QnaServiceImpl implements QnaService{
 			dto.setStartRowNum(startRowNum);
 			dto.setEndRowNum(endRowNum);
 			
+			dto.setItemNum(itemNum);
 			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
-			List<QnaJoinDto> list=qnaDao.getList(dto);
+			List<QnaJoinDto> list=qnaDao.getList2(dto);
 			
 			//view 페이지에서 필요한 값을 request 에 담고 
 			request.setAttribute("list", list);
@@ -294,6 +295,7 @@ public class QnaServiceImpl implements QnaService{
 			request.setAttribute("totalPageCount", totalPageCount);	
 			//전체 글의 갯수도 request 에 담는다.
 			request.setAttribute("totalRow", totalRow);	
+			request.setAttribute("itemNum", itemNum);	
 
 			
 		}
