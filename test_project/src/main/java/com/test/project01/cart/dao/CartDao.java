@@ -11,6 +11,6 @@ public interface CartDao {
 	//카트리스트 보기
 	public List<CartListDto> cartList(String userId);
 	//카트에서 삭제하기
-	public void deleteCart(int cartNum);
+	public void deleteCart(CartListDto dto);
 	
 }

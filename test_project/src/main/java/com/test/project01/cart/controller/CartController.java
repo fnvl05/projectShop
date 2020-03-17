@@ -42,18 +42,26 @@ public class CartController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/shop/deleteCart")
-	public int deleteCart(@RequestParam(value = "chbox[]") List<String> arr) {
-		int result=0;
-		int cartNum=0;
-		for(String i:arr) {
-			cartNum = Integer.parseInt(i);
-			service.deleteCart(cartNum);
-		}
-		result=1;
-		return result;
+	@RequestMapping(value = "/shop/deleteCart")
+	public int deleteCart(@RequestParam(value ="chBox[]") List<String> arr, CartListDto dto, 
+			HttpSession session) {
+		UsersDto user=(UsersDto)session.getAttribute("userDto");
+		String userId=user.getUserId();
 		
-
+		int result = 0;
+		int cartNum = 0;
+		 
+		if(user != null) {
+			  dto.setUserId(userId);
+			  
+			  for(String i :arr) {   
+			   cartNum = Integer.parseInt(i);
+			   dto.setCartNum(cartNum);
+			   service.deleteCart(dto);
+			  }   
+			  result = 1;
+			 }  
+			 return result;
 	}
 }
 

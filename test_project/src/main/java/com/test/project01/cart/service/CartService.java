@@ -10,5 +10,5 @@ public interface CartService {
 	//장바구니 목록
 	public List<CartListDto> cartList(String userId);
 	//장바구니 삭제
-	public void deleteCart(int cartNum);
+	public void deleteCart(CartListDto dto);
 }

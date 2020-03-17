@@ -126,23 +126,22 @@
 			<%@ include file="../include/nav.jsp" %>
 		</div>
 	</nav>
+	<section id="container">
+		<h1>장바구니</h1>
+		<div class="allCheck">
+			<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
+			<script>
+			$("#allCheck").click(function(){
+				var chk = $("#allCheck").prop("checked");
+				if(chk) {
+					$(".chBox").prop("checked", true);
+				} else {
+					$(".chBox").prop("checked", false);
+				}
+			});
+			</script>
+		</div>
 	
-<h1>장바구니</h1>
-	<div class="allCheck">
-		<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
-		
-		<script>
-		$("#allCheck").click(function(){
-			var chk = $("#allCheck").prop("checked");
-			if(chk) {
-				$(".chBox").prop("checked", true);
-			} else {
-				$(".chBox").prop("checked", false);
-			}
-		});
-		</script>
-		
-	</div>
 	<div class="delBtn">
 		<button type="button" class="selectDelete_btn">선택 삭제</button>
 		
@@ -155,17 +154,18 @@
 							
 				// 체크된 체크박스의 갯수만큼 반복
 				$("input[class='chBox']:checked").each(function(){
+					if("checked")
 					arr.push($(this).attr("data-cartNum"));  // 배열에 데이터 삽입
 				});
 								
 				$.ajax({
-					url : "/shop/deleteCart",
+					url : "deleteCart.do",
 					type : "post",
 					data : { chbox : arr },
 					success : function(result){
 									
 						if(result == 1) {												
-							location.href = "/shop/cartList";
+							location.href = "cartList.do";
 							} else {
 								alert("삭제 실패");
 							}
@@ -177,6 +177,9 @@
 
 		
 	</div>
+		
+
+	
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
@@ -196,27 +199,27 @@
 			<tr>
 				<td>
 					<div class="checkBox">
-					<input type="checkbox" name="chBox" class="chBox" value="${tmp.cartNum}" />
-					<script>
-						$(".chBox").click(function(){
-							$("#allCheck").prop("checked", false);
-						});
-					</script>
-			</div>
+						<input type="checkbox" name="chBox" class="chBox" data-cartNum="${tmp.cartNum}" />
+						<script>
+							$(".chBox").click(function(){
+								$("#allCheck").prop("checked", false);
+							});
+						</script>
+					</div>
 				</td>
 				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
 				<td>${tmp.itemName }</td>
 				<td>${tmp.itemPrice }</td>
 				<td>${tmp.cartStock }</td>
 				<td>${tmp.itemPrice * tmp.cartStock }</td>
-				<td>
-					<a href="javascript:deleteConfirm(${tmp.cartNum })">삭제</a>
-				</td>
+				<td> <button type="button" class="delete_btn" data-cartNum="${tmp.cartNum}">삭제</button></td>	
 			</tr>
 		</c:forEach>
 		</tbody>
 	</table>
+	</section>
 			
+	
 	<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>
