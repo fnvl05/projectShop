@@ -15,6 +15,7 @@ import com.test.project01.qna.dao.QnaCommentDao;
 import com.test.project01.qna.dao.QnaDao;
 import com.test.project01.qna.dto.QnaCommentDto;
 import com.test.project01.qna.dto.QnaDto;
+import com.test.project01.qna.dto.QnaJoinDto;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -22,6 +23,8 @@ public class QnaServiceImpl implements QnaService{
 	private QnaDao qnaDao;
 	@Autowired
 	private QnaCommentDao qnaCommentDao;
+	
+	
 	
 	//한 페이지에 나타낼 row 의 갯수 
 		static final int PAGE_ROW_COUNT=5;
@@ -46,14 +49,16 @@ public class QnaServiceImpl implements QnaService{
 			//CafeDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
 			QnaDto dto=new QnaDto();
 			
+			QnaJoinDto dto2=new QnaJoinDto();
+			
 			if(keyword != null) {//검색 키워드가 전달된 경우
 				if(condition.equals("titlecontent")) {//제목+내용 검색
-					dto.setTitle(keyword);
-					dto.setContent(keyword);
+					dto2.setTitle(keyword);
+					dto2.setContent(keyword);
 				}else if(condition.equals("title")) {//제목 검색
-					dto.setTitle(keyword);
+					dto2.setTitle(keyword);
 				}else if(condition.equals("writer")) {//작성자 검색
-					dto.setWriter(keyword);
+					dto2.setWriter(keyword);
 				}
 				//request 에 검색 조건과 키워드 담기
 				request.setAttribute("condition", condition);
@@ -87,7 +92,7 @@ public class QnaServiceImpl implements QnaService{
 			int endRowNum=pageNum*PAGE_ROW_COUNT;
 			
 			//전체 row 의 갯수를 읽어온다.
-			int totalRow=qnaDao.getCount(dto);
+			int totalRow=qnaDao.getCount(dto2);
 			//전체 페이지의 갯수 구하기
 			int totalPageCount=
 					(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -101,11 +106,11 @@ public class QnaServiceImpl implements QnaService{
 				endPageNum=totalPageCount; //보정해준다. 
 			}
 			// startRowNum 과 endRowNum 을 CafeDto 객체에 담고 
-			dto.setStartRowNum(startRowNum);
-			dto.setEndRowNum(endRowNum);
+			dto2.setStartRowNum(startRowNum);
+			dto2.setEndRowNum(endRowNum);
 			
 			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
-			List<QnaDto> list=qnaDao.getList(dto);
+			List<QnaJoinDto> list=qnaDao.getList(dto2);
 			
 			//view 페이지에서 필요한 값을 request 에 담고 
 			request.setAttribute("list", list);
@@ -241,6 +246,58 @@ public class QnaServiceImpl implements QnaService{
 		@Override
 		public void updateComment(QnaCommentDto dto) {
 			qnaCommentDao.update(dto);
+		}
+
+		@Override
+		public void getList2(HttpServletRequest request,String itemNum) {
+			QnaJoinDto dto=new QnaJoinDto();
+			
+			//보여줄 페이지의 번호
+			int pageNum=1;
+			
+			String strPageNum=request.getParameter("pageNum");
+			if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
+				//페이지 번호를 설정한다.
+				pageNum=Integer.parseInt(strPageNum);
+			}
+			//보여줄 페이지 데이터의 시작 ResultSet row 번호
+			int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
+			//보여줄 페이지 데이터의 끝 ResultSet row 번호
+			int endRowNum=pageNum*PAGE_ROW_COUNT;
+			
+			//전체 row 의 갯수를 읽어온다.
+			int totalRow=qnaDao.getCount(dto);
+			//전체 페이지의 갯수 구하기
+			int totalPageCount=
+					(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+			//시작 페이지 번호
+			int startPageNum=
+				1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+			//끝 페이지 번호
+			int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+			//끝 페이지 번호가 잘못된 값이라면 
+			if(totalPageCount < endPageNum){
+				endPageNum=totalPageCount; //보정해준다. 
+			}
+			// startRowNum 과 endRowNum 을 CafeDto 객체에 담고 
+			dto.setStartRowNum(startRowNum);
+			dto.setEndRowNum(endRowNum);
+			
+			dto.setItemNum(itemNum);
+			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
+			List<QnaJoinDto> list=qnaDao.getList2(dto);
+			
+			//view 페이지에서 필요한 값을 request 에 담고 
+			request.setAttribute("list", list);
+			request.setAttribute("startPageNum", startPageNum);
+			request.setAttribute("endPageNum", endPageNum);
+			request.setAttribute("pageNum", pageNum);
+			request.setAttribute("totalPageCount", totalPageCount);	
+			//전체 글의 갯수도 request 에 담는다.
+			request.setAttribute("totalRow", totalRow);	
+			request.setAttribute("itemNum", itemNum);	
+
+			
 		}
 
 }

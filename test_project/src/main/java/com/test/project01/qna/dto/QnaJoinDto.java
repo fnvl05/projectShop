@@ -1,8 +1,9 @@
 package com.test.project01.qna.dto;
 
-public class QnaDto {
+public class QnaJoinDto {
 	private int num;
-	private int itemNum;
+	private String itemImg;
+	private String itemName;
 	private String writer;
 	private String title;
 	private String content;
@@ -12,14 +13,18 @@ public class QnaDto {
 	private int endRowNum;
 	private int prevNum; //이전글의 글번호를 담을 필드
 	private int nextNum; //다음글의 글번호를 담을 필드
+	private String itemNum;
 	
-	public QnaDto() {}
+	public QnaJoinDto() {}
 
-	public QnaDto(int num, int itemNum, String writer, String title, String content, int viewCount, String regdate,
-			int startRowNum, int endRowNum, int prevNum, int nextNum) {
+	
+
+	public QnaJoinDto(int num, String itemImg, String itemName, String writer, String title, String content,
+			int viewCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum, String itemNum) {
 		super();
 		this.num = num;
-		this.itemNum = itemNum;
+		this.itemImg = itemImg;
+		this.itemName = itemName;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
@@ -29,7 +34,22 @@ public class QnaDto {
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
+		this.itemNum = itemNum;
 	}
+
+
+
+	public String getItemNum() {
+		return itemNum;
+	}
+
+
+
+	public void setItemNum(String itemNum) {
+		this.itemNum = itemNum;
+	}
+
+
 
 	public int getNum() {
 		return num;
@@ -39,12 +59,20 @@ public class QnaDto {
 		this.num = num;
 	}
 
-	public int getItemNum() {
-		return itemNum;
+	public String getItemImg() {
+		return itemImg;
 	}
 
-	public void setItemNum(int itemNum) {
-		this.itemNum = itemNum;
+	public void setItemImg(String itemImg) {
+		this.itemImg = itemImg;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 	public String getWriter() {
@@ -118,6 +146,8 @@ public class QnaDto {
 	public void setNextNum(int nextNum) {
 		this.nextNum = nextNum;
 	}
+
+	
 
 	
 	

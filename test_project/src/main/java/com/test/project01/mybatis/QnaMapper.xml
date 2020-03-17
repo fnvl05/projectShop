@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="qna">
-	<select id="getCount" parameterType="qnaDto"
+	<select id="getCount" parameterType="qnaJoinDto"
 		resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM board_qna
@@ -18,15 +18,15 @@
 			</when>
 		</choose>
 	</select>
-	<select id="getList" parameterType="qnaDto"
-		resultType="qnaDto">
+	<select id="getList" parameterType="qnaJoinDto"
+		resultType="qnaJoinDto">
 		SELECT *
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
-				(SELECT num, writer, title, viewCount, 
+				(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
 				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
-				FROM board_qna
+				FROM board_qna,tbl_items
 				<choose>
 					<when test="title != null and content != null">
 						WHERE title LIKE '%'||#{title}||'%' OR
@@ -39,14 +39,38 @@
 						WHERE writer LIKE '%'||#{writer}||'%'
 					</when>
 				</choose>
+				where board_qna.itemNum=tbl_items.itemNum
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
+	<select id="getCount2" resultType="int" parameterType="qnaJoinDto">
+		select nvl(max(ROWNUM),0)
+		from board_qna
+		where itemNum=#{itemNum}
+		
+	</select>
+	<select id="getList2" resultType="qnaJoinDto" parameterType="qnaJoinDto">
+		SELECT * 
+			FROM
+   			(
+   				SELECT result1.*, ROWNUM AS rnum
+   				FROM
+       			(SELECT num, (select itemImg from tbl_items where itemNum=#{itemNum}) as itemImg, writer, title, viewCount, 
+				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+				FROM board_qna
+		
+		where board_qna.itemNum=#{itemNum}
+		ORDER BY num DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		
+		
+	</select>
+	
 	<insert id="insert" parameterType="qnaDto">
 		INSERT INTO board_qna
-		(num, writer, title, content, viewCount, regdate)
-		VALUES(board_qna_seq.NEXTVAL, #{writer}, #{title}, #{content},
+		(num, writer, itemNum, title, content, viewCount, regdate)
+		VALUES(board_qna_seq.NEXTVAL, #{writer}, #{itemNum}, #{title}, #{content},
 		#{viewCount}, SYSDATE)	
 	</insert>
 	

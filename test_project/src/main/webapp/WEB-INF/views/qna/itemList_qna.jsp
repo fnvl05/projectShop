@@ -1,11 +1,12 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/list.jsp</title>
+
+<title>/qna/itemList_review.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
@@ -87,7 +88,7 @@
 		</tbody>
 	</table>
 	
-	<a href="insertform.do?itemNum=?${itemNum }">새글 작성</a>
+	<a href="insertform.do?itemNum=${itemNum }">새글 작성</a>
 	
 	<div class="page-display">
 		<ul class="pagination">
@@ -148,5 +149,6 @@
 	</form>
 	</div>
 	</section>
+	<a href="insertform.do?itemNum=${itemNum }">QnA</a>
 </body>
 </html>

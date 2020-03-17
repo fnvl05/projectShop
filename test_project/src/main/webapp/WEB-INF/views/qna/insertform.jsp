@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../include/resource.jsp"></jsp:include>
+
+<style>
+	#content{
+		
+		width: 100%;
+		height: 400px;
+	}
+</style>
+
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
@@ -14,6 +23,7 @@
 		<li>새글 작성</li>
 	</ol>
 	<form action="insert.do" method="post">
+		<input type="hidden" name="itemNum" value="${itemNum }" />
 		<div class="form-group">
 			<label for="writer">작성자</label>
 			<input class="form-control" type="text" value="${id }" disabled/>

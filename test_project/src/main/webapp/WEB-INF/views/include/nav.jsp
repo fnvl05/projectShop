@@ -3,7 +3,7 @@
 
 <ul>
 	<c:choose>
-		<c:when test="${not empty sessionScope.userDto.userId }">
+		<c:when test="${not empty id }">
 			<c:if test="${sessionScope.userDto.verify eq 1}">
 				<li><a href="${pageContext.request.contextPath }/master/master_index.do">관리자</a></li>
 				<li><a href="${pageContext.request.contextPath}/home.do">홈으로</a></li>		

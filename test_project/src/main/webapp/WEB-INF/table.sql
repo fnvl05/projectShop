@@ -85,18 +85,9 @@ CREATE TABLE board_notice(
 	viewCount NUMBER, -- 조회수
 	regdate DATE
 );
-
---리뷰 테이블
-create table board_review(
-reviewNum number primary key,
-reviewWriter varchar2(50) not null,
-itemNum number not null,
-reviewContent CLOB not null,
-likeCount number,
-upCount number,
-regdate date);
-
 CREATE SEQUENCE board_notice_seq;
+
+
 
 <QnA 게시판>
 CREATE TABLE board_qna(
@@ -107,6 +98,7 @@ CREATE TABLE board_qna(
 	viewCount NUMBER, -- 조회수
 	regdate DATE
 );
+alter table board_qna add(itemNum number);
 
 CREATE SEQUENCE board_qna_seq;
 
@@ -124,16 +116,21 @@ CREATE TABLE board_qna_comment(
 
 CREATE SEQUENCE board_qna_comment_seq;
 
+
+--리뷰 테이블
+create table board_review(
+reviewNum number primary key,
+reviewWriter varchar2(50) not null,
+itemNum number not null,
+reviewContent CLOB not null,
+likeCount number,
+upCount number,
+regdate date);
+
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
-alter table board_review
-    add constraint board_review_itemNum foreign key(itemNum)
-    references tbl_items(itemNum);
-   
-alter table board_review
-    add constraint board_review_reviewWriter foreign key(reviewWriter)
-    references tbl_member(userId);
+
 
 --review comment table
 CREATE TABLE board_review_comment(
@@ -150,16 +147,6 @@ CREATE TABLE board_review_comment(
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
---order table
-create table order(
-	orderNum number primary key,
-	userId varchar2(50) not null,
-	orderRec varchar2(50) not null,   --수신자
-	userAddr1 varchar2(50) not null,
-	userAddr2 varchar2(50) not null,
-	userAddr3 varchar2(50) not null,
-	amount number not null,
-	orderDate date default sysdate,
 	
 --카트
 create table cartList(
@@ -217,6 +204,10 @@ select
             inner join goods_category c
                 on i.cateCode = c.cateCode           
             where i.cateCode = #{cateCode}
+
+
+
+
 
 
 
