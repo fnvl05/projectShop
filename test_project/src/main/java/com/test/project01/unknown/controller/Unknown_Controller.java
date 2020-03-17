@@ -35,7 +35,7 @@ public class Unknown_Controller {
 	@RequestMapping("/Unknown/itemList")
 	public ModelAndView getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView) {
 		List<Unknown_itemDto> cateList = null;
-		cateList = serviec.cateList(cateCode);
+		cateList = serviec.cateList(cateCode, cateLevel);
 		mView.addObject("cateList", cateList);
 		mView.setViewName("Unknown/itemList");
 		return mView;

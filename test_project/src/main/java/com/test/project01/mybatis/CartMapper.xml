@@ -3,8 +3,8 @@
 <mapper namespace="cart">
 	<insert id="addCart" parameterType="cartlistDto">
  		insert into cartList
- 		 (cartNum, userId, itemNum, cartStock)
-    	 values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock})
+ 		 (cartNum, userId, itemNum, cartStock, itemPrice)
+    	 values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock}, #{itemPrice})
 	</insert>
 	
 	<select id="cartList" resultType="cartlistDto">

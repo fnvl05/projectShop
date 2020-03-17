@@ -9,5 +9,5 @@ import com.test.project01.unknown.Dto.Unknown_itemDto;
 public interface Unknown_service {
 	public void itemList(ModelAndView mView);
 	public void getItemView(ModelAndView mView, int itemNum);
-	public List<Unknown_itemDto> cateList(int cateCode);
+	public List<Unknown_itemDto> cateList(int cateCode, int cateLevel);
 }

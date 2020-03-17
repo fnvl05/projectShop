@@ -15,20 +15,6 @@ public class CartListDto {
 	
 	public CartListDto() {}
 
-	public CartListDto(int cartNum, String userId, int itemNum, int cartStock, Date addDate, int num, String itemName,
-			int itemPrice, String itemImg) {
-		super();
-		this.cartNum = cartNum;
-		this.userId = userId;
-		this.itemNum = itemNum;
-		this.cartStock = cartStock;
-		this.addDate = addDate;
-		this.num = num;
-		this.itemName = itemName;
-		this.itemPrice = itemPrice;
-		this.itemImg = itemImg;
-	}
-
 	public int getCartNum() {
 		return cartNum;
 	}

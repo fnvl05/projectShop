@@ -28,8 +28,14 @@ public class Unknown_serviceImpl implements Unknown_service{
 	}
 
 	@Override
-	public List<Unknown_itemDto> cateList(int cateCode) {
-		return dao.cateList(cateCode);
+	public List<Unknown_itemDto> cateList(int cateCode, int cateLevel) {
+		int cateCodeRef = 0;
+		if(cateLevel == 1) {
+			cateCodeRef = cateCode;
+			return dao.cateList1(cateCode, cateCodeRef);
+		}else {			
+			return dao.cateList2(cateCode);
+		}
 	}
 
 

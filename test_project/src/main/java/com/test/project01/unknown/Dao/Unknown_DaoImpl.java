@@ -1,5 +1,6 @@
 package com.test.project01.unknown.Dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,9 +27,18 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 	}
 
 	@Override
-	public List<Unknown_itemDto> cateList(int cateCode) {
-		List<Unknown_itemDto> dto = session.selectList("unknown.cateList", cateCode);
+	public List<Unknown_itemDto> cateList1(int cateCode, int cateCodeRef) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("cateCode", cateCode);
+		map.put("cateCodeRef", cateCodeRef);		
+		return session.selectList("unknown.cateList1", map);
+	}
+	
+	@Override
+	public List<Unknown_itemDto> cateList2(int cateCode) {
+		List<Unknown_itemDto> dto = session.selectList("unknown.cateList2", cateCode);
 		return dto;
 	}
+
 	
 }

@@ -20,14 +20,14 @@ public class CartController {
 	private CartService service;
 	
 	//장바구니 추가
-	@RequestMapping("/shop/addCart")
+	@RequestMapping("/Users_Item/cart")
 	public String addCart(CartListDto dto, HttpSession session) {
 		
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		dto.setUserId(user.getUserId());
 		
 		service.addCart(dto);
-		return "redirect:/shop/list.do";
+		return "redirect:../shop/cartList.do";
 	}
 	
 	@RequestMapping("/shop/cartList")
