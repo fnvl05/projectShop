@@ -143,6 +143,40 @@
 		</script>
 		
 	</div>
+	<div class="delBtn">
+		<button type="button" class="selectDelete_btn">선택 삭제</button>
+		
+		<script>
+		$(".selectDelete_btn").click(function(){
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+						
+			if(confirm_val) {
+				var arr = new Array();
+							
+				// 체크된 체크박스의 갯수만큼 반복
+				$("input[class='chBox']:checked").each(function(){
+					arr.push($(this).attr("data-cartNum"));  // 배열에 데이터 삽입
+				});
+								
+				$.ajax({
+					url : "/shop/deleteCart",
+					type : "post",
+					data : { chbox : arr },
+					success : function(result){
+									
+						if(result == 1) {												
+							location.href = "/shop/cartList";
+							} else {
+								alert("삭제 실패");
+							}
+						}
+					});
+				}	
+		});
+		</script>
+
+		
+	</div>
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
@@ -162,7 +196,7 @@
 			<tr>
 				<td>
 					<div class="checkBox">
-					<input type="checkbox" name="chBox" class="chBox" data-cartNum="${tmp.cartNum}" />
+					<input type="checkbox" name="chBox" class="chBox" value="${tmp.cartNum}" />
 					<script>
 						$(".chBox").click(function(){
 							$("#allCheck").prop("checked", false);

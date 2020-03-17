@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.service.CartService;
@@ -40,10 +41,19 @@ public class CartController {
 		model.addAttribute("cartList", cartList);
 	}
 
+	@ResponseBody
 	@RequestMapping("/shop/deleteCart")
-	public String deleteCart(@RequestParam int cartNum) {
-		service.deleteCart(cartNum);
-		return "redirect:cartList.do";
+	public int deleteCart(@RequestParam(value = "chbox[]") List<String> arr) {
+		int result=0;
+		int cartNum=0;
+		for(String i:arr) {
+			cartNum = Integer.parseInt(i);
+			service.deleteCart(cartNum);
+		}
+		result=1;
+		return result;
+		
+
 	}
 }
 
