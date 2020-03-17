@@ -61,17 +61,17 @@
 				<div class="inputArea">
 					<p><span>상품 재고: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemCount}" /> EA</p>
 				</div>
-				<div class="cartCount">
+				<div class="cartStock">
 					<span>구입 수량: </span>
-					<p class="cartCount"> 
+					<p class="cartStock"> 
 					<button type="button" class ="plus">+</button>
-					<input type = "number" class ="numBox" min="1" max="${dto.itemCount }" value="1" readonly="readonly"/>
+					<input type = "number" class ="numBox" min="1" max="${dto.itemCount }" value="1" name="cartStock" readonly="readonly"/>
 					<button type="button" class ="minus">-</button>
 					<script>
 					  $(".plus").click(function(){
 					   var num = $(".numBox").val();
 					   var plusNum = Number(num) + 1;
-					   if(plusNum >= ${dto.itemCount}) {
+					   if(plusNum > ${dto.itemCount}) {
 					    $(".numBox").val(num);
 					   } else {
 					    $(".numBox").val(plusNum);          
@@ -109,13 +109,15 @@
 						var con = confirm("장바구니에 추가하시겠습니까?");
 						if(con){
 							formObj.attr("action","cart.do");
+							formObj.attr("method", "post");
 							formObj.submit();							
 						}
 					});
 				</script>
 			</div>
 		</form>
-		<div class="itemDes">${dto.itemDes }</div>			
+		<div class="itemDes">${dto.itemDes }</div>		
+		<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>	
 	</div>
 	</section>
 	<footer id="footer">

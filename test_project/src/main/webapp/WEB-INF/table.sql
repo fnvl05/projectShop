@@ -175,6 +175,20 @@ create table cartList(
 	primary key(cartNum, userId)
 );
 
+--카드 (가 테이블)
+create table cartList1(
+	cartNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	itemCount number not null, -- 카트 수량 -- 
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(cartNum, userId)
+);
+
 create sequence cartList_seq;
 
 alter table cartList
