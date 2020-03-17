@@ -170,7 +170,7 @@
 					</script>
 			</div>
 				</td>
-				<td><img src="../resources/${tmp.itemImg }"/></td>
+				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
 				<td>${tmp.itemName }</td>
 				<td>${tmp.itemPrice }</td>
 				<td>${tmp.cartStock }</td>
