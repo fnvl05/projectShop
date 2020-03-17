@@ -18,10 +18,8 @@
 			</when>
 		</choose>
 	</select>
-	<select id="getList" parameterType="qnaJoinDto"
-		resultType="qnaJoinDto">
-		SELECT *
-		FROM
+	<select id="getList" parameterType="qnaJoinDto" resultType="qnaJoinDto">
+		SELECT * FROM
 			(SELECT result1.*, ROWNUM AS rnum
 			FROM
 				(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
@@ -39,7 +37,7 @@
 						WHERE writer LIKE '%'||#{writer}||'%'
 					</when>
 				</choose>
-				where board_qna.itemNum=tbl_items.itemNum
+				where board_qna.itemNum = tbl_items.itemNum
 				ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
