@@ -103,7 +103,7 @@
 
 	<c:if test="${dto.reviewWriter eq userDto.userId }">
 		<a href="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum } ">삭제하기</a>
-		<a href="update.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
+		<a href="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
 	</c:if>
 	</br>
 	</br>

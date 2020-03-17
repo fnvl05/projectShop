@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/insertform.jsp</title>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+
 </head>
 <body>
 <div class="container">
@@ -17,8 +20,8 @@
 			<input type="text" name="reviewContent" id="reviewContent" />
 		</div>
 		<div class="container">
-			<label for="likeCount">별점</label>
-			<input type="text" name="likeCount" id="likeCount" />
+			<label for="likeCount">평가</label>
+			<input type="text" name="likeCount" id="likeCount" /> 
 		</div>
 		<button type="submit" >등록</button>
 		<button type="reset">취소</button>
