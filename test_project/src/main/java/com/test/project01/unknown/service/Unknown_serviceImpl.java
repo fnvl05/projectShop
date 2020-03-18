@@ -20,6 +20,20 @@ public class Unknown_serviceImpl implements Unknown_service{
 		List<Unknown_itemDto> list = dao.itemList();
 		mView.addObject("list", list);
 	}
+
+	@Override
+	public void getItemView(ModelAndView mView,int itemNum) {
+		Unknown_itemDto dto = dao.itemViewData(itemNum);
+		mView.addObject("dto", dto);
+	}
+
+	@Override
+	public List<Unknown_itemDto> cateList(int cateCode) {
+		return dao.cateList(cateCode);
+	}
+
+
+	
 	
 
 }
