@@ -75,9 +75,24 @@
 				<td>${tmp.num }</td>
 				<td><img src="../resources${tmp.itemImg }"/></td>
 				<td>
-					<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
-						${tmp.title }
-					</a>
+					<c:choose>
+						<c:when test="${not empty sessionScope.userDto.userId }">
+							<c:choose>
+								<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+									<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
+											${tmp.title }
+									</a>
+								</c:when>
+								<c:otherwise>
+									비밀글입니다. <img src="${pageContext.request.contextPath }/resources/images/keySmall.png"/>
+								</c:otherwise>
+							</c:choose>
+							
+						</c:when>
+						<c:otherwise>
+							로그인을 하세요.
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<td>${tmp.writer }</td>
 				<td>${tmp.viewCount }</td>
@@ -87,7 +102,6 @@
 		</tbody>
 	</table>
 	
-	<a href="insertform.do?itemNum=?${itemNum }">새글 작성</a>
 	
 	<div class="page-display">
 		<ul class="pagination">

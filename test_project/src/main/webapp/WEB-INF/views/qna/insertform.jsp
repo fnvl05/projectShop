@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 		<li>새글 작성</li>
 	</ol>
 	<form action="insert.do" method="post">
-		<input type="hidden" name="itemNum" value="${itemNum }" />
+		<input type="text" name="itemNum" value="${itemNum }" />
 		<div class="form-group">
 			<label for="writer">작성자</label>
 			<input class="form-control" type="text" value="${id }" disabled/>

@@ -164,25 +164,28 @@
 						</c:if>
 					</li>				
 				</c:when>
-				<c:otherwise>
-					<li <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >삭제된 댓글 입니다.</li>
-				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		</ul>
 		<div class="clearfix"></div>	
 		<!-- 원글에 댓글을 작성할수 있는 폼 -->
 		<div class="comment_form">
-			<form action="comment_insert.do" method="post">
-				<!-- 댓글의 그룹번호는 원글의 글번호가 된다.ㄴ  -->
-				<input type="hidden" name="ref_group" 
-					value="${dto.num }"/>
-				<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
-				<input type="hidden" name="target_id" 
-					value="${dto.writer }"/>
-				<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea>
-				<button type="submit">등록</button>
-			</form>
+			<c:choose>
+				<c:when test="${not empty sessionScope.userDto.userId }">
+					<c:if test="${sessionScope.userDto.verify eq 1}">
+						<form action="comment_insert.do" method="post">
+						<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
+						<input type="hidden" name="ref_group" 
+							value="${dto.num }"/>
+						<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
+						<input type="hidden" name="target_id" 
+							value="${dto.writer }"/>
+						<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea>
+						<button type="submit">등록</button>
+						</form>
+					</c:if>
+				</c:when>
+			</c:choose>
 		</div>
 	</div>
 </div>
