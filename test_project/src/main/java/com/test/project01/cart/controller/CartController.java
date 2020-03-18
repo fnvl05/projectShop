@@ -46,24 +46,12 @@ public class CartController {
 	
 	//2. 장바구니 목록
 	@RequestMapping("/shop/cartList")
-	public ModelAndView getCartList(HttpSession session, ModelAndView mView) {
+	public void getCartList(HttpSession session, Model model) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();
 		
-		Map<String, Object> map=new HashMap<String, Object>();
-		List<CartListDto> cartList=service.cartList(userId);//장바구니 정보
-		int sumMoney=service.sumMoney(userId);//장바구니 전체 금액
-		
-		//배송료구분(50000원 이상 무료배송)
-		int fee= sumMoney >= 50000 ? 0:2500;
-		map.put("cartList", cartList);
-		map.put("count",cartList.size());//장바구니 상품 유무
-		map.put("sumMoney", sumMoney);//상품 전체 금액
-		map.put("fee", fee);//배송금액
-		map.put("allPrice", sumMoney + fee);//주문 전체 금액
-		mView.setViewName("shop/cartList.do");
-		mView.addObject("map",map);
-		return mView;
+		List<CartListDto> cartList=service.cartList(userId);
+		model.addAttribute("cartList", cartList);
 	}
 
 	//3. 장바구니 삭제
