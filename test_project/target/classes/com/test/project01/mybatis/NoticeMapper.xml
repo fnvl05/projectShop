@@ -7,7 +7,7 @@
 		FROM
 			(SELECT result1.*, ROWNUM AS rnum 						  <!-- 2. ROWNUM 부여하고 -->
 			FROM
-				(SELECT num,writer,title,content,viewCount,To_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate <!-- 1. board_file로 부터 정렬하고 -->
+				(SELECT num,writer,title,content,viewCount,To_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,noticeNum <!-- 1. board_file로 부터 정렬하고 -->
 				FROM board_notice
 				<choose> <!-- mybatis가 지원하는 동적쿼리 -->
 					<when test="title != null and content != null">
@@ -20,14 +20,14 @@
 						WHERE writer LIKE '%${writer}%' <!-- 모든 조건이 false면 where 절이 안들어가므로 모든 글이 검색된다. -->
 					</when>
 				</choose>
-				ORDER BY num DESC) result1)
+				ORDER BY noticeNum DESC, num DESC) result1 )
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} <!-- 파라미터에서 startRowNum, endRowNum 을 가져온다. -->
 	</select>
 	<!-- 새글을 저장하는 메소드 -->
 	<insert id="insert" parameterType="noticeDto">
 		INSERT INTO board_notice
-		(num,writer,title,content,viewCount,regdate)
-		VALUES(board_notice_seq.NEXTVAL,#{writer},#{title},#{content},#{viewCount},sysdate)
+		(num,writer,title,content,viewCount,regdate,noticeNum)
+		VALUES(board_notice_seq.NEXTVAL,#{writer},#{title},#{content},#{viewCount},sysdate,#{noticeNum})
 	</insert>
 	<!-- 글 전체의 갯수를 리턴하는 메소드 -->
 	<select id="getCount" resultType="int">

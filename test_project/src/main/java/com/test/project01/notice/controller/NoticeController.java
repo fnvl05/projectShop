@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.notice.dto.NoticeDto;
@@ -32,11 +33,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="/notice/insert", method=RequestMethod.POST)
-	public ModelAndView Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto) {
+	public ModelAndView Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto, @RequestParam int noticeNum) {
 				String writer=(String)
 						request.getSession().getAttribute("id");
 				//CafeDto 객체에 담고 
 				dto.setWriter(writer);
+				dto.setNoticeNum(noticeNum);
+				
 				//서비스를 이용해서 DB 에 저장
 				service.saveContent(dto);
 				//글 목록 보기로 리다일렉트 이동 

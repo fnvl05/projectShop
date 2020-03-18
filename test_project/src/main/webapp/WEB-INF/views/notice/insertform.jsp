@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cafe/insertform.jsp</title>
+<title>/notice/insertform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <jsp:include page="../include/resource.jsp"></jsp:include>
 
@@ -31,6 +31,11 @@
 		<div class="form-group">
 			<label for="title">제목</label>
 			<input class="form-control" type="text" name="title" id="title" />
+		</div>
+		<div class="form-group">
+			<label for="noticeNum">중요글</label>
+			<input type="radio" name="noticeNum" value=0 checked="checked"/> OFF
+			<input type="radio" name="noticeNum" value=1 /> ON
 		</div>
 		<div class="form-group">
 			<label for="content">내용</label>
