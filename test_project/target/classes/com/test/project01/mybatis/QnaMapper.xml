@@ -37,8 +37,7 @@
 						WHERE writer LIKE '%'||#{writer}||'%'
 					</when>
 				</choose>
-				where board_qna.itemNum = tbl_items.itemNum
-				ORDER BY num DESC) result1)
+				where board_qna.itemNum = tbl_items.itemNum ORDER BY num DESC) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
