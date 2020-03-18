@@ -127,51 +127,81 @@
 		</div>
 	</nav>
 	<section id="container">
-		<h1>장바구니</h1>
-	
-	<table class="table table-striped table-condensed">
-		<thead>
-			<tr>
-				<th>이미지</th>
-				<th>상품명</th>
-				<th>가격</th>
-				<th>수량</th>
-				<th>최종 가격</th>
-				<th>삭제</th>
-			</tr>
-		</thead>
-		<tbody>
-		<c:forEach var="tmp" items="${requestScope.cartList }">
-			<tr>
-				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-				<td>${tmp.itemName }</td>
-				<td>${tmp.itemPrice }</td>
-				<td>${tmp.cartStock }</td>
-				<td>${tmp.itemPrice * tmp.cartStock }</td>
-				<td><a href="javascript:deleteConfirm(${tmp.cartNum })">삭제</a></td>	
-				<td>
-					<input type="hidden" name="allPrice" id="allPrice"
-						value="${tmp.itemPrice * tmp.cartStock }" />
-				</td>
-			</tr>
-		</c:forEach>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td>
-					<button type="button" class="btn btn-primary"
-						onclick="location.href='orderform.do'">주문하기</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-warning"
-						onclick="location.href='../home.do'">쇼핑계속</button>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-	<table>
-		
-	</table>
+	<h1>장바구니</h1>
+	<c:choose>
+		<c:when test="${map.count==0 }">
+			장바구니가 비어있습니다.
+		</c:when>
+		<c:otherwise>
+			<table class="table table-striped table-condensed">
+				<thead>
+					<tr>
+						<th>이미지</th>
+						<th>상품명</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>최종 가격</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+				<c:set var="sum" value="0"/>
+				<c:forEach var="tmp" items="${requestScope.cartList }">
+					<tr>
+						<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
+						<td>${tmp.itemName }</td>
+						<td>
+						<fmt:formatNumber value="${tmp.itemPrice}" 
+								pattern="###,###,###"/>원
+						</td>
+						<td>${tmp.cartStock }</td>
+						<td>
+						<fmt:formatNumber value="${tmp.itemPrice * tmp.cartStock }" 
+								pattern="###,###,###"/>원
+						</td>
+						<td><a href="javascript:deleteConfirm(${tmp.cartNum })">삭제</a></td>	
+					</tr>
+					<c:set var="sum" value="${sum + (tmp.itemPrice * tmp.cartStock) }"/>
+					<input  type="hidden" name="allPrice" id="allPrice"
+								value="${sum}" />
+				</c:forEach>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>
+							<button type="button" class="btn btn-primary"
+								onclick="location.href='orderform.do'">주문하기</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-warning"
+								onclick="location.href='../home.do'">쇼핑계속</button>
+						</td>
+					</tr>
+				</tfoot>
+			</table>
+			<table class="table table-striped table-condensed">
+				<thead>
+					<tr>
+						<th>총 상품금액</th>
+						<th>총 배송비</th>
+						<th>결제예정금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="cash" items="${cartList }">
+						<tr>
+							<td>
+								<fmt:formatNumber value="${sum }" 
+								pattern="###,###,###"/>원
+							</td>
+							<td>${map.fee }</td>
+							<td></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:otherwise>
+	</c:choose>
 	</section>
 			
 	
