@@ -17,4 +17,9 @@
     		     on c.itemNum = i.itemNum   
    		  where c.userId = #{userId}	
 	</select>
+	
+	<delete id="deleteCart">
+		delete from cartList
+		where cartNum=#{cartNum}
+	</delete>
 </mapper>
