@@ -41,27 +41,11 @@ public class CartController {
 		model.addAttribute("cartList", cartList);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/shop/deleteCart")
-	public int deleteCart(@RequestParam(value ="chBox[]") List<String> arr, CartListDto dto, 
-			HttpSession session) {
-		UsersDto user=(UsersDto)session.getAttribute("userDto");
-		String userId=user.getUserId();
-		
-		int result = 0;
-		int cartNum = 0;
-		 
-		if(user != null) {
-			  dto.setUserId(userId);
-			  
-			  for(String i :arr) {   
-			   cartNum = Integer.parseInt(i);
-			   dto.setCartNum(cartNum);
-			   service.deleteCart(dto);
-			  }   
-			  result = 1;
-			 }  
-			 return result;
+
+	@RequestMapping("/shop/deleteCart")
+	public String deleteCart(@RequestParam int cartNum) {
+		service.deleteCart(cartNum);
+		return "redirect:cartList.do";
 	}
 }
 
