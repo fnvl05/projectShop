@@ -127,8 +127,8 @@
 				<ul>
 					<li>
 						<div class="allCheck">
-							<input type="checkbox" name="allCheck" id="allCheck" /><label for="allCheck">모두 선택</label>
-							
+							<label for="allCheck">모두 선택</label>
+							<input type="checkbox" name="allCheck" id="allCheck" />
 							<script>
 							$("#allCheck").click(function(){
 								var chk = $("#allCheck").prop("checked");
@@ -139,32 +139,30 @@
 								}
 							});
 							</script>
-							
 						</div>
 						
 						<div class="delBtn">
-							<button type="button" class="selectDelete_btn">선택 삭제</button>
-							
+							<button type="button" class="selectDelete_btn" id="delAll">전체 삭제</button>
 							<script>
 								$(".selectDelete_btn").click(function(){
 									var confirm_val = confirm("정말 삭제하시겠습니까?");
 									
 									if(confirm_val) {
-										var checkArr = new Array();
+										var checkArr =[];
 										
 										// 체크된 체크박스의 갯수만큼 반복
-										$("input[class='chBox']:checked").each(function(){
-											checkArr.push($(this).attr("data-cartNum"));  // 배열에 데이터 삽입
+										$("input[class='chBox']:checked").each(function(i){
+											checkArr.push($(this).val());  // 배열에 데이터 삽입
 										});
 											
 										$.ajax({
-											url : "/shop/deleteCart",
+											url : "deleteCart.do",
 											type : "post",
-											data : { chbox : checkArr },
+											data : { "chbox" : checkArr },
 											success : function(result){
 												
 												if(result == 1) {												
-													location.href = "/shop/cartList";
+													location.href = "cartList.do";
 												} else {
 													alert("삭제 실패");
 												}
@@ -205,21 +203,21 @@
 								<button type="button" class="delete_${cartList.cartNum}_btn" data-cartNum="${cartList.cartNum}">삭제</button>
 								
 								<script>
-									$(".delete_${cartList.cartNum}_btn").click(function(){
-										var confirm_val = confirm("정말 삭제하시겠습니까?");
+									$(".delete_"+${cartList.cartNum}+"_btn").click(function(){
+										var confirm_val = confirm("정말 삭제하시겠습니까? 부분삭제");
 										
 										if(confirm_val) {
-											var checkArr = new Array();
+											var checkArr =[];
 											
-											checkArr.push($(this).attr("data-cartNum"));
+											checkArr.push($(this).attr(${cartList.cartNum}));
 																						
 											$.ajax({
-												url : "/shop/deleteCart",
+												url : "deleteCart.do",
 												type : "post",
-												data : { chbox : checkArr },
+												data : { "chbox" : checkArr },
 												success : function(result){
 													if(result == 1) {												
-														location.href = "/shop/cartList";
+														location.href = "cartList.do";
 													} else {
 														alert("삭제 실패");
 													}
