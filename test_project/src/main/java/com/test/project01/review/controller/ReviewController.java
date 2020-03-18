@@ -64,8 +64,8 @@ public class ReviewController {
 	}
 	
 	//업데이트 폼
-	@RequestMapping("/review/updateform")
-	public ModelAndView authUpdateform(HttpServletRequest request,ModelAndView mView,@RequestParam int reviewNum) {
+	@RequestMapping(value="/review/updateform",method=RequestMethod.GET)
+	public ModelAndView authUpdateform(HttpServletRequest request,ModelAndView mView,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.getUpdateData(mView,reviewNum);
 		mView.setViewName("review/updateform");
 		return mView;

@@ -57,14 +57,14 @@ select cateLevel, cateName, cateCode, cateCodeRef from goods_category
 start with cateCodeRef is null connect by prior cateCode = cateCodeRef;
 
 <level1 카테고리 예시>
-insert into goods_category values('1', '악세서리', '100', '')
-insert into goods_category values('1', '여성의류', '200', '')
-insert into goods_category values('1', '남성의류', '300', '')
+insert into goods_category values('1', '악세서리', '100', '');
+insert into goods_category values('1', '여성의류', '200', '');
+insert into goods_category values('1', '남성의류', '300', '');
 
 <level2 카테고리 예시>
-insert into goods_category values('2', '반지', '101', '100')
-insert into goods_category values('2', '귀걸이', '102', '100')
-insert into goods_category values('2', '목걸이', '103', '100')
+insert into goods_category values('2', '반지', '101', '100');
+insert into goods_category values('2', '귀걸이', '102', '100');
+insert into goods_category values('2', '목걸이', '103', '100');
 
 create sequence tbl_item_seq;
 
@@ -114,17 +114,47 @@ CREATE TABLE board_review_comment(
 CREATE SEQUENCE board_review_comment_seq;
 
 
---order table
-create table order(
+--orders table
+create table orders(
 	orderNum number primary key,
 	userId varchar2(50) not null,
 	orderRec varchar2(50) not null,   --수신자
-	userAddr1 varchar2(50) not null,
+	userAddr1 varchar2(20) not null,
 	userAddr2 varchar2(50) not null,
 	userAddr3 varchar2(50) not null,
-	amount number not null,
+	orderPhone1 varchar2(20),
+	orderPhone2 varchar2(20),
 	orderDate date default sysdate,
+	delivery varchar2(30) default '배송준비',    --배송 처리여부
+	msg varchar2(100),
+	payment varchar2(30),
+	allPrice number
 );
+
+create sequence orders_seq;
+
+alter table orders
+    add constraint orders_userId_fk foreign key(userId)
+    references tbl_member(userId);
+
+--orders detail table
+create table order_detail(
+	odNum number primary key,
+	orderNum number,
+	itemNum number,
+	quantity number,
+	result varchar2(30) default '미처리'       --상품 처리여부
+);
+
+create sequence order_detail_seq;
+
+alter table order_detail 
+	add constraint order_detail_orderNum_fk foreign key(orderNum)
+	references orders(orderNum);
+
+alter table order_detail
+	add constraint order_detail_itemNum_fk foreign key(itemNum)
+	references tbl_items(itemNum);
 
 
 

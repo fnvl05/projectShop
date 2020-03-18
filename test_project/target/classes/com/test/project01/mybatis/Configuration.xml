@@ -12,11 +12,15 @@
   		<typeAlias type="com.test.project01.review.dto.ReviewDto" alias="reviewDto"/>
   		<typeAlias type="com.test.project01.review.dto.ReviewJoinDto" alias="reviewJoinDto"/>
   		<typeAlias type="com.test.project01.review.dto.ReviewCommentDto" alias="reviewCommentDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrdersDto" alias="ordersDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailDto" alias="orderDetailDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailJoinDto" alias="orderDetailJoinDto"/>
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/categoryMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/ReviewMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/ReviewCommentMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/OrderMapper.xml"/>
   	</mappers>	
   </configuration>

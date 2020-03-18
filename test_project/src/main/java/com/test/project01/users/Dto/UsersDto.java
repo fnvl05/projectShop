@@ -8,24 +8,24 @@ public class UsersDto {
 	private String userPass;
 	private String userName;
 	private String userPhon;
-	private String userAdd1;
-	private String userAdd2;
-	private String userAdd3;
+	private String userAddr1;
+	private String userAddr2;
+	private String userAddr3;
 	private Date regiDate;
 	private int verify;
 		
 	public UsersDto() {}
 	
-	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAdd1, String userAdd2,
-			String userAdd3) {
+	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAddr1, String userAddr2,
+			String userAddr3) {
 		super();
 		this.userId = userId;
 		this.userPass = userPass;
 		this.userName = userName;
 		this.userPhon = userPhon;
-		this.userAdd1 = userAdd1;
-		this.userAdd2 = userAdd2;
-		this.userAdd3 = userAdd3;
+		this.userAddr1 = userAddr1;
+		this.userAddr2 = userAddr2;
+		this.userAddr3 = userAddr3;
 	}
 
 
@@ -53,23 +53,23 @@ public class UsersDto {
 	public void setUserPhon(String userPhon) {
 		this.userPhon = userPhon;
 	}
-	public String getUserAdd1() {
-		return userAdd1;
+	public String getUserAddr1() {
+		return userAddr1;
 	}
-	public void setUserAdd1(String userAdd1) {
-		this.userAdd1 = userAdd1;
+	public void setUserAddr1(String userAddr1) {
+		this.userAddr1 = userAddr1;
 	}
-	public String getUserAdd2() {
-		return userAdd2;
+	public String getUserAddr2() {
+		return userAddr2;
 	}
-	public void setUserAdd2(String userAdd2) {
-		this.userAdd2 = userAdd2;
+	public void setUserAddr2(String userAddr2) {
+		this.userAddr2 = userAddr2;
 	}
-	public String getUserAdd3() {
-		return userAdd3;
+	public String getUserAddr3() {
+		return userAddr3;
 	}
-	public void setUserAdd3(String userAdd3) {
-		this.userAdd3 = userAdd3;
+	public void setUserAddr3(String userAddr3) {
+		this.userAddr3 = userAddr3;
 	}
 	public Date getRegiDate() {
 		return regiDate;
