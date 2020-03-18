@@ -145,7 +145,6 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:set var="sum" value="0"/>
 				<c:forEach var="tmp" items="${requestScope.cartList }">
 					<tr>
 						<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
@@ -161,9 +160,6 @@
 						</td>
 						<td><a href="javascript:deleteConfirm(${tmp.cartNum })">삭제</a></td>	
 					</tr>
-					<c:set var="sum" value="${sum + (tmp.itemPrice * tmp.cartStock) }"/>
-					<input  type="hidden" name="allPrice" id="allPrice"
-								value="${sum}" />
 				</c:forEach>
 				</tbody>
 				<tfoot>
@@ -188,16 +184,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="cash" items="${cartList }">
-						<tr>
-							<td>
-								<fmt:formatNumber value="${sum }" 
-								pattern="###,###,###"/>원
-							</td>
-							<td>${map.fee }</td>
-							<td></td>
-						</tr>
-					</c:forEach>
+					<tr>
+						<td>
+							<fmt:formatNumber value="${map.sumMoney }" 
+							pattern="###,###,###"/>원
+						</td>
+						<td>${map.fee }</td>
+						<td>
+							<fmt:formatNumber value="${map.allPrice }" 
+							pattern="###,###,###"/>원
+						<input  type="hidden" name="allPrice" id="allPrice"
+								value="${map.allPrice}" />
+						</td>
+						
+					</tr>
 				</tbody>
 			</table>
 		</c:otherwise>
