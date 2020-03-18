@@ -138,8 +138,25 @@
 				<label for="msg">주문 메세지</label>
 				<input type="text" name="msg" id="msg"/>
 			</div>
-			
+			<div class="container">
+				<p>결제 수단</p>
+				<input type="radio" name="payment" id="card" value="card"  />
+				<label for="card">카드결제</label>
+				<input type="radio" name="payment" id="cash" value="cash"  />
+				<label for="cash">계좌이체</label>
+				<input type="radio" name="payment" id="phone" value="phone"  />
+				<label for="phone">휴대폰결제</label>
+			</div>
 			<button type="submit">결제하기</button>
+			<button onclick="showPopup();">결제하기</button>
+			<script>
+				function showPopup(){
+					window.open("paymentform.do","payment",
+							"width=400,height=300,top=100,left=100,resizable=no");
+				}
+				
+			</script>
+			
 			<button onclick="cartList.do">주문취소</button>
 		</form>
 		
