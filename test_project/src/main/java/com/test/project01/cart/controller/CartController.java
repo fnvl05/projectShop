@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMethod;
+=======
+>>>>>>> refs/heads/yun
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.project01.cart.dto.CartListDto;
@@ -31,7 +34,8 @@ public class CartController {
 		dto.setUserId(user.getUserId());
 		
 		service.addCart(dto);
-		return "redirect:../shop/cartList.do";
+
+		return "redirect:/cartList.do";
 	}
 	
 	@RequestMapping("/shop/cartList")
@@ -42,9 +46,11 @@ public class CartController {
 		List<CartListDto> cartList=service.cartList(userId);
 		model.addAttribute("cartList", cartList);
 	}
+
 	@RequestMapping("/shop/deleteCart")
-	public void delCartList(@RequestParam int cartNum, HttpServletRequest request) {
-		
+	public String deleteCart(@RequestParam int cartNum) {
+		service.deleteCart(cartNum);
+		return "redirect:cartList.do";
 	}
 }
 

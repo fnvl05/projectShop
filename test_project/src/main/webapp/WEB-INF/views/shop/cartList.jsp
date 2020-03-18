@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,18 +112,57 @@
 			<%@ include file="../include/header.jsp" %>
 		</div>
 	</header>
-
+	
+	
 	<nav id="nav">
 		<div id="nav_box">
 			<%@ include file="../include/nav.jsp" %>
 		</div>
 	</nav>
-	
 	<section id="container">
-		<div id="container_box">
-		
-			<section id="content">
-					
+		<h1>장바구니</h1>
+	
+	<table class="table table-striped table-condensed">
+		<thead>
+			<tr>
+				<th>이미지</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>수량</th>
+				<th>최종 가격</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="tmp" items="${requestScope.cartList }">
+			<tr>
+				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
+				<td>${tmp.itemName }</td>
+				<td>${tmp.itemPrice }</td>
+				<td>${tmp.cartStock }</td>
+				<td>${tmp.itemPrice * tmp.cartStock }</td>
+				<td><a href="javascript:deleteConfirm(${tmp.cartNum })">삭제</a></td>	
+				<td>
+					<input type="hidden" name="allPrice" id="allPrice"
+						value="${tmp.itemPrice * tmp.cartStock }" />
+				</td>
+			</tr>
+		</c:forEach>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='orderform.do'">주문하기</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-warning"
+						onclick="location.href='../home.do'">쇼핑계속</button>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	<table>			
 				<ul>
 					<li>
 						<div class="allCheck">
@@ -140,7 +179,6 @@
 							});
 							</script>
 						</div>
-						
 						<div class="delBtn">
 							<button type="button" class="selectDelete_btn" id="delAll">전체 삭제</button>
 							<script>
@@ -235,13 +273,10 @@
 					
 					</c:forEach>
 				</ul>			
-			</section>	
-			<aside>
-				<%@ include file="../include/users_aside.jsp" %>
-			</aside>	
-		</div>
+	</table>
 	</section>
-
+			
+	
 	<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>
@@ -249,7 +284,14 @@
 	</footer>
 
 </div>
-
+<script>
+	function deleteConfirm(cartNum){
+		var isDelete=confirm("삭제 하시겠습니까?");
+		if(isDelete){
+			location.href="deleteCart.do?cartNum="+cartNum;
+		}
+	}
+</script>
 
 
 
