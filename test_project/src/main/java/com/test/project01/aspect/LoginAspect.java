@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Component
 public class LoginAspect {
 	
-	@Around("execution(org.springframework.web.servlet.ModelAndView auth*(..))") //return type ModelAndView 이고 메소드 이름이 auth로 시작하는 메소드 (인자는 0개 이상)
+	@Around("execution(org.springframework.web.servlet.ModelAndView Users_*(..))") //return type ModelAndView 이고 메소드 이름이 auth로 시작하는 메소드 (인자는 0개 이상)
 	public Object loginCheck(ProceedingJoinPoint joinPoint) throws Throwable {
 		//aop 가 적용된 메소드에 전달된 값(인자)을 Object[] 로 얻어오기
 		Object[] args=joinPoint.getArgs(); //(..) 의 인자 값이 여러개 전달 될 수 있으므로 Object type으로 받는다.
@@ -68,13 +68,13 @@ public class LoginAspect {
 		ModelAndView mView=new ModelAndView();
 		//로그인 폼으로 리다일렉트 시키도록 view page 설정
 		mView.setViewName
-		("redirect:/user/loginform.do?url="+encodedUrl);
+		("redirect:/Users/login_form.do?url="+encodedUrl);
 		
 		//여기서 생성한 객체를 리턴해 준다. 
 		return mView;
 	}
 	
-	@Around("execution(java.util.Map auth*(..))") //return type Map 이고 메소드 이름이 auth로 시작하는 메소드 (인자는 0개 이상)
+	@Around("execution(java.util.Map Users_*(..))") //return type Map 이고 메소드 이름이 auth로 시작하는 메소드 (인자는 0개 이상)
 	public Object loginCheckAjax(ProceedingJoinPoint joinPoint) throws Throwable {
 		//aop 가 적용된 메소드에 전달된 값(인자)을 Object[] 로 얻어오기
 		Object[] args=joinPoint.getArgs(); //(..) 의 인자 값이 여러개 전달 될 수 있으므로 Object type으로 받는다.
@@ -106,4 +106,82 @@ public class LoginAspect {
 		map.put("isSuccess", false);
 		return map; // {"isSuccess":false}
 	}
+	
+	@Around("execution(org.springframework.web.servlet.ModelAndView Master_*(..))")
+	public Object MasterCheck (ProceedingJoinPoint joinPoint) throws Throwable {
+		Object [] args = joinPoint.getArgs();
+		boolean isLogin = false;
+		boolean isMaster = false;
+		HttpServletRequest request = null;
+		for(Object temp:args) {
+			if(temp instanceof HttpServletRequest) {
+				request=(HttpServletRequest)temp;
+				HttpSession session = request.getSession();
+				if(session.getAttribute("id") != null) {
+					isLogin = true;
+					if(isLogin && session.getAttribute("master").equals("1")) {
+						isMaster = true;
+					}
+				}
+			}
+		}
+		if(isLogin && isMaster) {
+			Object obj = joinPoint.proceed();
+			return obj;
+		}
+		String url = request.getRequestURI();
+		String query = request.getQueryString();
+		String encodedUrl = null;
+		if(query == null) {
+			encodedUrl = URLEncoder.encode(url);
+		}else {
+			encodedUrl = URLEncoder.encode(url + "?" + query); 
+		}
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("redirect:/master/no_master.do?url="+encodedUrl);
+		return mView;
+	}
+	
+	@Around("execution(java.util.Map Master_*(..))") //return type Map 이고 메소드 이름이 auth로 시작하는 메소드 (인자는 0개 이상)
+	public Object MasterCheckAjax(ProceedingJoinPoint joinPoint) throws Throwable {
+		Object[] args=joinPoint.getArgs();
+		boolean isLogin=false;
+		boolean isMaster = false;
+		HttpServletRequest request=null;
+		for(Object tmp:args) {
+			if(tmp instanceof HttpServletRequest) {
+				request=(HttpServletRequest)tmp;
+				HttpSession session=request.getSession();
+				if(session.getAttribute("id") != null) {
+					isLogin = true;
+					if(isLogin && session.getAttribute("master").equals("1")) {
+						isMaster = true;
+					}
+				}
+			}
+		}
+		//로그인 했는지 여부
+		if(isMaster){
+			Object obj=joinPoint.proceed(); 
+			return obj; 
+		}
+		// 로그인을 하지 않았으면
+		Map<String, Object> map=new HashMap<>();
+		map.put("isSuccess", false);
+		return map;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
