@@ -60,7 +60,10 @@
 					<label for="itemCount">상품수량</label>
 					<input type="text" name="itemCount" id="itemCount">
 				</div>
+
 				<script>
+
+
 					var regExp = /[^0-9]/gi;
 					
 					$("#itemPrice").keyup(function(){ numCheck($(this)); });
@@ -87,7 +90,7 @@
 					<label for="itemImg">이미지</label>
 					<input type="file" id="itemImg" name="file"/>
 					<div class="select_img">
-						<img src=""/>
+						<img src="../resources{dto.itemImg}"/>
 					</div>
 					<script>
 						$("#itemImg").change(function() {

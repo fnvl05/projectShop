@@ -157,6 +157,30 @@ alter table order_detail
 	references tbl_items(itemNum);
 
 
+--카트
+create table cartList(
+	cartNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	cartStock number not null, -- 카트 수량 -- 
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(cartNum, userId)
+);
+
+create sequence cartList_seq;
+
+alter table cartList
+add constraint cartList_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table cartList
+add constraint cartList_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
+
 
 
 
