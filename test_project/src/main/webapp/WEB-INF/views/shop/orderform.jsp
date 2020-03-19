@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,9 +27,10 @@
 			</div>
 		</nav>
 		
-		<table>
+		<table class="table table-striped table-condensed">
 			<thead>
 				<tr>
+					<th>상품번호</th>
 					<th>상품이미지</th>
 					<th>상품명</th>
 					<th>수량</th>
@@ -40,14 +42,57 @@
 			<tbody>
 				<c:forEach var="tmp" items="${requestScope.list }">
 					<tr>
+						<td>${tmp.itemNum }</td>
 						<td><img src="../resources${tmp.itemImg }"/></td>
 						<td>${tmp.itemName }</td>
-						<td>${tmp.quantity }</td>
-						<td>${tmp.price }</td>
+						<td>${tmp.cartStock }</td>
+						<td>${tmp.itemPrice *tmp.cartStock}</td>
 					</tr>
+					<c:set var="sumMoney" value="${sumMoney+(tmp.itemPrice * tmp.cartStock) }"/>
 				</c:forEach>
 			</tbody>
+			<table class="table table-striped table-condensed">
+         <thead>
+            <tr>
+               <th>총 상품금액</th>
+               <th>총 배송비</th>
+               <th>결제예정금액</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <c:set var="fee" value="0"/>
+               <c:choose>
+                  <c:when test="${sumMoney >= 50000  }">
+                     <c:set var="fee" value="0"/>
+                  </c:when>
+                  <c:otherwise>
+                     <c:set var="fee" value="2500"/>
+                  </c:otherwise>
+               </c:choose>
+               
+               <c:set var="allPrice" value="${sumMoney+fee }"/>
+               <td>
+                  <fmt:formatNumber value="${sumMoney }" 
+                  pattern="###,###,###"/>원
+               </td>
+               <td>
+               +<fmt:formatNumber value="${fee }" 
+                  pattern="###,###,###"/>원
+               </td>
+               <td>
+                  <fmt:formatNumber value="${allPrice }" 
+                  pattern="###,###,###"/>원
+               <input  type="hidden" name="allPrice" id="allPrice"
+                     value=${ allPrice} />
+               </td>
+               
+            </tr>
+         </tbody>
 		</table>
+		<label for="allPrice">총 결제금액</label>
+		<fmt:formatNumber value="${allPrice }" 
+                  pattern="###,###,###"/>원
 		<br/>
 		<br/>
 		<br/>
@@ -104,6 +149,7 @@
 			
 			
 			</script>
+			<input type="hidden" name="allPrice" id="allPrice" value=${allPrice } />
 			<div class="container">
 				<label for="orderRec">수령인</label>
 				<input type="text" name="orderRec" id="orderRec" />
@@ -136,7 +182,7 @@
 				<input type="text" name="msg" id="msg"/>
 			</div>
 			<div class="container">
-				<p>결제 수단</p>
+				<span>결제 수단</span>
 				<input type="radio" name="payment" id="card" value="card"  />
 				<label for="card">카드결제</label>
 				<input type="radio" name="payment" id="cash" value="cash"  />
@@ -155,7 +201,12 @@
 				
 			</script>
 			-->
-			<button onclick="cartList.do">주문취소</button>
+			<button type="button" id="back_btn">주문취소</button>
+			<script type="text/javascript">
+				$("#back_btn").click(function () {
+				location.href="cartList.do";
+				})
+			</script>
 		</form>
 		
 		<!-- 다음 주소 API 사용 -->

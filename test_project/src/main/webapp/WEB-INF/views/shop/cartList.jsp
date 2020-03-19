@@ -172,18 +172,7 @@
             <c:set var="sumMoney" value="${sumMoney+(tmp.itemPrice * tmp.cartStock) }"/>
          </c:forEach>
          </tbody>
-         <tfoot>
-            <tr>
-               <td>
-                  <button type="button" class="btn btn-primary"
-                     onclick="location.href='orderform.do'">주문하기</button>
-               </td>
-               <td>
-                  <button type="button" class="btn btn-warning"
-                     onclick="location.href='../home.do'">쇼핑계속</button>
-               </td>
-            </tr>
-         </tfoot>
+        
       </table>
       <table class="table table-striped table-condensed">
          <thead>
@@ -218,11 +207,23 @@
                   <fmt:formatNumber value="${allPrice }" 
                   pattern="###,###,###"/>원
                <input  type="hidden" name="allPrice" id="allPrice"
-                     value="${map.allPrice}" />
+                     value=${ allPrice} />
                </td>
                
             </tr>
          </tbody>
+          <tfoot>
+            <tr>
+               <td>
+                  <button type="button" class="btn btn-primary"
+                     onclick="location.href='orderform.do'">주문하기</button>
+               </td>
+               <td>
+                  <button type="button" class="btn btn-warning"
+                     onclick="location.href='../home.do'">쇼핑계속</button>
+               </td>
+            </tr>
+         </tfoot>
       </table>
       </c:otherwise>
    </c:choose>

@@ -14,4 +14,5 @@ public interface categoryDao {
 	public ItemViewDto itemViewList(int itemNum);
 	public void ItemUpdate(ItemDto dto);
 	public void ItemDelete(int itemNum);
+	public void minusCount(int quantity,int itemNum);
 }

@@ -6,9 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.test.project01.cart.dao.CartDao;
+import com.test.project01.cart.dto.CartListDto;
+import com.test.project01.master.category.Dao.categoryDao;
+import com.test.project01.master.category.Dto.ItemDto;
+import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dao.OrderDao;
 import com.test.project01.order.dao.OrderDetailDao;
+import com.test.project01.order.dto.OrderDetailDto;
 import com.test.project01.order.dto.OrderDetailJoinDto;
 import com.test.project01.order.dto.OrdersDto;
 import com.test.project01.users.Dto.UsersDto;
@@ -19,16 +26,32 @@ public class OrderServiceImpl implements OrderService{
 	OrderDao dao;
 	@Autowired
 	OrderDetailDao detailDao;
-
+	@Autowired
+	CartDao cartDao;
+	@Autowired
+	categoryDao categoryDao;
+	
 	@Override
 	public void detailList(HttpServletRequest request) {
 		OrderDetailJoinDto dto=new OrderDetailJoinDto();
 		List<OrderDetailJoinDto> list=detailDao.getList();
 		request.setAttribute("list", list);
 	}
+	
+	@Override
+	public void cartList_insertform(HttpServletRequest request) {
+		
+		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
+		String userId=userDto.getUserId();
+		List<CartListDto> list=cartDao.cartList(userId);
+		request.setAttribute("list", list);
 
+	}	
+	
+	@Transactional
 	@Override
 	public void insert(HttpServletRequest request, OrdersDto dto) {
+		//주문 정보 저장
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
 		String orderRec=request.getParameter("orderRec");
@@ -51,8 +74,25 @@ public class OrderServiceImpl implements OrderService{
 		dto.setPayment(payment);
 		dto.setAllPrice(allPrice);
 		dao.insert(dto);
-		// 아이템 재고 카운트 -1 , 주문 디테일 추가, 
+		//주문 디테일 추가
+		List<CartListDto> list=cartDao.cartList(userId);
+		
+		for(int i=0;i<list.size();i++) {
+			
+			int itemNum=list.get(i).getItemNum();
+			int quantity=list.get(i).getCartStock();
+			OrderDetailDto detailDto=new OrderDetailDto();
+			detailDto.setItemNum(itemNum);
+			detailDto.setQuantity(quantity);
+			detailDao.detailInsert(detailDto);
+			
+			categoryDao.minusCount(quantity,itemNum);
+		}
+		
+
 	}
+
+
 	    
 }
  

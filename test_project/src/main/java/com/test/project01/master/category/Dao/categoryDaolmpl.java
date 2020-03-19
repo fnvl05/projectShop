@@ -53,6 +53,11 @@ public class categoryDaolmpl implements categoryDao{
 		session.delete("category.itemDelete", itemNum);
 		
 	}
+
+	@Override
+	public void minusCount(int quantity,int itemNum) {
+		session.update("category.minusCount",quantity);
+	}
 	
 	
 }

@@ -19,10 +19,11 @@ public class OrderController {
 	
 	@RequestMapping("/shop/orderform")
 	public ModelAndView getList(HttpServletRequest request,ModelAndView mView) {
-		
+		service.cartList_insertform(request);
 		mView.setViewName("shop/orderform");
 		return mView;
 	}
+	
 	
 	@RequestMapping(value="/shop/order",method=RequestMethod.POST)
 	public ModelAndView insert(HttpServletRequest request,ModelAndView mView,

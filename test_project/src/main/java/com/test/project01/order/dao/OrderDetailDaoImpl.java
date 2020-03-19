@@ -18,6 +18,11 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	public List<OrderDetailJoinDto> getList() {
 		return session.selectList("order.getDetailList");
 	}
+
+	@Override
+	public void detailInsert(OrderDetailDto dto) {
+		session.insert("order.detailInsert",dto);
+	}
 	
 	
 }
