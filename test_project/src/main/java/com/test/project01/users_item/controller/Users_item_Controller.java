@@ -32,7 +32,8 @@ public class Users_item_Controller {
 		return mView;
 	}
 	@RequestMapping("/Users_Item/itemList")
-	public ModelAndView Users_getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView) {
+	public ModelAndView Users_getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView,
+			HttpServletRequest request) {
 		List<Unknown_itemDto> cateList = null;
 		cateList = serviec.cateList(cateCode, cateLevel);
 		mView.addObject("cateList", cateList);

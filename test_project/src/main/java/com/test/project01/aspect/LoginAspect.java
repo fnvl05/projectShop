@@ -57,7 +57,6 @@ public class LoginAspect {
 		String url=request.getRequestURI();
 		//GET 방식 전송 파라미터를 query string 으로 얻어오기
 		String query=request.getQueryString(); //?뒤의 파라미터가 query에 담김, 예를들어 num=1&name=gura
-		
 		String encodedUrl=null;
 		if(query==null) {//전달된 파라미터가 없다면 
 			encodedUrl=URLEncoder.encode(url);

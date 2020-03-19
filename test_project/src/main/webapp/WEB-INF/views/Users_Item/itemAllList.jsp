@@ -29,7 +29,7 @@
 		<section id="container">
 			<div id="container_box">
 			<aside>
-				<%@ include file="../include/unknown_aside.jsp" %>
+				<%@ include file="../include/users_aside.jsp" %>
 			</aside>
 				<h2>상품 목록</h2>
 					<table>

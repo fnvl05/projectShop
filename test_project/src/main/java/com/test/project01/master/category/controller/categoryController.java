@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,11 +53,11 @@ public class categoryController{
 		return mView;
 	}
 	@RequestMapping(value="/master/register", method = RequestMethod.POST)
-	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file) throws IOException, Exception {
+	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
 		String imgUpLoadPath = upLoadPath + File.separator + "imgUpLoad";
 		String ymdPath = UpLoadFileUtils.calcPath(imgUpLoadPath);
 		String fileName = null;
-
+		
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UpLoadFileUtils.fileUpload(imgUpLoadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
@@ -66,7 +67,7 @@ public class categoryController{
 		 dto.setItemImg(fileName);
 		 dto.setItemThumbImg(fileName);
 		}
-
+		
 		service.itemInsert(dto);
 		return new ModelAndView("redirect:itemList.do");
 	}
