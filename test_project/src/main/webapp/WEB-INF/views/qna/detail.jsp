@@ -1,202 +1,248 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>/qna/detail.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 <style>
-	/* 글 내용을 출력할 div 에 적용할 css */
-	.contents, table{
-		width: 100%;
-		border: 1px dotted #cecece;
-		box-shadow: 3px 3px 5px 6px #ccc;
-	}
-	/* 댓글에 관련된 css */
-	.comments ul{
-		padding: 0;
-		margin: 0;
-		list-style-type: none;
-	}
-	.comments ul li{
-		border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
-	}
-	.comments dt{
-		margin-top: 5px;
-	}
-	.comments dd{
-		margin-left: 26px;
-	}
-	.comments form textarea, .comments form button{
-		float: left;
-	}
-	.comments li{
-		clear: left;
-	}
-	.comments form textarea{
-		width: 85%;
-		height: 100px;
-	}
-	.comments form button{
-		width: 15%;
-		height: 100px;
-	}
-	/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
-	.comment form{
-		display: none;
-	}
-	.comment{
-		position: relative;
-	}
-	.comment .reply_icon{
-		width: 8px;
-		height: 8px;
-		position: absolute;
-		top: 10px;
-		left: 30px;
-	}
-	.comments .user-img{
-		width: 20px;
-		height: 20px;
-		border-radius: 50%;
-	}
+/* 글 내용을 출력할 div 에 적용할 css */
+.contents, table {
+	width: 100%;
+	border: 1px dotted #cecece;
+	box-shadow: 3px 3px 5px 6px #ccc;
+}
+/* 댓글에 관련된 css */
+.comments ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.comments ul li {
+	border-top: 1px solid #888; /* li 의 윗쪽 경계선 */
+}
+
+.comments dt {
+	margin-top: 5px;
+}
+
+.comments dd {
+	margin-left: 26px;
+}
+
+.comments form textarea, .comments form button {
+	float: left;
+}
+
+.comments li {
+	clear: left;
+}
+
+.comments form textarea {
+	width: 85%;
+	height: 100px;
+}
+
+.comments form button {
+	width: 15%;
+	height: 100px;
+}
+/* 댓글에 댓글을 다는 폼과 수정폼을 일단 숨긴다. */
+.comment form {
+	display: none;
+}
+
+.comment {
+	position: relative;
+}
+
+.comment .reply_icon {
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 10px;
+	left: 30px;
+}
+
+.comments .user-img {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
 </style>
 </head>
 <body>
-<c:choose>
-<c:when test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
-<div class="container">
-	<ol class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
-		<li>글 상세 보기</li>
-	</ol>
-	<c:if test="${not empty keyword }">
-		<p> <strong>${keyword }</strong> 검색어로 검색된
-		결과 자세히 보기 입니다.</p>
-	</c:if>
-	
-	<h3>QnA 글 상세 보기</h3>
-	
-	<c:if test="${dto.prevNum ne 0 }">
-		<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
-	</c:if>
-	
-	<c:if test="${dto.nextNum ne 0 }">
-		<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
-	</c:if>	
-	<table class="table table-bordered table-condensed">
-		<colgroup>
-			<col class="col-xs-3"/>
-			<col class="col-xs-9"/>
-		</colgroup>
-		<tr>
-			<th>글번호</th>
-			<td>${dto.num }</td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td>${dto.writer }</td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td>${dto.title }</td>
-		</tr>
-		<tr>
-			<th>등록일</th>
-			<td>${dto.regdate }</td>
-		</tr>
-	</table>
-	<div class="contents">${dto.content }</div>
-	<%-- 
+	<div id="root">
+		<header id="heder_box">
+			<div>
+				<%@ include file="../include/header.jsp"%>
+			</div>
+		</header>
+	</div>
+	<nav id="nav">
+		<div id="nav_box">
+			<%@ include file="../include/nav.jsp"%>
+		</div>
+	</nav>
+	<section id="container">
+		<aside>
+			<div id="aside_box">
+				<c:choose>
+					<c:when test="${not empty sessionScope.userDto.userId }">
+						<c:if test="${sessionScope.userDto.verify eq 1}">
+							<%@ include file="../include/master_aside.jsp"%>
+						</c:if>
+						<c:if test="${sessionScope.userDto.verify eq 0}">
+							<%@ include file="../include/users_aside.jsp"%>
+						</c:if>
+					</c:when>
+					<c:otherwise>
+						<%@ include file="../include/unknown_aside.jsp"%>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</aside>
+		<c:choose>
+			<c:when
+				test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
+						<li>글 상세 보기</li>
+					</ol>
+					<c:if test="${not empty keyword }">
+						<p>
+							<strong>${keyword }</strong> 검색어로 검색된 결과 자세히 보기 입니다.
+						</p>
+					</c:if>
+
+
+					<c:if test="${dto.prevNum ne 0 }">
+						<a
+							href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+					</c:if>
+
+					<c:if test="${dto.nextNum ne 0 }">
+						<a
+							href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+					</c:if>
+					<table class="table table-bordered table-condensed">
+						<colgroup>
+							<col class="col-xs-3" />
+							<col class="col-xs-9" />
+						</colgroup>
+						<tr>
+							<th>글번호</th>
+							<td>${dto.num }</td>
+						</tr>
+						<tr>
+							<th>작성자</th>
+							<td>${dto.writer }</td>
+						</tr>
+						<tr>
+							<th>제목</th>
+							<td>${dto.title }</td>
+						</tr>
+						<tr>
+							<th>등록일</th>
+							<td>${dto.regdate }</td>
+						</tr>
+					</table>
+					<div class="contents">${dto.content }</div>
+					<%-- 
 		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
 		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
 	--%>
-	<c:if test="${dto.writer eq id }">
-		<a href="updateform.do?num=${dto.num }">
-			수정
-		</a>
-		<a href="javascript:deleteConfirm()">삭제</a>
-	</c:if>
-	<div class="comments">
-		<ul>
-		<c:forEach items="${commentList }" var="tmp">
-			<c:choose>
-				<c:when test="${tmp.deleted ne 'yes' }">
-					<li class="comment" id="comment${tmp.num }" <c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if> >						
-								<span>${tmp.writer }</span>
-								<c:if test="${tmp.num ne tmp.comment_group }">
-									to <strong>${tmp.target_id }</strong>
-								</c:if>
-								<span>${tmp.regdate }</span>
-								<a href="javascript:" class="reply_link">답글</a>
-								<c:choose>
-									<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
-									<c:when test="${id eq tmp.writer }">
-										<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
-										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
-									</c:when>
-									<c:otherwise>
-										<a href="javascript:">신고</a>
-									</c:otherwise>
-								</c:choose>
-						<dl>		
-							<dt></dt>
-							<dd>
-								<pre>${tmp.content }</pre>
-							</dd>
-						</dl>
-						<form class="comment-insert-form" action="comment_insert.do" method="post">
-							<!-- 덧글 그룹 -->
-							<input type="hidden" name="ref_group" value="${dto.num }" />
-							<!-- 덧글 대상 -->
-							<input type="hidden" name="target_id" value="${tmp.writer }" />
-							<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
-							<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea>
-							<button type="submit">등록</button>
-						</form>	
-						<!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 -->				
-						<c:if test="${id eq tmp.writer }">
-							<form class="comment-update-form" action="comment_update.do" method="post">
-								<input type="hidden" name="num" value="${tmp.num }" />
-								<textarea name="content">${tmp.content }</textarea>
-								<button type="submit">수정</button>
-							</form>
-						</c:if>
-					</li>				
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		</ul>
-		<div class="clearfix"></div>	
-		<!-- 원글에 댓글을 작성할수 있는 폼 -->
-		<div class="comment_form">
-			<c:choose>
-				<c:when test="${not empty sessionScope.userDto.userId }">
-					<c:if test="${sessionScope.userDto.verify eq 1}">
-						<form action="comment_insert.do" method="post">
-						<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
-						<input type="hidden" name="ref_group" 
-							value="${dto.num }"/>
-						<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
-						<input type="hidden" name="target_id" 
-							value="${dto.writer }"/>
-						<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea>
-						<button type="submit">등록</button>
-						</form>
+					<c:if test="${dto.writer eq id }">
+						<a class="btn btn-info" href="updateform.do?num=${dto.num }"> 수정 </a>
+						<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 					</c:if>
-				</c:when>
-			</c:choose>
-		</div>
-	</div>
-</div>
-</c:when>
-<c:otherwise>
-<h1>잘못된 접근입니다.</h1>
-</c:otherwise>
-</c:choose>
-<script>
+					<div class="comments">
+						<ul>
+							<c:forEach items="${commentList }" var="tmp">
+								<c:choose>
+									<c:when test="${tmp.deleted ne 'yes' }">
+										<li class="comment" id="comment${tmp.num }"
+											<c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>
+											<span>${tmp.writer }</span> <c:if
+												test="${tmp.num ne tmp.comment_group }">
+									to <strong>${tmp.target_id }</strong>
+											</c:if> <span>${tmp.regdate }</span> <a href="javascript:"
+											class="reply_link">답글</a> <c:choose>
+												<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
+												<c:when test="${id eq tmp.writer }">
+													<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
+										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
+												</c:when>
+												<c:otherwise>
+													<a href="javascript:">신고</a>
+												</c:otherwise>
+											</c:choose>
+											<dl>
+												<dt></dt>
+												<dd>
+													<pre>${tmp.content }</pre>
+												</dd>
+											</dl>
+											<form class="comment-insert-form" action="comment_insert.do"
+												method="post">
+												<!-- 덧글 그룹 -->
+												<input type="hidden" name="ref_group" value="${dto.num }" />
+												<!-- 덧글 대상 -->
+												<input type="hidden" name="target_id" value="${tmp.writer }" />
+												<input type="hidden" name="comment_group"
+													value="${tmp.comment_group }" />
+												<textarea name="content"><c:if
+														test="${empty id }">로그인이 필요합니다.</c:if></textarea>
+												<button type="submit">등록</button>
+											</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
+												test="${id eq tmp.writer }">
+												<form class="comment-update-form" action="comment_update.do"
+													method="post">
+													<input type="hidden" name="num" value="${tmp.num }" />
+													<textarea name="content">${tmp.content }</textarea>
+													<button type="submit">수정</button>
+												</form>
+											</c:if>
+										</li>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</ul>
+						<div class="clearfix"></div>
+						<!-- 원글에 댓글을 작성할수 있는 폼 -->
+						<div class="comment_form">
+							<c:choose>
+								<c:when test="${not empty sessionScope.userDto.userId }">
+									<c:if test="${sessionScope.userDto.verify eq 1}">
+										<form action="comment_insert.do" method="post">
+											<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
+											<input type="hidden" name="ref_group" value="${dto.num }" />
+											<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
+											<input type="hidden" name="target_id" value="${dto.writer }" />
+											<textarea name="content"><c:if test="${empty id }">로그인이 필요합니다.</c:if></textarea>
+											<button type="submit">등록</button>
+										</form>
+									</c:if>
+								</c:when>
+							</c:choose>
+						</div>
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<h1>잘못된 접근입니다.</h1>
+			</c:otherwise>
+		</c:choose>
+	</section>
+	<script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)

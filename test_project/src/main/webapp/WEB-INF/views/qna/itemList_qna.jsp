@@ -103,10 +103,10 @@
 		</tbody>
 	</table>
 	
-	<a href="insertform.do?itemNum=${itemNum }">새글 작성</a>
+	<a class="btn btn-info" href="insertform.do?itemNum=${itemNum }">새글 작성</a>
 	
 	<div class="page-display">
-		<ul class="pagination">
+		<ul class="pagination pagination-sm" style="padding-left: 36%;">
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
 				<li>

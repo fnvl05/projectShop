@@ -104,7 +104,7 @@
 			<c:choose>
 				<c:when test="${not empty sessionScope.userDto.userId }">
 					<c:if test="${sessionScope.userDto.verify eq 1}">
-						<a style="float:right" class="btn btn-info" href="insertform.do">새글 작성</a> <!-- cafe/private/* 로그인 안하면  사용 못하게 필터링! -->
+						<a class="btn btn-info" href="insertform.do">새글 작성</a> <!-- cafe/private/* 로그인 안하면  사용 못하게 필터링! -->
 					</c:if>
 				</c:when>
 			</c:choose>

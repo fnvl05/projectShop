@@ -104,7 +104,7 @@
 	
 	
 	<div class="page-display">
-		<ul class="pagination">
+		<ul class="pagination pagination-sm" style="padding-left: 36%;">
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
 				<li>
