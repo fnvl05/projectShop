@@ -43,7 +43,7 @@ public class QnaController {
 		}
 	//새글 추가 폼 요청 처리
 	@RequestMapping("/qna/insertform")
-	public ModelAndView authInsertform
+	public ModelAndView Users_authInsertform
 			(HttpServletRequest request,@RequestParam String itemNum){
 		
 		request.setAttribute("itemNum", itemNum);
@@ -52,7 +52,7 @@ public class QnaController {
 	
 	//새글 추가 요청 처리
 	@RequestMapping(value="/qna/insert", method=RequestMethod.POST)
-	public ModelAndView authInsert(HttpServletRequest request,
+	public ModelAndView Users_authInsert(HttpServletRequest request,
 			@ModelAttribute QnaDto dto){
 		//세션에 있는 글작성자의 아이디
 		String writer=(String)
@@ -73,8 +73,7 @@ public class QnaController {
 	}
 	//원글 삭제 요청 처리
 	@RequestMapping("/qna/delete")
-	public ModelAndView 
-		authDelete(HttpServletRequest request,
+	public ModelAndView Users_authDelete(HttpServletRequest request,
 				@RequestParam int num){
 		//서비스를 이용해서 글을 삭제하기 
 		service.deleteContent(num, request);
@@ -82,8 +81,7 @@ public class QnaController {
 		return new ModelAndView("redirect:/qna/list.do");
 	}
 	@RequestMapping("/qna/updateform")
-	public ModelAndView 
-		authUpdateform(HttpServletRequest request, 
+	public ModelAndView Users_authUpdateform(HttpServletRequest request, 
 			@RequestParam int num,
 			ModelAndView mView){
 		//서비스를 이용해서 수정할 글정보를 ModelAndView
@@ -97,8 +95,7 @@ public class QnaController {
 	//원글 수정 반영 요청 처리
 	@RequestMapping(value="/qna/update",
 			method=RequestMethod.POST)
-	public ModelAndView 
-		authUpdate(HttpServletRequest request,
+	public ModelAndView Users_authUpdate(HttpServletRequest request,
 				@ModelAttribute QnaDto dto){
 		//서비스를 이용해서 수정 반영한다.
 		service.updateContent(dto);

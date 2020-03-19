@@ -10,10 +10,7 @@
 
 <style>
 	#container_box table td { width:150px; text-align: center }
-	 #ul1 li { display:inline-block; margin:10px; }
-	.thumbImg { width:200px; height:200px; }
-	.itemName { padding:10px 0; text-align:center; }
-	.itemName a { color:#000; }
+	.thumbImg{width: 100px; height: 70px;}
 </style>
 
 </head>
@@ -32,21 +29,29 @@
 		<section id="container">
 			<div id="container_box">
 			<aside>
-				<%@ include file="../include/users_aside.jsp" %>
+				<%@ include file="../include/unknown_aside.jsp" %>
 			</aside>
 				<h2>상품 목록</h2>
-					<ul id="ul1">
-					 <c:forEach items="${cateList}" var="cateList">
-					 <li>
-					  <div class="itemThumb">
-					   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
-					  </div> 
-					  <div class="itemName">
-					   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
-					  </div>
-					 </li>
-					 </c:forEach>
-					</ul>
+					<table>
+						 <thead>
+							 <tr>
+							   <th>이미지</th>
+							   <th>이름</th>
+							   <th>가격</th>
+							   <th>수량</th>
+							 </tr>
+						 </thead>
+						 <tbody>
+						  <c:forEach items="${list}" var="list">
+							  <tr>
+								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
+								   <td><a href="itemView_form.do?itemNum=${list.itemNum}">${list.itemName}</a></td>
+								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> </td>
+								   <td>${list.itemCount}</td>
+							  </tr> 
+						  </c:forEach>
+						 </tbody>
+					</table>
 			</div>
 		</section>
 		<footer id="footer">

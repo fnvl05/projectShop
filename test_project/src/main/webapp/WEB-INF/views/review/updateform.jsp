@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/updateform.jsp</title>
 </head>
 <body>
@@ -23,7 +24,12 @@
 		</div>
 		<button type="submit" >수정확인</button>
 		<button type="reset">취소</button>
-		<button><a href="detail.do?reviewNum=${dto.reviewNum }&itemNum=${dto.itemNum}">돌아가기</a></button>
+		<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+			<script>
+				$("#back_btn").click(function(){
+					location.href="itemView_form.do?itemNum=" + ${dto.itemNum};
+				})
+			</script>
 	</form>
 </div>
 

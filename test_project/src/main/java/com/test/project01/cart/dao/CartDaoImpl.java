@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.cart.dto.CartListDto;
 
-
-
-
 @Repository
 public class CartDaoImpl implements CartDao{
 	@Autowired
@@ -24,6 +21,11 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public List<CartListDto> cartList(String userId) {
 		return session.selectList("cart.cartList", userId);
+	}
+
+	@Override
+	public void deleteCart(int cartNum) {
+		session.delete("cart.deleteCart", cartNum);
 	}
 
 	

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/insertform.jsp</title>
 </head>
 <body>
@@ -22,7 +23,12 @@
 		</div>
 		<button type="submit" >등록</button>
 		<button type="reset">취소</button>
-		<button><a href="itemList_review.do?itemNum=${itemNum }">돌아가기</a></button>
+		<button type="button" id="back_btn">돌아가기</button>
+			<script type="text/javascript">
+						$("#back_btn").click(function () {
+							location.href="itemList_review.do?itemNum=" + ${itemNum};
+						})
+			</script>
 	</form>
 </div>
 

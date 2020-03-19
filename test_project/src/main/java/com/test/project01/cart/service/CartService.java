@@ -9,4 +9,6 @@ public interface CartService {
 	public void addCart(CartListDto dto);
 	//장바구니 목록
 	public List<CartListDto> cartList(String userId);
+	//장바구니 삭제
+	public void deleteCart(int cartNum);
 }

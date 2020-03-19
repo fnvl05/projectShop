@@ -32,7 +32,7 @@
 			<aside>
 				<%@ include file="../include/master_aside.jsp" %>
 			</aside>
-			<form role="form" action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
+			<form role="form" autocomplete="off" enctype="multipart/form-data">
 			<input type="hidden" name="itemNum" value="${dto.itemNum }"/>
 				<div class="inputArea">
 					 <label>1차 분류</label>

@@ -28,12 +28,12 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/insertform")
-	public ModelAndView authInsertform(HttpServletRequest request) {  
+	public ModelAndView Master_authInsertform(HttpServletRequest request) {  
 		return new ModelAndView("notice/insertform");
 	}
 	
 	@RequestMapping(value="/notice/insert", method=RequestMethod.POST)
-	public ModelAndView Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto, @RequestParam int noticeNum) {
+	public ModelAndView Master_Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto, @RequestParam int noticeNum) {
 				String writer=(String)
 						request.getSession().getAttribute("id");
 				//NoticeDto 객체에 담고 
@@ -54,20 +54,20 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/delete")
-	public ModelAndView delete(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView Master_delete(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.delete(request, response);
 		mView.setViewName("notice/delete");
 		return mView;
 	}
 	
 	@RequestMapping("/notice/updateform")
-	public ModelAndView updateform(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView Master_updateform(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.updateform(request, response);
 		mView.setViewName("notice/updateform");
 		return mView;
 	}
 	@RequestMapping("/notice/update")
-	public ModelAndView update(ModelAndView mView, HttpServletRequest request) {
+	public ModelAndView Master_update(ModelAndView mView, HttpServletRequest request) {
 		service.update(request);
 		mView.setViewName("notice/update");
 		return mView;
