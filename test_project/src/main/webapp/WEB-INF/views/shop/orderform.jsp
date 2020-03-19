@@ -52,6 +52,7 @@
 		<br/>
 		<br/>
 		<form action="order.do" method="post">
+			
 			<div class="container">
 				<label for="userName">주문자</label>
 				<input type="text" name="userName" id="userName" value=${sessionScope.userDto.userName } />
@@ -66,44 +67,40 @@
 			<br/>
 			<br/>
 			<br/>
-			
-			<a href="javascript:check();">주문자 정보 동일</button>
-			<!--<label for="check">주문자 정보 동일</label>
-			 <input type="checkbox" id="check" />-->
+			<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+			<!--  <a href="javascript:check();">주문자 정보 동일</button>-->
+			<label for="check">주문자 정보 동일</label>
+			 <input type="checkbox" id="equal" />
 			<script>
-				
-			var check=function(){
-				var userName=document.querySelector("#userName").value;
-				document.querySelector("#orderRec").value=userName;
-				//반장님 것과 merge할 시에 userPhone로 변경하기  (테이블도)
-				var userPhon=document.querySelector("#userPhon").value;   
-				document.querySelector("#orderPhone1").value=userPhon;
-				var addr1=document.querySelector("#addr1").value;
-				document.querySelector("#userAddr1").value=addr1;
-				var addr2=document.querySelector("#addr2").value;
-				document.querySelector("#userAddr2").value=addr2;
-				var addr3=document.querySelector("#addr3").value;
-				document.querySelector("#userAddr3").value=addr3;
-				
-				
-			};
-				
-				
-			/*
-				var a = $("#check").prop("checked");
-				console.log(a);
-				$("#check").click(function(){
-					console.log(a);
-					$("#orderRec").text($("#userName").val());
-					// 클릭이 되어있다면
-					if($("#check").not(":checked")==false){
-						$("#orderRec").text($("#userName").val());
-						
-					}else if($("#check").not(":checked")==true){
-						console.log(a);
+				$("#equal").on("click",function(){
+					if($('input:checkbox[id="equal"]').is(":checked")==true){
+						var userName=$("#userName").val();
+						$("#orderRec").val(userName);
+						var userPhon=$("#userPhon").val();
+						$("#orderPhone1").val(userPhon);
+						var addr1=$("#addr1").val();
+						$("#userAddr1").val(addr1);
+						var addr2=$("#addr2").val();
+						$("#userAddr2").val(addr2);
+						var addr3=$("#addr3").val();
+						$("#userAddr3").val(addr3);
+					}else if($('input:checkbox[id="equal"]').is(":checked")==false){
+						$("#orderRec").val("");
+						$("#orderPhone1").val("");
+						$("#userAddr1").val("");
+						$("#userAddr2").val("");
+						$("#userAddr3").val("");
 					}
 				});
-			*/
+				
+				/*
+				만약 폼의 값이 바뀌면은 체크박스가 false가 되게 구현하기
+				$("#orderRec","#orderPhone1","#orderAddr1","#orderAddr2","#orderAddr3").change(function(){
+					$('input:checkbox[id="equal"]').prop('checked',false);
+				});
+
+				*/
+			
 			
 			
 			</script>
@@ -148,6 +145,7 @@
 				<label for="phone">휴대폰결제</label>
 			</div>
 			<button type="submit">결제하기</button>
+			<!--  
 			<button onclick="showPopup();">결제하기</button>
 			<script>
 				function showPopup(){
@@ -156,7 +154,7 @@
 				}
 				
 			</script>
-			
+			-->
 			<button onclick="cartList.do">주문취소</button>
 		</form>
 		

@@ -6,4 +6,9 @@
 		from order_detail,tbl_items
 		where order_detail.itemNum=tbl_items.itemNum and orderNum=#{orderNum}
 	</select>
+	<insert id="insert" parameterType="ordersDto">
+		insert into orders
+		(orderNum,userId,orderRec,userAddr1,userAddr2,userAddr3,orderPhone1,orderPhone2,orderDate,delivery,msg,payment,allPrice)
+		values(orders_seq.NEXTVAL,#{userId},#{orderRec },#{userAddr1},#{userAddr2},#{userAddr3},#{orderPhone1},#{orderPhone2},sysdate,#{delivery},#{msg},#{payment},#{allPrice})
+	</insert>
 </mapper>
