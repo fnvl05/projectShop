@@ -10,10 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.service.CartService;
@@ -25,8 +26,8 @@ public class CartController {
 	private CartService service;
 	
 	//장바구니 추가
-	@RequestMapping("/shop/addCart")
-	public String addCart(CartListDto dto, HttpSession session) {
+	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
+	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		
 		//UsersDto user=(UsersDto)session.getAttribute("userDto");
 		//dto.setUserId(user.getUserId());
@@ -41,7 +42,7 @@ public class CartController {
 			//있으면 update
 			service.updateCart(dto);
 		}
-		return "redirect:/cartList.do";
+		return "redirect:../shop/cartList.do";
 	}
 	
 	//2. 장바구니 목록
@@ -55,11 +56,17 @@ public class CartController {
 	}
 
 	//3. 장바구니 삭제
-	@RequestMapping("/shop/deleteCart")
-	public String deleteCart(@RequestParam int cartNum) {
-		service.deleteCart(cartNum);
-		return "redirect:cartList.do";
+	@ResponseBody
+	@RequestMapping(value="/shop/deleteEachCart", method=RequestMethod.POST)
+	public Map<String, Object> deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
+		for(int i=0; i<list.size(); i++) {
+			service.deleteCart(Integer.parseInt(list.get(i)));
+		}
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
 	}
+	
 	
 	//4. 장바구니 수정
 	@RequestMapping("/shop/updateCart")

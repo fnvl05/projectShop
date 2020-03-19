@@ -11,7 +11,7 @@
 		select
      		row_number() over(order by c.cartNum desc) as num,
      		c.cartNum, c.userId, c.itemNum, c.cartStock, c.addDate,
-    		 i.itemName, i.itemPrice, i.itemImg, itemPrice(itemPrice * cartStock) money
+    		 i.itemName, i.itemPrice, i.itemImg
 		 from cartList c
     		 inner join tbl_items i
     		     on c.itemNum = i.itemNum   

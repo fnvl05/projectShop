@@ -49,11 +49,5 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void updateCart(CartListDto dto) {
 		session.update("cart.updateCart",dto);
-	}
-	@Override
-	public int sumMoney(String userId) {
-		return session.selectOne("cart.sumMoney", userId);
-	}
-
-	
+	}	
 }
