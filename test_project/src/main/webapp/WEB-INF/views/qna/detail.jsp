@@ -65,6 +65,8 @@
 </style>
 </head>
 <body>
+<c:choose>
+<c:when test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
@@ -189,6 +191,11 @@
 		</div>
 	</div>
 </div>
+</c:when>
+<c:otherwise>
+<h1>잘못된 접근입니다.</h1>
+</c:otherwise>
+</c:choose>
 <script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){

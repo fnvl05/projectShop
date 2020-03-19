@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cafe/detail.jsp</title>
+<title>/notice/detail.jsp</title>
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <style>
 	/* 글 내용을 출력할 div 에 적용할 css */
