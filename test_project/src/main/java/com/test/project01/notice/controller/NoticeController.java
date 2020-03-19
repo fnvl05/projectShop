@@ -36,7 +36,7 @@ public class NoticeController {
 	public ModelAndView Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto, @RequestParam int noticeNum) {
 				String writer=(String)
 						request.getSession().getAttribute("id");
-				//CafeDto 객체에 담고 
+				//NoticeDto 객체에 담고 
 				dto.setWriter(writer);
 				dto.setNoticeNum(noticeNum);
 				

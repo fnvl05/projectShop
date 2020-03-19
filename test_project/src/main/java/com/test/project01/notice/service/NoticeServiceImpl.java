@@ -32,7 +32,7 @@ public class NoticeServiceImpl implements NoticeService{
 		String keyword=request.getParameter("keyword");
 		String condition=request.getParameter("condition");
 		
-		//검색 키워드가 존재한다면 키워드를 담을 CafeDto 객체 생성 
+		//검색 키워드가 존재한다면 키워드를 담을 NoticeDto 객체 생성 
 		NoticeDto dto=new NoticeDto();
 		if(keyword != null) {//검색 키워드가 전달된 경우
 			if(condition.equals("titlecontent")) {//제목+내용 검색
