@@ -40,5 +40,8 @@
 		where userId=#{userId}
 		and itemNum=#{itemNum}
 	</update>
-	
+	<delete id="deleteAll" parameterType="String">
+		delete from cartList
+		where userId=#{userId}
+	</delete>
 </mapper>

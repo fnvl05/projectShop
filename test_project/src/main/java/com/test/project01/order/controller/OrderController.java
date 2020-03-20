@@ -18,7 +18,7 @@ public class OrderController {
 	OrderService service;
 	
 	@RequestMapping("/shop/orderform")
-	public ModelAndView getList(HttpServletRequest request,ModelAndView mView) {
+	public ModelAndView User_getList(HttpServletRequest request,ModelAndView mView) {
 		service.cartList_insertform(request);
 		mView.setViewName("shop/orderform");
 		return mView;
@@ -26,7 +26,7 @@ public class OrderController {
 	
 	
 	@RequestMapping(value="/shop/order",method=RequestMethod.POST)
-	public ModelAndView insert(HttpServletRequest request,ModelAndView mView,
+	public ModelAndView User_insert(HttpServletRequest request,ModelAndView mView,
 			@ModelAttribute("dto") OrdersDto dto) {
 		service.insert(request, dto);
 		mView.setViewName("shop/order");

@@ -41,7 +41,7 @@
 	<delete id="itemDelete">
 		delete from tbl_items where itemNum = #{itemNum}
 	</delete>
-	<update id="minusCount" parameterType="int">
+	<update id="minusCount" parameterType="orderDetailDto">
 		update tbl_items
 		set itemCount=itemCount-#{quantity}
 		where itemNum=#{itemNum}

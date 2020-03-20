@@ -49,5 +49,10 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void updateCart(CartListDto dto) {
 		session.update("cart.updateCart",dto);
+	}
+	@Override
+	public void deleteAll(String userId) {
+		session.delete("cart.deleteAll",userId);
+		
 	}	
 }

@@ -74,24 +74,26 @@ public class OrderServiceImpl implements OrderService{
 		dto.setPayment(payment);
 		dto.setAllPrice(allPrice);
 		dao.insert(dto);
+		
+		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+		int size=getOrderNum.size()-1;
+		int orderNum=getOrderNum.get(size).getOrderNum();
 		//주문 디테일 추가
 		List<CartListDto> list=cartDao.cartList(userId);
 		
 		for(int i=0;i<list.size();i++) {
-			
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
 			OrderDetailDto detailDto=new OrderDetailDto();
+			detailDto.setOrderNum(orderNum);
 			detailDto.setItemNum(itemNum);
 			detailDto.setQuantity(quantity);
 			detailDao.detailInsert(detailDto);
-			
-			categoryDao.minusCount(quantity,itemNum);
+			categoryDao.minusCount(detailDto);
 		}
-		
-
+		//해당 아이디의 장바구니 삭제하기
+		cartDao.deleteAll(userId);
 	}
-
 
 	    
 }

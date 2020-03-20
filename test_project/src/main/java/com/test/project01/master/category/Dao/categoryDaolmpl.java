@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
 import com.test.project01.master.category.Dto.categoryDto;
+import com.test.project01.order.dto.OrderDetailDto;
 
 @Repository
 public class categoryDaolmpl implements categoryDao{
@@ -55,8 +56,8 @@ public class categoryDaolmpl implements categoryDao{
 	}
 
 	@Override
-	public void minusCount(int quantity,int itemNum) {
-		session.update("category.minusCount",quantity);
+	public void minusCount(OrderDetailDto detailDto) {
+		session.update("category.minusCount",detailDto);
 	}
 	
 	

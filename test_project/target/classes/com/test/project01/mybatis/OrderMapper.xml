@@ -13,7 +13,12 @@
 	</insert>
 	<insert id="detailInsert" parameterType="orderDetailDto">
 		insert into order_detail
-		(odNum,itemNum,quantity)
-		values(order_detail_seq.NEXTVAL,#{itemNum},#{quantity})
+		(odNum,orderNum,itemNum,quantity)
+		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{quantity})
 	</insert>
+	<select id="getOrderNum" resultType="ordersDto" parameterType="String">
+		select orderNum 
+		from orders
+		where userId=#{userId}
+	</select>
 </mapper>
