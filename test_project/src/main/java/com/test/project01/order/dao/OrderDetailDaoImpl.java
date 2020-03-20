@@ -16,7 +16,7 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 
 	@Override
 	public List<OrderDetailJoinDto> getList(String userId) {
-		return session.selectList("order.getDetailList");
+		return session.selectList("order.getOrderList",userId);
 	}
 
 	@Override

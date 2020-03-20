@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
-	<select id="getDetailList" resultType="orderDetailJoinDto" parameterType="String">
-		select tbl_items.itemImg,tbl_items.itemName,tbl_items.price,quantity
-		from order_detail,tbl_items
-		where order_detail.itemNum=tbl_items.itemNum and userId=#{userId}
-	</select>
+
 	<insert id="insert" parameterType="ordersDto">
 		insert into orders
 		(orderNum,userId,orderRec,userAddr1,userAddr2,userAddr3,orderPhone1,orderPhone2,orderDate,msg,payment,allPrice)
@@ -13,12 +9,19 @@
 	</insert>
 	<insert id="detailInsert" parameterType="orderDetailDto">
 		insert into order_detail
-		(odNum,orderNum,itemNum,quantity)
-		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{quantity})
+		(odNum,orderNum,itemNum,itemName,quantity)
+		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{itemName},#{quantity})
 	</insert>
 	<select id="getOrderNum" resultType="ordersDto" parameterType="String">
 		select orderNum 
 		from orders
 		where userId=#{userId}
+	</select>
+	<select id="getOrderList" resultType="orderDetailJoinDto" parameterType="String">
+		 select o.orderNum,o.orderRec,o.userAddr1,o.userAddr2,o.userAddr3,o.orderPhone1,o.orderPhone2,
+		 o.orderDate,o.delivery,o.payment,o.allPrice,d.itemNum,d.itemImg,d.itemName,d.quantity,d.result
+		 from orders o,order_detail d
+		 where userId=#{userId} and o.orderNum(+)=d.orderNum 
+		 
 	</select>
 </mapper>

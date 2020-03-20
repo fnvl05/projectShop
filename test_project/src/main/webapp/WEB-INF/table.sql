@@ -137,14 +137,17 @@ alter table orders
     add constraint orders_userId_fk foreign key(userId)
     references tbl_member(userId);
 
---orders detail table
+--orders detail table (수정했어요 확인바람)!!!!!!!!!!!!!!!!!!!!!!
 create table order_detail(
 	odNum number primary key,
 	orderNum number,
 	itemNum number,
+	itemName varchar2(50),
+	itemImg varchar(200) null,
 	quantity number,
 	result varchar2(30) default '미처리'       --상품 처리여부
 );
+
 
 create sequence order_detail_seq;
 

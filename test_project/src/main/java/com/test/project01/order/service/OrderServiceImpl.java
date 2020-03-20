@@ -31,12 +31,7 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	categoryDao categoryDao;
 	
-	@Override
-	public void detailList(HttpServletRequest request) {
-		OrderDetailJoinDto dto=new OrderDetailJoinDto();
-		List<OrderDetailJoinDto> list=detailDao.getList();
-		request.setAttribute("list", list);
-	}
+
 	
 	@Override
 	public void cartList_insertform(HttpServletRequest request) {
@@ -84,9 +79,13 @@ public class OrderServiceImpl implements OrderService{
 		for(int i=0;i<list.size();i++) {
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
+			String itemName=list.get(i).getItemName();
+			String itemImg=list.get(i).getItemImg();
 			OrderDetailDto detailDto=new OrderDetailDto();
 			detailDto.setOrderNum(orderNum);
 			detailDto.setItemNum(itemNum);
+			detailDto.setItemName(itemName);
+			detailDto.setItemImg(itemImg);
 			detailDto.setQuantity(quantity);
 			detailDao.detailInsert(detailDto);
 			categoryDao.minusCount(detailDto);
@@ -95,6 +94,13 @@ public class OrderServiceImpl implements OrderService{
 		cartDao.deleteAll(userId);
 	}
 
-	    
+	@Override
+	public void orderList(HttpServletRequest request) {
+		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
+		String userId=userDto.getUserId();
+		OrderDetailJoinDto dto=new OrderDetailJoinDto();
+		List<OrderDetailJoinDto> list=detailDao.getList(userId);
+		request.setAttribute("list", list);
+	}
 }
  
