@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order">
-	<select id="getDetailList" resultType="orderDetailJoinDto">
+	<select id="getDetailList" resultType="orderDetailJoinDto" parameterType="String">
 		select tbl_items.itemImg,tbl_items.itemName,tbl_items.price,quantity
 		from order_detail,tbl_items
-		where order_detail.itemNum=tbl_items.itemNum and orderNum=#{orderNum}
+		where order_detail.itemNum=tbl_items.itemNum and userId=#{userId}
 	</select>
 	<insert id="insert" parameterType="ordersDto">
 		insert into orders

@@ -29,7 +29,7 @@
 		
 		<h1>결제가 완료되었습니다</h1>
 		<a href="../home.do">쇼핑 계속하기</a>
-		<a href="#">주문 상품 확인하기</a>
+		<a href="myorderform.do">주문 상품 확인하기</a>
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>

@@ -18,7 +18,7 @@ public class OrderController {
 	OrderService service;
 	
 	@RequestMapping("/shop/orderform")
-	public ModelAndView User_getList(HttpServletRequest request,ModelAndView mView) {
+	public ModelAndView User_orderform(HttpServletRequest request,ModelAndView mView) {
 		service.cartList_insertform(request);
 		mView.setViewName("shop/orderform");
 		return mView;
@@ -33,5 +33,11 @@ public class OrderController {
 		return mView;
 	}
 	
+	@RequestMapping("/shop/orderList")
+	public ModelAndView User_orderList(HttpServletRequest request,ModelAndView mView) {
+		
+		mView.setViewName("shop/orderList");
+		return mView;
+	}
 	
 }
