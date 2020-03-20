@@ -9,11 +9,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.a{	
-		border: 1px solid red;
 		width: 500px;
 		height:500px;
 		position:relative;
-		top: 100px;
+		top: 200px;
 		margin: 0 auto;
 	}	
 	.img1{
