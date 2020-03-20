@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.RequestScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -173,12 +172,18 @@ public class categoryController{
 		return null;
 	}	
 
-	@RequestMapping(value="/master/no_master")
+	@RequestMapping("/master/no_master")
 	public ModelAndView no_master(ModelAndView mView) {
 		mView.setViewName("master/no_master");
 		return mView;	
 	}
 	
+	@RequestMapping("/master/usersList")
+	public ModelAndView userList(ModelAndView mView) {
+		service.usersList(mView);
+		mView.setViewName("master/usersList");
+		return mView;	
+	}
 	
 	
 	

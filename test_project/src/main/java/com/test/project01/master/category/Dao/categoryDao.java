@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
+import com.test.project01.master.category.Dto.UsersListDto;
 import com.test.project01.master.category.Dto.categoryDto;
 
 public interface categoryDao {
@@ -14,4 +15,6 @@ public interface categoryDao {
 	public ItemViewDto itemViewList(int itemNum);
 	public void ItemUpdate(ItemDto dto);
 	public void ItemDelete(int itemNum);
+	public List<UsersListDto> userList();
+	public void upResult(UsersListDto dto);
 }
