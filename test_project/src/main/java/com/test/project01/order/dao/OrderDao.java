@@ -8,4 +8,5 @@ import com.test.project01.order.dto.OrdersDto;
 public interface OrderDao {
 	public List<OrdersDto> getOrderNum(String userId);
 	public void insert(OrdersDto dto);
+	public List<OrdersDto> orderInfo(OrdersDto dto);
 }

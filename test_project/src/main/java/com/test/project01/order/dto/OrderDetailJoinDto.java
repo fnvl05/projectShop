@@ -13,10 +13,12 @@ public class OrderDetailJoinDto {
 	private String payment;
 	private int allPrice;
 	private int itemNum;
-	private String itemImg;
 	private String itemName;
+	private String itemImg;
+	private int itemPrice;
 	private int quantity;
 	private String result;
+	private String userId;
 	
 	 
 	public OrderDetailJoinDto() {}
@@ -24,7 +26,7 @@ public class OrderDetailJoinDto {
 
 	public OrderDetailJoinDto(int orderNum, String orderRec, String userAddr1, String userAddr2, String userAddr3,
 			String orderPhone1, String orderPhone2, String orderDate, String delivery, String payment, int allPrice,
-			int itemNum, String itemImg, String itemName, int quantity, String result) {
+			int itemNum, String itemName, String itemImg, int itemPrice,int quantity, String result, String userId) {
 		super();
 		this.orderNum = orderNum;
 		this.orderRec = orderRec;
@@ -38,10 +40,12 @@ public class OrderDetailJoinDto {
 		this.payment = payment;
 		this.allPrice = allPrice;
 		this.itemNum = itemNum;
-		this.itemImg = itemImg;
 		this.itemName = itemName;
+		this.itemImg = itemImg;
+		this.itemPrice=itemPrice;
 		this.quantity = quantity;
 		this.result = result;
+		this.userId = userId;
 	}
 
 
@@ -165,16 +169,6 @@ public class OrderDetailJoinDto {
 	}
 
 
-	public String getItemImg() {
-		return itemImg;
-	}
-
-
-	public void setItemImg(String itemImg) {
-		this.itemImg = itemImg;
-	}
-
-
 	public String getItemName() {
 		return itemName;
 	}
@@ -185,6 +179,24 @@ public class OrderDetailJoinDto {
 	}
 
 
+	public String getItemImg() {
+		return itemImg;
+	}
+
+
+	public void setItemImg(String itemImg) {
+		this.itemImg = itemImg;
+	}
+
+	public int getItemPrice() {
+		return itemPrice;
+	}
+
+
+	public void setItemPrice(int itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+	
 	public int getQuantity() {
 		return quantity;
 	}
@@ -203,6 +215,19 @@ public class OrderDetailJoinDto {
 	public void setResult(String result) {
 		this.result = result;
 	}
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+	
 	
 	
 	

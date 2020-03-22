@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,19 +40,29 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${list }">
-					<tr>
-						<td>${tmp.orderNum }</td>
-						<td>${tmp.orderDate }</td>
-						<td>${tmp.itemName }</td>
-						<td>${tmp.allPrice }</td>
-						<td><a href="detailList.do">조회</a></td>
-						<td><button onclick="#">조회</button></td>
-					</tr>
-				</c:forEach>
+				
+					<c:forEach var="tmp" items="${list }" varStatus="status">
+						<c:if test="${status.first }">
+						
+						<tr>
+							<td>${tmp.orderNum }</td>
+							<td>${tmp.orderDate }</td>
+							<c:if test="${size }>=0">
+							<td>${tmp.itemName} 외 ${size }건</td>	
+							</c:if>		
+							<td>${tmp.itemName }</td>		
+							<td>
+							<fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
+							<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
+							<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
+						</tr>
+			
+						</c:if>	
+					</c:forEach>
+				
+				
 			</tbody>
 		</table>
-		
 		
 		
 		<footer id="footer">

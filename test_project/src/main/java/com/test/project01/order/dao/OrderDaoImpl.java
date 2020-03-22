@@ -24,6 +24,12 @@ public class OrderDaoImpl implements OrderDao {
 		session.insert("order.insert",dto);
 	}
 
+	@Override
+	public List<OrdersDto> orderInfo(OrdersDto dto) {
+		
+		return session.selectList("order.orderInfo",dto);
+	}
+
 	
 	
 }

@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/shop/order.jsp</title>
+<title>/shop/delivery.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-
-</head>
-<body>
 </head>
 <body>
 	<div id="root">
@@ -26,9 +24,11 @@
 			</div>
 		</nav>
 		
-		<h1>결제가 완료되었습니다</h1>
-		<a href="../home.do">쇼핑 계속하기</a>
-		<a href="orderList.do">주문 상품 확인하기</a>
+		<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${orderNum} 의  배달현황입니다.</p>
+		<c:forEach var="tmp" items="${list }">
+			<p>해당 주문번호:${tmp.orderNum} 의 배송 현황은 '${tmp.delivery }' 입니다.</p>
+		</c:forEach>
+		
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>
