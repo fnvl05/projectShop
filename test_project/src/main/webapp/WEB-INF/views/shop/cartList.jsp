@@ -84,33 +84,45 @@
 				<li><button class="btn btn-warning" id="buyEach" style="float:left">삭제</button></li>
 			</ul>
 	</div>
+	<form action="${pageContext.request.contextPath }/shop/updateCart.do" method="post" id="form1" name="form1" >
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
+				<th><input type="checkbox" id="AllCheck"/></th>
 				<th>이미지</th>
 				<th>상품명</th>
 				<th>가격</th>
 				<th>수량</th>
 				<th>최종 가격</th>
-				<th><input type="checkbox" id="AllCheck"/></th>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="tmp" items="${requestScope.cartList }">
+		<c:set var="sumMoney" value="0"/>
+		<c:forEach var="tmp" items="${map.list }" varStatus="i">
 			<tr>
-				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-				<td>${tmp.itemName }</td>
-				<td>${tmp.itemPrice }</td>
-				<td>${tmp.cartStock }</td>
-				<td>${tmp.itemPrice * tmp.cartStock }</td>
-				<td>
-					<input type="hidden" name="allPrice" id="allPrice"
-						value="${tmp.itemPrice * tmp.cartStock }" />
-				</td>
-				<td>
+				<td> 
 					<input type="checkbox" name="delBox" value="${tmp.cartNum }"/>
 				</td>
+				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
+				<td>${tmp.itemName }</td>
+				<td>
+					<input type="hidden" id="itemPrice" />
+                	<fmt:formatNumber value="${tmp.itemPrice}" 
+                    	 pattern="###,###,###"/>원
+                </td>
+				<td>
+               	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px" name="cartStock"/>
+               	<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
+               	<button type="button" class="btn btn-primary" onClick="updateCart()">수정</button>
+               	
+                </td>
+				<td>
+					
+                	<fmt:formatNumber value="${tmp.cartStock * tmp.itemPrice}" 
+                     pattern="###,###,###"/>원
+                </td>
 			</tr>
+			 <c:set var="sumMoney" value="${sumMoney+(tmp.cartStock * tmp.itemPrice) }"/>
 		</c:forEach>
 		</tbody>
 		<tfoot>
@@ -126,9 +138,36 @@
 			</tr>
 		</tfoot>
 	</table>
-	<table>
-		
-	</table>
+	</form>
+	 <table class="table table-striped table-condensed">
+         <thead>
+            <tr>
+               <th>총 상품금액</th>
+               <th>총 배송비</th>
+               <th>결제예정금액</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr> 
+               <c:set var="allPrice" value="${sumMoney+fee }"/>
+               <td>
+                  <fmt:formatNumber value="${sumMoney }" 
+                  pattern="###,###,###"/>원
+               </td>
+               <td>
+               +<fmt:formatNumber value="${map.fee }" 
+                  pattern="###,###,###"/>원
+               </td>
+               <td>
+                  <fmt:formatNumber value="${map.allPrice }" 
+                  pattern="###,###,###"/>원
+               <input  type="hidden" name="allPrice" id="allPrice"
+                     value="${allPrice}" />
+               </td>
+               
+            </tr>
+         </tbody>
+      </table>
 	</section>
 	<!-- 전부 선택 -->
 	<script type="text/javascript">
