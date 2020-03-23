@@ -22,7 +22,6 @@ public class UsersServiceImpl implements UsersService{
 	
 	@Override
 	public void addUser(UsersDto dto) {
-		//	비밀번호 암호화 BcryptPassword
 		String encodedPwd = new BCryptPasswordEncoder().encode(dto.getUserPass());
 		dto.setUserPass(encodedPwd);
 		dao.insert(dto);		
@@ -46,6 +45,10 @@ public class UsersServiceImpl implements UsersService{
 		if(isValid) {
 			UsersDto userdto = dao.logIn(dto.getUserId());
 			session.setAttribute("userDto", userdto);
+			String id=userdto.getUserId();
+			String master=String.valueOf(userdto.getVerify());
+			session.setAttribute("id", id);
+			session.setAttribute("master", master);
 			return true;
 		}
 		else {
