@@ -78,9 +78,7 @@
 	<section id="container">
 		<h1>장바구니</h1>
 	<div class = "buy" style="float:right">
-			<ul>
-				<li><button class="btn btn-warning" id="buyEach" style="float:left">삭제</button></li>
-			</ul>
+		<button class="btn btn-warning" id="buyEach" style="float:left">삭제</button>		
 	</div>
 	<form action="${pageContext.request.contextPath }/shop/updateCart.do" method="post" id="form1" name="form1" >
 	<table class="table table-striped table-condensed">
