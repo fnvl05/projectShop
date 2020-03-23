@@ -58,11 +58,9 @@
 	
 	<!-- 업로드 패스 설정 --> 
 	<beans:bean class="java.lang.String" id="upLoadPath">
-<<<<<<< HEAD
+
 	 <beans:constructor-arg value="C:/Users/user/Desktop/git/project/test_project/src/main/webapp/resources" />
-=======
-	 <beans:constructor-arg value="C:/Users/acorn/git/projectShop/test_project/src/main/webapp/resources" />
->>>>>>> refs/heads/hyewon2
+
 	</beans:bean>
 	
 	<!-- ck에디터 경로 -->

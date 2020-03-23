@@ -5,14 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>/shop/order.jsp</title>
-</head>
-<body>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-
-
+</head>
+<body>
 </head>
 <body>
 	<div id="root">

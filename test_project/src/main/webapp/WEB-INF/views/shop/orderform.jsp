@@ -51,6 +51,7 @@
 					<c:set var="sumMoney" value="${sumMoney+(tmp.itemPrice * tmp.cartStock) }"/>
 				</c:forEach>
 			</tbody>
+			</table>
 			<table class="table table-striped table-condensed">
          <thead>
             <tr>
