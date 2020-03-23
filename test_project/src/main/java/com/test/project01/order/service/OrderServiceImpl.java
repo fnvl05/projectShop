@@ -111,29 +111,17 @@ public class OrderServiceImpl implements OrderService{
 			joinDto.setUserId(userId);
 			int orderNum=getOrderNum.get(i);
 			joinDto.setOrderNum(orderNum);
-			joinDto=detailDao.getList(joinDto).get(0);
+			OrderDetailJoinDto joinDto2=detailDao.getList(joinDto).get(0);
 			int size=detailDao.getList(joinDto).size()-1;
-			joinDto.setItemName(joinDto.getItemName()+" 외 "+size+" 건");
-			orderList.add(joinDto);
+			
+			if(size>0) {
+				joinDto2.setItemName(joinDto2.getItemName()+" 외 "+size+" 건");
+			}else{joinDto2.setItemName(joinDto2.getItemName());
+			}
+			orderList.add(joinDto2);
 		}
 		request.setAttribute("orderList", orderList);
 		
-//		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
-//		String userId=userDto.getUserId();
-//		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
-//		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
-//		List<OrderDetailJoinDto> list=null;
-//		int size=0;
-//		for(int i=0;i<getOrderNum.size();i++) {
-//			int orderNum=getOrderNum.get(i).getOrderNum();
-//			joinDto.setUserId(userId);
-//			joinDto.setOrderNum(orderNum);
-//			list=detailDao.getList(joinDto);
-//			size=list.size()-2;
-//			
-//		}
-//		request.setAttribute("size", size);
-//		request.setAttribute("list", list);
 	}
 
 	@Override

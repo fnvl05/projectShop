@@ -45,7 +45,7 @@
 						<td>${tmp.orderNum }</td>
 						<td>${tmp.orderDate }</td>
 						<td>${tmp.itemName}</td>	
-						<fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
+						<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
 						<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
 						<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
 					</tr>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>/review/updateform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
@@ -30,7 +30,14 @@
 				<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId }" />
 				<div class="container">
 					<label for="reviewContent">상품 리뷰</label>
-					<input type="text" name="reviewContent" id="reviewContent" value="${dto.reviewContent }" />
+					<textarea rows="10" cols="50" name="reviewContent" id="reviewContent">${dto.reviewContent }</textarea>
+					<script type="text/javascript">
+						$(function(){
+							CKEDITOR.replace('reviewContent',{
+								filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+							});
+						});
+					</script>
 				</div>
 				<div class="container">
 					<label for="likeCount">별점</label>

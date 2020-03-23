@@ -8,6 +8,7 @@
 <title>/review/insertform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
@@ -31,7 +32,14 @@
 				<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId}" />
 				<div class="container">
 					<label for="reviewContent">상품 리뷰</label>
-					<input type="text" name="reviewContent" id="reviewContent" />
+					<textarea name="reviewContent" id="reviewContent"></textarea>
+					<script type="text/javascript">
+						$(function(){
+							CKEDITOR.replace('reviewContent',{
+								filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+							});
+						});
+					</script>
 				</div>
 				<div class="container">
 					<label for="likeCount">평가</label>
