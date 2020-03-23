@@ -18,5 +18,4 @@ public interface categoryDao {
 	public List<UsersListDto> userList();
 	public void upResult(UsersListDto dto);
 	public void minusCount(int quantity,int itemNum);
-
 }
