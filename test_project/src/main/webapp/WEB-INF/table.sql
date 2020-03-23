@@ -1,16 +1,26 @@
--회원 테이블-
+--회원 테이블--
 create table tbl_member (
-    userId      varchar2(50)    not null,
-    userPass    varchar2(100)   not null,
-    userName    varchar2(30)    not null,
-    userPhon    varchar2(20)    not null,
-    userAddr1   varchar2(20)    null,
-    userAddr2   varchar2(50)    null,
-    userAddr3   varchar2(50)    null,
-    regiDate    date            default sysdate,
-    verify      number          default 0,
+    userId      varchar2(50)    not null, -- 아이디
+    userPass    varchar2(100)   not null, -- 비밀번호
+    PassQuiz	varchar2(100)	not null, -- 비밀번호 질문
+    QuizAnswer	varchar2(100)	not null, -- 질문 답변
+    userName    varchar2(30)    not null, -- 이름
+    userPhone   varchar2(20)    not null, -- 핸드폰
+    email		varchar2(100) 	null, -- 이메일
+    userAddr1   varchar2(50)    null, -- 주소1
+    userAddr2   varchar2(50)    null, -- 주소2
+    userAddr3   varchar2(50)    null, -- 주소3
+    regiDate    date            default sysdate, -- 가입날짜
+    birthday	date 			not null, -- 생일
+    mileage		number			default 0, -- 마일리지
+    verify      number          default 0, -- 유저타입
     primary key(userId)
 );
+
+-- 회원가입 --
+insert into tbl_member (
+userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, email, userAddr1, userAddr2, userAddr3, birthday)
+values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010-9950-1095','gosla1002@naver.com','흥도동','흥도로','원흥동',TO_DATE('1993-10-20','yyyy-mm-dd'));
 
 -상품 테이블-
 create table tbl_items (

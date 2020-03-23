@@ -1,24 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="users">
 	<insert id="insert" parameterType="UsersDto">
-		insert into tbl_member(userId, userPass, userName, userPhon)
-  		values(#{userId}, #{userPass}, #{userName}, #{userPhon}) 
+		insert into tbl_member
+		(userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, 
+			email, userAddr1, userAddr2, userAddr3, birthday)		
+		values(#{userId}, #{userPass},#{PassQuiz}, #{QuizAnswer}, #{userName}, #{userPhone},
+				 #{email}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{birthday})
 	</insert>
 	<select id="isExist" parameterType="java.lang.String" resultType="String">
 		select userId
 		from tbl_member
-		where userId=#{inputUserId}
+		where userId=#{userId}
 	</select>
+	
 	<select id="getPassHash" parameterType="String" resultType="String">
 		select userPass
 		from tbl_member
-		where userId=#{inputUserId}
+		where userId=#{userId}
 	</select>
+	
 	<select id="login" parameterType="String" resultType="UsersDto">
-		select 
-			userId,userName,userPass,regiDate,verify
-			from tbl_member
-			where userId=#{inputUserId}	
+		select userId, userPass, userName, userPhone, userAddr1, userAddr2, userAddr3, regiDate, verify  
+		from tbl_member 
+		where userId=#{userId}
 	</select>
+	<select id="getData" parameterType="String" resultType="UsersDto">
+		select userId, userPass, userName, userPhone, email, 
+		userAddr1, userAddr2, userAddr3, regiDate
+		from tbl_member
+		where userId=#{userId}
+	</select>
+	
+	<update id="updatePwd" parameterType="UsersDto" >
+		update tbl_member
+		set userPass=#{newPass}
+		where userId=#{userId}
+	</update>
+	
+	<update id="updateUser" parameterType="UsersDto" >
+		update tbl_member
+		set userPhone=#{userPhone}, userAddr1=#{userAddr1}, 
+			userAddr2=#{userAddr2}, userAddr3=#{userAddr3}
+		where userId=#{userId}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+		delete from tbl_member
+		where userId=#{userId}
+	</delete>
 </mapper>
