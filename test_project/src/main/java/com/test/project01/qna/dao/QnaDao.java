@@ -25,4 +25,5 @@ public interface QnaDao {
 	public List<QnaJoinDto> getList(QnaJoinDto dto);
 	public int getCount2(QnaJoinDto dto);
 	public List<QnaJoinDto> getList2(QnaJoinDto dto);
+	public int getCommentCount(int num);
 }

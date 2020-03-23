@@ -12,11 +12,14 @@ public class QnaDto {
 	private int endRowNum;
 	private int prevNum; //이전글의 글번호를 담을 필드
 	private int nextNum; //다음글의 글번호를 담을 필드
+	private int commentCount;
 	
 	public QnaDto() {}
 
+	
+
 	public QnaDto(int num, int itemNum, String writer, String title, String content, int viewCount, String regdate,
-			int startRowNum, int endRowNum, int prevNum, int nextNum) {
+			int startRowNum, int endRowNum, int prevNum, int nextNum, int commentCount) {
 		super();
 		this.num = num;
 		this.itemNum = itemNum;
@@ -29,7 +32,22 @@ public class QnaDto {
 		this.endRowNum = endRowNum;
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
+		this.commentCount = commentCount;
 	}
+
+
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+
 
 	public int getNum() {
 		return num;

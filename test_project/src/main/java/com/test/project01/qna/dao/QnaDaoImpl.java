@@ -71,5 +71,10 @@ public class QnaDaoImpl implements QnaDao{
 		return session.selectList("qna.getList2",dto);
 	}
 
+	@Override
+	public int getCommentCount(int num) {
+		return session.selectOne("qnaComment.getCommentCount",num);
+	}
+
 
 }

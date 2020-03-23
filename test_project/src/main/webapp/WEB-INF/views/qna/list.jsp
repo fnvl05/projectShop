@@ -70,7 +70,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="tmp" items="${requestScope.list }">
+		<c:forEach var="tmp" items="${requestScope.list }" >
 			<tr>
 				<td>${tmp.num }</td>
 				<td><img src="../resources${tmp.itemImg }"/></td>
@@ -80,7 +80,7 @@
 							<c:choose>
 								<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
 									<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
-											${tmp.title }
+											${tmp.title } [${tmp.commentCount }]
 									</a>
 								</c:when>
 								<c:otherwise>

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.project01.qna.dto.QnaCommentDto;
+import com.test.project01.qna.dto.QnaJoinDto;
 
 @Repository
 public class QnaCommentDaoImpl implements QnaCommentDao{
@@ -42,4 +43,5 @@ public class QnaCommentDaoImpl implements QnaCommentDao{
 	public void update(QnaCommentDto dto) {
 		session.update("qnaComment.update", dto);
 	}
+
 }
