@@ -4,21 +4,17 @@ public class OrderDetailDto {
 	private int odNum;
 	private int orderNum;
 	private int itemNum;
-	private String itemName;
-	private String itemImg;
 	private int quantity;
 	private String result;
 	
 	public OrderDetailDto() {}
 
-	public OrderDetailDto(int odNum, int orderNum, int itemNum, String itemName, String itemImg, int quantity,
+	public OrderDetailDto(int odNum, int orderNum, int itemNum,  int quantity,
 			String result) {
 		super();
 		this.odNum = odNum;
 		this.orderNum = orderNum;
 		this.itemNum = itemNum;
-		this.itemName = itemName;
-		this.itemImg = itemImg;
 		this.quantity = quantity;
 		this.result = result;
 	}
@@ -47,21 +43,7 @@ public class OrderDetailDto {
 		this.itemNum = itemNum;
 	}
 
-	public String getItemName() {
-		return itemName;
-	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	public String getItemImg() {
-		return itemImg;
-	}
-
-	public void setItemImg(String itemImg) {
-		this.itemImg = itemImg;
-	}
 
 	public int getQuantity() {
 		return quantity;

@@ -1,5 +1,6 @@
 package com.test.project01.order.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,15 +80,16 @@ public class OrderServiceImpl implements OrderService{
 		for(int i=0;i<list.size();i++) {
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
-			String itemName=list.get(i).getItemName();
-			String itemImg=list.get(i).getItemImg();
+//			String itemName=list.get(i).getItemName();
+//			String itemImg=list.get(i).getItemImg();
 			OrderDetailDto detailDto=new OrderDetailDto();
 			detailDto.setOrderNum(orderNum);
 			detailDto.setItemNum(itemNum);
-			detailDto.setItemName(itemName);
-			detailDto.setItemImg(itemImg);
+//			detailDto.setItemName(itemName);
+//			detailDto.setItemImg(itemImg);
 			detailDto.setQuantity(quantity);
 			detailDao.detailInsert(detailDto);
+			//해당 아이템의 재고량 줄이기
 			categoryDao.minusCount(detailDto);
 		}
 		//해당 아이디의 장바구니 삭제하기
@@ -98,8 +100,51 @@ public class OrderServiceImpl implements OrderService{
 	public void orderList(HttpServletRequest request) {
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
-		OrderDetailJoinDto dto=new OrderDetailJoinDto();
-		List<OrderDetailJoinDto> list=detailDao.getList(userId);
+		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
+		List<OrderDetailJoinDto> list=null;
+		int size=0;
+		for(int i=0;i<getOrderNum.size();i++) {
+			int orderNum=getOrderNum.get(i).getOrderNum();
+			joinDto.setUserId(userId);
+			joinDto.setOrderNum(orderNum);
+			list=detailDao.getList(joinDto);
+			size=list.size()-2;
+			
+		}
+		request.setAttribute("size", size);
+		request.setAttribute("list", list);
+	}
+
+	@Override
+	public void orderInfo(HttpServletRequest request) {
+		//해당 주문번호의 정보
+		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
+		String userId=userDto.getUserId();
+		int orderNum=Integer.parseInt(request.getParameter("orderNum"));
+		OrdersDto dto=new OrdersDto();
+		dto.setUserId(userId);
+		dto.setOrderNum(orderNum);
+		List<OrdersDto> list=dao.orderInfo(dto);
+		request.setAttribute("list", list);
+		//해당 주문번호의 아이템들
+		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
+		joinDto.setUserId(userId);
+		joinDto.setOrderNum(orderNum);
+		List<OrderDetailJoinDto> list2=detailDao.getList(joinDto);
+		request.setAttribute("list2", list2);
+	}
+
+	@Override
+	public void delivery(HttpServletRequest request) {
+		//해당 주문번호의 정보
+		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
+		String userId=userDto.getUserId();
+		int orderNum=Integer.parseInt(request.getParameter("orderNum"));
+		OrdersDto dto=new OrdersDto();
+		dto.setUserId(userId);
+		dto.setOrderNum(orderNum);
+		List<OrdersDto> list=dao.orderInfo(dto);
 		request.setAttribute("list", list);
 	}
 }

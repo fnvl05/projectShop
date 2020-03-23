@@ -9,19 +9,34 @@
 	</insert>
 	<insert id="detailInsert" parameterType="orderDetailDto">
 		insert into order_detail
-		(odNum,orderNum,itemNum,itemName,quantity)
-		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{itemName},#{quantity})
+		(odNum,orderNum,itemNum,quantity)
+		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{quantity})
 	</insert>
 	<select id="getOrderNum" resultType="ordersDto" parameterType="String">
 		select orderNum 
 		from orders
 		where userId=#{userId}
 	</select>
-	<select id="getOrderList" resultType="orderDetailJoinDto" parameterType="String">
-		 select o.orderNum,o.orderRec,o.userAddr1,o.userAddr2,o.userAddr3,o.orderPhone1,o.orderPhone2,
-		 o.orderDate,o.delivery,o.payment,o.allPrice,d.itemNum,d.itemImg,d.itemName,d.quantity,d.result
-		 from orders o,order_detail d
-		 where userId=#{userId} and o.orderNum(+)=d.orderNum 
+	
+	<select id="getOrderList" resultType="orderDetailJoinDto" parameterType="orderDetailJoinDto">
+		select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			o.delivery, o.orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		     where o.userId = #{userId}
+		         and o.orderNum = #{orderNum}
 		 
+	</select>
+	
+	<select  id="orderInfo" parameterType="ordersDto" resultType="ordersDto">
+		select orderNum,orderRec,orderPhone1,orderPhone2,userAddr1,userAddr2,userAddr3,orderDate,payment,allPrice,delivery
+		from orders
+		where userId=#{userId} and orderNum=#{orderNum}
 	</select>
 </mapper>

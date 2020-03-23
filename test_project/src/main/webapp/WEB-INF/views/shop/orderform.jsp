@@ -11,7 +11,12 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-
+<style>
+	img{
+		width:100px;
+		height:auto;
+	}
+</style>
 
 </head>
 <body>

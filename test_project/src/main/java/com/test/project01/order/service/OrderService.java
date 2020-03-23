@@ -10,4 +10,8 @@ public interface OrderService {
 	public void cartList_insertform(HttpServletRequest request);
 	//주문리스트 확인
 	public void orderList(HttpServletRequest request);
+	//주문 상세정보
+	public void orderInfo(HttpServletRequest request);
+	//배달현황
+	public void delivery(HttpServletRequest request);
 }

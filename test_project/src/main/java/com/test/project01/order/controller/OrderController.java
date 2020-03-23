@@ -42,8 +42,15 @@ public class OrderController {
 	
 	@RequestMapping("/shop/detailList")
 	public ModelAndView User_detailList(HttpServletRequest request,ModelAndView mView) {
+		service.orderInfo(request);
 		mView.setViewName("shop/detailList");
 		return mView;
 	}
 	
+	@RequestMapping("/shop/delivery")
+	public ModelAndView User_delivery(HttpServletRequest request,ModelAndView mView) {
+		service.delivery(request);
+		mView.setViewName("shop/delivery");
+		return mView;
+	}
 }

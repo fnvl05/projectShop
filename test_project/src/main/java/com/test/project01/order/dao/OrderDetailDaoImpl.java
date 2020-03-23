@@ -15,13 +15,14 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	SqlSession session;
 
 	@Override
-	public List<OrderDetailJoinDto> getList(String userId) {
-		return session.selectList("order.getOrderList",userId);
+	public void detailInsert(OrderDetailDto dto) {
+		session.insert("order.detailInsert",dto);
 	}
 
 	@Override
-	public void detailInsert(OrderDetailDto dto) {
-		session.insert("order.detailInsert",dto);
+	public List<OrderDetailJoinDto> getList(OrderDetailJoinDto dto) {
+		return session.selectList("order.getOrderList",dto);
+		
 	}
 	
 	
