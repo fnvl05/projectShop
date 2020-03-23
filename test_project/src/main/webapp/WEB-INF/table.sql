@@ -127,14 +127,8 @@ likeCount number,
 upCount number,
 regdate date);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/heads/hyewon2
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
-
-
 
 --review comment table
 CREATE TABLE board_review_comment(
@@ -151,28 +145,8 @@ CREATE TABLE board_review_comment(
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
-<<<<<<< HEAD
-	
---카트
-create table cartList(
-	cartNum number not null,
-=======
-
 --orders table
 create table orders(
-	orderNum number primary key,
->>>>>>> refs/heads/hyewon2
-	userId varchar2(50) not null,
-<<<<<<< HEAD
-	itemNum number not null,
-	cartStock number not null, -- 카트 수량 -- 
-	addDate date default sysdate,
-	num number,
-	itemName varchar2(50),
-	itemPrice number,
-	itemImg varchar(200) null,
-	primary key(cartNum, userId)
-=======
 	orderRec varchar2(50) not null,   --수신자
 	userAddr1 varchar2(20) not null,
 	userAddr2 varchar2(50) not null,
@@ -184,25 +158,8 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
->>>>>>> refs/heads/hyewon2
-);
 
-<<<<<<< HEAD
---카드 (가 테이블)
-create table cartList1(
-	cartNum number not null,
-	userId varchar2(50) not null,
-	itemNum number not null,
-	itemCount number not null, -- 카트 수량 -- 
-	addDate date default sysdate,
-	num number,
-	itemName varchar2(50),
-	itemPrice number,
-	itemImg varchar(200) null,
-	primary key(cartNum, userId)
 );
-
-create sequence cartList_seq;
 
 alter table cartList
 add constraint cartList_userId foreign key(userId)
@@ -231,9 +188,6 @@ select
                 on i.cateCode = c.cateCode           
             where i.cateCode = #{cateCode}
 
-
-
-=======
 create sequence orders_seq;
 
 alter table orders
@@ -283,8 +237,6 @@ references tbl_member(userId);
 alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
->>>>>>> refs/heads/hyewon2
-
 
 
 

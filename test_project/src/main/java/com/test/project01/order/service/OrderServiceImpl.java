@@ -40,7 +40,6 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public void cartList_insertform(HttpServletRequest request) {
-		
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
 		List<CartListDto> list=cartDao.cartList(userId);

@@ -29,10 +29,9 @@ public class CartController {
 	//장바구니 추가
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
 	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
-		
 		//UsersDto user=(UsersDto)session.getAttribute("userDto");
 		//dto.setUserId(user.getUserId());
-		String userId=(String)session.getAttribute("userId");
+		String userId=(String)session.getAttribute("id");
 		dto.setUserId(userId);
 		//장바구니에 기존 상품 있나 검사
 		int count=service.countCart(dto.getItemNum(), userId);
