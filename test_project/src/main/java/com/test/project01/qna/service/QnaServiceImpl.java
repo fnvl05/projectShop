@@ -290,6 +290,10 @@ public class QnaServiceImpl implements QnaService{
 			dto.setItemNum(itemNum);
 			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
 			List<QnaJoinDto> list=qnaDao.getList2(dto);
+			for(int i=0; i<list.size(); i++) {
+				int comcount=qnaDao.getCommentCount(list.get(i).getNum());
+				list.get(i).setCommentCount(comcount);
+			}
 			
 			//view 페이지에서 필요한 값을 request 에 담고 
 			request.setAttribute("list", list);

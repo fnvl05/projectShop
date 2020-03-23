@@ -118,6 +118,7 @@
 			</div>
 		</form>
 		<div class="itemDes">${dto.itemDes }</div>		
+		<a href="../qna/itemList_qna.do?itemNum=${dto.itemNum }">QnA</a><br/>
 		<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>	
 	</div>
 	</section>

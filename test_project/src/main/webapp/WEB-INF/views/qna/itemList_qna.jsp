@@ -81,7 +81,7 @@
 							<c:choose>
 								<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
 									<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
-											${tmp.title }
+											${tmp.title }[${tmp.commentCount }]
 									</a>
 								</c:when>
 								<c:otherwise>
