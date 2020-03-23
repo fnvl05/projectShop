@@ -42,12 +42,9 @@ public class CartServiceImpl implements CartService {
 	public void updateCart(CartListDto dto) {
 		dao.updateCart(dto);
 	}
-<<<<<<< HEAD
-=======
 	//장바구니 금액 합계
 	@Override
 	public int sumMoney(String userId) {
 		return dao.sumMoney(userId);
 	}
->>>>>>> refs/remotes/origin/yun2
 }
