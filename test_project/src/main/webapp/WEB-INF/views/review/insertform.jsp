@@ -9,31 +9,50 @@
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
 <body>
-<div class="container">
-	<form action="insert.do" method="post">
-		<input type="hidden" name="itemNum" value="${itemNum }" />
-		<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId}" />
-		<div class="container">
-			<label for="reviewContent">상품 리뷰</label>
-			<input type="text" name="reviewContent" id="reviewContent" />
+<div id="root">
+	<header id="heder_box">
+		<div>
+			<%@ include file="../include/header.jsp" %>
 		</div>
-		<div class="container">
-			<label for="likeCount">평가</label>
-			<input type="text" name="likeCount" id="likeCount" /> 
+	</header>
+	<nav id="nav">
+		<div id="nav_box">
+			<%@ include file="../include/nav.jsp" %>
 		</div>
-		<button type="submit" >등록</button>
-		<button type="reset">취소</button>
-		<button type="button" id="back_btn">돌아가기</button>
-		<script type="text/javascript">
-		$("#back_btn").click(function () {
-		location.href="itemList_review.do?itemNum=" + ${itemNum};
-		})
-		</script>
-	</form>
+	</nav>
+	
+		<div class="container">
+			<form action="insert.do" method="post">
+				<input type="hidden" name="itemNum" value="${itemNum }" />
+				<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId}" />
+				<div class="container">
+					<label for="reviewContent">상품 리뷰</label>
+					<input type="text" name="reviewContent" id="reviewContent" />
+				</div>
+				<div class="container">
+					<label for="likeCount">평가</label>
+					<input type="text" name="likeCount" id="likeCount" /> 
+				</div>
+				<button type="submit" >등록</button>
+				<button type="reset">취소</button>
+				<button type="button" id="back_btn">돌아가기</button>
+				<script type="text/javascript">
+				$("#back_btn").click(function () {
+				location.href="itemList_review.do?itemNum=" + ${itemNum};
+				})
+				</script>
+			</form>
+		</div>
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp" %>
+		</div>
+	</footer>
 </div>
-
 
 </body>
 </html>
