@@ -14,7 +14,7 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSession session;
 
 	@Override
-	public List<OrdersDto> getOrderNum(String userId) {
+	public List<Integer> getOrderNum(String userId) {
 		
 		return session.selectList("order.getOrderNum",userId);
 	}

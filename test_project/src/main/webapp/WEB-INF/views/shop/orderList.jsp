@@ -40,27 +40,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				
-					<c:forEach var="tmp" items="${list }" varStatus="status">
-						<c:if test="${status.first }">
-						
-						<tr>
-							<td>${tmp.orderNum }</td>
-							<td>${tmp.orderDate }</td>
-							<c:if test="${size }>=0">
-							<td>${tmp.itemName} 외 ${size }건</td>	
-							</c:if>		
-							<td>${tmp.itemName }</td>		
-							<td>
-							<fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
-							<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
-							<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
-						</tr>
-			
-						</c:if>	
-					</c:forEach>
-				
-				
+				<c:forEach var="tmp" items="${orderList}" >
+					<tr>
+						<td>${tmp.orderNum }</td>
+						<td>${tmp.orderDate }</td>
+						<td>${tmp.itemName}</td>	
+						<fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
+						<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
+						<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		

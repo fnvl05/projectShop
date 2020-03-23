@@ -12,13 +12,14 @@
 		(odNum,orderNum,itemNum,quantity)
 		values(order_detail_seq.NEXTVAL,#{orderNum},#{itemNum},#{quantity})
 	</insert>
-	<select id="getOrderNum" resultType="ordersDto" parameterType="String">
+	<select id="getOrderNum" resultType="int" parameterType="String">
 		select orderNum 
 		from orders
 		where userId=#{userId}
+		order by orderNum ASC
 	</select>
 	
-	<select id="getOrderList" resultType="orderDetailJoinDto" parameterType="orderDetailJoinDto">
+	<select id="getList" resultType="orderDetailJoinDto" parameterType="orderDetailJoinDto">
 		select
 		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
 			o.delivery, o.orderDate,o.payment,o.allPrice,o.delivery,

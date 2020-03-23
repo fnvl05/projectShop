@@ -35,6 +35,10 @@
 		<table>
 			<c:forEach var="list" items="${list }">
 			<tr>
+				<th>주문번호</th>
+				<td>${list.orderNum}</td>
+			</tr>
+			<tr>
 				<th>주문자</th>
 				<td>${userDto.userId }</td>
 			</tr>

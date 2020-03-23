@@ -1,5 +1,6 @@
 package com.test.project01.order.service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.test.project01.cart.dao.CartDao;
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.master.category.Dao.categoryDao;
-import com.test.project01.master.category.Dto.ItemDto;
-import com.test.project01.master.category.Dto.categoryDto;
+
 import com.test.project01.order.dao.OrderDao;
 import com.test.project01.order.dao.OrderDetailDao;
 import com.test.project01.order.dto.OrderDetailDto;
@@ -37,6 +37,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void cartList_insertform(HttpServletRequest request) {
 		
+		//장바구니에 담긴 리스트
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
 		List<CartListDto> list=cartDao.cartList(userId);
@@ -71,9 +72,11 @@ public class OrderServiceImpl implements OrderService{
 		dto.setAllPrice(allPrice);
 		dao.insert(dto);
 		
-		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+//		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+		List<Integer> getOrderNum=dao.getOrderNum(userId);
 		int size=getOrderNum.size()-1;
-		int orderNum=getOrderNum.get(size).getOrderNum();
+//		int orderNum=getOrderNum.get(size).getOrderNum();
+		int orderNum=getOrderNum.get(size);
 		//주문 디테일 추가
 		List<CartListDto> list=cartDao.cartList(userId);
 		
@@ -100,20 +103,37 @@ public class OrderServiceImpl implements OrderService{
 	public void orderList(HttpServletRequest request) {
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
-		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+		List<Integer> getOrderNum=dao.getOrderNum(userId);
 		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
-		List<OrderDetailJoinDto> list=null;
-		int size=0;
+		List<OrderDetailJoinDto> orderList=new ArrayList<>();
+		
 		for(int i=0;i<getOrderNum.size();i++) {
-			int orderNum=getOrderNum.get(i).getOrderNum();
 			joinDto.setUserId(userId);
+			int orderNum=getOrderNum.get(i);
 			joinDto.setOrderNum(orderNum);
-			list=detailDao.getList(joinDto);
-			size=list.size()-2;
-			
+			joinDto=detailDao.getList(joinDto).get(0);
+			int size=detailDao.getList(joinDto).size()-1;
+			joinDto.setItemName(joinDto.getItemName()+" 외 "+size+" 건");
+			orderList.add(joinDto);
 		}
-		request.setAttribute("size", size);
-		request.setAttribute("list", list);
+		request.setAttribute("orderList", orderList);
+		
+//		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
+//		String userId=userDto.getUserId();
+//		List<OrdersDto> getOrderNum=dao.getOrderNum(userId);
+//		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
+//		List<OrderDetailJoinDto> list=null;
+//		int size=0;
+//		for(int i=0;i<getOrderNum.size();i++) {
+//			int orderNum=getOrderNum.get(i).getOrderNum();
+//			joinDto.setUserId(userId);
+//			joinDto.setOrderNum(orderNum);
+//			list=detailDao.getList(joinDto);
+//			size=list.size()-2;
+//			
+//		}
+//		request.setAttribute("size", size);
+//		request.setAttribute("list", list);
 	}
 
 	@Override
