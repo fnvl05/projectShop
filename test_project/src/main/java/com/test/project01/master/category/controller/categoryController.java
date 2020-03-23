@@ -62,9 +62,11 @@ public class categoryController{
 		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		 dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
+			
 		 fileName = File.separator + "images" + File.separator + "none.png";
 		 dto.setItemImg(fileName);
 		 dto.setItemThumbImg(fileName);
+
 		}
 		
 		service.itemInsert(dto);

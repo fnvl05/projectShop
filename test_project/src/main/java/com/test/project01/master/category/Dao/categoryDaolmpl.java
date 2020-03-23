@@ -64,6 +64,11 @@ public class categoryDaolmpl implements categoryDao{
 	public void upResult(UsersListDto dto) {
 		session.update("category.resultUpDate");
 	}
+
+	@Override
+	public void minusCount(int quantity,int itemNum) {
+		session.update("category.minusCount",quantity);
+	}
 	
 	
 }

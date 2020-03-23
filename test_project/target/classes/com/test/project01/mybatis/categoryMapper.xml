@@ -50,5 +50,9 @@
 		update order_detail.result
 		set result = #{result}
 		where order_detail. = #{userId}
+	<update id="minusCount" parameterType="int">
+		update tbl_items
+		set itemCount=itemCount-#{quantity}
+		where itemNum=#{itemNum}
 	</update>
 </mapper>

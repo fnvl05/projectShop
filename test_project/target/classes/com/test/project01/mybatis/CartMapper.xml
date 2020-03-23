@@ -22,4 +22,23 @@
 		delete from cartList
 		where cartNum=#{cartNum}
 	</delete>
+	
+	<update id="modifyCart">
+		update cartList
+		set cartStock=#{cartStock}
+		where userId=#{userId} and itemNum=#{itemNum}
+	</update>
+	
+	<select id="countCart" resultType="int">
+		select count(*) from cartList
+		where userId=#{userId} and itemNum=#{itemNum}
+	</select>
+	
+	<update id="updateCart">
+		update cartList
+		set cartStock=cartStock + #{cartStock}
+		where userId=#{userId}
+		and itemNum=#{itemNum}
+	</update>
+	
 </mapper>

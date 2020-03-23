@@ -16,16 +16,16 @@ public class UsersDto {
 		
 	public UsersDto() {}
 	
-	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAdd1, String userAdd2,
-			String userAdd3) {
+	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAddr1, String userAddr2,
+			String userAddr3) {
 		super();
 		this.userId = userId;
 		this.userPass = userPass;
 		this.userName = userName;
 		this.userPhon = userPhon;
-		this.userAddr1 = userAdd1;
-		this.userAddr2 = userAdd2;
-		this.userAddr3 = userAdd3;
+		this.userAddr1 = userAddr1;
+		this.userAddr2 = userAddr2;
+		this.userAddr3 = userAddr3;
 	}
 
 
@@ -55,21 +55,6 @@ public class UsersDto {
 	}
 	public String getUserAddr1() {
 		return userAddr1;
-	}
-	public void setUserAddr1(String userAdd1) {
-		this.userAddr1 = userAdd1;
-	}
-	public String getUserAddr2() {
-		return userAddr2;
-	}
-	public void setUserAddr2(String userAdd2) {
-		this.userAddr2 = userAdd2;
-	}
-	public String getUserAddr3() {
-		return userAddr3;
-	}
-	public void setUserAddr3(String userAdd3) {
-		this.userAddr3 = userAdd3;
 	}
 	public Date getRegiDate() {
 		return regiDate;
