@@ -99,6 +99,7 @@
          </thead>
          <tbody>
          <c:set var="sumMoney" value="0"/>
+         <c:set var="sumitemMoney" value="0"/>
          <c:forEach var="tmp" items="${requestScope.cartList }">
             <tr>
                <td>
@@ -110,7 +111,15 @@
                <fmt:formatNumber value="${tmp.itemPrice}" 
                      pattern="###,###,###"/>원
                </td>
-               <td>${tmp.cartStock }</td>
+               <td>
+               	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px"/>
+               	<button type="button" id="upanddown" >수정</button>
+               	<script>
+               		$("#upanddown").click(function() {
+						
+					})
+               	</script>
+               </td>
                <td>
                <fmt:formatNumber value="${tmp.itemPrice * tmp.cartStock }" 
                      pattern="###,###,###"/>원
