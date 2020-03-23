@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 이후/view/Users/login</title>
+<title>개인정보 수정 이후/Users/update.jsp</title>
 </head>
 <body>
-	<strong>${usersDto.userId } 님이 로그인을 하셨습니다.</strong>
+	<strong>${dto.userId } 님의 정보가 수정되었습니다.</strong>
 	<p><a href="${pageContext.request.contextPath}/home.do">홈으로</a></p>
 </body>
 </html>

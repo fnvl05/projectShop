@@ -31,6 +31,7 @@
 							 <tr>
 							   <th>아이디</th>
 							   <th>유저타입</th>
+							   <th>상품이름</th>
 							   <th>처리여부</th>
 							   <th>배송처리</th>
 							   <th></th>
@@ -39,41 +40,28 @@
 						 <tbody>
 						  <c:forEach items="${list}" var="list">
 							  <tr>
-								   <td><input type="hidden" name="userId" value="${list.odNum }">${list.userId }</td>
+								   <td>${list.userId }</td>
 								   <td>${list.verify }</td>
-								   <td><input type="radio" name="result" value="미처리" id="result" <c:if test="${list.delivery eq '미처리'}" >checked</c:if>/>미처리							   
-								   <input type="radio" name="result" value="처리" id="result" <c:if test="${list.delivery eq '처리'}" >checked</c:if>/>처리
+								   <td>
+								   	<select id="userVerify">
+								   	
+								   	</select>
 								   </td>
 								   <td>
-									   <input type="radio" name="delivery" id="delivery" value="배송준비" <c:if test="${list.delivery eq '배송준비'}" >checked</c:if>/>배송준비
-									   <input type="radio" name="delivery" id="delivery" value="배송중"  <c:if test="${list.delivery eq '배송중'}" >checked</c:if>/>배송중
-									   <input type="radio" name="delivery" id="delivery" value="배송완료"  <c:if test="${list.delivery eq '배송완료'}" >checked</c:if>/>배송완료								   		
+								     	<select id="userResult">
+								   	
+								   		</select>
+								   </td>
+								   <td>
+									    <select id="user">
+								   	
+								   		</select>			
 								   </td>		     
 							  </tr>   
 						  </c:forEach>
 						 </tbody>
 					</table>
-					<script>
-						$("#result").click(function() {
-							var result = $("#result").val();
-							$.ajax({
-								url:url,
-								method:"post",
-								data:data,
-								success:function(result){
-									// responseData : {isSuccess:true}
-									if(responseData){
-										//폼을 안보이게 한다 
-										$this.slideUp(200);
-										//폼에 입력한 내용 읽어오기
-										var content=$this.find("textarea").val();
-										//pre 요소에 수정 반영하기 
-										$this.parent().find("pre").text(content);
-									}
-								}
-							});
-						})
-					</script>
+				
 				</div>
 			</div>
 		</section>

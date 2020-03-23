@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 이후/view/Users/login</title>
+<title>회원탈퇴/Users/delete.jsp</title>
 </head>
 <body>
-	<strong>${usersDto.userId } 님이 로그인을 하셨습니다.</strong>
-	<p><a href="${pageContext.request.contextPath}/home.do">홈으로</a></p>
+	<h2>회원탈퇴가 완료되었습니다.그동안 이용해주셔서 감사합니다.</h2>
+	<p><a href="${pageContext.request.contextPath }/home.do">홈으로</a></p>
 </body>
 </html>

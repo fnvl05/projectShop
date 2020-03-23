@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.master.category.Dto.ItemDto;
-import com.test.project01.master.category.Dto.UsersListDto;
+import com.test.project01.master.category.Dto.User_Orders_Dto;
 
 public interface categoryService {
 	public void categoryList(ModelAndView mView);
@@ -16,5 +16,5 @@ public interface categoryService {
 	public void getItemUpdateDate(ItemDto dto);
 	public void itemDelete(int itemNum, HttpServletRequest request);
 	public void usersList(ModelAndView mView);
-	public void upResult(UsersListDto dto);
+	public void upResult(User_Orders_Dto dto);
 }

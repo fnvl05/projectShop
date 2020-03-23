@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.project01.master.category.Dao.categoryDao;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
-import com.test.project01.master.category.Dto.UsersListDto;
+import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 
 import net.sf.json.JSONArray;
@@ -64,12 +64,12 @@ public class categoryServicelmpl implements categoryService {
 
 	@Override
 	public void usersList(ModelAndView mView) {
-		List<UsersListDto> userDto = dao.userList();	
+		List<User_Orders_Dto> userDto = dao.userList();	
 		mView.addObject("list", JSONArray.fromObject(userDto));
 	}
 
 	@Override
-	public void upResult(UsersListDto dto) {
+	public void upResult(User_Orders_Dto dto) {
 		dao.upResult(dto);
 	}
 	

@@ -38,23 +38,24 @@
          itemThumbImg = #{itemThumbImg}
          where itemNum = #{itemNum}
 	</update>
+	
 	<delete id="itemDelete">
 		delete from tbl_items where itemNum = #{itemNum}
 	</delete>
-	<select id="selectList" resultType="master_usersList_Dto">
-		select tbl_member.userId, tbl_member.verify, orders.delivery, order_detail.result 
-		from tbl_member left join orders on tbl_member.userId=orders.userId 
-		left join order_detail on orders.orderNum=order_detail.orderNum
-	</select>
-	<update id="resultUpDate" parameterType="master_usersList_Dto">
-		update order_detail.result
-		set result = #{result}
-		where order_detail. = #{userId}
-	</update>
+	
 	<update id="minusCount" parameterType="int">
 		update tbl_items
 		set itemCount=itemCount-#{quantity}
 		where itemNum=#{itemNum}
 	</update>
+	
+	<select id="select_user_orders" resultType="User_Orders_Dto">
+		select tbl_member.userId, tbl_member.verify, orders.delivery
+		from tbl_member left join orders on tbl_member.userId=orders.userId 
+	</select>
+	<select id="select_item_order_detail" resultType="Item_OrderDetail_Dto">
+		select tbl_items.itemName, order_detail.result
+		from order_detail left join tbl_items on tbl_items.itemNum=order_detail.itemNum 
+	</select>
 	
 </mapper>
