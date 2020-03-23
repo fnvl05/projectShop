@@ -10,6 +10,11 @@
 <jsp:include page="../include/resource.jsp"></jsp:include>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
+<style>
+	#title{
+		font-size: 17px;
+	}
+</style>
 </head>
 <body>
 	<div id="root">
@@ -74,9 +79,21 @@
 						<td>${tmp.num }</td>
 						<td>${tmp.writer }</td>
 						<td>
-							<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}">
-								${tmp.title } <%-- 글을 눌렀을 때 자세히 보기 되도록 링크를 걸고 num 이라는 파라미터에 글번호를 가져간다. --%>
-							</a>
+							<c:choose>
+								<c:when test="${tmp.noticeNum==1 }">
+									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}">
+										<strong id="title">
+											${tmp.title } <%-- 글을 눌렀을 때 자세히 보기 되도록 링크를 걸고 num 이라는 파라미터에 글번호를 가져간다. --%>
+										</strong>
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}">
+										${tmp.title } <%-- 글을 눌렀을 때 자세히 보기 되도록 링크를 걸고 num 이라는 파라미터에 글번호를 가져간다. --%>
+									</a>
+								</c:otherwise>
+							</c:choose>
+							
 						</td>
 						<td>${tmp.viewCount }</td>
 						<td>${tmp.regdate }</td>
@@ -87,7 +104,7 @@
 			<c:choose>
 				<c:when test="${not empty sessionScope.userDto.userId }">
 					<c:if test="${sessionScope.userDto.verify eq 1}">
-						<a style="float:right" class="btn btn-info" href="insertform.do">새글 작성</a> <!-- cafe/private/* 로그인 안하면  사용 못하게 필터링! -->
+						<a class="btn btn-info" href="insertform.do">새글 작성</a> <!-- cafe/private/* 로그인 안하면  사용 못하게 필터링! -->
 					</c:if>
 				</c:when>
 			</c:choose>

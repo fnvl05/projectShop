@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.notice.dto.NoticeDto;
@@ -27,16 +28,18 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/insertform")
-	public ModelAndView authInsertform(HttpServletRequest request) {  
+	public ModelAndView Master_authInsertform(HttpServletRequest request) {  
 		return new ModelAndView("notice/insertform");
 	}
 	
 	@RequestMapping(value="/notice/insert", method=RequestMethod.POST)
-	public ModelAndView Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto) {
+	public ModelAndView Master_Insert(HttpServletRequest request, @ModelAttribute NoticeDto dto, @RequestParam int noticeNum) {
 				String writer=(String)
 						request.getSession().getAttribute("id");
-				//CafeDto 객체에 담고 
+				//NoticeDto 객체에 담고 
 				dto.setWriter(writer);
+				dto.setNoticeNum(noticeNum);
+				
 				//서비스를 이용해서 DB 에 저장
 				service.saveContent(dto);
 				//글 목록 보기로 리다일렉트 이동 
@@ -51,20 +54,20 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/delete")
-	public ModelAndView delete(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView Master_delete(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.delete(request, response);
 		mView.setViewName("notice/delete");
 		return mView;
 	}
 	
 	@RequestMapping("/notice/updateform")
-	public ModelAndView updateform(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView Master_updateform(ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.updateform(request, response);
 		mView.setViewName("notice/updateform");
 		return mView;
 	}
 	@RequestMapping("/notice/update")
-	public ModelAndView update(ModelAndView mView, HttpServletRequest request) {
+	public ModelAndView Master_update(ModelAndView mView, HttpServletRequest request) {
 		service.update(request);
 		mView.setViewName("notice/update");
 		return mView;

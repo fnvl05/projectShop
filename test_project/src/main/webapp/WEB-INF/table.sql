@@ -85,6 +85,9 @@ CREATE TABLE board_notice(
 	viewCount NUMBER, -- 조회수
 	regdate DATE
 );
+
+alter table board_notice add(noticeNum number not null); 
+
 CREATE SEQUENCE board_notice_seq;
 
 

@@ -32,6 +32,11 @@
 				value="${title }"/>
 		</div>
 		<div class="form-group">
+			<label for="noticeNum">중요글</label>
+			<input type="radio" name="noticeNum" value=0 checked="checked"/> OFF
+			<input type="radio" name="noticeNum" value=1 /> ON
+		</div>
+		<div class="form-group">
 			<label for="content">내용</label>
 			<textarea class="form-control" name="content" id="content" cols="30" rows="10">${content }</textarea>
 			<script type="text/javascript">

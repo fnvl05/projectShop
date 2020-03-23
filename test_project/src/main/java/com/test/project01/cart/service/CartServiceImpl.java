@@ -12,11 +12,6 @@ import com.test.project01.cart.dto.CartListDto;
 public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartDao dao;
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> refs/remotes/origin/yun2
 	//1.장바구니 추가
 	@Override
 	public void addCart(CartListDto dto) {

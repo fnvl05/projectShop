@@ -35,18 +35,18 @@
 				<%@ include file="../include/users_aside.jsp" %>
 			</aside>
 				<h2>상품 목록</h2>
-				<ul id="ul1">
-				 <c:forEach items="${cateList}" var="cateList">
-				 <li>
-				  <div class="itemThumb">
-				   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
-				  </div> 
-				  <div class="itemName">
-				   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
-				  </div>
-				 </li>
-				 </c:forEach>
-				</ul>
+					<ul id="ul1">
+					 <c:forEach items="${cateList}" var="cateList">
+					 <li>
+					  <div class="itemThumb">
+					   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
+					  </div> 
+					  <div class="itemName">
+					   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
+					  </div>
+					 </li>
+					 </c:forEach>
+					</ul>
 			</div>
 		</section>
 		<footer id="footer">

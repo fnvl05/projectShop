@@ -46,7 +46,7 @@ public class QnaServiceImpl implements QnaService{
 			String keyword=request.getParameter("keyword");
 			String condition=request.getParameter("condition");
 			
-			//CafeDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
+			//QnaDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
 			QnaDto dto=new QnaDto();
 			
 			QnaJoinDto dto2=new QnaJoinDto();
@@ -105,11 +105,11 @@ public class QnaServiceImpl implements QnaService{
 			if(totalPageCount < endPageNum){
 				endPageNum=totalPageCount; //보정해준다. 
 			}
-			// startRowNum 과 endRowNum 을 CafeDto 객체에 담고 
+			// startRowNum 과 endRowNum 을 QnaDto 객체에 담고 
 			dto2.setStartRowNum(startRowNum);
 			dto2.setEndRowNum(endRowNum);
 			
-			// startRowNum 과 endRowNum 에 해당하는 카페글 목록을 select 해 온다.
+			// startRowNum 과 endRowNum 에 해당하는 문의글 목록을 select 해 온다.
 			List<QnaJoinDto> list=qnaDao.getList(dto2);
 			
 			//view 페이지에서 필요한 값을 request 에 담고 
@@ -131,12 +131,12 @@ public class QnaServiceImpl implements QnaService{
 		public void getDetail(HttpServletRequest request) {
 			//파라미터로 전달되는 글번호
 			int num=Integer.parseInt(request.getParameter("num"));
-			
 			//검색과 관련된 파라미터를 읽어와 본다.
 			String keyword=request.getParameter("keyword");
 			String condition=request.getParameter("condition");
 			
-			//CafeDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
+		
+			//QnaDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
 			QnaDto dto=new QnaDto();
 			
 			if(keyword != null) {//검색 키워드가 전달된 경우
@@ -165,17 +165,18 @@ public class QnaServiceImpl implements QnaService{
 				request.setAttribute("encodedKeyword", encodedKeyword);
 				request.setAttribute("keyword", keyword);
 			}		
-			//CafeDto 에 글번호도 담기
+			//QnaDto 에 글번호도 담기
 			dto.setNum(num);
-			//조회수 1 증가 시키기
-			qnaDao.addViewCount(num);
 			//글정보를 얻어와서
 			QnaDto dto2=qnaDao.getData(dto);
+			//조회수 1 증가 시키기
+			qnaDao.addViewCount(num);
 			//request 에 글정보를 담고 
 			request.setAttribute("dto", dto2);
 			//댓글 목록을 얻어와서 request 에 담아준다.
 			List<QnaCommentDto> commentList=qnaCommentDao.getList(num);
 			request.setAttribute("commentList", commentList);
+			
 		}
 
 		@Override
@@ -197,7 +198,7 @@ public class QnaServiceImpl implements QnaService{
 
 		@Override
 		public void updateContent(QnaDto dto) {
-			//CafeDao 객체를 이용해서 원글을 수정 반영한다. 
+			//QnaDao 객체를 이용해서 원글을 수정 반영한다. 
 			qnaDao.update(dto);
 		}
 		//댓글 저장하는 메소드 
