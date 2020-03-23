@@ -11,7 +11,7 @@
 		select
      		row_number() over(order by c.cartNum desc) as num,
      		c.cartNum, c.userId, c.itemNum, c.cartStock, c.addDate,
-    		 i.itemName, i.itemPrice, i.itemImg
+    		 i.itemName, i.itemPrice, i.itemImg,(c.cartStock*c.itemPrice)money
 		 from cartList c
     		 inner join tbl_items i
     		     on c.itemNum = i.itemNum   
@@ -41,4 +41,10 @@
 		and itemNum=#{itemNum}
 	</update>
 	
+	<select id="sumMoney" resultType="int">
+		select nvl(sum(c.itemPrice * c.cartStock),0) money
+		from cartList c, tbl_items i
+		where c.itemNum=i.itemNum and c.userId=#{userId}
+	</select>
+
 </mapper>

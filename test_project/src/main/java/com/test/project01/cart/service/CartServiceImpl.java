@@ -12,7 +12,11 @@ import com.test.project01.cart.dto.CartListDto;
 public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartDao dao;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/yun2
 	//1.장바구니 추가
 	@Override
 	public void addCart(CartListDto dto) {
@@ -43,4 +47,12 @@ public class CartServiceImpl implements CartService {
 	public void updateCart(CartListDto dto) {
 		dao.updateCart(dto);
 	}
+<<<<<<< HEAD
+=======
+	//장바구니 금액 합계
+	@Override
+	public int sumMoney(String userId) {
+		return dao.sumMoney(userId);
+	}
+>>>>>>> refs/remotes/origin/yun2
 }

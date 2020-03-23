@@ -159,7 +159,8 @@ create table orders(
 	payment varchar2(30),
 	allPrice number
 
-);
+
+alter table cartList add(money number);
 
 alter table cartList
 add constraint cartList_userId foreign key(userId)
