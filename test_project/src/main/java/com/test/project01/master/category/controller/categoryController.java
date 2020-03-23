@@ -52,21 +52,23 @@ public class categoryController{
 		return mView;
 	}
 	@RequestMapping(value="/master/register", method = RequestMethod.POST)
-	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file) throws IOException, Exception {
+	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
 		String imgUpLoadPath = upLoadPath + File.separator + "imgUpLoad";
 		String ymdPath = UpLoadFileUtils.calcPath(imgUpLoadPath);
 		String fileName = null;
-
+		
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UpLoadFileUtils.fileUpload(imgUpLoadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		 dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
+			
 		 fileName = File.separator + "images" + File.separator + "none.png";
 		 dto.setItemImg(fileName);
 		 dto.setItemThumbImg(fileName);
-		}
 
+		}
+		
 		service.itemInsert(dto);
 		return new ModelAndView("redirect:itemList.do");
 	}
@@ -172,12 +174,18 @@ public class categoryController{
 		return null;
 	}	
 
-	@RequestMapping(value="/master/no_master")
+	@RequestMapping("/master/no_master")
 	public ModelAndView no_master(ModelAndView mView) {
 		mView.setViewName("master/no_master");
 		return mView;	
 	}
 	
+	@RequestMapping("/master/usersList")
+	public ModelAndView userList(ModelAndView mView) {
+		service.usersList(mView);
+		mView.setViewName("master/usersList");
+		return mView;	
+	}
 	
 	
 	

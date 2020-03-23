@@ -8,6 +8,7 @@
   		<typeAlias type="com.test.project01.master.category.Dto.categoryDto" alias="categoryDto"/>
   		<typeAlias type="com.test.project01.master.category.Dto.ItemDto" alias="itemDto"/>
   		<typeAlias type="com.test.project01.master.category.Dto.ItemViewDto" alias="itemViewDto"/>
+  		<typeAlias type="com.test.project01.master.category.Dto.UsersListDto" alias="master_usersList_Dto"/>  		
   		<typeAlias type="com.test.project01.qna.dto.QnaDto" alias="qnaDto"/>
   		<typeAlias type="com.test.project01.qna.dto.QnaJoinDto" alias="qnaJoinDto"/>
   		<typeAlias type="com.test.project01.qna.dto.QnaCommentDto" alias="qnaCommentDto"/>
@@ -19,6 +20,11 @@
   		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
   		<typeAlias type="com.test.project01.unknown.Dto.Unknown_itemDto" alias="unknown_itemDto"/>
   		<typeAlias type="com.test.project01.users_item.Dto.Users_item_Dto" alias="users_item_Dto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrdersDto" alias="ordersDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailDto" alias="orderDetailDto"/>
+  		<typeAlias type="com.test.project01.order.dto.OrderDetailJoinDto" alias="orderDetailJoinDto"/>
+  		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
+
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>
@@ -31,5 +37,7 @@
   		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/UnknownMapper.xml"/>
   		<mapper resource="com/test/project01/mybatis/Users_item_Mapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/OrderMapper.xml"/>
+  		<mapper resource="com/test/project01/mybatis/CartMapper.xml"/>
   	</mappers>	
   </configuration>

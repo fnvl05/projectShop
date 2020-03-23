@@ -24,13 +24,12 @@
 		 aside ul li a { display:block; width:100%; padding:10px 0;}
 		 aside ul li a:hover { background:#eee; }
 	</style>
-<body>	
+
 	<ul>
 		<li><a href="${pageContext.request.contextPath }/master/register_form.do">상품 등록</a></li>
 		<li><a href="${pageContext.request.contextPath }/master/itemList.do">상품 목록</a></li>
 		<li><a href="${pageContext.request.contextPath }/qna/list.do">QnA</a></li>
 		<li><a href="${pageContext.request.contextPath }/notice/list.do">Notice</a></li>
 		<li><a href="${pageContext.request.contextPath }/review/list.do">상품 리뷰</a></li>
-		<li><a href="#">유저 관리</a></li>	
+		<li><a href="${pageContext.request.contextPath }/master/usersList.do">유저 관리</a></li>	
 	</ul>
-</body>

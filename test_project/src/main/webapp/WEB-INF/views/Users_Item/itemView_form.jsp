@@ -45,6 +45,7 @@
 	<div id="container_box">
 		<form role="form" enctype="multipart/form-data">
 		<input type="hidden" name="itemNum" value="${dto.itemNum }"/>
+		<input type="hidden" name="itemPrice" value="${dto.itemPrice }"/>
 		<input type="hidden" name="userId" value="${sessionScope.userDto.userId}"/>
 			<div class="itemImg_box">
 				<div class = "itemImg">
@@ -97,7 +98,7 @@
 						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
 						<script>
 							$("#back_btn").click(function () {
-								location.href="../home.do";
+								location.href="../index.do";
 							})
 						</script>
 					</div>

@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/insertform.jsp</title>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+
 </head>
 <style>
  #star_grade a{
@@ -30,6 +33,8 @@
 			<input type="text" name="reviewContent" id="reviewContent" />
 		</div>
 		<div class="container">
+			<label for="likeCount">평가</label>
+			<input type="text" name="likeCount" id="likeCount" /> 
 		<p id="star_grade">
 			<a href="#">★</a>
 			<a href="#">★</a>
@@ -41,11 +46,12 @@
 		<button id="starBtn" type="submit" >등록</button>
 		<button type="reset">취소</button>
 		<button type="button" id="back_btn">돌아가기</button>
-			<script type="text/javascript">
-						$("#back_btn").click(function () {
-							location.href="itemList_review.do?itemNum=" + ${itemNum};
-						})
-			</script>
+
+		<script type="text/javascript">
+		$("#back_btn").click(function () {
+		location.href="itemList_review.do?itemNum=" + ${itemNum};
+		})
+		</script>
 	</form>
 </div>
 <script>

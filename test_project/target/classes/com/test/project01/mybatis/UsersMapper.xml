@@ -17,7 +17,7 @@
 	</select>
 	<select id="login" parameterType="String" resultType="UsersDto">
 		select 
-			userId,userName,userPass,regiDate,verify
+			userId,userName,userPass,regiDate,verify,userAddr1,userAddr2,userAddr3,userPhon
 			from tbl_member
 			where userId=#{inputUserId}	
 	</select>

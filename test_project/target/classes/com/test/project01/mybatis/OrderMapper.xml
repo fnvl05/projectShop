@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	<select id="getDetailList" resultType="orderDetailJoinDto">
+		select tbl_items.itemImg,tbl_items.itemName,tbl_items.price,quantity
+		from order_detail,tbl_items
+		where order_detail.itemNum=tbl_items.itemNum and orderNum=#{orderNum}
+	</select>
+	<insert id="insert" parameterType="ordersDto">
+		insert into orders
+		(orderNum,userId,orderRec,userAddr1,userAddr2,userAddr3,orderPhone1,orderPhone2,orderDate,msg,payment,allPrice)
+		values(orders_seq.NEXTVAL,#{userId},#{orderRec},#{userAddr1},#{userAddr2},#{userAddr3},#{orderPhone1},#{orderPhone2},sysdate,#{msg},#{payment},#{allPrice})
+	</insert>
+	<insert id="detailInsert" parameterType="orderDetailDto">
+		insert into order_detail
+		(odNum,itemNum,quantity)
+		values(order_detail_seq.NEXTVAL,#{itemNum},#{quantity})
+	</insert>
+</mapper>

@@ -41,7 +41,7 @@ public class UsersController {
 	public ModelAndView logIn(@ModelAttribute UsersDto dto, 
 			ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		if(service.validUsers(dto, request.getSession(), mView)) {
-			mView.setViewName("home");
+			mView.setViewName("index");
 			return mView;			
 		}else {
 			mView.setViewName("/Users/login_form");
@@ -52,7 +52,7 @@ public class UsersController {
 	@RequestMapping("Users/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/home.do";
+		return "redirect:/index.do";
 	}
 
 	
