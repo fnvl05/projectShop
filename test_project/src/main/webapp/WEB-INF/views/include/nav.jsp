@@ -4,15 +4,13 @@
 <ul>
 	<c:choose>
 		<c:when test="${not empty id}">
-			<c:if test="${sessionScope.userDto.verify eq 1}">
+			<c:if test="${sessionScope.verify eq 1}">
 				<li><a href="${pageContext.request.contextPath }/master/master_index.do">관리자</a></li>
 				<li><a href="${pageContext.request.contextPath}/home.do">홈으로</a></li>		
-				<strong><a href="${pageContext.request.contextPath }/Users/info.do">${usersDto.userId}</a>님 환영합니다.</strong>
-				<li><a href="${pageContext.request.contextPath }/Users/logout.do">로그아웃</a></li>
 			</c:if>
-			<li>${id}님 환영합니다.</li>
-			<li><a href="${pageContext.request.contextPath }/Users/logout.do">로그아웃</a></li>
-			<li><a href="${pageContext.request.contextPath }/shop/cartList.do" >장바구니</a></li>
+				<li>${id}님 환영합니다.</li>
+				<li><a href="${pageContext.request.contextPath }/Users/logout.do">로그아웃</a></li>
+				<li><a href="${pageContext.request.contextPath }/shop/cartList.do" >장바구니</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a href="${pageContext.request.contextPath }/Users/login_form.do">로그인</a></li>

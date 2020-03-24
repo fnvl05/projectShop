@@ -65,7 +65,7 @@
 		<section id="container">
 			<aside>
 				<c:choose>
-					<c:when test="${not empty sessionScope.userDto.userId }">
+					<c:when test="${not empty sessionScope.id }">
 							<%@ include file="include/users_aside.jsp" %>						
 					</c:when>
 					<c:otherwise>

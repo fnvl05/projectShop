@@ -80,8 +80,10 @@ public class OrderServiceImpl implements OrderService{
 			
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
+			int odNum = dto.getOrderNum();
 			OrderDetailDto detailDto=new OrderDetailDto();
 			detailDto.setItemNum(itemNum);
+			detailDto.setOdNum(odNum);
 			detailDto.setQuantity(quantity);
 			detailDao.detailInsert(detailDto);
 			

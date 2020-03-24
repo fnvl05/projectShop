@@ -22,20 +22,8 @@ public class UsersServiceImpl implements UsersService {
 
 	// 로긴
 	@Override
-<<<<<<< HEAD
-	public void addUser(UsersDto dto) {
-		String encodedPwd = new BCryptPasswordEncoder().encode(dto.getUserPass());
-		dto.setUserPass(encodedPwd);
-		dao.insert(dto);		
-	}
-	
-	@Override
-	public Map<String, Object> isExistId(String inputUsersId) {
-		boolean isExistId = dao.isExist(inputUsersId);
-=======
 	public Map<String, Object> isExistId(String inputUserId) {
 		boolean isExistId = dao.isExist(inputUserId);
->>>>>>> refs/remotes/origin/daekyung
 		Map<String, Object> map = new HashMap<>();
 		map.put("isExist", isExistId);
 		return map;
@@ -56,21 +44,11 @@ public class UsersServiceImpl implements UsersService {
 		if (passHash != null) {
 			isValid = BCrypt.checkpw(dto.getUserPass(), passHash);
 		}
-<<<<<<< HEAD
-		if(isValid) {
-			UsersDto userdto = dao.logIn(dto.getUserId());
-			session.setAttribute("userDto", userdto);
-			String id=userdto.getUserId();
-			String master=String.valueOf(userdto.getVerify());
-			session.setAttribute("id", id);
-			session.setAttribute("master", master);
-=======
 		if (isValid) {
-			System.out.println(isValid);
-			UsersDto usersdto1 = dao.logIn(dto.getUserId());
-			session.setAttribute("usersDto", usersdto1);
-			session.setAttribute("id", usersdto1.getUserId());
->>>>>>> refs/remotes/origin/daekyung
+			UsersDto userDto = dao.logIn(dto.getUserId());
+			session.setAttribute("userDto", userDto);
+			session.setAttribute("id", userDto.getUserId());
+			session.setAttribute("verify", userDto.getVerify());
 			return true;
 		} else {
 			return false;
@@ -80,8 +58,7 @@ public class UsersServiceImpl implements UsersService {
 	// 개인정보
 	@Override
 	public void showInfo(String id, ModelAndView mView) {
-		UsersDto dto=dao.getData(id);
-		
+		UsersDto dto=dao.getData(id);	
 		mView.addObject("dto", dto);
 	}
 	
@@ -92,11 +69,9 @@ public class UsersServiceImpl implements UsersService {
 		boolean isValid=BCrypt.checkpw(dto.getUserPass(), PassHash);
 		
 		if(isValid) {
-			String encodePass=
-					new BCryptPasswordEncoder().encode(dto.getNewPass());
+			String encodePass= new BCryptPasswordEncoder().encode(dto.getNewPass());
 			dto.setNewPass(encodePass);
 			dao.updatePass(dto);
-			
 			mView.addObject("isSuccess", true);
 			
 		} else {

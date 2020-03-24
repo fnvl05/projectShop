@@ -31,7 +31,7 @@ public class CartController {
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
 	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
-		String userId=user.getUserId();		
+		String userId=user.getUserId();	
 		//String userId=(String)session.getAttribute("userId");
 		//dto.setUserId(userId);
 		//장바구니에 기존 상품 있나 검사

@@ -15,6 +15,6 @@ public interface categoryService {
 	public void getItemViewList(ModelAndView mView, int itemNum);
 	public void getItemUpdateDate(ItemDto dto);
 	public void itemDelete(int itemNum, HttpServletRequest request);
-	public void usersList(ModelAndView mView);
 	public void upResult(User_Orders_Dto dto);
+	public void TotalList(ModelAndView mView);
 }

@@ -1,5 +1,6 @@
 package com.test.project01.master.category.serevice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.project01.master.category.Dao.categoryDao;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
+import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
+import com.test.project01.master.category.Dto.TotalDto;
 import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 
@@ -62,15 +65,23 @@ public class categoryServicelmpl implements categoryService {
 		dao.ItemDelete(itemNum);
 	}
 
-	@Override
-	public void usersList(ModelAndView mView) {
-		List<User_Orders_Dto> userDto = dao.userList();	
-		mView.addObject("list", JSONArray.fromObject(userDto));
-	}
 
 	@Override
 	public void upResult(User_Orders_Dto dto) {
 		dao.upResult(dto);
+	}
+	
+	@Override
+	public void TotalList(ModelAndView mView) {
+		List<User_Orders_Dto> userDto = dao.userList();	
+		List<Item_OrderDetail_Dto> itemDto = dao.item_orderList();
+		List<TotalDto> totalDto = new ArrayList<>();
+		for(int i = 0; i < userDto.size(); i++) {
+			totalDto.get(i).setUserId(userDto.get(i).getUserId());
+			totalDto.get(i).setVerify(userDto.get(i).getVerify());
+			totalDto.get(i).setDelivery(userDto.get(i).getDelivery());
+		}
+		mView.addObject("list", JSONArray.fromObject(totalDto));
 	}
 	
 	

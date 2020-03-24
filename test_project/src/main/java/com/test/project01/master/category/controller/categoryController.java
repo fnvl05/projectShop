@@ -182,7 +182,7 @@ public class categoryController{
 	
 	@RequestMapping("/master/usersList")
 	public ModelAndView userList(ModelAndView mView) {
-		service.usersList(mView);
+		service.TotalList(mView);
 		mView.setViewName("master/usersList");
 		return mView;	
 	}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
+import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
 import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.users.Dto.UsersDto;
@@ -54,11 +55,6 @@ public class categoryDaolmpl implements categoryDao{
 	public void ItemDelete(int itemNum) {
 		session.delete("category.itemDelete", itemNum);
 	}
-	@Override
-	public List<User_Orders_Dto> userList() {
-		List<User_Orders_Dto> userList = session.selectList("category.selectList");
-		return userList;
-	}
 
 	@Override
 	public void upResult(User_Orders_Dto dto) {
@@ -68,6 +64,18 @@ public class categoryDaolmpl implements categoryDao{
 	@Override
 	public void minusCount(int quantity,int itemNum) {
 		session.update("category.minusCount",quantity);
+	}
+
+	@Override
+	public List<User_Orders_Dto> userList() {
+		List<User_Orders_Dto> userList = session.selectList("category.select_user_orders");
+		return userList;
+	}
+
+	@Override
+	public List<Item_OrderDetail_Dto> item_orderList() {
+		List<Item_OrderDetail_Dto> itemList=session.selectList("category.select_item_order_detail");
+		return itemList;
 	}
 	
 	

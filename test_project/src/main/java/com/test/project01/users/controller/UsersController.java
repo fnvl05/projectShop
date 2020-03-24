@@ -25,20 +25,16 @@ public class UsersController {
 		return "Users/signup_form";
 	}
 	
-	// 회원가입 다음 페이지로 Go!Go!
 	@RequestMapping(value="/Users/signup", method = RequestMethod.POST)
 	public ModelAndView signup(@ModelAttribute("dto") UsersDto dto, 
 			ModelAndView mView) {
-		// 경로 테스트
-		System.out.println(dto.getUserId());
-		
 		service.addUser(dto);
-		mView.setViewName("Users/insert");
+		mView.setViewName("index");
 		return mView;
 	}
 	
 	// 로그인
-	@RequestMapping("Users/login_form")
+	@RequestMapping("/Users/login_form")
 	public String logInForm(HttpServletRequest request) {
 		return "Users/login_form";
 	}
@@ -48,11 +44,9 @@ public class UsersController {
 			ModelAndView mView, HttpServletRequest request, 
 			HttpServletResponse response) {
 		boolean test=service.validUsers(dto, request.getSession(), mView);
-		// 경로 테스트
 		System.out.println(test);
-		
 		if(test) {
-			mView.setViewName("Users/login");
+			mView.setViewName("index");
 			return mView;
 		} else {
 			mView.setViewName("Users/login_form");
@@ -93,8 +87,6 @@ public class UsersController {
 	@RequestMapping(value="/Users/newPass", method=RequestMethod.POST)
 	public ModelAndView passUpdate(HttpServletRequest request,
 			ModelAndView mView,HttpSession session,@ModelAttribute UsersDto dto) {
-		
-
 		UsersDto test=(UsersDto)session.getAttribute("usersDto");
 		dto.setUserId(test.getUserId());
 		System.out.println(dto.getNewPass());
@@ -118,7 +110,7 @@ public class UsersController {
 	@RequestMapping(value="Users/update", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute UsersDto dto,
 			HttpServletRequest request,HttpSession session) {
-		UsersDto test=(UsersDto)session.getAttribute("usersDto");
+		UsersDto test=(UsersDto)session.getAttribute("userDto");
 		dto.setUserId(test.getUserId());
 		service.userUpdate(dto);
 		return new ModelAndView("/Users/info");
