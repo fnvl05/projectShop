@@ -63,19 +63,6 @@ img {
 				<th>등록일</th>
 			</tr>
 		</thead>
-		<tbody>
-			<c:forEach var="tmp" items="${requestScope.list }">
-				<tr>
-					<th>글 번호</th>
-					<th>아이템 명</th>
-					<th>이미지</th>
-					<th>리뷰</th>
-					<th>별점</th>
-					<th>좋아요</th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
 			<tbody>
 				<c:forEach var="tmp" items="${requestScope.list }">
 					<tr>
