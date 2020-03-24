@@ -57,7 +57,7 @@
 
 		<div class="container">
 			<label for="likeCount">평가</label>
-			<input type="text" name="likeCount" id="likeCount" /> 
+			<!--  <input type="text" name="likeCount" id="likeCount" /> -->
 			<p id="star_grade">
 				<a href="#">★</a>
 				<a href="#">★</a>

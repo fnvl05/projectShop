@@ -128,7 +128,6 @@ img {
 			</ul>
 		</div>
 	</div>
-	<a href="insertform.do?itemNum=${itemNum }">해당 상품 리뷰쓰기</a>
 	<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>
