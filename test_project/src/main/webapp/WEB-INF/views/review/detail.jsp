@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/detail.jsp</title>
-<script
-	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 <style>
 /* 글 내용을 출력할 div에 적용할 css */
 .contents {
@@ -98,8 +98,19 @@
 </style>
 </head>
 <body>
-	<h3>리뷰 글 상세 보기</h3>
+<div id="root">
+		<header id="heder_box">
+			<div>
+				<%@ include file="../include/header.jsp" %>
+			</div>
+		</header>
+		<nav id="nav">
+			<div id="nav_box">
+				<%@ include file="../include/nav.jsp" %>
+			</div>
+		</nav>
 
+<h3>리뷰 글 상세 보기</h3>
 	<table class="table table-bordered table-condensed">
 		<colgroup>
 			<col class="col-xs-3" />
@@ -229,9 +240,14 @@
 			</form>
 		</div>
 	</div>
+</div> 
+	<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp" %>
+			</div>
+		</footer>
 	</div>
-
-	<script>
+<script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)

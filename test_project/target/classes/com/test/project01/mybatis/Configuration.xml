@@ -25,7 +25,6 @@
   		<typeAlias type="com.test.project01.order.dto.OrderDetailDto" alias="orderDetailDto"/>
   		<typeAlias type="com.test.project01.order.dto.OrderDetailJoinDto" alias="orderDetailJoinDto"/>
   		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
-
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>

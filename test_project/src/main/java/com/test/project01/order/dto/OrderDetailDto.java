@@ -9,7 +9,8 @@ public class OrderDetailDto {
 	
 	public OrderDetailDto() {}
 
-	public OrderDetailDto(int odNum, int orderNum, int itemNum, int quantity, String result) {
+	public OrderDetailDto(int odNum, int orderNum, int itemNum,  int quantity,
+			String result) {
 		super();
 		this.odNum = odNum;
 		this.orderNum = orderNum;
@@ -42,6 +43,8 @@ public class OrderDetailDto {
 		this.itemNum = itemNum;
 	}
 
+
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -57,6 +60,7 @@ public class OrderDetailDto {
 	public void setResult(String result) {
 		this.result = result;
 	}
+
 	
 	
 }

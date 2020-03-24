@@ -217,6 +217,7 @@ create table order_detail(
 	result varchar2(30) default '미처리'       --상품 처리여부
 );
 
+
 create sequence order_detail_seq;
 
 alter table order_detail 

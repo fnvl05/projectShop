@@ -7,6 +7,9 @@ import com.test.project01.order.dto.OrderDetailJoinDto;
 import com.test.project01.order.dto.OrdersDto;
 
 public interface OrderDetailDao {
-	public List<OrderDetailJoinDto> getList();
+
 	public void detailInsert(OrderDetailDto dto);
+	//전체 리스트
+	public List<OrderDetailJoinDto> getList(OrderDetailJoinDto dto);
+	
 }

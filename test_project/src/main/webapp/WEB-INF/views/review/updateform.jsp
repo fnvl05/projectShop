@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/updateform.jsp</title>
+<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
 <style>
  #star_grade a{
@@ -20,17 +24,43 @@
 .star_rating a.on {color:#777;}
 </style>
 <body>
-<div class="container">
-	<form action="update.do" method="post">
-		<input type="hidden" name="itemNum" value="${dto.itemNum }" />
-		<input type="hidden" name="reviewNum" value="${dto.reviewNum }" />
-		<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId }" />
-		<input type="hidden" id="likeCount" name="likeCount" value=2 />
+<div id="root">
+		<header id="heder_box">
+			<div>
+				<%@ include file="../include/header.jsp" %>
+			</div>
+		</header>
+		<nav id="nav">
+			<div id="nav_box">
+				<%@ include file="../include/nav.jsp" %>
+			</div>
+		</nav>
 		<div class="container">
-			<label for="reviewContent">상품 리뷰</label>
-			<input type="text" name="reviewContent" id="reviewContent" value="${dto.reviewContent }" />
+			<form action="update.do" method="post">
+				<input type="hidden" name="itemNum" value="${dto.itemNum }" />
+				<input type="hidden" name="reviewNum" value="${dto.reviewNum }" />
+				<input type="hidden" name="reviewWriter" value="${sessionScope.userDto.userId }" />
+				<div class="container">
+					<label for="reviewContent">상품 리뷰</label>
+					<textarea rows="10" cols="50" name="reviewContent" id="reviewContent">${dto.reviewContent }</textarea>
+					<script type="text/javascript">
+						$(function(){
+							CKEDITOR.replace('reviewContent',{
+								filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+							});
+						});
+					</script>
+				</div>
+				<div class="container">
+					<label for="likeCount">별점</label>
+					<input type="text" name="likeCount" id="likeCount" value="${dto.likeCount }"/>
+				</div>
+				<button type="submit" >수정확인</button>
+				<button type="reset">취소</button>
+				<button><a href="detail.do?reviewNum=${dto.reviewNum }&itemNum=${dto.itemNum}">돌아가기</a></button>
+			</form>
 		</div>
-		<div class="container">
+	<div class="container">
 		<p id="star_grade">
 			<a href="#">★</a>
 			<a href="#">★</a>
@@ -47,7 +77,6 @@
 					location.href="itemView_form.do?itemNum=" + ${dto.itemNum};
 				})
 			</script>
-	</form>
 </div>
 <script>
 	$('#star_grade a').click(function(){
@@ -58,5 +87,11 @@
 	    return false;
 	});
 </script>
+
+		<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp" %>
+			</div>
+		</footer>
 </body>
 </html>
