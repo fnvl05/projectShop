@@ -17,4 +17,6 @@ public interface CartService {
 	public int countCart(int itemNum, String userId);
 	//장바구니 상품 수량 변경
 	public void updateCart(CartListDto dto);
+	//장바구니 금액 합계
+	public int sumMoney(String userId);
 }

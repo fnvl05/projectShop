@@ -5,7 +5,7 @@
  	select  cateLevel, cateName, cateCode, cateCodeRef
  		from goods_category
      start with cateCodeRef is null connect by prior cateCode = cateCodeRef
-</select>
+	</select>
 	<insert id="itemInsert" parameterType="ItemDto">
 		insert into tbl_items (itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemThumbImg)
 		values (tbl_item_seq.nextval, #{itemName}, #{cateCode}, #{itemPrice}, #{itemCount}, #{itemDes}, #{itemImg}, #{itemThumbImg})
@@ -41,9 +41,21 @@
 	<delete id="itemDelete">
 		delete from tbl_items where itemNum = #{itemNum}
 	</delete>
+
+	<select id="selectList" resultType="master_usersList_Dto">
+		select tbl_member.userId, tbl_member.verify, orders.delivery, order_detail.result 
+		from tbl_member left join orders on tbl_member.userId=orders.userId 
+		left join order_detail on orders.orderNum=order_detail.orderNum
+	</select>
+	<update id="resultUpDate" parameterType="master_usersList_Dto">
+		update order_detail.result
+		set result = #{result}
+		where order_detail. = #{userId}
+	</update>
 	<update id="minusCount" parameterType="orderDetailDto">
 		update tbl_items
 		set itemCount=itemCount-#{quantity}
 		where itemNum=#{itemNum}
 	</update>
+	
 </mapper>

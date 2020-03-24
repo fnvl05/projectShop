@@ -39,8 +39,9 @@ public class categoryController{
 	private String upLoadPath;
 	
 	@RequestMapping("/master/master_index")
-	public String master_index() {
-		return "master/master_index";
+	public ModelAndView Master_master_index(HttpServletRequest request,ModelAndView mView) {
+		mView.setViewName("master/master_index");
+		return mView;
 	}
 
 	@RequestMapping("/master/register_form")
@@ -51,47 +52,47 @@ public class categoryController{
 		return mView;
 	}
 	@RequestMapping(value="/master/register", method = RequestMethod.POST)
-	public ModelAndView ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file) throws IOException, Exception {
+	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
 		String imgUpLoadPath = upLoadPath + File.separator + "imgUpLoad";
 		String ymdPath = UpLoadFileUtils.calcPath(imgUpLoadPath);
 		String fileName = null;
-
+		
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UpLoadFileUtils.fileUpload(imgUpLoadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		 dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
-
-			fileName = File.separator + "images" + File.separator + "none.png";
-			dto.setItemImg(fileName);
-			dto.setItemThumbImg(fileName);
+			
+		 fileName = File.separator + "images" + File.separator + "none.png";
+		 dto.setItemImg(fileName);
+		 dto.setItemThumbImg(fileName);
 
 		}
-
+		
 		service.itemInsert(dto);
 		return new ModelAndView("redirect:itemList.do");
 	}
 	@RequestMapping("/master/itemList")
-	public ModelAndView itemList(@ModelAttribute categoryDto dto, 
+	public ModelAndView Master_itemList(@ModelAttribute categoryDto dto, 
 			ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.itemList(mView);
 		mView.setViewName("master/itemList");
 		return mView;
 	}
 	@RequestMapping("/master/itemView_form")
-	public ModelAndView itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Master_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemView(mView, itemNum);
 		mView.setViewName("master/itemView_form");
 		return mView;
 	}
 	@RequestMapping("/master/item_modifyForm")
-	public ModelAndView itemModify_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Master_itemModify_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemViewList(mView, itemNum);
 		mView.setViewName("master/item_modifyForm");
 		return mView;
 	}
 	@RequestMapping(value="/master/item_modify", method = RequestMethod.POST)
-	public ModelAndView ItemUpDate(MultipartFile file, @ModelAttribute ItemDto dto, HttpServletRequest request, @RequestParam int itemNum) throws IOException, Exception {
+	public ModelAndView Master_ItemUpDate(MultipartFile file, @ModelAttribute ItemDto dto, HttpServletRequest request, @RequestParam int itemNum) throws IOException, Exception {
 		// 새로운 파일이 등록되었는지 확인
 		 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		  // 기존 파일을 삭제
@@ -106,8 +107,7 @@ public class categoryController{
 		  dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		  dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		  
-		 } else {  // 새로운 파일이 등록되지 않았다면
-		  // 기존 이미지를 그대로 사용
+		 } else { 
 		  dto.setItemImg(request.getParameter("itemImg"));
 		  dto.setItemThumbImg(request.getParameter("itemThumbImg"));
 		  
@@ -117,7 +117,7 @@ public class categoryController{
 				("redirect:itemView_form.do?itemNum="+itemNum);
 	}
 	@RequestMapping(value="/master/delete")
-	public ModelAndView ItemDelete(@RequestParam int itemNum, HttpServletRequest request) {
+	public ModelAndView Master_ItemDelete(@RequestParam int itemNum, HttpServletRequest request) {
 		service.itemDelete(itemNum,request);
 		return new ModelAndView("redirect:itemList.do");	
 	}
@@ -174,8 +174,18 @@ public class categoryController{
 		return null;
 	}	
 
+	@RequestMapping("/master/no_master")
+	public ModelAndView no_master(ModelAndView mView) {
+		mView.setViewName("master/no_master");
+		return mView;	
+	}
 	
-	
+	@RequestMapping("/master/usersList")
+	public ModelAndView userList(ModelAndView mView) {
+		service.usersList(mView);
+		mView.setViewName("master/usersList");
+		return mView;	
+	}
 	
 	
 	

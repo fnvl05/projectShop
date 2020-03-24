@@ -8,8 +8,13 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
+import com.test.project01.master.category.Dto.UsersListDto;
 import com.test.project01.master.category.Dto.categoryDto;
+
 import com.test.project01.order.dto.OrderDetailDto;
+
+import com.test.project01.users.Dto.UsersDto;
+
 
 @Repository
 public class categoryDaolmpl implements categoryDao{
@@ -52,7 +57,16 @@ public class categoryDaolmpl implements categoryDao{
 	@Override
 	public void ItemDelete(int itemNum) {
 		session.delete("category.itemDelete", itemNum);
-		
+	}
+	@Override
+	public List<UsersListDto> userList() {
+		List<UsersListDto> userList = session.selectList("category.selectList");
+		return userList;
+	}
+
+	@Override
+	public void upResult(UsersListDto dto) {
+		session.update("category.resultUpDate");
 	}
 
 	@Override

@@ -95,7 +95,7 @@ public class ReviewController {
 		
 		Map<String, Object> map=new HashMap<>();
 		map.put("isSuccess", true);
-		return map;   //{"isSuccess":true} ������ JSON ���ڿ��� ����ȴ�.
+		return map; 
 	}
 	
 	@RequestMapping(value="/review/comment_insert",method = RequestMethod.POST)

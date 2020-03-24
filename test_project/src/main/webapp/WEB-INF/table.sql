@@ -75,6 +75,50 @@ create sequence tbl_item_seq;
 
  <썸네일 칼럼 추가>
  alter table tbl_items add(itemThumbImg varchar2(300));
+ 
+<공지 게시판>
+CREATE TABLE board_notice(
+	num Number PRIMARY key,
+	writer VARCHAR2(100) not null, -- 글 작성자의 id
+	title VARCHAR2(100) not null,
+	content CLOB,
+	viewCount NUMBER, -- 조회수
+	regdate DATE
+);
+
+alter table board_notice add(noticeNum number not null); 
+
+CREATE SEQUENCE board_notice_seq;
+
+
+
+<QnA 게시판>
+CREATE TABLE board_qna(
+	num NUMBER PRIMARY KEY,
+	writer VARCHAR2(100) NOT NULL, -- 글 작성자의 id 
+	title VARCHAR2(100) NOT NULL,
+	content CLOB,
+	viewCount NUMBER, -- 조회수
+	regdate DATE
+);
+alter table board_qna add(itemNum number);
+
+CREATE SEQUENCE board_qna_seq;
+
+<QnA 게시판 댓글>
+CREATE TABLE board_qna_comment(
+	num NUMBER PRIMARY KEY, -- 댓글의 글번호
+	writer VARCHAR2(100), -- 댓글 작성자
+	content VARCHAR2(500), -- 댓글 내용
+	target_id VARCHAR2(100), -- 댓글의대상이되는아이디(글작성자)
+	ref_group NUMBER, -- 댓글 그룹번호
+	comment_group NUMBER, -- 원글에 달린 댓글 내에서의 그룹번호
+	deleted CHAR(3) DEFAULT 'no', -- 댓글이 삭제 되었는지 여부 
+	regdate DATE -- 댓글 등록일 
+);
+
+CREATE SEQUENCE board_qna_comment_seq;
+
 
 --리뷰 테이블
 create table board_review(
@@ -86,17 +130,8 @@ likeCount number,
 upCount number,
 regdate date);
 
-
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
-
-alter table board_review
-    add constraint board_review_itemNum foreign key(itemNum)
-    references tbl_items(itemNum);
-   
-alter table board_review
-    add constraint board_review_reviewWriter foreign key(reviewWriter)
-    references tbl_member(userId);
 
 --review comment table
 CREATE TABLE board_review_comment(
@@ -113,11 +148,8 @@ CREATE TABLE board_review_comment(
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
-
 --orders table
 create table orders(
-	orderNum number primary key,
-	userId varchar2(50) not null,
 	orderRec varchar2(50) not null,   --수신자
 	userAddr1 varchar2(20) not null,
 	userAddr2 varchar2(50) not null,
@@ -129,7 +161,36 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
-);
+
+
+alter table cartList add(money number);
+
+alter table cartList
+add constraint cartList_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table cartList
+add constraint cartList_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
+
+<!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
 
 create sequence orders_seq;
 
@@ -181,7 +242,6 @@ references tbl_member(userId);
 alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
-
 
 
 

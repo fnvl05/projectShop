@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>지랄 ㅋ</h1>
+	<a href = "${pageContext.request.contextPath}/home.do">홈으로</a>
 </body>
 </html>

@@ -16,4 +16,9 @@ public class HomeController {
 	return "home";
 	}
 	
+	@RequestMapping("/index.do")
+	public String index(HttpServletRequest request) {
+	return "index";
+	}
+	
 }

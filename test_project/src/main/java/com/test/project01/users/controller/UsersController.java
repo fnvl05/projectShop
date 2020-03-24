@@ -33,17 +33,15 @@ public class UsersController {
 	}
 	
 	@RequestMapping("Users/login_form")
-	public String logInForm(HttpServletRequest request) {
-		
+	public String logInForm(HttpServletRequest request) {	
 		return "Users/login_form";
 	}
 	
 	@RequestMapping(value = "/Users/login", method = RequestMethod.POST)
 	public ModelAndView logIn(@ModelAttribute UsersDto dto, 
 			ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
-		
 		if(service.validUsers(dto, request.getSession(), mView)) {
-			mView.setViewName("home");
+			mView.setViewName("index");
 			return mView;			
 		}else {
 			mView.setViewName("/Users/login_form");
@@ -54,7 +52,7 @@ public class UsersController {
 	@RequestMapping("Users/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/home.do";
+		return "redirect:/index.do";
 	}
 
 	

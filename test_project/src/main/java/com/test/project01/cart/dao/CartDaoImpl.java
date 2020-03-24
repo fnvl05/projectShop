@@ -10,9 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.cart.dto.CartListDto;
 
-
-
-
 @Repository
 public class CartDaoImpl implements CartDao{
 	@Autowired
@@ -50,9 +47,16 @@ public class CartDaoImpl implements CartDao{
 	public void updateCart(CartListDto dto) {
 		session.update("cart.updateCart",dto);
 	}
+	//수량합계
+	@Override
+	public int sumMoney(String userId) {
+		return session.selectOne("cart.sumMoney", userId);
+	}
+	//전체삭제
 	@Override
 	public void deleteAll(String userId) {
 		session.delete("cart.deleteAll",userId);
 		
 	}	
+
 }

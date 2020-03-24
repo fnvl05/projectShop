@@ -3,15 +3,15 @@
 <mapper namespace="cart">
 	<insert id="addCart" parameterType="cartlistDto">
  		insert into cartList
- 		 (cartNum, userId, itemNum, cartStock)
-    	 values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock})
+ 		 (cartNum, userId, itemNum, cartStock, itemPrice)
+    	 values (cartList_seq.nextval, #{userId}, #{itemNum}, #{cartStock}, #{itemPrice})
 	</insert>
 	
 	<select id="cartList" resultType="cartlistDto">
 		select
      		row_number() over(order by c.cartNum desc) as num,
      		c.cartNum, c.userId, c.itemNum, c.cartStock, c.addDate,
-    		 i.itemName, i.itemPrice, i.itemImg
+    		 i.itemName, i.itemPrice, i.itemImg,(c.cartStock*c.itemPrice)money
 		 from cartList c
     		 inner join tbl_items i
     		     on c.itemNum = i.itemNum   
@@ -40,8 +40,16 @@
 		where userId=#{userId}
 		and itemNum=#{itemNum}
 	</update>
+
 	<delete id="deleteAll" parameterType="String">
 		delete from cartList
 		where userId=#{userId}
 	</delete>
+
+	<select id="sumMoney" resultType="int">
+		select nvl(sum(c.itemPrice * c.cartStock),0) money
+		from cartList c, tbl_items i
+		where c.itemNum=i.itemNum and c.userId=#{userId}
+	</select>
+
 </mapper>

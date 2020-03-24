@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
 <body>
-	<div id="root">
 		<header id="heder_box">
 			<div>
 				<%@ include file="../include/header.jsp" %>
@@ -23,101 +22,93 @@
 			</div>
 		</nav>
 		<section id="container">
-			<aside>
-				<c:choose>
-					<c:when test="${not empty sessionScope.userDto.userId }">
-						<c:if test="${sessionScope.userDto.verify eq 1}">
-							<%@ include file="../include/master_aside.jsp" %>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-							<%@ include file="../include/user_aside.jsp" %>
-					</c:otherwise>
-				</c:choose>
-			</aside>
-			<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
-				<div id="container_box">
-					<h2>상품 등록</h2>
-					 <label>1차 분류</label>
-					 <select class="category1">
-					  <option value="">전체</option>
-					 </select>
-					 
-					 <label>2차 분류</label>
-					 <select class="category2" name="cateCode">
-					  <option value="">전체</option>
-					 </select>
-				</div>
-				<div class="inputArea">
-					<label for="itmeName">상품명</label>
-					<input type="text" id="itemName" name="itemName">
-				</div>
-				<div class="inputArea">
-					<label for="itmePrice">상품가격</label>
-					<input type="text" name="itemPrice" id="itemPrice">
-				</div>
-				<div class="inputArea">
-					<label for="itemCount">상품수량</label>
-					<input type="text" name="itemCount" id="itemCount">
-				</div>
-
-				<script>
-
-
-					var regExp = /[^0-9]/gi;
-					
-					$("#itemPrice").keyup(function(){ numCheck($(this)); });
-					$("#itemCount").keyup(function(){ numCheck($(this)); });
-					
-					function numCheck(selector) {
-					 var tempVal = selector.val();
-					 selector.val(tempVal.replace(regExp, ""));
-					}
-					</script>
-				<div class="inputArea">
-					<label for="itemDes">상품설명</label>
-					<textarea name="itemDes" id="itemDes"></textarea>
-				</div>
-				<script type="text/javascript">
-				$(function(){
-					CKEDITOR.replace('itemDes',{
-						filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
-					});
-				});
-				</script>
-
-				<div class="inputArea">
-					<label for="itemImg">이미지</label>
-					<input type="file" id="itemImg" name="file"/>
-					<div class="select_img">
-						<img src="../resources{dto.itemImg}"/>
-					</div>
-					<script>
-						$("#itemImg").change(function() {
-							if(this.files && this.files[0]){
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src", data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
-							}
-						})
-					</script>
-					<%=request.getRealPath("/") %>
-				</div>
-				
-				<div id="inputArea">
-					<button type="submit" id="register_Btn">등록</button>
-				</div>
-			</form>
-		</section>
+				<aside>
+				<%@ include file="../include/master_aside.jsp" %>
+				</aside>
+					<div id="container_box">
+						<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
+							<h2>상품 등록</h2>
+							 <label>1차 분류</label>
+							 <select class="category1">
+							  <option value="">전체</option>
+							 </select>
+							 
+							 <label>2차 분류</label>
+							 <select class="category2" name="cateCode">
+							  <option value="">전체</option>
+							 </select>
+							<div class="inputArea">
+								<label for="itmeName">상품명</label>
+								<input type="text" id="itemName" name="itemName">
+							</div>
+							<div class="inputArea">
+								<label for="itmePrice">상품가격</label>
+								<input type="text" name="itemPrice" id="itemPrice">
+							</div>
+							<div class="inputArea">
+								<label for="itemCount">상품수량</label>
+								<input type="text" name="itemCount" id="itemCount">
+							</div>
+								<script>
+									var regExp = /[^0-9]/gi;
+									
+									$("#itemPrice").keyup(function(){ numCheck($(this)); });
+									$("#itemCount").keyup(function(){ numCheck($(this)); });
+									
+									function numCheck(selector) {
+									 var tempVal = selector.val();
+									 selector.val(tempVal.replace(regExp, ""));
+									}
+								</script>
+							<div class="inputArea">
+								<label for="itemDes">상품설명</label>
+								<textarea name="itemDes" id="itemDes"></textarea>
+							</div>
+								<script type="text/javascript">
+								$(function(){
+									CKEDITOR.replace('itemDes',{
+										filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+									});
+								});
+								</script>
+			
+							<div class="inputArea">
+								<label for="itemImg">이미지</label>
+								<input type="file" id="itemImg" name="file"/>
+								<div class="select_img">
+									<img src="../resources"${dto.itemImg}/>
+								</div>
+								<script>
+									$("#itemImg").change(function() {
+										if(this.files && this.files[0]){
+											var reader = new FileReader;
+											reader.onload = function(data) {
+												$(".select_img img").attr("src", data.target.result).width(500);
+											}
+											reader.readAsDataURL(this.files[0]);
+										}
+									})
+								</script>
+							</div>
+							<%=request.getRealPath("/") %>
+							<div id="inputArea">
+								<button type="submit" class="btn btn-primary" id="register_Btn">등록</button>
+								<button type="reset" class="btn btn-warning">초기화</button>
+								<button type="button" class="btn btn-danger" id="back-btn">뒤로가기</button>
+								<script type="text/javascript">
+									$("#back-btn").click(function() {
+										location.href="itemList.do";
+									})
+								</script>
+							</div>
+							</form>
+						</div>
+					</section>
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
-	</div>
-	
 	<script>
 		var jsonData = JSON.parse('${list}');
 		console.log(jsonData);
