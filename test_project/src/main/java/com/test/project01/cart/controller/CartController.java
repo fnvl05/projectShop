@@ -134,7 +134,8 @@ public class CartController {
 		int count=service.countCart(dto.getItemNum(), userId);
 		if(count == 0) {
 			//없으면 추가
-			service.addCart(dto);
+			service.insertCart(dto);
+			
 		}
 
 		return "redirect:../shop/orderform.do";

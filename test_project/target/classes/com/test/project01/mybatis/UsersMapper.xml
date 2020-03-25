@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="users">
 	<insert id="insert" parameterType="UsersDto">
-		insert into tbl_member(userId, userPass, userName, userPhon)
-  		values(#{userId}, #{userPass}, #{userName}, #{userPhon}) 
+		insert into tbl_member(userId, userPass, userName, userPhone)
+  		values(#{userId}, #{userPass}, #{userName}, #{userPhone}) 
 	</insert>
 	<select id="isExist" parameterType="java.lang.String" resultType="String">
 		select userId
@@ -17,7 +17,7 @@
 	</select>
 	<select id="login" parameterType="String" resultType="UsersDto">
 		select 
-			userId,userName,userPass,regiDate,verify,userAddr1,userAddr2,userAddr3,userPhon
+			userId,userName,userPass,regiDate,verify,userAddr1,userAddr2,userAddr3,userPhone
 			from tbl_member
 			where userId=#{inputUserId}	
 	</select>

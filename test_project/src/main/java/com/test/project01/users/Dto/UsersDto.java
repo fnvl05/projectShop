@@ -7,7 +7,7 @@ public class UsersDto {
 	private String userId;
 	private String userPass;
 	private String userName;
-	private String userPhon;
+	private String userPhone;
 	private String userAddr1;
 	private String userAddr2;
 	private String userAddr3;
@@ -22,7 +22,7 @@ public class UsersDto {
 		this.userId = userId;
 		this.userPass = userPass;
 		this.userName = userName;
-		this.userPhon = userPhon;
+		this.userPhone = userPhone;
 		this.userAddr1 = userAddr1;
 		this.userAddr2 = userAddr2;
 		this.userAddr3 = userAddr3;
@@ -47,11 +47,11 @@ public class UsersDto {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserPhon() {
-		return userPhon;
+	public String getUserPhone() {
+		return userPhone;
 	}
-	public void setUserPhon(String userPhon) {
-		this.userPhon = userPhon;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
 	public String getUserAddr1() {
 		return userAddr1;
