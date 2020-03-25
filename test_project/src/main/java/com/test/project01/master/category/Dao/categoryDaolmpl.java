@@ -12,6 +12,7 @@ import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
 import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 
 
 @Repository
@@ -78,6 +79,17 @@ public class categoryDaolmpl implements categoryDao{
 	@Override
 	public void upResult(OrderDetailDto detailDto) {
 		session.update("category.resultItem", detailDto);
+	}
+
+	@Override
+	public List<UsersDto> userAllList() {
+		List<UsersDto> dto = session.selectList("category.userAllList");
+		return dto;
+	}
+
+	@Override
+	public void userVerify(UsersDto userDto) {
+		session.update("category.userVerify", userDto);
 	}
 	
 }

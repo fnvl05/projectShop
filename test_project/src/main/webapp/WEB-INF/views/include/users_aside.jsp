@@ -29,9 +29,9 @@
 		<ul>
 			<li><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=100&cateLevel=1">악세서리</a>
 				<ul class="low">
-					<li><a href="../Users_Item/itemList.do?cateCode=101&cateLevel=2">반지</a></li>
-					<li><a href="../Users_Item/itemList.do?cateCode=102&cateLevel=2">귀걸이</a></li>
-					<li><a href="../Users_Item/itemList.do?cateCode=103&cateLevel=2">목걸이</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=101&cateLevel=2">반지</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=102&cateLevel=2">귀걸이</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=103&cateLevel=2">목걸이</a></li>
 				</ul>
 			</li>
 			<li><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=200&cateLevel=1">여성의류</a></li>

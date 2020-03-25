@@ -8,6 +8,7 @@ import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
 import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 
 public interface categoryDao {
 	public List<categoryDto> categoryList();
@@ -21,4 +22,6 @@ public interface categoryDao {
 	public List<User_Orders_Dto> userList();
 	public List<Item_OrderDetail_Dto> item_orderList();
 	public void upResult(OrderDetailDto detailDto);
+	public List<UsersDto> userAllList();
+	public void userVerify(UsersDto userDto);
 }

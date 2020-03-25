@@ -15,6 +15,7 @@ import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
 import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 
 import net.sf.json.JSONArray;
 
@@ -76,6 +77,17 @@ public class categoryServicelmpl implements categoryService {
 		List<Item_OrderDetail_Dto> itemDto = dao.item_orderList();
 		mView.addObject("userList", JSONArray.fromObject(userDto));	
 		mView.addObject("itemList", JSONArray.fromObject(itemDto));
+	}
+
+	@Override
+	public void getUserAllList(ModelAndView mView) {
+		List<UsersDto> dto = dao.userAllList();
+		mView.addObject("userAllList", JSONArray.fromObject(dto));		
+	}
+
+	@Override
+	public void userVerify(UsersDto userDto) {
+		dao.userVerify(userDto);
 	}
 	
 	

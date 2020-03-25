@@ -31,6 +31,7 @@ import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.master.category.serevice.categoryService;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
 @Controller
@@ -203,7 +204,23 @@ public class categoryController{
 		return map;
 	}
 	
+	@RequestMapping("/master/userVerify")
+	public ModelAndView userVerify(ModelAndView mView) {
+		service.getUserAllList(mView);
+		mView.setViewName("master/userVerify");
+		return mView;	
+	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/master/verifyUpDate", method=RequestMethod.POST)
+	public Map<String, Object> verifyUpDate(@RequestParam(value="verifyArray[]")List<String> item) {
+		UsersDto userDto = new UsersDto();
+		userDto.setUserId(item.get(0));
+		userDto.setVerify(Integer.parseInt(item.get(1)));
+		service.userVerify(userDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
+	}
 	
 }

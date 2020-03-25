@@ -66,4 +66,12 @@
      	 set result = #{result}
          where odNum = #{odNum}
 	</update>
+	<select id="userAllList" resultType="UsersDto">
+		select * from tbl_member
+	</select>
+	<update id="userVerify">
+		update tbl_member
+		set verify = #{verify}
+		where userId = #{userId}	
+	</update>
 </mapper>

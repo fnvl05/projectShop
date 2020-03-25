@@ -23,6 +23,10 @@ userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, email, userAddr1, u
 values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010-9950-1095','gosla1002@naver.com','흥도동','흥도로','원흥동',TO_DATE('1993-10-20','yyyy-mm-dd'));
 
 -상품 테이블-
+
+
+
+
 create table tbl_items (
     itemNum       number          not null,
     itemName      varchar2(50)    not null,
