@@ -3,6 +3,7 @@ package com.test.project01.cart.dao;
 import java.util.List;
 
 import com.test.project01.cart.dto.CartListDto;
+import com.test.project01.cart.dto.wishlistDto;
 
 
 public interface CartDao {
@@ -20,7 +21,20 @@ public interface CartDao {
 	public void updateCart(CartListDto dto);
 	//7.장바구니 금액 합계
 	public int sumMoney(String userId);
-	//장바구니 전체 삭제
+	
+	//위시리스트 추가
+	public void addWish(wishlistDto dto);
+	//위시리스트 목록 보기
+	public List<wishlistDto> wishlist(String userId);
+	//위시리스트 삭제
+	public void deleteWish(int wishNum);
+	//위시리스트에서 장바구니로 추가
+	public void insertCart(CartListDto dto);
+	//위시리스트에 동일 상품 확인
+	public int countWish(int itemNum, String userId);
+	
+		
+	//장바구니 전체 삭제(혜원쓰~)
 	public void deleteAll(String userId);
 
 }

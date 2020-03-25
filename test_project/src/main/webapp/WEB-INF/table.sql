@@ -230,7 +230,7 @@ create table cartList(
 	itemName varchar2(50),
 	itemPrice number,
 	itemImg varchar(200) null,
-	primary key(cartNum, userId)
+	primary key(itemNum, userId)
 );
 
 create sequence cartList_seq;
@@ -243,6 +243,27 @@ alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
+-- wishlist --
+create table wishlist(
+	wishNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(itemNum, userId)
+);
 
+create sequence wishlist_seq;
+
+alter table wishlist
+add constraint wishlist_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table wishlist
+add constraint wishlist_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
 
 

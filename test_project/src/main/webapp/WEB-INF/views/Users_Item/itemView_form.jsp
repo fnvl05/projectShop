@@ -97,6 +97,7 @@
 						<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>
 						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
 						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
+						<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>
 						<script>
 							$("#back_btn").click(function () {
 								location.href="../index.do";
@@ -123,6 +124,18 @@
 						var con = confirm("바로 주문하시겠습니까?");
 						if(con){
 							formObj.attr("action","cart2.do");
+							formObj.attr("method", "post");
+							formObj.submit();							
+						}
+					});
+				</script>
+				<script>
+					var formObj = $("form[role='form']");
+					console.log(formObj);
+					$("#wish_btn").click(function() {
+						var con = confirm("위시리스트에 추가하시겠습니까?");
+						if(con){
+							formObj.attr("action","addwish.do");
 							formObj.attr("method", "post");
 							formObj.submit();							
 						}

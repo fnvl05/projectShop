@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.project01.cart.dao.CartDao;
 import com.test.project01.cart.dto.CartListDto;
+import com.test.project01.cart.dto.wishlistDto;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -47,4 +48,25 @@ public class CartServiceImpl implements CartService {
 	public int sumMoney(String userId) {
 		return dao.sumMoney(userId);
 	}
+	@Override
+	public void addWish(wishlistDto dto) {
+		dao.addWish(dto);
+	}
+	@Override
+	public List<wishlistDto> wishlist(String userId) {
+		return dao.wishlist(userId);
+	}
+	@Override
+	public void deleteWish(int wishNum) {
+		dao.deleteWish(wishNum);
+	}
+	@Override
+	public void insertCart(CartListDto dto) {
+		dao.insertCart(dto);
+	}
+	@Override
+	public int countWish(int itemNum, String userId) {
+		return dao.countWish(itemNum, userId);
+	}
+	
 }

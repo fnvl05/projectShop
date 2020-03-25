@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.test.project01.cart.dto.CartListDto;
+import com.test.project01.cart.dto.wishlistDto;
 
 @Repository
 public class CartDaoImpl implements CartDao{
@@ -57,6 +58,33 @@ public class CartDaoImpl implements CartDao{
 	public void deleteAll(String userId) {
 		session.delete("cart.deleteAll",userId);
 		
-	}	
+	}
+	@Override
+	public void addWish(wishlistDto dto) {
+		session.insert("cart.addWish", dto);
+		
+	}
+	@Override
+	public List<wishlistDto> wishlist(String userId) {
+		return session.selectList("cart.wishlist", userId);
+	}
+	@Override
+	public void deleteWish(int wishNum) {
+		session.delete("cart.deleteWish", wishNum);
+		
+	}
+	@Override
+	public void insertCart(CartListDto dto) {
+		session.insert("cart.insertCart",dto);
+		
+	}
+	@Override
+	public int countWish(int itemNum, String userId) {
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("itemNum", itemNum);
+		map.put("userId", userId);
+		return session.selectOne("cart.countWish",map);
+	}
+		
 
 }

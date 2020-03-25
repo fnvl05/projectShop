@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.cart.dto.CartListDto;
+import com.test.project01.cart.dto.wishlistDto;
 import com.test.project01.cart.service.CartService;
 import com.test.project01.users.Dto.UsersDto;
 
@@ -32,8 +33,6 @@ public class CartController {
 	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
-		//String userId=(String)session.getAttribute("userId");
-		//dto.setUserId(userId);
 		//장바구니에 기존 상품 있나 검사
 		int count=service.countCart(dto.getItemNum(), userId);
 		if(count == 0) {
@@ -52,9 +51,6 @@ public class CartController {
 	public ModelAndView getCartList(HttpSession session, Model model, ModelAndView mView) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
-		//List<CartListDto> cartList=service.cartList(userId);
-		//model.addAttribute("cartList", cartList);
-		
 		Map<String, Object> map=new HashMap<String, Object>();
 		List<CartListDto> list=service.cartList(userId);
 		int sumMoney=service.sumMoney(userId);
@@ -89,7 +85,6 @@ public class CartController {
 	public String updateCart(@RequestParam int[] cartStock, @RequestParam int[] itemNum,
 			HttpSession session) {
 		//session 아이디
-		//String userId=(String)session.getAttribute("userId");
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();	
 		//레코드의 갯수만큼 반복문 실행
@@ -102,6 +97,47 @@ public class CartController {
 		}
 		return "redirect:cartList.do";
 		
+	}
+	//5. 위시리스트  추가
+	@RequestMapping(value = "/Users_Item/addwish", method = RequestMethod.POST)
+	public String addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
+		UsersDto user=(UsersDto)session.getAttribute("userDto");
+		String userId=user.getUserId();
+		//위시리스트에 기존 상품 있나 검사
+		int count=service.countWish(dto.getItemNum(), userId);
+		if(count ==0) {
+			//없으면 추가
+			service.addWish(dto);
+		}
+		return "redirect:../shop/wishlist.do";
+	}
+	//6. 위시리스트 목록
+	@RequestMapping("/shop/wishlist")
+	public void getWishList(HttpSession session, Model model) {
+		UsersDto user=(UsersDto)session.getAttribute("userDto");
+		String userId=user.getUserId();		
+		List<wishlistDto> wishlist=service.wishlist(userId);
+		model.addAttribute("wishlist", wishlist);
+	}
+	//7. 위시리스트 삭제
+	@RequestMapping("/shop/deleteWish")
+	public String deleteWish(@RequestParam int wishNum) {
+		service.deleteWish(wishNum);
+		return "redirect:wishlist.do";
+	}
+	//8. 위시리스트에서 장바구니로 추가
+	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
+	public String insertCart(@ModelAttribute("dto") CartListDto dto, HttpSession session){
+		UsersDto user=(UsersDto)session.getAttribute("userDto");
+		String userId=user.getUserId();	
+		//장바구니에 기존 상품 있나 검사
+		int count=service.countCart(dto.getItemNum(), userId);
+		if(count == 0) {
+			//없으면 추가
+			service.addCart(dto);
+		}
+
+		return "redirect:../shop/orderform.do";
 	}
 	
 	//바로 주문폼으로 넘어가게 하기

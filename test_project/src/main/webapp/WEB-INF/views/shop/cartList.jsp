@@ -77,10 +77,15 @@
 	</nav>
 	<section id="container">
 		<h1>장바구니</h1>
-	<div class = "buy" style="float:right">
+		<c:choose>
+			<c:when test="${map.count==0 }">
+				장바구니가 비어있습니다.
+			</c:when>
+			<c:otherwise>
+				<div class = "buy" style="float:right">
 		<button class="btn btn-warning" id="buyEach" style="float:left">삭제</button>		
 	</div>
-	<form action="${pageContext.request.contextPath }/shop/updateCart.do" method="post" id="form1" name="form1" >
+	
 	<table class="table table-striped table-condensed">
 		<thead>
 			<tr>
@@ -134,7 +139,10 @@
 			</tr>
 		</tfoot>
 	</table>
-	</form>
+
+			</c:otherwise>
+		</c:choose>
+	
 	 <table class="table table-striped table-condensed">
          <thead>
             <tr>
