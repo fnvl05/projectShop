@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -27,6 +30,7 @@ import com.google.gson.JsonObject;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.master.category.serevice.categoryService;
+import com.test.project01.order.dto.OrderDetailDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
 @Controller
@@ -187,7 +191,17 @@ public class categoryController{
 		return mView;	
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value="/master/resultUpDate", method=RequestMethod.POST)
+	public Map<String, Object> resultData(@RequestParam(value="resultArray[]")List<String> item) {
+		OrderDetailDto detailDto = new OrderDetailDto();
+		detailDto.setResult(item.get(0));
+		detailDto.setOdNum(Integer.parseInt(item.get(1)));
+		service.upResult(detailDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
+	}
 	
 	
 	

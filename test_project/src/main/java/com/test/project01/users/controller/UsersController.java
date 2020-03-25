@@ -44,7 +44,6 @@ public class UsersController {
 			ModelAndView mView, HttpServletRequest request, 
 			HttpServletResponse response) {
 		boolean test=service.validUsers(dto, request.getSession(), mView);
-		System.out.println(test);
 		if(test) {
 			mView.setViewName("index");
 			return mView;

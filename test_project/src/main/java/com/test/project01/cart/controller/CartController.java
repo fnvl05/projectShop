@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.service.CartService;
+import com.test.project01.order.dto.OrderDetailDto;
 import com.test.project01.users.Dto.UsersDto;
 
 @Controller
@@ -101,7 +102,17 @@ public class CartController {
 			service.modifyCart(dto);
 		}
 		return "redirect:cartList.do";
-		
+	}
+	@ResponseBody
+	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
+	public Map<String, Object> updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
+		CartListDto cartDto=new CartListDto();
+		cartDto.setCartNum(dto.get(0));
+		cartDto.setCartStock(dto.get(1));
+		service.updateCart(cartDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
 	}
 }
 

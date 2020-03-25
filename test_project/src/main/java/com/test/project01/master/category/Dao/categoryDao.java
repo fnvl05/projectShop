@@ -20,5 +20,5 @@ public interface categoryDao {
 	public void minusCount(OrderDetailDto detailDto);
 	public List<User_Orders_Dto> userList();
 	public List<Item_OrderDetail_Dto> item_orderList();
-	public void upResult(User_Orders_Dto dto);
+	public void upResult(OrderDetailDto detailDto);
 }

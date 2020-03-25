@@ -4,6 +4,14 @@ public class User_Orders_Dto {
 	private String userId;
 	private String verify;
 	private String delivery;
+	private int orderNum;
+	
+	public int getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
+	}
 	
 	public String getUserId() {
 		return userId;

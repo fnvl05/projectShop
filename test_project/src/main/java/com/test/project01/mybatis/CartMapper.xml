@@ -36,9 +36,8 @@
 	
 	<update id="updateCart">
 		update cartList
-		set cartStock=cartStock + #{cartStock}
-		where userId=#{userId}
-		and itemNum=#{itemNum}
+		set cartStock=#{cartStock}
+		where cartNum=#{cartNum}
 	</update>
 	
 	<select id="sumMoney" resultType="int">

@@ -83,7 +83,6 @@ public class OrderServiceImpl implements OrderService{
 		for(int i=0;i<list.size();i++) {
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
-
 //			String itemName=list.get(i).getItemName();
 //			String itemImg=list.get(i).getItemImg();
 			OrderDetailDto detailDto=new OrderDetailDto();

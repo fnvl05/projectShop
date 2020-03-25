@@ -50,14 +50,20 @@
 	</update>
 	
 	<select id="select_user_orders" resultType="User_Orders_Dto">
-		select tbl_member.userId, tbl_member.verify, orders.delivery
+		select tbl_member.userId, tbl_member.verify, orders.delivery, orders.orderNum
 		from tbl_member left join orders on tbl_member.userId=orders.userId
 		where orders.delivery is not null
+		order by userId desc
 	</select>
 	<select id="select_item_order_detail" resultType="Item_OrderDetail_Dto">
-		select tbl_items.itemName, order_detail.result
+		select tbl_items.itemName, order_detail.result, order_detail.orderNum, order_detail.odNum
 		from order_detail left join tbl_items on tbl_items.itemNum=order_detail.itemNum 
 		where order_detail.result is not null
+		order by odnum desc
 	</select>
-	
+	<update id="resultItem" parameterType="orderDetailDto">
+		 update order_detail
+     	 set result = #{result}
+         where odNum = #{odNum}
+	</update>
 </mapper>

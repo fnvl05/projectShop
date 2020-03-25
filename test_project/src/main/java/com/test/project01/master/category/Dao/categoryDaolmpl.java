@@ -57,10 +57,6 @@ public class categoryDaolmpl implements categoryDao{
 		session.delete("category.itemDelete", itemNum);
 	}
 
-	@Override
-	public void upResult(User_Orders_Dto dto) {
-		session.update("category.resultUpDate");
-	}
 
 	@Override
 	public void minusCount(OrderDetailDto detailDto) {
@@ -75,9 +71,13 @@ public class categoryDaolmpl implements categoryDao{
 
 	@Override
 	public List<Item_OrderDetail_Dto> item_orderList() {
-		List<Item_OrderDetail_Dto> itemList=session.selectList("category.select_item_order_detail");
+		List<Item_OrderDetail_Dto> itemList = session.selectList("category.select_item_order_detail");
 		return itemList;
 	}
 	
+	@Override
+	public void upResult(OrderDetailDto detailDto) {
+		session.update("category.resultItem", detailDto);
+	}
 	
 }
