@@ -56,5 +56,10 @@
 		delete from board_review
 		where reviewNum=#{reviewNum}
 	</delete>
+	<select id="likeCount" parameterType="int" resultType="int">
+		select likeCount
+		from board_review
+		where itemNum=#{itemNum}
+	</select>
 </mapper>
 

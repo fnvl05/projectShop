@@ -24,36 +24,40 @@
 				<%@ include file="../include/nav.jsp" %>
 			</div>
 		</nav>
-		
-		<p><strong>[${sessionScope.userDto.userName }]</strong> 님이 쇼핑몰에서 주문한 내역입니다.</p>
-		<br/>
-		<br/>
-		<table>
-			<thead>
-				<tr>
-					<th>주문번호</th>
-					<th>주문일자</th>
-					<th>상품명</th>
-					<th>결제금액</th>
-					<th>주문상세</th>
-					<th>배송현황</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="tmp" items="${orderList}" >
-					<tr>
-						<td>${tmp.orderNum }</td>
-						<td>${tmp.orderDate }</td>
-						<td>${tmp.itemName}</td>	
-						<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
-						<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
-						<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		
-		
+		<section id="container">
+			<div id="container_box">
+			<aside>
+				<%@ include file="../include/users_aside.jsp" %>
+			</aside>
+				<p><strong>[${sessionScope.userDto.userName }]</strong> 님이 쇼핑몰에서 주문한 내역입니다.</p>
+				<br/>
+				<br/>
+				<table>
+					<thead>
+						<tr>
+							<th>주문번호</th>
+							<th>주문일자</th>
+							<th>상품명</th>
+							<th>결제금액</th>
+							<th>주문상세</th>
+							<th>배송현황</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="tmp" items="${orderList}" >
+							<tr>
+								<td>${tmp.orderNum }</td>
+								<td>${tmp.orderDate }</td>
+								<td>${tmp.itemName}</td>	
+								<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
+								<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
+								<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</section>
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>

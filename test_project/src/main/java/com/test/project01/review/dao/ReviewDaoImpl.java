@@ -57,6 +57,17 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 	}
 
+	@Override
+	public List<Integer> likeCount(int itemNum) {
+		return session.selectList("review.likeCount",itemNum);
+	}
+
+	@Override
+	public boolean isExist(ReviewDto dto) {
+		int reviewNum=session.selectOne("review.isExist",dto);
+		return false;
+	}
+
 	
 	
 }

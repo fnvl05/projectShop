@@ -130,6 +130,10 @@ likeCount number,
 upCount number,
 regdate date);
 
+--리뷰 likeCount 제약조건 (1부터 10까지만 입력가능하게)  **추가하기**
+alter table board_review 
+add constraint review_likeCount_ch check(likeCount>=1 and likeCount<=10);
+
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
@@ -150,6 +154,8 @@ CREATE SEQUENCE board_review_comment_seq;
 
 --orders table
 create table orders(
+	orderNum number primary key,
+	userId varchar2(50) not null,
 	orderRec varchar2(50) not null,   --수신자
 	userAddr1 varchar2(20) not null,
 	userAddr2 varchar2(50) not null,
@@ -161,7 +167,7 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
-
+);
 
 alter table cartList add(money number);
 
