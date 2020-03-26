@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,20 +11,22 @@
 </head>
 <body>
 	<div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp" %>
+					</div>
+					<div id="index_logo_div">
+						<%@ include file="../include/header.jsp" %>
+					</div>
+					<div class="navbar-left">
+							<%@ include file="../include/master_aside.jsp" %>						
+					</div>
+				</nav>
 			</div>
 		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
 		<section id="container">
-			<aside>
-				<%@ include file="../include/master_aside.jsp" %>
-			</aside>
 			<div id="container_box">
 				<h2>유저 배송상태 관리</h2>
 				<div id="container_box">
