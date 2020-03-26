@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewJoinDto;
+import com.test.project01.review.dto.ReviewUpCountDto;
 
 @Repository
 public class ReviewDaoImpl implements ReviewDao {
@@ -55,6 +56,52 @@ public class ReviewDaoImpl implements ReviewDao {
 	public List<ReviewJoinDto> getList2(ReviewJoinDto dto) {
 		return session.selectList("review.getList2",dto);
 		
+	}
+
+	@Override
+	public boolean isUped(ReviewUpCountDto dto) {
+		String id=session.selectOne("review.checkCount",dto);
+		System.out.println(id);
+		if(id==null) { 
+			return false;
+		}else {
+			return true;
+		}
+	}
+
+	@Override
+	public void addUpCount(ReviewUpCountDto dto) {
+		
+		session.insert("review.addUpCount",dto);
+		
+	}
+
+	@Override
+	public void delUpCount(ReviewUpCountDto dto) {
+		session.delete("review.delUpCount",  dto);
+		
+	}
+
+	@Override
+	public List<ReviewUpCountDto> upList(ReviewUpCountDto dto) {
+		return session.selectList("review.getReviewUpCount",dto);
+	}
+
+	@Override
+	public void upCount(int reviewNum) {
+		session.update("review.upCount",reviewNum);
+		
+	}
+
+	@Override
+	public void downCount(int reviewNum) {
+		session.update("review.downCount",reviewNum);
+		
+	}
+
+	@Override
+	public int checkCount(int reviewNum) {
+		return session.selectOne("review.checkUpCount",reviewNum);
 	}
 
 	

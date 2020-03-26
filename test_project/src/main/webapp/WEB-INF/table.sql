@@ -133,6 +133,16 @@ regdate date);
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
+-- 리뷰 좋아요 테이블
+create table review_upCount
+(num number, 
+id varchar2(100), 
+reviewNum number,
+regdate date,
+itemNum number
+);
+create sequence reviewUpCount_seq;
+
 --review comment table
 CREATE TABLE board_review_comment(
 	num NUMBER PRIMARY KEY, 
@@ -147,6 +157,7 @@ CREATE TABLE board_review_comment(
 
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
+
 
 --orders table
 create table orders(

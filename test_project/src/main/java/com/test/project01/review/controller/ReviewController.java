@@ -1,6 +1,7 @@
 package com.test.project01.review.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
+import com.test.project01.review.dto.ReviewUpCountDto;
 import com.test.project01.review.service.ReviewService;
 
 @Controller
@@ -115,6 +116,20 @@ public class ReviewController {
 
 		Map<String, Object> map=new HashMap<>();
 		map.put("isSuccess", true);
+		return map;
+	}
+	
+	//리뷰 좋아요 처리
+	@ResponseBody
+	@RequestMapping(value = "/review/reviewUpCount", 
+			method = RequestMethod.POST)
+	public Map<String, Object> authAddUpCount(HttpServletRequest request,
+			@ModelAttribute("dto") ReviewUpCountDto dto,@RequestParam(value="arrEachItemNum[]")List<Integer> eachItemNum) {
+		dto.setItemNum(eachItemNum.get(0));
+		dto.setReviewNum(eachItemNum.get(1));
+		Map<String,Object> map=service.addUpCount(request,dto);
+	
+	 
 		return map;
 	}
 	

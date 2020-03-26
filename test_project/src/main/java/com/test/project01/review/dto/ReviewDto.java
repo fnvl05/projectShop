@@ -10,11 +10,12 @@ public class ReviewDto {
 	private String regdate;
 	private int startRowNum;
 	private int endRowNum;
+	private boolean isLike;
 	
 	public ReviewDto() {}
 
 	public ReviewDto(int reviewNum, String reviewWriter, int itemNum, String reviewContent, int likeCount, int upCount,
-			String regdate, int startRowNum, int endRowNum) {
+			String regdate, int startRowNum, int endRowNum, boolean isLike) {
 		super();
 		this.reviewNum = reviewNum;
 		this.reviewWriter = reviewWriter;
@@ -25,6 +26,7 @@ public class ReviewDto {
 		this.regdate = regdate;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
+		this.isLike = isLike;
 	}
 
 	public int getReviewNum() {
@@ -98,6 +100,16 @@ public class ReviewDto {
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
 	}
+
+	public boolean getIsLike() {
+		return isLike;
+	}
+
+	public void setIsLike(boolean isLike) {
+		this.isLike = isLike;
+	}
+
+	
 	
 	
 }
