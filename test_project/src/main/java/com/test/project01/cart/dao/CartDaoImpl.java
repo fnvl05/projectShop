@@ -85,6 +85,10 @@ public class CartDaoImpl implements CartDao{
 		map.put("userId", userId);
 		return session.selectOne("cart.countWish",map);
 	}
+	@Override
+	public List<wishlistDto> getItem(int itemNum) {
+		return session.selectList("cart.getItem", itemNum);
+	}
 		
 
 }

@@ -84,4 +84,10 @@
 		where userId=#{userId} and itemNum=#{itemNum}
 	</select>
 
+	<select id="getItem" resultType="int" parameterType="wishlistDto">
+		select
+			userId, itemName, itemPrice
+		from wishlist
+		where itemNum=#{itemNum}
+	</select>
 </mapper>

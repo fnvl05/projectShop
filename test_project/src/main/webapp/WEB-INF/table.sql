@@ -224,7 +224,7 @@ create table cartList(
 	cartNum number not null,
 	userId varchar2(50) not null,
 	itemNum number not null,
-	cartStock number not null, -- 카트 수량 -- 
+	cartStock number default 1, -- 카트 수량 -- 
 	addDate date default sysdate,
 	num number,
 	itemName varchar2(50),

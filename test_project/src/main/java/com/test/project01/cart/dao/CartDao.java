@@ -32,7 +32,9 @@ public interface CartDao {
 	public void insertCart(CartListDto dto);
 	//위시리스트에 동일 상품 확인
 	public int countWish(int itemNum, String userId);
-	
+	//위시리스트에 있는 아이템 정보 얻어오기
+	public List<wishlistDto> getItem(int itemNum);
+
 		
 	//장바구니 전체 삭제(혜원쓰~)
 	public void deleteAll(String userId);

@@ -68,5 +68,9 @@ public class CartServiceImpl implements CartService {
 	public int countWish(int itemNum, String userId) {
 		return dao.countWish(itemNum, userId);
 	}
+	@Override
+	public List<wishlistDto> getItem(int itemNum) {
+		return dao.getItem(itemNum);
+	}
 	
 }

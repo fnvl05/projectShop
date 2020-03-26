@@ -113,7 +113,7 @@
 
 </head>
 <body>
-<div id="root">
+
    <header id="header">
       <div id="header_box">
          <%@ include file="../include/header.jsp" %>
@@ -134,6 +134,7 @@
          	위시리스트가 비어있습니다.
       </c:when>
       <c:otherwise>
+      <div id="container_box">
 	  <form role="form" enctype="multipart/form-data" action="${pageContext.request.contextPath }/shop/insertCart.do" >
       <table class="table table-striped table-condensed">
          <thead>
@@ -171,6 +172,7 @@
          </tfoot>
       </table>
       </form>
+      </div>
       </c:otherwise>
    </c:choose>
    <script type="text/javascript">
@@ -198,7 +200,5 @@
          <%@ include file="../include/footer.jsp" %>
       </div>      
    </footer>
-     
-</div>
 </body>
 </html> 

@@ -2,6 +2,7 @@ package com.test.project01.cart.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,9 +128,14 @@ public class CartController {
 	}
 	//8. 위시리스트에서 장바구니로 추가
 	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
-	public String insertCart(@ModelAttribute("dto") CartListDto dto, HttpSession session){
+	public String insertCart(@ModelAttribute("dto") CartListDto dto,@RequestParam int itemNum, HttpSession session){
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();	
+		
+		List<CartListDto> list=new ArrayList<CartListDto>();
+		service.getItem(itemNum);
+		
+		
 		//장바구니에 기존 상품 있나 검사
 		int count=service.countCart(dto.getItemNum(), userId);
 		if(count == 0) {
