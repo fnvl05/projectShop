@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.test.project01.exception.CanNotDeleteException;
+//import com.test.project01.exception.CanNotDeleteException;
 import com.test.project01.qna.dao.QnaCommentDao;
 import com.test.project01.qna.dao.QnaDao;
 import com.test.project01.qna.dto.QnaCommentDto;
@@ -184,7 +184,7 @@ public class QnaServiceImpl implements QnaService{
 			String id=(String)request.getSession().getAttribute("id");
 			String writer=qnaDao.getData(num).getWriter();
 			if(!id.equals(writer)) {
-				throw new CanNotDeleteException();
+				//throw new CanNotDeleteException();
 			}
 			qnaDao.delete(num);
 		}

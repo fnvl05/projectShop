@@ -113,7 +113,7 @@
 
 </head>
 <body>
-<div id="root">
+
    <header id="header">
       <div id="header_box">
          <%@ include file="../include/header.jsp" %>
@@ -134,7 +134,8 @@
          	위시리스트가 비어있습니다.
       </c:when>
       <c:otherwise>
-	  <form role="form" enctype="multipart/form-data" action="${pageContext.request.contextPath }/shop/insertCart.do" >
+      <div id="container_box">
+	  <form role="form" enctype="multipart/form-data" >
       <table class="table table-striped table-condensed">
          <thead>
             <tr>
@@ -146,6 +147,7 @@
          </thead>
          <tbody>
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
+            <input type="hidden" name="itemNum" value="${dto.itemNum}" />
             <tr>
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
                <td>${tmp.itemName }</td>
@@ -171,9 +173,10 @@
          </tfoot>
       </table>
       </form>
+        </div>
       </c:otherwise>
    </c:choose>
-   <script type="text/javascript">
+   <script>
 	var formObj = $("form[role='form']");
 	console.log(formObj);
 	$("#shop_btn").click(function() {
@@ -198,7 +201,5 @@
          <%@ include file="../include/footer.jsp" %>
       </div>      
    </footer>
-     
-</div>
 </body>
 </html> 

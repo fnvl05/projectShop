@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.project01.exception.CanNotDeleteException;
+//import com.test.project01.exception.CanNotDeleteException;
 import com.test.project01.notice.dao.NoticeDao;
 import com.test.project01.notice.dto.NoticeDto;
 
@@ -115,7 +115,7 @@ public class NoticeServiceImpl implements NoticeService{
 		//아이디와 글 작성자가 같은지 여부
 		boolean isEqual=id.equals(writer);
 		if(!isEqual){
-			throw new CanNotDeleteException();
+			//throw new CanNotDeleteException();
 		}
 		//2. DB 에서 삭제한다.
 		int isSuccess=noticeDao.delete(num);
