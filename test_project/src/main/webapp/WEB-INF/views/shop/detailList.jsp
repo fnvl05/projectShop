@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>/shop/detailList.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 <style>
@@ -67,7 +66,11 @@
 					</tr>
 					<tr>
 						<th>주문날짜</th>
-						<td>${list.orderDate }</td>
+						<td>
+						<fmt:parseDate value="${list.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
+						</td>
+						
 					</tr>
 					<tr>
 						<th>지불방법</th>
@@ -122,31 +125,32 @@
 									<button  type="button" id="${tmp.itemNum }">리뷰쓰기</button>
 								</td>
 								
-								<script>
-									var itemNum=null;
-									$("button[type=button]").click(function(){
-										itemNum=$(this).attr("id");
-										console.log(itemNum);
-										$.ajax({
-											url:"checkreview.do",
-											method:"post",     //요청 메소드
-											data:{"itemNum":itemNum},   //요청파라미터:전달받은 아이템번호
-											success:function(responseData){   //성공적으로 응답을 하면은 이 함수가 호출됨 ,응답한 데이터는 ()안으로 들어옴,페이지 전환x
-												if(responseData.isExist){ //이미 존재하는 리뷰
-													alert("이미 리뷰를 작성했습니다.");
-												}else{
-													location.href="../review/insertform.do?itemNum=${tmp.itemNum}";	
-												}
-											
-											}
-										});
-									});
-								</script>
+								
 								
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<script>
+					var itemNum=null;
+					$("button[type=button]").click(function(){
+						itemNum=$(this).attr("id");
+						console.log(itemNum);
+						$.ajax({
+							url:"checkreview.do",
+							type:"post",     //요청 메소드
+							data:{"itemNum":itemNum},   //요청파라미터:전달받은 아이템번호
+							success:function(responseData){   //성공적으로 응답을 하면은 이 함수가 호출됨 ,응답한 데이터는 ()안으로 들어옴,페이지 전환x
+								if(responseData.isExist){ //이미 존재하는 리뷰
+									location.href="../review/insertform.do?itemNum="+itemNum;	
+								}else{	
+									alert("이미 리뷰를 작성했습니다.");
+								}
+							
+							}
+						});
+					});
+				</script>
 			</div>
 		</section>
 		<footer id="footer">

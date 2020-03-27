@@ -47,7 +47,10 @@
 						<c:forEach var="tmp" items="${orderList}" >
 							<tr>
 								<td>${tmp.orderNum }</td>
-								<td>${tmp.orderDate }</td>
+								<td>
+								<fmt:parseDate value="${tmp.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+								<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
+								</td>
 								<td>${tmp.itemName}</td>	
 								<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
 								<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>

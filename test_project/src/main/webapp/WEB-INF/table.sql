@@ -76,6 +76,25 @@ create sequence tbl_item_seq;
  <썸네일 칼럼 추가>
  alter table tbl_items add(itemThumbImg varchar2(300));
  
+ <!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+ 
 <공지 게시판>
 CREATE TABLE board_notice(
 	num Number PRIMARY key,
@@ -169,34 +188,8 @@ create table orders(
 	allPrice number
 );
 
-alter table cartList add(money number);
-
-alter table cartList
-add constraint cartList_userId foreign key(userId)
-references tbl_member(userId);
-
-alter table cartList
-add constraint cartList_itemNum foreign key(itemNum)
-references tbl_items(itemNum);
-
-<!-- 카테고리별 상품 리스트 : 1차 분류 -->
-select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
-    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
-        from tbl_items i
-            inner join goods_category c
-                on i.cateCode = c.cateCode           
-            where i.cateCode = #{cateCode}
-             or c.cateCodeRef = #{cateCodeRef}
 
 
-<!-- 카테고리별 상품 리스트 : 2차 분류 -->
-select
-    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
-    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
-        from tbl_items i
-            inner join goods_category c
-                on i.cateCode = c.cateCode           
-            where i.cateCode = #{cateCode}
 
 create sequence orders_seq;
 
@@ -250,5 +243,6 @@ add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
 
+alter table cartList add(money number);
 
 

@@ -96,7 +96,10 @@ public class ReviewServiceImpl implements ReviewService{
 		for(int i=0;i<likeCountList.size();i++) {
 			likeCountSum+=likeCountList.get(i);
 		}
-		int avg=likeCountSum/size;
+		int avg=0;
+		if(size>0) {
+			avg=likeCountSum/size;
+		}
 		request.setAttribute("avg",avg);
 		
 		/* 페이지 처리하는 코드 */
@@ -266,7 +269,14 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public Map<String, Object> isExist(HttpServletRequest request,int itemNum) {
+	public boolean isExist(HttpServletRequest request,int itemNum) {
+//		ReviewDto dto=new ReviewDto();
+//		dto.setReviewWriter(reviewWriter);
+//		dto.setItemNum(itemNum);
+//		boolean isExist=dao.isExist(dto);
+//		Map<String, Object> map=new HashMap<>();
+//		map.put("isExist", isExist);
+//		return map;
 		UsersDto userDto=(UsersDto)request.getSession()
 				.getAttribute("userDto");
 		String reviewWriter=userDto.getUserId();
@@ -274,10 +284,7 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setReviewWriter(reviewWriter);
 		dto.setItemNum(itemNum);
 		boolean isExist=dao.isExist(dto);
-		Map<String, Object> map=new HashMap<String, Object>();
-		map.put("isExist", isExist);
-		return map;
-		
+		return isExist;
 	}
 
 	

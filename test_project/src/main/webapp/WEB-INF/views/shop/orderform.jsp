@@ -132,6 +132,12 @@
 					<label for="check">주문자 정보 동일</label>
 					 <input type="checkbox" id="equal" />
 					<script>
+						var rec=null;
+						var phone1=null;
+						var phone2=null;
+						var addr1=null;
+						var addr2=null;
+						var addr3=null;
 						$("#equal").on("click",function(){
 							if($('input:checkbox[id="equal"]').is(":checked")==true){
 								var userName=$("#userName").val();
@@ -144,6 +150,12 @@
 								$("#userAddr2").val(addr2);
 								var addr3=$("#addr3").val();
 								$("#userAddr3").val(addr3);
+								rec=$("#orderRec").val();
+								phone1=$("#orderPhone1").val();
+								phone2=$("#orderPhone2").val();
+								addr1=$("#userAddr1").val();
+								addr2=$("#userAddr2").val();
+								addr3=$("#userAddr3").val();
 							}else if($('input:checkbox[id="equal"]').is(":checked")==false){
 								$("#orderRec").val("");
 								$("#orderPhone1").val("");
@@ -152,35 +164,29 @@
 								$("#userAddr3").val("");
 							}
 						});
-						
-						/*
-						만약 폼의 값이 바뀌면은 체크박스가 false가 되게 구현하기
-						$("#orderRec","#orderPhone1","#orderAddr1","#orderAddr2","#orderAddr3").change(function(){
-							$('input:checkbox[id="equal"]').prop('checked',false);
-						});
-		
-						*/
-					
-					
-					
+				
 					</script>
 					<input type="hidden" name="allPrice" id="allPrice" value=${allPrice } />
 					<div class="container" ng-class="{'has-success':myForm.orderRec.$valid,'has-error':myForm.orderRec.$invalid &&myForm.orderRec.$dirty}">
 						<label for="orderRec">수령인 <strong id="required">*</strong></label>
 						<input type="text" name="orderRec" id="orderRec"  ng-model="orderRec" ng-required="true" style="text-align:center;"/>
-						<p class="help-block" ng-show="myForm.orderRec.$invalid &&myForm.orderRec.$dirty">반드시 입력하세요</p>
+						<span class="help-block" ng-show="myForm.orderRec.$invalid &&myForm.orderRec.$dirty">반드시 입력하세요</span>
 						<span ng-show="myForm.orderRec.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
 						<span ng-show="myForm.orderRec.$invalid && myForm.orderRec.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
 					</div>
-					<div class="container" >
+					
+					<div class="container" ng-class="{'has-success':myForm.orderPhone1.$valid,'has-error':myForm.orderPhone1.$invalid && myForm.orderPhone1.$dirty}" >
 						<label for="orderPhone1">연락처1 <strong id="required">*</strong></label>
-						<input type="tel" name="orderPhone1" id="orderPhone1"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" />
-						
+						<input type="tel" name="orderPhone1" id="orderPhone1"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" 
+								ng-pattern="/^\d{3}-\d{3,4}-\d{4}$/"  ng-model="orderPhone1" />
+						<span ng-show="myForm.orderPhone1.$error.pattern" class="help-block">정확히 입력해주세요.</span>
 					</div>
 				
-					<div class="container">
+					<div class="container" ng-class="{'has-success':myForm.orderPhone2.$valid,'has-error':myForm.orderPhone2.$invalid && myForm.orderPhone2.$dirty}">
 						<label for="orderPhone2">연락처2</label>
-						<input type="tel" name="orderPhone2" id="orderPhone2"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" />	
+						<input type="tel" name="orderPhone2" id="orderPhone2"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" 
+							ng-pattern="/^\d{3}-\d{3,4}-\d{4}$/"  ng-model="orderPhone2"/>	
+						<span ng-show="myForm.orderPhone2.$error.pattern" class="help-block">정확히 입력해주세요.</span>
 					</div>
 					<script>
 					function inputPhoneNumber(obj) {
@@ -212,28 +218,89 @@
 					
 		
 					</script>
-					<div class="container" >
+					<div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid && myForm.userAddr1.$dirty}">
 						<label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
-						<input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" />
+						<input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 					</div>
 					
-					<div class="container" >
+					<div class="container" ng-class="{'has-success':myForm.userAddr2.$valid,'has-error':myForm.userAddr2.$invalid && myForm.userAddr2.$dirty}">
 						<label for="userAddr2">기본 주소 <strong id="required">*</strong></label>
-						<input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소"/>
+						<input type="text" name="userAddr2" id="userAddr2"  placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
 					</div>
 					<span id="guide" style="color:#999;display:none"></span>
 					<div class="container">
 						<label for="userAddr3">상세 주소</label>
 						<input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
 					</div>
+					<script>
+						$("#orderRec").on("propertychange change keyup paste input",function(){
+							var orderRec=$(this).val();
+							if(orderRec!=rec){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#orderPhone1").on("propertychange change keyup paste input",function(){
+							var orderPhone1=$(this).val();
+							if(orderPhone1!=phone1){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#orderPhone2").on("propertychange change keyup paste input",function(){
+							var orderPhone2=$(this).val();
+							if(orderPhone2!=phone2){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#userAddr1").on("propertychange change keyup paste input",function(){
+							var useAddr1=$(this).val();
+							if(useAddr1!=addr1){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#userAddr2").on("propertychange change keyup paste input",function(){
+							var useAddr2=$(this).val();
+							if(useAddr2!=addr2){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#userAddr3").on("propertychange change keyup paste input",function(){
+							var useAddr3=$(this).val();
+							if(useAddr3!=addr3){
+								$('input:checkbox[id="equal"]').prop('checked',false);
+								
+							}
+						});
+						$("#userAddr1").on("click",function(){
+							sample4_execDaumPostcode();
+							btn();
+						});
+						$("#userAddr2").on("click",function(){
+							sample4_execDaumPostcode();
+							btn();
+						});
+						
+						var btn=function(){
+							if($("#userAddr1").val()==""||$("#userAddr2").val()==""){
+								$("button[type=submit]").attr("disabled","disabled");
+							}else{
+								$("button[type=submit]").removeAttr("disabled");
+							}
+						}
+					</script>
 					<div class="container">
 						<label for="msg">배송 메세지<br/>[100자 이내]</label>
-						<input type="text" name="msg" id="msg" maxlength="100"/>
+						<textarea  type="text" name="msg" id="msg" maxlength="100" style="text-align:center; width:300px; height:100px;  resize: none;
+							padding-left:5px;padding-right:50px;padding-bottom:20px;padding-top:20px;word-break:break-all;" cols=100 rows=10"></textarea>
 					</div>
 					<div class="container">
 						<span><strong>결제 수단</strong></span>
-						<input type="radio" name="payment" id="card" value="card"  />
+						<input type="radio" name="payment" id="card" value="card" checked="checked" />
 						<label for="card">카드결제</label>
 						<input type="radio" name="payment" id="cash" value="cash"  />
 						<label for="cash">계좌이체</label>

@@ -1,6 +1,9 @@
 package com.test.project01.order.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +68,14 @@ public class OrderController {
 	//리뷰 중복여부
 	@ResponseBody
 	@RequestMapping(value="/shop/checkreview",method = RequestMethod.POST)
-	public ModelAndView User_checkreview(HttpServletRequest request,@RequestParam(value="itemNum") int itemNum){
-		reviewService.isExist(request,itemNum);
-		return new ModelAndView("shop/checkreview");
+	public Map<String,Object> User_checkreview(HttpServletRequest request,@RequestParam int itemNum){
+		boolean isExist=reviewService.isExist(request,itemNum);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isExist", isExist);
+		System.out.println(isExist);
+		System.out.println(itemNum);
+		return map;
+	
 		
 	}
 }
