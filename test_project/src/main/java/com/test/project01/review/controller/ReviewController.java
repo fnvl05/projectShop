@@ -42,14 +42,14 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("/review/insertform")
-	public ModelAndView authInsertform(HttpServletRequest request) {
+	public ModelAndView Users_Insertform(HttpServletRequest request) {
 		service.insertform(request);
 		return new ModelAndView("review/insertform");	
 	}
 	
 	//리뷰 insert
 	@RequestMapping(value="/review/insert", method= RequestMethod.POST)
-	public ModelAndView authInsert(HttpServletRequest request,
+	public ModelAndView Users_Insert(HttpServletRequest request,
 			ModelAndView mView,@ModelAttribute ("dto") ReviewDto dto,@RequestParam int itemNum) {
 		service.insert(request, dto);
 		
@@ -66,7 +66,7 @@ public class ReviewController {
 	
 	//업데이트 폼
 	@RequestMapping(value="/review/updateform",method=RequestMethod.GET)
-	public ModelAndView authUpdateform(HttpServletRequest request,ModelAndView mView,@RequestParam int reviewNum,@RequestParam int itemNum) {
+	public ModelAndView Users_Updateform(HttpServletRequest request,ModelAndView mView,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.getUpdateData(mView,reviewNum);
 		mView.setViewName("review/updateform");
 		return mView;
@@ -74,7 +74,7 @@ public class ReviewController {
 	
 	//업데이트
 	@RequestMapping(value="/review/update" ,method=RequestMethod.POST)
-	public ModelAndView authUpdate(HttpServletRequest request,ModelAndView mView,@ModelAttribute("dto") ReviewDto dto) {
+	public ModelAndView Users_Update(HttpServletRequest request,ModelAndView mView,@ModelAttribute("dto") ReviewDto dto) {
 		service.update(request, dto);
 		mView.setViewName("review/update");
 		return mView;
@@ -82,7 +82,7 @@ public class ReviewController {
 	
 	//삭제
 	@RequestMapping("/review/delete")
-	public ModelAndView authDelete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
+	public ModelAndView Users_Delete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.delete(request, reviewNum);
 		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
 	}
@@ -108,8 +108,7 @@ public class ReviewController {
 	
 	@ResponseBody
 	@RequestMapping("/review/comment_update")
-	public Map<String, Object> 
-		authCommentUpdate(HttpServletRequest request,
+	public Map<String, Object> authCommentUpdate(HttpServletRequest request,
 				@ModelAttribute ReviewCommentDto dto){
 
 		service.updateComment(dto);

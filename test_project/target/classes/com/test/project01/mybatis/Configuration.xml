@@ -26,6 +26,7 @@
   		<typeAlias type="com.test.project01.cart.dto.CartListDto" alias="cartlistDto"/>
   		<typeAlias type="com.test.project01.review.dto.ReviewUpCountDto" alias="reviewUpCountDto"/>
 
+
   	</typeAliases>
   	<mappers>
   		<mapper resource="com/test/project01/mybatis/UsersMapper.xml"/>

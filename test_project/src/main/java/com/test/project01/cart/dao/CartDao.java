@@ -17,9 +17,10 @@ public interface CartDao {
 	//5.장바구니 동일 상품 확인
 	public int countCart(int itemNum, String userId);
 	//6.장바구니 상품수량 변경
-	public void updateCart(CartListDto dto);	
+	public void updateCart(CartListDto dto);
 	//7.장바구니 금액 합계
 	public int sumMoney(String userId);
+	//장바구니 전체 삭제
+	public void deleteAll(String userId);
 
-	
 }

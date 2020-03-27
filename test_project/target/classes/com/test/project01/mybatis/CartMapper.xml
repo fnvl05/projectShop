@@ -40,7 +40,12 @@
 		where userId=#{userId}
 		and itemNum=#{itemNum}
 	</update>
-	
+
+	<delete id="deleteAll" parameterType="String">
+		delete from cartList
+		where userId=#{userId}
+	</delete>
+
 	<select id="sumMoney" resultType="int">
 		select nvl(sum(c.itemPrice * c.cartStock),0) money
 		from cartList c, tbl_items i

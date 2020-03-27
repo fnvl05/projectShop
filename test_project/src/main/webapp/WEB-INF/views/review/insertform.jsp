@@ -5,11 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/insertform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
 <style>
  #star_grade a{
@@ -23,6 +25,19 @@
 .star_rating a.on {color:#777;}
 </style>
 <body>
+
+<div id="root">
+	<header id="heder_box">
+		<div>
+			<%@ include file="../include/header.jsp" %>
+		</div>
+	</header>
+	<nav id="nav">
+		<div id="nav_box">
+			<%@ include file="../include/nav.jsp" %>
+		</div>
+	</nav>
+
 <div class="container">
 	<form action="insert.do" method="post">
 		<input type="hidden" name="itemNum" value="${itemNum }" />
@@ -30,18 +45,26 @@
 		<input type="hidden" id="likeCount" name="likeCount" value=2 />
 		<div class="container">
 			<label for="reviewContent">상품 리뷰</label>
-			<input type="text" name="reviewContent" id="reviewContent" />
+			<textarea name="reviewContent" id="reviewContent"></textarea>
+			<script type="text/javascript">
+				$(function(){
+					CKEDITOR.replace('reviewContent',{
+						filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+					});
+				});
+			</script>
 		</div>
+
 		<div class="container">
 			<label for="likeCount">평가</label>
-			<input type="text" name="likeCount" id="likeCount" /> 
-		<p id="star_grade">
-			<a href="#">★</a>
-			<a href="#">★</a>
-			<a href="#">★</a>
-			<a href="#">★</a>
-			<a href="#">★</a>
-		</p>
+			<!--  <input type="text" name="likeCount" id="likeCount" /> -->
+			<p id="star_grade">
+				<a href="#">★</a>
+				<a href="#">★</a>
+				<a href="#">★</a>
+				<a href="#">★</a>
+				<a href="#">★</a>
+			</p>
 		</div>
 		<button id="starBtn" type="submit" >등록</button>
 		<button type="reset">취소</button>
@@ -53,7 +76,15 @@
 		})
 		</script>
 	</form>
+		</div>
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp" %>
+		</div>
+	</footer>
+
 </div>
+
 <script>
 	$('#star_grade a').click(function(){
 	    $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
@@ -63,5 +94,6 @@
 	    return false;
 	});
 </script>
+
 </body>
 </html>

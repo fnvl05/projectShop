@@ -41,6 +41,7 @@
 	<delete id="itemDelete">
 		delete from tbl_items where itemNum = #{itemNum}
 	</delete>
+
 	<select id="selectList" resultType="master_usersList_Dto">
 		select tbl_member.userId, tbl_member.verify, orders.delivery, order_detail.result 
 		from tbl_member left join orders on tbl_member.userId=orders.userId 
@@ -51,7 +52,7 @@
 		set result = #{result}
 		where order_detail. = #{userId}
 	</update>
-	<update id="minusCount" parameterType="int">
+	<update id="minusCount" parameterType="orderDetailDto">
 		update tbl_items
 		set itemCount=itemCount-#{quantity}
 		where itemNum=#{itemNum}

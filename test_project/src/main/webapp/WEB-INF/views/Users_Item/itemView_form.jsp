@@ -96,6 +96,7 @@
 					<div class = "addCart">
 						<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>
 						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
+						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
 						<script>
 							$("#back_btn").click(function () {
 								location.href="../index.do";
@@ -115,11 +116,24 @@
 						}
 					});
 				</script>
+				<script>
+					var formObj = $("form[role='form']");
+					console.log(formObj);
+					$("#order_btn").click(function() {
+						var con = confirm("바로 주문하시겠습니까?");
+						if(con){
+							formObj.attr("action","cart2.do");
+							formObj.attr("method", "post");
+							formObj.submit();							
+						}
+					});
+				</script>
 			</div>
 		</form>
 		<div class="itemDes">${dto.itemDes }</div>		
 		<a href="../qna/itemList_qna.do?itemNum=${dto.itemNum }">QnA</a><br/>
 		<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>	
+		
 	</div>
 	</section>
 	<footer id="footer">

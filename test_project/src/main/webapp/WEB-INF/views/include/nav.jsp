@@ -11,6 +11,7 @@
 			<li>${id}님 환영합니다.</li>
 			<li><a href="${pageContext.request.contextPath }/Users/logout.do">로그아웃</a></li>
 			<li><a href="${pageContext.request.contextPath }/shop/cartList.do" >장바구니</a></li>
+			<li><a href="${pageContext.request.contextPath }/shop/orderList.do">구매내역</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a href="${pageContext.request.contextPath }/Users/login_form.do">로그인</a>

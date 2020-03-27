@@ -6,6 +6,7 @@ import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
 import com.test.project01.master.category.Dto.UsersListDto;
 import com.test.project01.master.category.Dto.categoryDto;
+import com.test.project01.order.dto.OrderDetailDto;
 
 public interface categoryDao {
 	public List<categoryDto> categoryList();
@@ -15,7 +16,11 @@ public interface categoryDao {
 	public ItemViewDto itemViewList(int itemNum);
 	public void ItemUpdate(ItemDto dto);
 	public void ItemDelete(int itemNum);
+
+
 	public List<UsersListDto> userList();
 	public void upResult(UsersListDto dto);
-	public void minusCount(int quantity,int itemNum);
+	
+	public void minusCount(OrderDetailDto detailDto);
+
 }

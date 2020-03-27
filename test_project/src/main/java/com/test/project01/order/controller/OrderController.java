@@ -18,7 +18,7 @@ public class OrderController {
 	OrderService service;
 	
 	@RequestMapping("/shop/orderform")
-	public ModelAndView getList(HttpServletRequest request,ModelAndView mView) {
+	public ModelAndView User_orderform(HttpServletRequest request,ModelAndView mView) {
 		service.cartList_insertform(request);
 		mView.setViewName("shop/orderform");
 		return mView;
@@ -26,12 +26,31 @@ public class OrderController {
 	
 	
 	@RequestMapping(value="/shop/order",method=RequestMethod.POST)
-	public ModelAndView insert(HttpServletRequest request,ModelAndView mView,
+	public ModelAndView User_insert(HttpServletRequest request,ModelAndView mView,
 			@ModelAttribute("dto") OrdersDto dto) {
 		service.insert(request, dto);
 		mView.setViewName("shop/order");
 		return mView;
 	}
 	
+	@RequestMapping("/shop/orderList")
+	public ModelAndView User_orderList(HttpServletRequest request,ModelAndView mView) {
+		service.orderList(request);
+		mView.setViewName("shop/orderList");
+		return mView;
+	}
 	
+	@RequestMapping("/shop/detailList")
+	public ModelAndView User_detailList(HttpServletRequest request,ModelAndView mView) {
+		service.orderInfo(request);
+		mView.setViewName("shop/detailList");
+		return mView;
+	}
+	
+	@RequestMapping("/shop/delivery")
+	public ModelAndView User_delivery(HttpServletRequest request,ModelAndView mView) {
+		service.delivery(request);
+		mView.setViewName("shop/delivery");
+		return mView;
+	}
 }
