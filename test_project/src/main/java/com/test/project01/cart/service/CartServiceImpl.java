@@ -68,5 +68,16 @@ public class CartServiceImpl implements CartService {
 	public int countWish(int itemNum, String userId) {
 		return dao.countWish(itemNum, userId);
 	}
+	@Override
+	public void wishList_addCart(String userId) {
+		List<wishlistDto> list = dao.wishlist(userId);
+		CartListDto cartDto = new CartListDto();
+		cartDto.setUserId(list.get(0).getUserId());
+		cartDto.setItemNum(list.get(0).getItemNum());
+		cartDto.setItemName(list.get(0).getItemName());
+		cartDto.setItemPrice(list.get(0).getItemPrice());
+		cartDto.setCartStock(1);
+		dao.addCart(cartDto);
+	}
 	
 }

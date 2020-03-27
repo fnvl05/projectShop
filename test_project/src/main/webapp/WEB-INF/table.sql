@@ -230,7 +230,7 @@ create table cartList(
 	itemName varchar2(50),
 	itemPrice number,
 	itemImg varchar(200) null,
-	primary key(itemNum, userId)
+	primary key(cartNum)
 );
 
 create sequence cartList_seq;
@@ -266,4 +266,5 @@ alter table wishlist
 add constraint wishlist_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
-
+-- 카트리스트 프라이머리키 변경 (userId,itemNum 삭제)--
+ALTER TABLE cartList ADD PRIMARY KEY (cartNum);

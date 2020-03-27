@@ -31,4 +31,7 @@ public interface CartService {
 	public void insertCart(CartListDto dto);
 	//위시리스트 동일 상품 확인
 	public int countWish(int itemNum, String userId);
+	
+	//위시리스트 카드에 담기
+	public void wishList_addCart(String userId);
 }

@@ -147,20 +147,21 @@
          </thead>
          <tbody>
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
-            <input type="hidden" name="itemNum" value="${dto.itemNum}" />
             <tr>
+            	
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-               <td>${tmp.itemName }</td>
+               <td><input type="hidden" value="${tmp.itemName }" name="itemName">${tmp.itemName }</td>
                <td>
+               		<input type="hidden" value="${tmp.itemPrice }" name="itemPrice">
               		 <fmt:formatNumber value="${tmp.itemPrice}" 
-                     pattern="###,###,###"/>원
+                      pattern="###,###,###"/>원
                </td>
                <td>
                		<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>      
 		   	   		<input type="button" onclick="deleteWish(${tmp.wishNum})" value="삭제" />
 
                </td>     	
-            </tr>          
+           </tr>
          </c:forEach>
          </tbody>
          <tfoot>
@@ -186,6 +187,7 @@
 			formObj.attr("method", "post");
 			formObj.submit();							
 		}
+		
 	});
     function deleteWish(wishNum){
  	   var isDelete=confirm("위시리스트에서 삭제하시겠습니까?")

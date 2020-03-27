@@ -16,7 +16,7 @@ public class UsersDto {
 		
 	public UsersDto() {}
 	
-	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAddr1, String userAddr2,
+	public UsersDto(String userId, String userPass, String userName, String userPhone, String userAddr1, String userAddr2,
 			String userAddr3) {
 		super();
 		this.userId = userId;

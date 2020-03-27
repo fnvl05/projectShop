@@ -110,7 +110,7 @@
 			</div>
 			<div class="container">
 				<label for="userPhon">연락처</label>
-				<input type="text" name="userPhon" id="userPhon" value=${sessionScope.userDto.userPhon } />
+				<input type="text" name="userPhon" id="userPhon" value=${sessionScope.userDto.userPhone } />
 			</div>
 			<input type="hidden" name="addr1" id="addr1" value=${sessionScope.userDto.userAddr1 } />
 			<input type="hidden" name="addr2" id="addr2" value=${sessionScope.userDto.userAddr2 } />

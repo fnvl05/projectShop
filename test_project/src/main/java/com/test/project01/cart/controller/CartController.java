@@ -128,22 +128,14 @@ public class CartController {
 	}
 	//8. 위시리스트에서 장바구니로 추가
 	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
-	public String User_insertCart(@RequestParam int itemNum, HttpSession session){
+	public String User_insertCart(HttpSession session){
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
-		String userId=user.getUserId();			
-		//service.getItem(wishNum);
-		
-		CartListDto dto=new CartListDto();
-		dto.setItemNum(itemNum);
-		dto.setUserId(userId);
-		
+		String userId=user.getUserId();	
 		//장바구니에 기존 상품 있나 검사
-		int count=service.countCart(itemNum, userId);
-		if(count == 0) {
-			//없으면 추가
-			service.insertCart(dto);
-			
-		}
+		service.wishList_addCart(userId);		
+//		int count=service.countCart(dto.getItemNum(), userId);
+//		if(count == 0) {		
+//		}
 
 		return "redirect:../shop/orderform.do";
 	}
