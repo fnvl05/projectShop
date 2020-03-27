@@ -5,16 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="../include/resource.jsp"></jsp:include>
-
-<style>
-	#content{
-		
-		width: 100%;
-		height: 400px;
-	}
-</style>
-
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>

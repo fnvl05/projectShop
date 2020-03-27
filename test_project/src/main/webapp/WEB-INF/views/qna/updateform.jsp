@@ -5,10 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>/qna/updateform.jsp</title>
-<jsp:include page="../include/resource.jsp"></jsp:include>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/qna/list.jsp">목록</a></li>

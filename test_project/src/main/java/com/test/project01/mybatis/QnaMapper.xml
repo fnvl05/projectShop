@@ -19,10 +19,7 @@
 		</choose>
 	</select>
 	<select id="getList" parameterType="qnaJoinDto" resultType="qnaJoinDto">
-		SELECT * FROM
-			(SELECT result1.*, ROWNUM AS rnum
-			FROM
-				(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
+				SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
 				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
 				FROM board_qna,tbl_items
 				<choose>
@@ -37,8 +34,6 @@
 						WHERE writer LIKE '%'||#{writer}||'%'
 					</when>
 				</choose>
-				where board_qna.itemNum = tbl_items.itemNum ORDER BY num DESC) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
 	<select id="getCount2" resultType="int" parameterType="qnaJoinDto">

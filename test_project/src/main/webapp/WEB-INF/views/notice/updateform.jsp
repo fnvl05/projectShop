@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>/cafe/updateform.jsp</title>
-<jsp:include page="../include/resource.jsp"></jsp:include>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
-<!-- 3. 글 수정 폼을 응답한다. -->
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/notice/list.do">목록</a></li>

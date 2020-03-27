@@ -5,17 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+
 <title>/review/updateform.jsp</title>
-<script
-	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script
-	src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <style>
 #star_grade a {
@@ -38,17 +30,29 @@
 <body>
 
 	<div id="root">
-
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp"%>
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp" %>
+					</div>
+					<div id="index_logo_div">
+						<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+					</div>
+					<div class="navbar-left">
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+									<%@ include file="../include/users_aside.jsp" %>						
+							</c:when>
+							<c:otherwise>
+									<%@ include file="../include/unknown_aside.jsp" %>			
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
 			</div>
 		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp"%>
-			</div>
-		</nav>
+	</div>
 
 		<div class="container">
 			<form action="update.do" method="post">
@@ -97,7 +101,6 @@
 				</div>
 				<button type="submit">수정확인</button>
 				<button type="reset">취소</button>
-				<button type="button" id="back_btn" class="btn btn-warning">취소</button>
 				<script>
 					$("#back_btn")
 							.click(
@@ -112,18 +115,7 @@
 				</div>
 			</footer>
 		</div>
-
-	</div>
-
-	<div class="container">
-		<p id="star_grade">
-			<a href="#">★</a> <a href="#">★</a> <a href="#">★</a> <a href="#">★</a>
-			<a href="#">★</a>
-		</p>
-	</div>
-	<button type="submit">수정확인</button>
-	<button type="reset">취소</button>
-	<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+	
 	<script>
 		$("#back_btn").click(function() {
 			location.href = "itemView_form.do?itemNum=" + $
@@ -143,11 +135,7 @@
 		});
 	</script>
 
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
+	
 
 </body>
 </html>
