@@ -264,7 +264,6 @@ public class ReviewServiceImpl implements ReviewService{
 			dao.downCount(dto.getReviewNum());
 			dao.delUpCount(dto);
 			int count=dao.checkCount(dto.getReviewNum());
-			System.out.println(count);
 			Map<String,Object> map=new HashMap<>();
 			map.put("checkUp", false);
 			map.put("count", count);
@@ -276,7 +275,6 @@ public class ReviewServiceImpl implements ReviewService{
 			dao.addUpCount(dto);
 			//이상무
 			int count=dao.checkCount(dto.getReviewNum());
-			System.out.println(count);
 			Map<String,Object> map=new HashMap<>();
 			map.put("checkUp", true);
 			map.put("count", count);

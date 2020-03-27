@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>review/list.jsp</title>
+<jsp:include page="../include/resource.jsp" />
 <style>
 img {
 	width: 100px;
@@ -59,11 +60,10 @@ img {
 						<td><span class="wrap-star"> <span class='star-rating'>
 									<span
 									style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
-							</span> <c:if test="${tmp.likeCount gt 0 }">
-									<fmt:formatNumber value="${tmp.likeCount }" pattern=".0" />
-								</c:if>
+							</span>
 						</span></td>
-						<td>${tmp.upCount }</td>
+						<td><span class="glyphicon glyphicon-thumbs-up"></span>
+							${tmp.upCount }</td>
 						<td>${tmp.reviewWriter }</td>
 						<td>${tmp.regdate }</td>
 					</tr>

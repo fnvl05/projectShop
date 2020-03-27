@@ -61,7 +61,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public boolean isUped(ReviewUpCountDto dto) {
 		String id=session.selectOne("review.checkCount",dto);
-		System.out.println(id);
+		
 		if(id==null) { 
 			return false;
 		}else {
