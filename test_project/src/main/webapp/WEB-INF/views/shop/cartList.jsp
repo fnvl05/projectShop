@@ -107,9 +107,9 @@
                     	 pattern="###,###,###"/>원
                 </td>
 				<td>
-               	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px" name="cartStock"/>
+               	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px" name="cartStock" id="${tmp.cartNum }"/>
                	<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
-               	<button type="button" class="btn btn-primary" onClick="updateCart()">수정</button>
+               	<button type="button" class="btn btn-primary" id="${tmp.cartNum }">수정</button>
                	
                 </td>
 				<td>
@@ -203,7 +203,37 @@
               }   
            });
       });
-   </script>      
+   </script> 
+   <script type="text/javascript">
+   var tag = null;
+   var targetVal = null;
+   		$("input[type=number]").click(function(){
+   			tag=$(this).attr("id");
+   			console.log(tag);
+   			targetVal = $(this).val();
+   			console.log(targetVal);
+   		})
+   		$("button[type=button]").click(function() {	
+			var tarArray=[];
+			tarArray.push(tag);
+			tarArray.push(targetVal);   
+			console.log(tarArray);
+   			$.ajax({
+   				url:"updateCartStock.do",
+   				type: "post",
+   				data:{"tarArray":tarArray},
+   				success:function(responseData){
+                    if(responseData.isSuccess){
+                       //알림 띄우고 새로고침
+                       alert("성공.");
+                       location.reload();
+                    }else{                    
+                       alert("실패.");
+                    }
+   				}
+   			})
+			})
+   </script>     
    
    <footer id="footer">
       <div id="footer_box">

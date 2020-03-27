@@ -3,27 +3,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-<style>
-	.select_img img{width: 500px; margin: 20px 0;}
-</style>
 </head>
 <body>
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
-			</div>
-		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<%@ include file="../include/header.jsp" %>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/master_aside.jsp" %>						
+				</div>
+			</nav>
+		</div>
+	</header>
 		<section id="container">
 			<aside>
 				<%@ include file="../include/master_aside.jsp" %>

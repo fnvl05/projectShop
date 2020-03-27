@@ -38,6 +38,7 @@
 <body>
 
 	<div id="root">
+
 		<header id="heder_box">
 			<div>
 				<%@ include file="../include/header.jsp"%>
@@ -62,14 +63,17 @@
 						id="reviewContent">${dto.reviewContent }</textarea>
 					<script type="text/javascript">
 						$(function() {
-							CKEDITOR.replace(
-								'reviewContent',{filebrowserUploadUrl : '${pageContext.request.contextPath }/fileupload.do'
-							});
+							CKEDITOR
+									.replace(
+											'reviewContent',
+											{
+												filebrowserUploadUrl : '${pageContext.request.contextPath }/fileupload.do'
+											});
 						});
 					</script>
 				</div>
 				<div class="container">
-					<label for="likeCount">별점</label> 
+					<label for="likeCount">별점</label>
 					<div class="container">
 						<p id="star_grade">
 							<a href="#">★</a> <a href="#">★</a> <a href="#">★</a> <a href="#">★</a>
@@ -77,22 +81,29 @@
 						</p>
 					</div>
 					<script>
-						$('#star_grade a').click(function() {
-							$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
-							$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
-							var likeCount = document.querySelectorAll(".on").length * 2;
-							$("#likeCount").val(likeCount);
-							return false;
-						});
+						$('#star_grade a')
+								.click(
+										function() {
+											$(this).parent().children("a")
+													.removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+											$(this).addClass("on").prevAll("a")
+													.addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+											var likeCount = document
+													.querySelectorAll(".on").length * 2;
+											$("#likeCount").val(likeCount);
+											return false;
+										});
 					</script>
 				</div>
 				<button type="submit">수정확인</button>
 				<button type="reset">취소</button>
 				<button type="button" id="back_btn" class="btn btn-warning">취소</button>
 				<script>
-					$("#back_btn").click(function() {
-						location.href = "detail.do?reviewNum=${dto.reviewNum }&itemNum=${dto.itemNum}";
-					})
+					$("#back_btn")
+							.click(
+									function() {
+										location.href = "detail.do?reviewNum=${dto.reviewNum }&itemNum=${dto.itemNum}";
+									})
 				</script>
 			</form>
 			<footer id="footer">
@@ -101,6 +112,42 @@
 				</div>
 			</footer>
 		</div>
+
 	</div>
+
+	<div class="container">
+		<p id="star_grade">
+			<a href="#">★</a> <a href="#">★</a> <a href="#">★</a> <a href="#">★</a>
+			<a href="#">★</a>
+		</p>
+	</div>
+	<button type="submit">수정확인</button>
+	<button type="reset">취소</button>
+	<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+	<script>
+		$("#back_btn").click(function() {
+			location.href = "itemView_form.do?itemNum=" + $
+			{
+				dto.itemNum
+			}
+			;
+		})
+	</script>
+	<script>
+		$('#star_grade a').click(function() {
+			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			var likeCount = document.querySelectorAll(".on").length * 2;
+			$("#likeCount").val(likeCount);
+			return false;
+		});
+	</script>
+
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
+	</footer>
+
 </body>
 </html>

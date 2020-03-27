@@ -1,10 +1,17 @@
 package com.test.project01.master.category.Dto;
 
-public class UsersListDto {
+public class User_Orders_Dto {
 	private String userId;
-	private int verify;
-	private String result;
+	private String verify;
 	private String delivery;
+	private int orderNum;
+	
+	public int getOrderNum() {
+		return orderNum;
+	}
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
+	}
 	
 	public String getUserId() {
 		return userId;
@@ -12,24 +19,16 @@ public class UsersListDto {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public int getVerify() {
+	public String getVerify() {
 		return verify;
 	}
-	public void setVerify(int verify) {
+	public void setVerify(String verify) {
 		this.verify = verify;
-	}
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
 	}
 	public String getDelivery() {
 		return delivery;
 	}
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
-	}
-	
-	
+	}	
 }

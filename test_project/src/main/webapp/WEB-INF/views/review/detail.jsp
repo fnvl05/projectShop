@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>/review/detail.jsp</title>
 <jsp:include page="../include/resource.jsp" />
+
 <script
 	src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <script
@@ -109,7 +110,10 @@
 </head>
 <body>
 
+
+
 	<div id="root">
+
 		<header id="heder_box">
 			<div>
 				<%@ include file="../include/header.jsp"%>
@@ -121,8 +125,45 @@
 			</div>
 		</nav>
 
-		<h3>리뷰 글 상세 보기</h3>
 
+		<h3>리뷰 글 상세 보기</h3>
+		<table class="table table-bordered table-condensed">
+			<colgroup>
+				<col class="col-xs-3" />
+				<col class="col-xs-9" />
+			</colgroup>
+			<tr>
+				<th>글 번호</th>
+				<td>${dto.reviewNum }</td>
+			</tr>
+			<tr>
+				<th>작성자</th>
+				<td>${dto.reviewWriter }</td>
+			</tr>
+			<tr>
+				<th>별점</th>
+				<td><span class="wrap-star"> <span class='star-rating'>
+							<span
+							style="width:<fmt:formatNumber value="${dto.likeCount *10}" pattern=".0"/>%"></span>
+					</span> <c:if test="${dto.likeCount gt 0 }">
+							<fmt:formatNumber value="${dto.likeCount }" pattern=".0" />
+						</c:if>
+				</span></td>
+			</tr>
+			<tr>
+				<th>좋아요</th>
+				<td>${dto.upCount }</td>
+			</tr>
+			<tr>
+				<th>등록일</th>
+				<td>${dto.regdate }</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>${dto.reviewContent }</td>
+			</tr>
+		</table>
+		<br /> <br />
 
 		<table class="table table-bordered table-condensed">
 			<colgroup>
@@ -258,12 +299,17 @@
 					<textarea name="content">
 					<c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if>
 				</textarea>
+
 					<button type="submit">등록</button>
 				</form>
 			</div>
 		</div>
-
 	</div>
+
+
+
+
+
 	<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp"%>
@@ -271,7 +317,9 @@
 	</footer>
 
 
+
 	<script>
+
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)

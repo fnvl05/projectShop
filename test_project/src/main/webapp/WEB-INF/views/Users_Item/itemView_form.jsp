@@ -5,43 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-	
-	<style>
-		 div.itemImg_box div.itemImg { float:left; width:350px;}
-		 div.itemImg_box div.itemImg img { width:350px; height:250px;}
-		 
-		 div.itemImg_box div.itemInfo { float:right; width:330px; font-size:22px; }
-		 div.itemImg_box div.itemInfo p { margin:0 0 20px 0; }
-		 div.itemImg_box div.itemInfo p span { display:inline-block; width:100px; margin-right:15px; }
-		 
-		 div.itemImg_box div.itemInfo p.cartCount button { font-size:26px; border:none; background:none; }
-		 
-		 div.itemImg_box div.itemInfo p.cartCount input { font-size:22px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
-		 div.itemImg_box div.itemInfo p.cartCount button { font-size:26px; border:none; background:none; }
-		 div.itemImg_box div.itemInfo div.addCart {margin: 20px; text-align:right; }
-		 div.itemDes { font-size:18px; clear:both; padding-top:30px; margin: 20px;}
-</style>
-
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-	<header id="heder_box">
-		<div>
-			<%@ include file="../include/header.jsp" %>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
 		</div>
 	</header>
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	<section id="container">
-		<aside>
-			<%@ include file="../include/users_aside.jsp" %>
-		</aside>
+	<section id="container">	
 	<div id="container_box">
 		<form role="form" enctype="multipart/form-data">
 		<input type="hidden" name="itemNum" value="${dto.itemNum }"/>
