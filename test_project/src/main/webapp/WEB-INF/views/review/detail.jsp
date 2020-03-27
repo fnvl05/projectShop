@@ -127,43 +127,7 @@
 
 
 		<h3>리뷰 글 상세 보기</h3>
-		<table class="table table-bordered table-condensed">
-			<colgroup>
-				<col class="col-xs-3" />
-				<col class="col-xs-9" />
-			</colgroup>
-			<tr>
-				<th>글 번호</th>
-				<td>${dto.reviewNum }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${dto.reviewWriter }</td>
-			</tr>
-			<tr>
-				<th>별점</th>
-				<td><span class="wrap-star"> <span class='star-rating'>
-							<span
-							style="width:<fmt:formatNumber value="${dto.likeCount *10}" pattern=".0"/>%"></span>
-					</span> <c:if test="${dto.likeCount gt 0 }">
-							<fmt:formatNumber value="${dto.likeCount }" pattern=".0" />
-						</c:if>
-				</span></td>
-			</tr>
-			<tr>
-				<th>좋아요</th>
-				<td>${dto.upCount }</td>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<td>${dto.regdate }</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>${dto.reviewContent }</td>
-			</tr>
-		</table>
-		<br /> <br />
+
 
 		<table class="table table-bordered table-condensed">
 			<colgroup>
@@ -190,7 +154,7 @@
 			</tr>
 			<tr>
 				<th>좋아요</th>
-				<td><span class="${dto.reviewNum }">${dto.upCount }</span>
+				<td>
 					<form action="reivewUpCount.do" id="upForm" method="post"
 						style="display: inline;">
 						<input type="hidden" name="reviewNum" value="${dto.reviewNum}" />
@@ -200,7 +164,8 @@
 							class="up btn btn-link" type="button">
 							<span class="glyphicon glyphicon-thumbs-up"></span>
 						</button>
-					</form></td>
+					</form> <span class="${dto.reviewNum }">${dto.upCount }</span>
+				</td>
 			</tr>
 			<tr>
 				<th>등록일</th>

@@ -1,3 +1,30 @@
+drop table tbl_member;
+drop table tbl_items;
+drop table goods_category;
+drop table board_notice;
+drop table board_qna;
+drop table board_qna_comment;
+drop table board_review;
+drop table review_upCount;
+drop table board_review_comment;
+drop table orders;
+drop table order_detail;
+drop table cartList;
+
+drop sequence tbl_member_seq;
+drop sequence tbl_item_seq;
+drop sequence board_notice_seq;
+drop sequence board_qna_seq;
+drop sequence board_qna_comment_seq;
+drop sequence board_review_seq;
+drop sequence review_upCount_seq;
+drop sequence board_review_comment_seq;
+drop sequence orders_seq;
+drop sequence order_detail_seq;
+drop sequence cartList_seq;
+
+
+
 --회원 테이블--
 create table tbl_member (
     userId      varchar2(50)    not null, -- 아이디
@@ -141,7 +168,6 @@ likeCount number,
 upCount number,
 regdate date);
 
---리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
 -- 리뷰 좋아요 테이블
@@ -152,7 +178,7 @@ reviewNum number,
 regdate date,
 itemNum number
 );
-create sequence reviewUpCount_seq;
+create sequence review_upCount_seq;
 
 --review comment table
 CREATE TABLE board_review_comment(
@@ -166,7 +192,6 @@ CREATE TABLE board_review_comment(
 	regdate DATE 
 );
 
---review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
 
@@ -183,6 +208,7 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
+	);
 
 create sequence orders_seq;
 

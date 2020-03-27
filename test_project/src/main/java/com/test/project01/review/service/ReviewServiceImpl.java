@@ -258,7 +258,7 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public Map<String,Object> addUpCount(HttpServletRequest request, ReviewUpCountDto dto) {
-		dto.setId((String)request.getSession().getAttribute("id"));
+		dto.setId((String)request.getSession().getAttribute("id"));	
 		boolean isUped=dao.isUped(dto);
 		if(isUped) { 
 			dao.downCount(dto.getReviewNum());
@@ -275,6 +275,7 @@ public class ReviewServiceImpl implements ReviewService{
 			dao.addUpCount(dto);
 			//이상무
 			int count=dao.checkCount(dto.getReviewNum());
+			
 			Map<String,Object> map=new HashMap<>();
 			map.put("checkUp", true);
 			map.put("count", count);

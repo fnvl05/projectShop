@@ -63,7 +63,7 @@
 	</select>
 	<insert id="addUpCount" parameterType="ReviewUpCountDto">
 		insert into review_UpCount
-		values (reviewUpCount_seq.nextval, #{id}, #{reviewNum},sysdate,#{itemNum})
+		values (review_UpCount_seq.nextval, #{id}, #{reviewNum},sysdate,#{itemNum})
 	</insert>
 	<delete id="delUpCount" parameterType="ReviewUpCountDto">
 		delete from review_UpCount 
