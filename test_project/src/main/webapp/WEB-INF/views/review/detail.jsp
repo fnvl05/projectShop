@@ -256,7 +256,7 @@
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
-	
+</div>
 <script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){

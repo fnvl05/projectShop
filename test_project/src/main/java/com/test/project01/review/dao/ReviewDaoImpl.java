@@ -64,8 +64,14 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public boolean isExist(ReviewDto dto) {
-		int reviewNum=session.selectOne("review.isExist",dto);
-		return false;
+		Integer reviewNum=session.selectOne("review.isExist",dto);
+		if(reviewNum==null) {
+			return false;
+		}else {
+			return true;
+		}
+		
+		
 	}
 
 	

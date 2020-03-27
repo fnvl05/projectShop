@@ -115,12 +115,32 @@
 								<td><fmt:formatNumber value="${ tmp.itemPrice}" pattern="###,###,###"/>원</td>
 								<td>
 								<fmt:formatNumber value="${tmp.quantity *tmp.itemPrice }" pattern="###,###,###"/>원
+								<input type="hidden" value=${tmp.itemNum } name="itemNum" id="${tmp.itemNum }" />
 								</td>
-								<td><button onclick="insertform();">리뷰쓰기</button></td>
+								<td>
+								
+									<button  type="button" id="${tmp.itemNum }">리뷰쓰기</button>
+								</td>
+								
 								<script>
-									function insertform(){
-										location.href="../review/insertform.do?itemNum=${tmp.itemNum}";
-									}
+									var itemNum=null;
+									$("button[type=button]").click(function(){
+										itemNum=$(this).attr("id");
+										console.log(itemNum);
+										$.ajax({
+											url:"checkreview.do",
+											method:"post",     //요청 메소드
+											data:{"itemNum":itemNum},   //요청파라미터:전달받은 아이템번호
+											success:function(responseData){   //성공적으로 응답을 하면은 이 함수가 호출됨 ,응답한 데이터는 ()안으로 들어옴,페이지 전환x
+												if(responseData.isExist){ //이미 존재하는 리뷰
+													alert("이미 리뷰를 작성했습니다.");
+												}else{
+													location.href="../review/insertform.do?itemNum=${tmp.itemNum}";	
+												}
+											
+											}
+										});
+									});
 								</script>
 								
 							</tr>

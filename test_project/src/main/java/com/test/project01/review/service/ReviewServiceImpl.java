@@ -1,6 +1,8 @@
 package com.test.project01.review.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -261,6 +263,21 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void updateComment(ReviewCommentDto dto) {
 		reviewCommentDao.update(dto);
+	}
+
+	@Override
+	public Map<String, Object> isExist(HttpServletRequest request,int itemNum) {
+		UsersDto userDto=(UsersDto)request.getSession()
+				.getAttribute("userDto");
+		String reviewWriter=userDto.getUserId();
+		ReviewDto dto=new ReviewDto();
+		dto.setReviewWriter(reviewWriter);
+		dto.setItemNum(itemNum);
+		boolean isExist=dao.isExist(dto);
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isExist", isExist);
+		return map;
+		
 	}
 
 	

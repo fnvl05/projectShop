@@ -25,4 +25,5 @@ public interface ReviewDao {
 	public List<Integer> likeCount(int itemNum);
 	//해당 아이템에 대한 리뷰가 있는지 여부
 	public boolean isExist(ReviewDto dto);
+
 }

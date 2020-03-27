@@ -1,5 +1,7 @@
 package com.test.project01.review.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
@@ -30,5 +32,7 @@ public interface ReviewService {
 	public void saveComment(HttpServletRequest request);
 	//리뷰 댓글 수정
 	public void updateComment(ReviewCommentDto dto);
+	//리뷰 존재여부
+	public Map<String, Object> isExist(HttpServletRequest request,int itemNum);
 	
 }

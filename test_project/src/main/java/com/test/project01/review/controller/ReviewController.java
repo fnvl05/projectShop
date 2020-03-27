@@ -39,7 +39,7 @@ public class ReviewController {
 		mView.setViewName("review/itemList_review");
 		return mView;
 	}
-	
+	//리뷰 인서트폼
 	@RequestMapping("/review/insertform")
 	public ModelAndView Users_Insertform(HttpServletRequest request) {
 		service.insertform(request);
@@ -85,7 +85,7 @@ public class ReviewController {
 		service.delete(request, reviewNum);
 		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
 	}
-	
+	//댓글 삭제
 	@ResponseBody
 	@RequestMapping(value="/review/comment_delete",method=RequestMethod.POST )
 	public Map<String, Object> authCommentDelete(HttpServletRequest request,
@@ -97,14 +97,14 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map; 
 	}
-	
+	//댓글등록
 	@RequestMapping(value="/review/comment_insert",method = RequestMethod.POST)
 	public ModelAndView authCommentInsert(HttpServletRequest request,
 			@RequestParam int ref_group) {
 		service.saveComment(request);
 		return new ModelAndView("redirect:/review/detail.do?reviewNum="+ref_group);
 	}
-	
+	//댓글 수정
 	@ResponseBody
 	@RequestMapping("/review/comment_update")
 	public Map<String, Object> authCommentUpdate(HttpServletRequest request,
@@ -116,5 +116,6 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	
 	
 }
