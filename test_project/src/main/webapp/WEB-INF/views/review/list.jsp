@@ -72,9 +72,10 @@ img {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="tmp" items="${requestScope.list }">
+					<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 						<tr>
-							<td>${tmp.reviewNum }</td>
+							<!--<td>${tmp.reviewNum }</td>-->
+							<td>${status.count }</td>
 							<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a>
 							</td>
 							<td><img src="../resources${tmp.itemImg }" /></td>
