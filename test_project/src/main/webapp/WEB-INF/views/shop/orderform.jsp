@@ -218,15 +218,15 @@
 					
 		
 					</script>
-					<div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid && myForm.userAddr1.$dirty}">
+					<div class="container" >
 						<label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
-						<input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
+						<input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호"/>
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 					</div>
 					
-					<div class="container" ng-class="{'has-success':myForm.userAddr2.$valid,'has-error':myForm.userAddr2.$invalid && myForm.userAddr2.$dirty}">
+					<div class="container" >
 						<label for="userAddr2">기본 주소 <strong id="required">*</strong></label>
-						<input type="text" name="userAddr2" id="userAddr2"  placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
+						<input type="text" name="userAddr2" id="userAddr2"  placeholder="기본주소" />
 					</div>
 					<span id="guide" style="color:#999;display:none"></span>
 					<div class="container">
@@ -278,20 +278,14 @@
 						});
 						$("#userAddr1").on("click",function(){
 							sample4_execDaumPostcode();
-							btn();
+							
 						});
 						$("#userAddr2").on("click",function(){
 							sample4_execDaumPostcode();
-							btn();
+						
 						});
 						
-						var btn=function(){
-							if($("#userAddr1").val()==""||$("#userAddr2").val()==""){
-								$("button[type=submit]").attr("disabled","disabled");
-							}else{
-								$("button[type=submit]").removeAttr("disabled");
-							}
-						}
+						
 					</script>
 					<div class="container">
 						<label for="msg">배송 메세지<br/>[100자 이내]</label>
@@ -307,7 +301,21 @@
 						<input type="radio" name="payment" id="phone" value="phone"  />
 						<label for="phone">휴대폰결제</label>
 					</div>
-					<button type="submit" ng-disabled="myForm.$invalid" >결제하기</button>
+					<button type="submit" ng-disabled="myForm.$invalid" id="btn">결제하기</button>
+					<script>
+					$("#btn").on("click",function(){
+						//제출 전 userAddr 값을 변수에 저장
+						var userAddr1=$("#userAddr1").val();
+						var userAddr2=$("#userAddr2").val();
+						//내용이 없는 경우
+						if(userAddr1==""||userAddr2==""){
+							alert("주소를 입력하세요.",function(){
+								$("#userAddr1").focus();
+							},"warning");
+							return false;
+						}
+					});
+					</script>
 					<!--  
 					<button onclick="showPopup();">결제하기</button>
 					<script>
