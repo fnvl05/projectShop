@@ -45,7 +45,6 @@
 						</tr>
 					</thead>
 					<tbody>
-					
 						<c:forEach var="tmp" items="${orderList}" varStatus="status">
 							<tr>
 								<td>${status.count}</td>
@@ -62,6 +61,10 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br/>
+				<c:if test="${empty orderList  }">
+					<p style="text-align: center;">구매내역이 존재하지 않습니다.</p>
+				</c:if>
 			</div>
 		</section>
 		<footer id="footer">

@@ -92,6 +92,9 @@ img {
 					</c:forEach>
 				</tbody>
 			</table>
+			<c:if test="${empty list  }">
+				<p style="text-align: center;">리뷰가 없습니다.</p>
+			</c:if>
 			<div class="page-display">
 				<ul class="pagination pagination-sm">
 					<c:choose>
