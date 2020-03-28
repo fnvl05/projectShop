@@ -35,6 +35,7 @@
 				<table>
 					<thead>
 						<tr>
+							<th>번호</th>
 							<th>주문번호</th>
 							<th>주문일자</th>
 							<th>상품명</th>
@@ -44,8 +45,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="tmp" items="${orderList}" >
+					
+						<c:forEach var="tmp" items="${orderList}" varStatus="status">
 							<tr>
+								<td>${status.count}</td>
 								<td>${tmp.orderNum }</td>
 								<td>
 								<fmt:parseDate value="${tmp.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>

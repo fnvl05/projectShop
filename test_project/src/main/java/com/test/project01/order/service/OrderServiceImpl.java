@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService{
 	public void orderList(HttpServletRequest request) {
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
-		List<Integer> getOrderNum=dao.getOrderNum(userId);
+		List<Integer> getOrderNum=dao.getOrderNum2(userId);
 		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
 		List<OrderDetailJoinDto> orderList=new ArrayList<>();
 		//해당 주문번호에 대한 반복문 돌기
