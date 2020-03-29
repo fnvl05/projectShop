@@ -55,7 +55,7 @@
 <body>
 	<div id="root">
 		<header id="heder_box">
-			<h1 class="title"><a href="home.do">연습용 쇼핑몰</a></h1>
+			<h1 class="title"><a href="index.do">연습용 쇼핑몰</a></h1>
 		</header>
 		<nav id="nav">
 			<div id="nav_box">

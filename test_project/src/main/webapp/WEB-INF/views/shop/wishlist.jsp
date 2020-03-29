@@ -149,7 +149,7 @@
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
             <tr>
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-               <td>${tmp.itemName }</td>
+               <td> <a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
                <td>
               		 <fmt:formatNumber value="${tmp.itemPrice}" 
                      pattern="###,###,###"/>원
@@ -166,7 +166,7 @@
             <tr>              
                <td>
                   <button type="button" class="btn btn-warning"
-                     onclick="location.href='../home.do'">쇼핑계속</button>
+                     onclick="location.href='../index.do'">쇼핑계속</button>
                </td>
             </tr>
          </tfoot>
