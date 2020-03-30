@@ -92,11 +92,6 @@
 			<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 		</c:if>
 	</div>
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
 	<script>
 		function deleteConfirm() {
 			var isDelete = confirm("글을 삭제 하시 겠습니까?");

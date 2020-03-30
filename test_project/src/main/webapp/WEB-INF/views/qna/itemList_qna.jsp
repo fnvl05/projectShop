@@ -154,6 +154,5 @@
 		</form>
 	</div>
 
-	<a href="insertform.do?itemNum=${itemNum }">QnA</a>
 </body>
 </html>
