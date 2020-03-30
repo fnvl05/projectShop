@@ -82,23 +82,18 @@ public class CartController {
 	}
 	
 	//4. 장바구니 수정
-	@RequestMapping("/shop/updateCart")
-	public String User_updateCart(@RequestParam int[] cartStock, @RequestParam int[] itemNum,
-			HttpSession session) {
-		//session 아이디
-		UsersDto user=(UsersDto)session.getAttribute("userDto");
-		String userId=user.getUserId();	
-		//레코드의 갯수만큼 반복문 실행
-		for(int i=0; i<itemNum.length; i++) {
-			CartListDto dto=new CartListDto();
-			dto.setUserId(userId);
-			dto.setCartStock(cartStock[i]);
-			dto.setItemNum(itemNum[i]);
-			service.modifyCart(dto);
-		}
-		return "redirect:cartList.do";
-		
+	@ResponseBody
+	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
+	public Map<String, Object> updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
+		CartListDto cartDto=new CartListDto();
+		cartDto.setCartNum(dto.get(0));
+		cartDto.setCartStock(dto.get(1));
+		service.updateCart(cartDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
 	}
+	
 	//5. 위시리스트  추가
 	@RequestMapping(value = "/Users_Item/addwish", method = RequestMethod.POST)
 	public String User_addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
