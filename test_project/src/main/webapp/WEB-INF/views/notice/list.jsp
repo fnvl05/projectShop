@@ -51,16 +51,16 @@
 			<%-- 칼럼의 폭을 임의로 조절할 수 있다. 합이 12이여야 한다(12등분이므로) --%>
 			<colgroup>
 				<col class="col-xs-1" />
+				<col class="col-xs-7" />
+				<col class="col-xs-1" />
+				<col class="col-xs-1" />
 				<col class="col-xs-2" />
-				<col class="col-xs-4" />
-				<col class="col-xs-2" />
-				<col class="col-xs-3" />
 			</colgroup>
 			<thead>
 				<tr>
 					<th>글번호</th>
-					<th>작성자</th>
 					<th>제목</th>
+					<th>작성자</th>
 					<th>조회수</th>
 					<th>등록일</th>
 				</tr>
@@ -70,7 +70,6 @@
 					<%-- request에 담긴 list --%>
 					<tr>
 						<td>${tmp.num }</td>
-						<td>${tmp.writer }</td>
 						<td><c:choose>
 								<c:when test="${tmp.noticeNum==1 }">
 									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}"> <strong
@@ -84,6 +83,7 @@
 									</a>
 								</c:otherwise>
 							</c:choose></td>
+						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
 						<td>${tmp.regdate }</td>
 					</tr>

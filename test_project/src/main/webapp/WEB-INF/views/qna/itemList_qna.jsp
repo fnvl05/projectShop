@@ -48,8 +48,8 @@
 			<colgroup>
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
-				<col class="col-xs-4" />
-				<col class="col-xs-2" />
+				<col class="col-xs-5" />
+				<col class="col-xs-1" />
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
 			</colgroup>
