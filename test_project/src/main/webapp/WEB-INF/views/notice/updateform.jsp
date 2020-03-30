@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/cafe/updateform.jsp</title>
+<title>/notice/updateform.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>

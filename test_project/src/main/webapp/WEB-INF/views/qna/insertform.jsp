@@ -11,7 +11,7 @@
 <body>
 <div class="container">
 	<ol class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
+		<li><a href="${pageContext.request.contextPath }/qna/itemList_qna.do?itemNum=${itemNum}">목록</a></li>
 		<li>새글 작성</li>
 	</ol>
 	<form action="insert.do" method="post">
@@ -41,7 +41,7 @@
 		<button class="btn btn-danger" type="button" id = "btn_back" >뒤로가기</button>
 		<script>
 			$("#btn_back").click(function(){
-				location.href="list.do";
+				location.href="${pageContext.request.contextPath }/qna/itemList_qna.do?itemNum="+${itemNum};
 			})
 		</script>
 	</form>

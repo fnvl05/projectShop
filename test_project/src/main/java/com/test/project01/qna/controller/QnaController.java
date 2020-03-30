@@ -38,6 +38,7 @@ public class QnaController {
 		@RequestMapping("/qna/itemList_qna")
 		public ModelAndView getList2(HttpServletRequest request,ModelAndView mView,@RequestParam String itemNum) {
 			service.getList2(request,itemNum);
+			request.setAttribute("itemNum", itemNum);
 			mView.setViewName("qna/itemList_qna");
 			return mView;
 		}
