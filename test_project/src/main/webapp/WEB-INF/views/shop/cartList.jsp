@@ -105,7 +105,7 @@
 					<input type="checkbox" name="delBox" value="${tmp.cartNum }"/>
 				</td>
 				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-				<td>${tmp.itemName }</td>
+				<td> <a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
 				<td>
 					<input type="hidden" id="itemPrice" />
                 	<fmt:formatNumber value="${tmp.itemPrice}" 
@@ -134,7 +134,7 @@
 				</td>
 				<td>
 					<button type="button" class="btn btn-warning"
-						onclick="location.href='../home.do'">쇼핑계속</button>
+						onclick="location.href='../index.do'">쇼핑계속</button>
 				</td>
 			</tr>
 		</tfoot>

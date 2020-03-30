@@ -137,7 +137,7 @@ public class CartController {
 //		if(count == 0) {		
 //		}
 
-		return "redirect:../shop/orderform.do";
+		return "redirect:cartList.do";
 	}
 	
 	//바로 주문폼으로 넘어가게 하기

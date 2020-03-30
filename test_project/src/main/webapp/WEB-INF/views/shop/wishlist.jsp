@@ -150,7 +150,10 @@
             <tr>
             	
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-               <td><input type="hidden" value="${tmp.itemName }" name="itemName">${tmp.itemName }</td>
+               <td> 
+               		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a>
+               		<input type="hidden" value="${tmp.itemName }" name="itemName">
+               </td>       
                <td>
                		<input type="hidden" value="${tmp.itemPrice }" name="itemPrice">
               		 <fmt:formatNumber value="${tmp.itemPrice}" 
@@ -168,7 +171,7 @@
             <tr>              
                <td>
                   <button type="button" class="btn btn-warning"
-                     onclick="location.href='../home.do'">쇼핑계속</button>
+                     onclick="location.href='../index.do'">쇼핑계속</button>
                </td>
             </tr>
          </tfoot>
