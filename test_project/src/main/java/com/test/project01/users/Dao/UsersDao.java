@@ -1,7 +1,5 @@
 package com.test.project01.users.Dao;
 
-import java.util.List;
-
 import com.test.project01.users.Dto.UsersDto;
 
 public interface UsersDao {
@@ -9,4 +7,14 @@ public interface UsersDao {
 	public boolean isExist(String inputUsersId);
 	public String getPassHash(String inputUsersId);
 	public UsersDto logIn(String usersId);
+	public UsersDto getData(String id);
+	public void update(UsersDto dto);
+	public void updatePass(UsersDto dto);
+	public void delete(String id);
+	
+	// 아이디 찾기
+	public String findId(UsersDto dto);
+	public String findPass(UsersDto dto);
+	public String newpass(UsersDto dto);
+	public void changeNewPassData(UsersDto dto);
 }

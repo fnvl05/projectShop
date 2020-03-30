@@ -1,14 +1,19 @@
 -회원 테이블-
 create table tbl_member (
-    userId      varchar2(50)    not null,
-    userPass    varchar2(100)   not null,
-    userName    varchar2(30)    not null,
-    userPhon    varchar2(20)    not null,
-    userAddr1   varchar2(20)    null,
-    userAddr2   varchar2(50)    null,
-    userAddr3   varchar2(50)    null,
-    regiDate    date            default sysdate,
-    verify      number          default 0,
+     userId      varchar2(50)    not null, 
+    userPass    varchar2(100)   not null, 
+    PassQuiz	varchar2(100)	not null, 
+    QuizAnswer	varchar2(100)	not null, 
+    userName    varchar2(30)    not null, 
+    userPhone   varchar2(20)    not null, 
+    email		varchar2(100) 	null, 
+    userAddr1   varchar2(100)   null, 
+    userAddr2   varchar2(100)   null, 
+    userAddr3   varchar2(100)   null, 
+    regiDate    date            default sysdate, 
+    birthday	date 			not null, 
+    mileage		number			default 0, 
+    verify      number          default 0, 
     primary key(userId)
 );
 
@@ -172,6 +177,8 @@ references tbl_member(userId);
 alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
+
+<!-- 일단 여기까지 -->
 
 <!-- 카테고리별 상품 리스트 : 1차 분류 -->
 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,

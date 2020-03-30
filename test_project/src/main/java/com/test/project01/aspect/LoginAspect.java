@@ -153,7 +153,7 @@ public class LoginAspect {
 				HttpSession session=request.getSession();
 				if(session.getAttribute("id") != null) {
 					isLogin = true;
-					if(isLogin && session.getAttribute("master").equals("1")) {
+					if(isLogin && session.getAttribute("master").equals("0")) {
 						isMaster = true;
 					}
 				}

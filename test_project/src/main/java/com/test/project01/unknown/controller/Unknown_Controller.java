@@ -21,19 +21,19 @@ public class Unknown_Controller {
 	Unknown_service serviec;
 	
 	@RequestMapping("/Unknown/itemAllList")
-	public ModelAndView itemList(ModelAndView mView, HttpServletRequest request) {
+	public ModelAndView Users_itemList(ModelAndView mView, HttpServletRequest request) {
 		serviec.itemList(mView);
 		mView.setViewName("Unknown/itemAllList");
 		return mView;
 	}
 	@RequestMapping("/Unknown/itemView_form")
-	public ModelAndView itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Users_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		serviec.getItemView(mView, itemNum);
 		mView.setViewName("Unknown/itemView_form");
 		return mView;
 	}
 	@RequestMapping("/Unknown/itemList")
-	public ModelAndView getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView) {
+	public ModelAndView Users_getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView) {
 		List<Unknown_itemDto> cateList = null;
 		cateList = serviec.cateList(cateCode, cateLevel);
 		mView.addObject("cateList", cateList);

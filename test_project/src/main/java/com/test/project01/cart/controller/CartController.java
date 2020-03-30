@@ -29,7 +29,7 @@ public class CartController {
 	
 	//1. 장바구니 추가
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
-	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//String userId=(String)session.getAttribute("userId");
@@ -49,7 +49,7 @@ public class CartController {
 	
 	//2. 장바구니 목록
 	@RequestMapping("/shop/cartList")
-	public ModelAndView getCartList(HttpSession session, Model model, ModelAndView mView) {
+	public ModelAndView Users_getCartList(HttpSession session, Model model, ModelAndView mView) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//List<CartListDto> cartList=service.cartList(userId);
@@ -75,7 +75,7 @@ public class CartController {
 	//3. 장바구니 삭제
 	@ResponseBody
 	@RequestMapping(value="/shop/deleteEachCart", method=RequestMethod.POST)
-	public Map<String, Object> deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
+	public Map<String, Object> Users_deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
 		for(int i=0; i<list.size(); i++) {
 			service.deleteCart(Integer.parseInt(list.get(i)));
 		}
@@ -86,7 +86,7 @@ public class CartController {
 	
 	//4. 장바구니 수정
 	@RequestMapping("/shop/updateCart")
-	public String updateCart(@RequestParam int[] cartStock, @RequestParam int[] itemNum,
+	public String Users_updateCart(@RequestParam int[] cartStock, @RequestParam int[] itemNum,
 			HttpSession session) {
 		//session 아이디
 		//String userId=(String)session.getAttribute("userId");

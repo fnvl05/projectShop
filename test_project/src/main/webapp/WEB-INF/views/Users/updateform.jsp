@@ -5,55 +5,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>view/Users/signup_form</title>
-	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<title>개인정보 수정/Users/updateform.jsp</title>
 </head>
 <body>
-<section id="content">
- <form action="signup.do" method="post">
-  <div class="input_area">
-   <label for="userId">ID</label>
-   <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      
-  </div>
-  
-  <div class="input_area">
-   <label for="userPass">PassWord</label>
-   <input type="password" id="userPass" name="userPass" required="required" />      
-  </div>
-  
-  <div class="input_area">
-		<label for="PassQuiz">비밀번호 찾기 질문</label>
-		<select name="PassQuiz" id="PassQuiz" required="required">
-			<option value="titlename" >질문을 선택하세요.</option>
-			<option value="Mom">어머니의 성함은?</option>
-			<option value="Dad">아버지의 성함은?</option>
-			<option value="Pet">애완동물의 이름은?</option>
-			<option value="Love">가장 사랑하는 인물은?</option>
-			<option value="Faverite">가장 존경하는 인물은?</option>
-		</select>
-  </div>
-  
-  <div class="input_area">
-  	<label for="quizAnswer">비밀번호 찾기 답변</label>
-  	<input type="text" id="quizAnswer" name="quizAnswer" placeholder="답을 입력하세요." required="required" />
-  </div>
-  
-  <div class="input_area">
-   <label for="userName">이름</label>
-   <input type="text" id="userName" name="userName" placeholder="닉네임을 입력해주세요" required="required" />      
-  </div>
-  
-  <div class="input_area">
-   <label for="userPhone">연락처</label>
-   <input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />      
-  </div>
-  
-  <div class="input_area">
-  	<label for="email">E-Mail</label>
-  	<input type="email" id="email" name="email" placeholder="E-Mail을 입력하세요."/>
-  </div>
-  
-  <div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
+<section id="context">
+ <form action="update.do" method="post">
+ 	<div class="input_area">
+ 		<h2>개인정보 수정 페이지</h2>
+ 		<div>
+ 			<label for="userId">ID</label>
+ 			<input type="text" name="userId" id="Id" readonly="readonly" value="${dto.getUserId() }" />
+ 		</div>
+ 		<div>
+ 			<label for="userName">이름</label>
+ 			<input type="text" name="userName" id="newuserName" required="required" value="${dto.getUserName() }" />
+ 		</div>
+ 		<div>
+ 			<label for="userPhone">연락처</label>
+ 			<input type="text" name="userPhone" id="newUserPhone" />
+ 		</div>
+ 		<div>
+ 			<label for="email">E-mail</label>
+ 			<input type="text" name="email" id="newemail" required="required" />
+ 		</div>
+  		<div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
             <label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
             <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -71,17 +46,13 @@
          <div class="container">
             <label for="userAddr3">상세 주소</label>
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
-  </div>
-  
-  <div class="input_area">
-  	<label for="birthday">생일</label>
-  	<input type="date" id="birthday" name="birthday" required="required" />
-  </div>
-  
-  <button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
- </form>   
+  		</div>
+ 		
+ 		<button type="submit" id="update_Btn" name="update_Btn">개인정보 수정완료</button>
+ 	</div>
+ </form>	
 </section>
-<!-- 다음 주소 API 사용 -->    
+<!-- 다음 주소 API 사용 -->     
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -130,6 +101,6 @@
                }
               }).open();
           }        
-</script> 
+</script>
 </body>
 </html>
