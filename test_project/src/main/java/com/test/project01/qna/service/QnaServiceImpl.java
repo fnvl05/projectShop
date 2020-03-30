@@ -16,6 +16,7 @@ import com.test.project01.qna.dao.QnaDao;
 import com.test.project01.qna.dto.QnaCommentDto;
 import com.test.project01.qna.dto.QnaDto;
 import com.test.project01.qna.dto.QnaJoinDto;
+import com.test.project01.users.Dto.UsersDto;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -299,6 +300,14 @@ public class QnaServiceImpl implements QnaService{
 			request.setAttribute("itemNum", itemNum);	
 
 			
+		}
+
+		@Override
+		public void qnalist(HttpServletRequest request) {
+			String writer=(String)request.getSession()
+					.getAttribute("id");
+			List<QnaJoinDto> qnalist=qnaDao.qnaList(writer);
+			request.setAttribute("qnalist", qnalist);
 		}
 
 }

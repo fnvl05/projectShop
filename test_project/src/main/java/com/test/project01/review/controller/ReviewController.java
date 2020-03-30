@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.test.project01.qna.service.QnaService;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.service.ReviewService;
@@ -23,6 +23,8 @@ import com.test.project01.review.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	ReviewService service;
+	@Autowired
+	QnaService qnaService;
 	
 	//리뷰 목록보기
 	@RequestMapping("/review/list")
@@ -115,6 +117,15 @@ public class ReviewController {
 		Map<String, Object> map=new HashMap<>();
 		map.put("isSuccess", true);
 		return map;
+	}
+	
+	//board_list 에서 qna목록, review 목록
+	@RequestMapping("/Users/boardList")
+	public ModelAndView User_boardList(HttpServletRequest request,ModelAndView mView) {
+		service.reviewList(request);
+		qnaService.qnalist(request);
+		mView.setViewName("Users/boardList");
+		return mView;
 	}
 
 	

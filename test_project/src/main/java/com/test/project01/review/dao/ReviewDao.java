@@ -25,5 +25,7 @@ public interface ReviewDao {
 	public List<Integer> likeCount(int itemNum);
 	//해당 아이템에 대한 리뷰가 있는지 여부
 	public boolean isExist(ReviewDto dto);
-
+	
+	//특정아이디의 리뷰 작성목록보기
+	public List<ReviewJoinDto> reviewList(String reviewWriter);
 }

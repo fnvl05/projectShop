@@ -122,4 +122,11 @@
 		SET title=#{title}, content=#{content}
 		WHERE num=#{num}
 	</update>
+	<select id="qnalist" parameterType="String" resultType="qnaJoinDto">
+		select q.num,q.writer,q.title,q.content,q.viewCount,q.regdate,q.itemNum,
+				i.itemName,i.itemImg
+		from board_qna q, tbl_items i
+		where q.itemNum=i.itemNum and q.writer=#{writer}
+		order by q.regdate DESC
+	</select>
 </mapper>

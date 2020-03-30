@@ -32,5 +32,7 @@ public interface ReviewService {
 	public void updateComment(ReviewCommentDto dto);
 	//리뷰 존재여부
 	public boolean isExist(HttpServletRequest request,int itemNum);
+	//board_list에서 내가쓴 리뷰 목록
+	public void reviewList(HttpServletRequest request);
 	
 }

@@ -1,8 +1,6 @@
 package com.test.project01.review.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +13,6 @@ import com.test.project01.review.dao.ReviewDao;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewJoinDto;
-import com.test.project01.users.Dao.UsersDao;
 import com.test.project01.users.Dto.UsersDto;
 
 @Service
@@ -270,13 +267,6 @@ public class ReviewServiceImpl implements ReviewService{
 
 	@Override
 	public boolean isExist(HttpServletRequest request,int itemNum) {
-//		ReviewDto dto=new ReviewDto();
-//		dto.setReviewWriter(reviewWriter);
-//		dto.setItemNum(itemNum);
-//		boolean isExist=dao.isExist(dto);
-//		Map<String, Object> map=new HashMap<>();
-//		map.put("isExist", isExist);
-//		return map;
 		UsersDto userDto=(UsersDto)request.getSession()
 				.getAttribute("userDto");
 		String reviewWriter=userDto.getUserId();
@@ -285,6 +275,15 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setItemNum(itemNum);
 		boolean isExist=dao.isExist(dto);
 		return isExist;
+	}
+
+	@Override
+	public void reviewList(HttpServletRequest request) {
+		UsersDto userDto=(UsersDto)request.getSession()
+				.getAttribute("userDto");
+		String reviewWriter=userDto.getUserId();
+		List<ReviewJoinDto> reviewlist=dao.reviewList(reviewWriter);
+		request.setAttribute("reviewlist", reviewlist);
 	}
 
 	
