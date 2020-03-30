@@ -7,14 +7,6 @@
 <meta charset="UTF-8">
 <title>/notice/detail.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-/* 글 내용을 출력할 div 에 적용할 css */
-.contents, table {
-	width: 100%;
-	border: 1px dotted #cecece;
-	box-shadow: 3px 3px 5px 6px #ccc;
-}
-</style>
 </head>
 <body>
 	<div id="root">

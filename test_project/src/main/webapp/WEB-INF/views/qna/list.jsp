@@ -35,7 +35,7 @@
 			</div>
 		</header>
 	</div>
-	<div id="container_box">
+	<div class="container_box">
 		<c:if test="${not empty keyword }">
 			<p class="breadcrumb">
 				<strong>${keyword }</strong> 라는 검색어로 <strong>${totalRow }</strong>
@@ -43,7 +43,7 @@
 			</p>
 		</c:if>
 	</div>
-	<div id="container">
+	<div class="container">
 		<h1>QnA</h1>
 		<table class="table table-hover">
 			<colgroup>

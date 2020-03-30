@@ -8,12 +8,7 @@
 <meta charset="UTF-8">
 <title>/notice/list.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-#title {
-	font-size: 18px;
 
-}
-</style>
 </head>
 <body>
 	<div id="root">
@@ -41,7 +36,7 @@
 			</div>
 		</header>
 	</div>
-	<div id="container_box">
+	<div class="container_box">
 
 		<c:if test="${not empty keyword }">
 			<p class="breadcrumb">
@@ -50,7 +45,7 @@
 			</p>
 		</c:if>
 	</div>
-	<div id="container">
+	<div class="container">
 		<h1>Notice</h1>
 		<table class="table table-hover">
 			<%-- 칼럼의 폭을 임의로 조절할 수 있다. 합이 12이여야 한다(12등분이므로) --%>
