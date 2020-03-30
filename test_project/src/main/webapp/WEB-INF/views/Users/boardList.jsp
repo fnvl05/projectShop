@@ -31,10 +31,11 @@
 		</div>
 	</nav>
 	<section id="container">
-		<div id="container_box">
+		
 		<aside>
 			<%@ include file="../include/users_aside.jsp" %>
 		</aside>
+		<div id="container_box">
 		<div class="container">
 			<h3>Q&A</h3>
 			<table>
@@ -61,6 +62,9 @@
 					</c:forEach>
 				</tbody>
 			</table>	
+			<c:if test="${empty qnalist  }">
+				<p style="text-align: center;">작성하신 Q&A가 없습니다.</p>
+			</c:if>
 		</div>
 		<br/>
 		<div class="container">
@@ -91,6 +95,9 @@
 					</c:forEach>
 				</tbody>
 			</table>	
+			<c:if test="${empty reviewlist  }">
+				<p style="text-align: center;">작성하신 Review가 없습니다.</p>
+			</c:if>
 		</div>
 		</div>
 	</section>
