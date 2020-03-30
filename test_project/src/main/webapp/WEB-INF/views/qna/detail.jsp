@@ -59,8 +59,8 @@
 				</c:if>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
-						<col class="col-xs-3" />
-						<col class="col-xs-9" />
+						<col class="col-xs-2" />
+						<col class="col-xs-10" />
 					</colgroup>
 					<tr>
 						<th>글번호</th>
@@ -78,8 +78,12 @@
 						<th>등록일</th>
 						<td>${dto.regdate }</td>
 					</tr>
+					<tr>
+						<th>내용</th>
+						<td><div class="contents">${dto.content }</div></td>
+					</tr>
 				</table>
-				<div class="contents">${dto.content }</div>
+
 				<%-- 
 		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
 		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
