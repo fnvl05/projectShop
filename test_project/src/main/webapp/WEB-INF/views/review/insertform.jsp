@@ -6,12 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/insertform.jsp</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 </head>
 <style>
  #star_grade a{
@@ -26,21 +22,23 @@
 </style>
 <body>
 <div id="root">
-	<header id="heder_box">
-		<div>
-			<%@ include file="../include/header.jsp" %>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
 		</div>
 	</header>
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	<section id="container">
-		<div id="container_box">
-		<aside>
-			<%@ include file="../include/users_aside.jsp" %>
-		</aside>
+	<section id="container">	
+	<div id="container_box">
 			<div class="container">
 				<form action="insert.do" method="post" id="form" onSubmit="s">
 					<input type="hidden" name="itemNum" value="${itemNum }" />

@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>/review/updateform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
@@ -32,22 +31,26 @@
 </style>
 <body>
 <div id="root">
-	<header id="heder_box">
-		<div>
-			<%@ include file="../include/header.jsp"%>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
 		</div>
 	</header>
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp"%>
-		</div>
-	</nav>
-	<section id="container">
-		<div id="container_box">
-		<aside>
-			<%@ include file="../include/users_aside.jsp" %>
-		</aside>
+	<section id="container">	
+	<div id="container_box">
 			<div class="container">
+			<br/>
+			<br/>
 				<form action="update.do" method="post">
 					<input type="hidden" name="itemNum" value="${dto.itemNum }" /> <input
 						type="hidden" name="reviewNum" value="${dto.reviewNum }" /> <input
@@ -87,8 +90,7 @@
 							});
 						</script>
 					</div>
-					<button type="submit" id="starBtn">수정확인</button>
-					<button type="reset">취소</button>
+					<button type="submit" id="starBtn" class="btn btn-default">수정확인</button>
 					<button type="button" id="back_btn" class="btn btn-warning">취소</button>
 					<script>
 				

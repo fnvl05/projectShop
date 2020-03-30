@@ -7,10 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/shop/orderform.jsp</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<link rel="stylesheet" href="../resources/css/bootstrap.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
 <style>
 	img{
@@ -25,21 +22,23 @@
 </head>
 <body ng-app>
 	<div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
-			</div>
-		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
-		<section id="container">
-			<div id="container_box">
-			<aside>
-				<%@ include file="../include/users_aside.jsp" %>
-			</aside>
+		<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
+		</div>
+	</header>
+	<section id="container">	
+	<div id="container_box">
 				<table class="table table-striped table-condensed">
 					<thead>
 						<tr>
@@ -51,8 +50,7 @@
 							
 						</tr>
 					</thead>
-					
-<<<<<<< HEAD
+
 					<tbody>
 						<c:forEach var="tmp" items="${requestScope.list }">
 							<tr>
@@ -118,8 +116,8 @@
 						<input type="text" name="userName" id="userName" value=${sessionScope.userDto.userName } disabled/>
 					</div>
 					<div class="container">
-						<label for="userPhon">연락처 </label>
-						<input type="text" name="userPhon" id="userPhon" value=${sessionScope.userDto.userPhon } disabled />
+						<label for="userPhone">연락처 </label>
+						<input type="text" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } disabled />
 					</div>
 					<input type="hidden" name="addr1" id="addr1" value=${sessionScope.userDto.userAddr1 } />
 					<input type="hidden" name="addr2" id="addr2" value=${sessionScope.userDto.userAddr2 } />
@@ -143,8 +141,8 @@
 							if($('input:checkbox[id="equal"]').is(":checked")==true){
 								var userName=$("#userName").val();
 								$("#orderRec").val(userName);
-								var userPhon=$("#userPhon").val();
-								$("#orderPhone1").val(userPhon);
+								var userPhone=$("#userPhone").val();
+								$("#orderPhone1").val(userPhone);
 								var addr1=$("#addr1").val();
 								$("#userAddr1").val(addr1);
 								var addr2=$("#addr2").val();

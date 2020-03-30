@@ -100,22 +100,23 @@
 </head>
 <body>
 <div id="root">
-	<header id="heder_box">
-		<div>
-			<%@ include file="../include/header.jsp" %>
-
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
 		</div>
 	</header>
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	<section id="container">
-		<aside>
-			<%@ include file="../include/users_aside.jsp" %>
-		</aside>
-		<div id="container_box">
+	<section id="container">	
+	<div id="container_box">
 			<h3>리뷰 글 상세 보기</h3>
 		
 			<table class="table table-bordered table-condensed">

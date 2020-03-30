@@ -15,27 +15,48 @@
 		width:100px;
 		height:auto;
 	}
+	.star-rating {
+		width: 75px;
+	}
+	
+	.star-rating, .star-rating span {
+		display: inline-block;
+		height: 14px;
+		overflow: hidden;
+		background:
+			url(${pageContext.request.contextPath}/resources/images/star.png)
+			no-repeat;
+	}
+	
+	.star-rating span {
+		background-position: left bottom;
+		line-height: 0;
+		vertical-align: top;
+	}
 </style>
 </head>
 <body>
 
 <div id="root">
-	<header id="heder_box">
-		<div>
-			<%@ include file="../include/header.jsp" %>
+<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
 		</div>
 	</header>
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	<section id="container">
-		<div id="container_box">
-		<aside>
-			<%@ include file="../include/users_aside.jsp" %>
-		</aside>
+	<section id="container">	
+	<div id="container_box">
 			<div class="container">
+				<br/>
 				<br/>
 				<br/>
 				<p style="font-weight:bold;">리뷰 평점 : 
