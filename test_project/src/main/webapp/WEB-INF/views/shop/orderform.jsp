@@ -52,6 +52,7 @@
 						</tr>
 					</thead>
 					
+<<<<<<< HEAD
 					<tbody>
 						<c:forEach var="tmp" items="${requestScope.list }">
 							<tr>
@@ -164,7 +165,6 @@
 								$("#userAddr3").val("");
 							}
 						});
-				
 					</script>
 					<input type="hidden" name="allPrice" id="allPrice" value=${allPrice } />
 					<div class="container" ng-class="{'has-success':myForm.orderRec.$valid,'has-error':myForm.orderRec.$invalid &&myForm.orderRec.$dirty}">

@@ -5,28 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-	<div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
+	<div id="root">		
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp" %>
+					</div>
+					<div id="index_logo_div">
+						<%@ include file="../include/header.jsp" %>
+					</div>
+					<div class="navbar-left">
+							<%@ include file="../include/master_aside.jsp" %>						
+					</div>
+				</nav>
 			</div>
 		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
 		<section id="container">
-				<aside>
-				<%@ include file="../include/master_aside.jsp" %>
-			</aside>
 			<div id="container_box">
 				본문 영역
 			</div>

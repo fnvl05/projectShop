@@ -38,24 +38,40 @@
          itemThumbImg = #{itemThumbImg}
          where itemNum = #{itemNum}
 	</update>
+	
 	<delete id="itemDelete">
 		delete from tbl_items where itemNum = #{itemNum}
 	</delete>
 
-	<select id="selectList" resultType="master_usersList_Dto">
-		select tbl_member.userId, tbl_member.verify, orders.delivery, order_detail.result 
-		from tbl_member left join orders on tbl_member.userId=orders.userId 
-		left join order_detail on orders.orderNum=order_detail.orderNum
-	</select>
-	<update id="resultUpDate" parameterType="master_usersList_Dto">
-		update order_detail.result
-		set result = #{result}
-		where order_detail. = #{userId}
-	</update>
 	<update id="minusCount" parameterType="orderDetailDto">
 		update tbl_items
 		set itemCount=itemCount-#{quantity}
 		where itemNum=#{itemNum}
 	</update>
 	
+	<select id="select_user_orders" resultType="User_Orders_Dto">
+		select tbl_member.userId, tbl_member.verify, orders.delivery, orders.orderNum
+		from tbl_member left join orders on tbl_member.userId=orders.userId
+		where orders.delivery is not null
+		order by userId desc
+	</select>
+	<select id="select_item_order_detail" resultType="Item_OrderDetail_Dto">
+		select tbl_items.itemName, order_detail.result, order_detail.orderNum, order_detail.odNum
+		from order_detail left join tbl_items on tbl_items.itemNum=order_detail.itemNum 
+		where order_detail.result is not null
+		order by odnum desc
+	</select>
+	<update id="resultItem" parameterType="orderDetailDto">
+		 update order_detail
+     	 set result = #{result}
+         where odNum = #{odNum}
+	</update>
+	<select id="userAllList" resultType="UsersDto">
+		select * from tbl_member
+	</select>
+	<update id="userVerify">
+		update tbl_member
+		set verify = #{verify}
+		where userId = #{userId}	
+	</update>
 </mapper>

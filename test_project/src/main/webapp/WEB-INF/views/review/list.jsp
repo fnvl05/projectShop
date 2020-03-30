@@ -38,7 +38,6 @@ img {
 </style>
 </head>
 <body>
-
 <div id="root">
 	<header id="heder_box">
 		<div>
@@ -132,7 +131,9 @@ img {
 						</c:otherwise>
 					</c:choose>
 				</ul>
+
 			</div>
+
 		</div>
 		</div>
 	</section>

@@ -7,45 +7,22 @@
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-	.a{	
-		width: 500px;
-		height:500px;
-		position:relative;
-		top: 200px;
-		margin: 0 auto;
-	}	
-	.img1{
-		width: 100%;
-		height:100%;
-		z-index: 1;
-		position:absolute;
-	}
-	.img2{
-		width: 100%;
-		height: 100%;
-		z-index: 0;
-		position:absolute;
-	}
-	/* .img1:active{
-		z-index:-1;
-	} */
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/style/style.css">
 </head>
 <body>
-	<div class="a">
-		<img alt="" src="resources/images/제목-없음-1.png" class="img1">
-		<img alt="" src="resources/images/제목-없음-111.gif" class="img2">
+	<div class="home_div">
+		<img alt="" src="resources/images/제목-없음-1.png" class="home_img1">
+		<img alt="" src="resources/images/제목-없음-111.gif" class="home_img2">
 	</div>
 	
 	<script>
-		$('.a').mouseover(function(){
-			$('.img1').prop("style","z-index:-1");
+		$('.home_div').mouseover(function(){
+			$('.home_img1').prop("style","z-index:-1");
 		});
-		$('.a').mouseout(function(){
-			$('.img1').prop("style","z-index:1");
+		$('.home_div').mouseout(function(){
+			$('.home_img1').prop("style","z-index:1");
 		});
-		$('.a').mouseup(function(){
+		$('.home_div').mouseup(function(){
 			location.href="index.do";
 		})
 	</script>

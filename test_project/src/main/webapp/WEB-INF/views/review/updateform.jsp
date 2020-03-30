@@ -70,7 +70,10 @@
 						<label for="likeCount">별점</label> 
 						<div class="container">
 							<p id="star_grade">
-								<a href="#">★</a> <a href="#">★</a> <a href="#">★</a> <a href="#">★</a>
+								<a href="#">★</a>
+								<a href="#">★</a> 
+								<a href="#">★</a> 
+								<a href="#">★</a>
 								<a href="#">★</a>
 							</p>
 						</div>
@@ -132,6 +135,5 @@
 			</div>
 		</footer>
 	</div>
-	
 </body>
 </html>

@@ -43,8 +43,6 @@ public class OrderDetailDto {
 		this.itemNum = itemNum;
 	}
 
-
-
 	public int getQuantity() {
 		return quantity;
 	}

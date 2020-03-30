@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.service.CartService;
+import com.test.project01.order.dto.OrderDetailDto;
 import com.test.project01.users.Dto.UsersDto;
 
 @Controller
@@ -31,7 +32,7 @@ public class CartController {
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
 	public String addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
-		String userId=user.getUserId();		
+		String userId=user.getUserId();	
 		//String userId=(String)session.getAttribute("userId");
 		//dto.setUserId(userId);
 		//장바구니에 기존 상품 있나 검사
@@ -101,7 +102,17 @@ public class CartController {
 			service.modifyCart(dto);
 		}
 		return "redirect:cartList.do";
-		
+	}
+	@ResponseBody
+	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
+	public Map<String, Object> updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
+		CartListDto cartDto=new CartListDto();
+		cartDto.setCartNum(dto.get(0));
+		cartDto.setCartStock(dto.get(1));
+		service.updateCart(cartDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
 	}
 	
 	//바로 주문폼으로 넘어가게 하기

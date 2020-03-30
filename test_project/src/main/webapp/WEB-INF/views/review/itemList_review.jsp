@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -12,29 +11,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
 <style>
-img {
-	width: 100px;
-	height: auto;
-}
-
-.star-rating {
-	width: 75px;
-}
-
-.star-rating, .star-rating span {
-	display: inline-block;
-	height: 14px;
-	overflow: hidden;
-	background:
-		url(${pageContext.request.contextPath}/resources/images/star.png)
-		no-repeat;
-}
-
-.star-rating span {
-	background-position: left bottom;
-	line-height: 0;
-	vertical-align: top;
-}
+	img{
+		width:100px;
+		height:auto;
+	}
 </style>
 </head>
 <body>

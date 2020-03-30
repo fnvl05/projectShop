@@ -15,27 +15,48 @@ public class UsersDaoImpl implements UsersDao {
 	public void insert(UsersDto dto) {
 		session.insert("users.insert", dto);
 	}
-
+	
 	@Override
-	public boolean isExist(String inputUsersId) {
-		String id=session.selectOne("users.isExist", inputUsersId);
+	public boolean isExist(String userId) {
+		String id = session.selectOne("users.isExist", userId);
+		
 		if(id == null) {
-			return false;
-		}else {
+			return false;			
+		} else {
 			return true;
 		}
 	}
-
+	
 	@Override
-	public String getPassHash(String inputUsersId) {
-		String savedPwd = session.selectOne("users.getPassHash", inputUsersId);
-		return savedPwd;
+	public String getPassHash(String userId) {
+		String savePwd = session.selectOne("users.getPassHash", userId);
+		return savePwd;
+	}
+	
+	@Override
+	public UsersDto logIn(String userId) {
+		return session.selectOne("users.login", userId);
+	}
+	
+	@Override
+	public UsersDto getData(String id) {		
+		return session.selectOne("users.getData", id);
+	}
+	
+	@Override
+	public void updatePass(UsersDto dto) {
+		session.update("users.updatePwd", dto);
+	}
+	
+	@Override
+	public void update(UsersDto dto) {
+		session.update("users.updateUser", dto);
+	}
+	
+	public void delete(String id) {
+		session.delete("users.delete", id);
 	}
 
-	@Override
-	public UsersDto logIn(String inputUserId) {
-		return session.selectOne("users.login", inputUserId);
-	}
-
-
+	
+	
 }

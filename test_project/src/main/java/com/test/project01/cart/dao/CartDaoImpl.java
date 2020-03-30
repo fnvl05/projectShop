@@ -14,7 +14,8 @@ import com.test.project01.cart.dto.CartListDto;
 public class CartDaoImpl implements CartDao{
 	@Autowired
 	private SqlSession session;
-	//추가
+	
+	//추가	
 	@Override
 	public void addCart(CartListDto dto) {
 		session.insert("cart.addCart", dto);
@@ -56,7 +57,6 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void deleteAll(String userId) {
 		session.delete("cart.deleteAll",userId);
-		
-	}	
+	}
 
 }

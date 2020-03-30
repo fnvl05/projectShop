@@ -99,11 +99,11 @@
 </style>
 </head>
 <body>
-
 <div id="root">
 	<header id="heder_box">
 		<div>
 			<%@ include file="../include/header.jsp" %>
+
 		</div>
 	</header>
 	<nav id="nav">
@@ -247,15 +247,13 @@
 					</form>
 				</div>
 			</div>
-		
-	
 		</div>
 	</section>
 	<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>
 			</div>
-		</footer>
+	</footer>
 </div>
 <script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록

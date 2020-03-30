@@ -25,7 +25,6 @@
 .star_rating a.on {color:#777;}
 </style>
 <body>
-
 <div id="root">
 	<header id="heder_box">
 		<div>
@@ -120,7 +119,6 @@
 		</div>
 	</footer>
 </div>
-
 <script>
 	$('#star_grade a').click(function(){
 	    $(this).parent().children("a").removeClass("on");  /* 별점의 on 클래스 전부 제거 */ 
@@ -130,6 +128,5 @@
 	    return false;
 	});
 </script>
-
 </body>
 </html>
