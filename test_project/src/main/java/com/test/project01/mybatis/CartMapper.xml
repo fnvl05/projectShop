@@ -39,15 +39,17 @@
 		set cartStock=#{cartStock}
 		where cartNum=#{cartNum}
 	</update>
-	
+
 	<select id="sumMoney" resultType="int">
 		select nvl(sum(c.itemPrice * c.cartStock),0) money
 		from cartList c, tbl_items i
 		where c.itemNum=i.itemNum and c.userId=#{userId}
 	</select>
 
+
 	<delete id="deleteAll" parameterType="String">
 		delete from cartList
 		where userId=#{userId}
 	</delete>
+
 </mapper>

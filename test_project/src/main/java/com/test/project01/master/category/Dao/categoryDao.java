@@ -18,10 +18,12 @@ public interface categoryDao {
 	public ItemViewDto itemViewList(int itemNum);
 	public void ItemUpdate(ItemDto dto);
 	public void ItemDelete(int itemNum);
+
 	public void minusCount(OrderDetailDto detailDto);
 	public List<User_Orders_Dto> userList();
 	public List<Item_OrderDetail_Dto> item_orderList();
 	public void upResult(OrderDetailDto detailDto);
 	public List<UsersDto> userAllList();
 	public void userVerify(UsersDto userDto);
+
 }

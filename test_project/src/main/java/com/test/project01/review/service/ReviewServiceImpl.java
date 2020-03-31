@@ -13,7 +13,6 @@ import com.test.project01.review.dao.ReviewDao;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewJoinDto;
-import com.test.project01.users.Dao.UsersDao;
 import com.test.project01.users.Dto.UsersDto;
 
 @Service
@@ -23,6 +22,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	ReviewCommentDao reviewCommentDao;
 	
+	//모든 아이템의 리뷰보기
 	@Override
 	public void list(HttpServletRequest request) {
 		ReviewJoinDto dto=new ReviewJoinDto();
@@ -77,13 +77,27 @@ public class ReviewServiceImpl implements ReviewService{
 		request.setAttribute("totalPageCount", totalPageCount);
 		request.setAttribute("totalRow", totalRow);
 	}
-
+	
+	//해당아이템의 리뷰 목록보기
 	@Override
 	public void list2(HttpServletRequest request) {
 		ReviewJoinDto dto=new ReviewJoinDto();
 		int itemNum=Integer.parseInt(request.getParameter("itemNum"));
 		dto.setItemNum(itemNum);
 		request.setAttribute("itemNum", itemNum);
+		
+		//해당 아이템의 별점 평균 구하기
+		List<Integer> likeCountList=dao.likeCount(itemNum);
+		int size=likeCountList.size();
+		int likeCountSum=0;
+		for(int i=0;i<likeCountList.size();i++) {
+			likeCountSum+=likeCountList.get(i);
+		}
+		int avg=0;
+		if(size>0) {
+			avg=likeCountSum/size;
+		}
+		request.setAttribute("avg",avg);
 		
 		/* 페이지 처리하는 코드 */
 		//한 페이지에 나타낼 row 의 갯수
@@ -249,6 +263,27 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void updateComment(ReviewCommentDto dto) {
 		reviewCommentDao.update(dto);
+	}
+
+	@Override
+	public boolean isExist(HttpServletRequest request,int itemNum) {
+		UsersDto userDto=(UsersDto)request.getSession()
+				.getAttribute("userDto");
+		String reviewWriter=userDto.getUserId();
+		ReviewDto dto=new ReviewDto();
+		dto.setReviewWriter(reviewWriter);
+		dto.setItemNum(itemNum);
+		boolean isExist=dao.isExist(dto);
+		return isExist;
+	}
+
+	@Override
+	public void reviewList(HttpServletRequest request) {
+		UsersDto userDto=(UsersDto)request.getSession()
+				.getAttribute("userDto");
+		String reviewWriter=userDto.getUserId();
+		List<ReviewJoinDto> reviewlist=dao.reviewList(reviewWriter);
+		request.setAttribute("reviewlist", reviewlist);
 	}
 
 	

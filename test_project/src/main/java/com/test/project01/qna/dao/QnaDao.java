@@ -25,4 +25,7 @@ public interface QnaDao {
 	public List<QnaJoinDto> getList(QnaJoinDto dto);
 	public int getCount2(QnaJoinDto dto);
 	public List<QnaJoinDto> getList2(QnaJoinDto dto);
+	
+	//해당 아이디가 작성한 Q&A 리스트
+	public List<QnaJoinDto> qnaList(String writer);
 }

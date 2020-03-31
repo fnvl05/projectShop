@@ -114,6 +114,26 @@ public class CartController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	
+	//바로 주문폼으로 넘어가게 하기
+	@RequestMapping(value = "/Users_Item/cart2", method = RequestMethod.POST)
+	public String User_addCart2(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+		UsersDto user=(UsersDto)session.getAttribute("userDto");
+		String userId=user.getUserId();		
+		//String userId=(String)session.getAttribute("userId");
+		//dto.setUserId(userId);
+		//장바구니에 기존 상품 있나 검사
+		int count=service.countCart(dto.getItemNum(), userId);
+		if(count == 0) {
+			//없으면 추가
+			service.addCart(dto);
+		}else {
+			//있으면 update
+			service.updateCart(dto);
+		}
+
+		return "redirect:../shop/orderform.do";
+	}
 }
 
 

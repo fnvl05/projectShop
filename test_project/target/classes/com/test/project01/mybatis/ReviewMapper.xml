@@ -56,5 +56,22 @@
 		delete from board_review
 		where reviewNum=#{reviewNum}
 	</delete>
+	<select id="likeCount" parameterType="int" resultType="int">
+		select likeCount
+		from board_review
+		where itemNum=#{itemNum}
+	</select>
+	<select id="isExist" resultType="int" parameterType="reviewDto">
+		select reviewNum
+		from board_review
+		where itemNum=#{itemNum} and reviewWriter=#{reviewWriter}
+	</select>
+	<select id="reviewList" resultType="reviewJoinDto" parameterType="String">
+		select r.reviewNum,r.reviewWriter,r.itemNum,r.reviewContent,r.likeCount,r.upCount,r.regdate,
+				i.itemName,i.itemImg
+		from board_review r,tbl_items i
+		where r.itemNum=i.itemNum and r.reviewWriter=#{reviewWriter}
+		order by r.regdate DESC
+	</select>
 </mapper>
 

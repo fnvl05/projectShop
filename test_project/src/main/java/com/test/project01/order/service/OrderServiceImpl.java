@@ -36,7 +36,6 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public void cartList_insertform(HttpServletRequest request) {
-		
 		//장바구니에 담긴 리스트
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
@@ -83,14 +82,11 @@ public class OrderServiceImpl implements OrderService{
 		for(int i=0;i<list.size();i++) {
 			int itemNum=list.get(i).getItemNum();
 			int quantity=list.get(i).getCartStock();
-//			String itemName=list.get(i).getItemName();
-//			String itemImg=list.get(i).getItemImg();
 			OrderDetailDto detailDto=new OrderDetailDto();
 			detailDto.setOrderNum(orderNum);
 			detailDto.setItemNum(itemNum);
-//			detailDto.setItemName(itemName);
-//			detailDto.setItemImg(itemImg);
 			detailDto.setQuantity(quantity);
+			//주문 상세내역의 아이템 정보 입력
 			detailDao.detailInsert(detailDto);
 			//해당 아이템의 재고량 줄이기
 			categoryDao.minusCount(detailDto);
@@ -98,27 +94,32 @@ public class OrderServiceImpl implements OrderService{
 		//해당 아이디의 장바구니 삭제하기
 		cartDao.deleteAll(userId);
 	}
-
+	//구매내역조회
 	@Override
 	public void orderList(HttpServletRequest request) {
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
-		List<Integer> getOrderNum=dao.getOrderNum(userId);
+		List<Integer> getOrderNum=dao.getOrderNum2(userId);
 		OrderDetailJoinDto joinDto=new OrderDetailJoinDto();
 		List<OrderDetailJoinDto> orderList=new ArrayList<>();
-		
+		//해당 주문번호에 대한 반복문 돌기
 		for(int i=0;i<getOrderNum.size();i++) {
-			joinDto.setUserId(userId);
+			//주문번호의 값 얻기
 			int orderNum=getOrderNum.get(i);
+			//OrderDetailjoinDto에 정보 넣기
+			joinDto.setUserId(userId);
 			joinDto.setOrderNum(orderNum);
+			//정보넣은 값의 첫번째 Dto를 얻어오기
 			OrderDetailJoinDto joinDto2=detailDao.getList(joinDto).get(0);
+			//해당 주문번호의 디테일 상품들의 리스트의 크기 얻기 ( 외 n 건 을 만들기 위해)
 			int size=detailDao.getList(joinDto).size()-1;
 			
-			if(size>0) {
+			if(size>0) {  //만약 size()-1 한 값이 0보다 크면
 				joinDto2.setItemName(joinDto2.getItemName()+" 외 "+size+" 건");
-			}else{joinDto2.setItemName(joinDto2.getItemName());
+			}else{  // 0보다 크지않으면
+				joinDto2.setItemName(joinDto2.getItemName());
 			}
-			orderList.add(joinDto2);
+			orderList.add(joinDto2);  //해당 주문번호의 디테일의 값을  List에 추가하기
 		}
 		request.setAttribute("orderList", orderList);
 		
@@ -145,7 +146,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public void delivery(HttpServletRequest request) {
-		//해당 주문번호의 정보
+		//해당 주문번호의 배달정보
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
 		int orderNum=Integer.parseInt(request.getParameter("orderNum"));

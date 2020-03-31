@@ -71,5 +71,10 @@ public class QnaDaoImpl implements QnaDao{
 		return session.selectList("qna.getList2",dto);
 	}
 
+	@Override
+	public List<QnaJoinDto> qnaList(String writer) {
+		return session.selectList("qna.qnalist",writer);
+	}
+
 
 }

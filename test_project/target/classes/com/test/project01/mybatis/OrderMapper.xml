@@ -32,12 +32,17 @@
 		             on d.itemNum = t.itemNum
 		     where o.userId = #{userId}
 		         and o.orderNum = #{orderNum}
-		 
 	</select>
 	
 	<select  id="orderInfo" parameterType="ordersDto" resultType="ordersDto">
 		select orderNum,orderRec,orderPhone1,orderPhone2,userAddr1,userAddr2,userAddr3,orderDate,payment,allPrice,delivery
 		from orders
 		where userId=#{userId} and orderNum=#{orderNum}
+	</select>
+	<select id="getOrderNum2" resultType="int" parameterType="String">
+		select orderNum 
+		from orders
+		where userId=#{userId}
+		order by orderNum DESC
 	</select>
 </mapper>

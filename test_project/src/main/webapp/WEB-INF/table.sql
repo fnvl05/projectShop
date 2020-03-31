@@ -22,11 +22,7 @@ insert into tbl_member (
 userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, email, userAddr1, userAddr2, userAddr3, birthday)
 values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010-9950-1095','gosla1002@naver.com','흥도동','흥도로','원흥동',TO_DATE('1993-10-20','yyyy-mm-dd'));
 
--상품 테이블-
-
-
-
-
+--상품 테이블
 create table tbl_items (
     itemNum       number          not null,
     itemName      varchar2(50)    not null,
@@ -39,7 +35,7 @@ create table tbl_items (
     primary key(itemNum)  
 );
 
--카테고리 테이블-
+--카테고리 테이블
 create table goods_category (
 	cateLevel	 varchar2(20)	 not null,
     cateName     varchar2(20)    not null,
@@ -49,7 +45,7 @@ create table goods_category (
     foreign key(cateCodeRef) references goods_category(cateCode)
 );
 
--별도의 테이블 쿼리-
+--별도의 테이블 쿼리
 alter table tbl_items add
     constraint goods_category
     foreign key (cateCode)
@@ -87,10 +83,29 @@ create sequence tbl_item_seq;
  from tbl_items
  order by itemNum desc
 
- <썸네일 칼럼 추가>
+ --썸네일 칼럼 추가
  alter table tbl_items add(itemThumbImg varchar2(300));
  
-<공지 게시판>
+ <!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+ 
+--공지 게시판
 CREATE TABLE board_notice(
 	num Number PRIMARY key,
 	writer VARCHAR2(100) not null, -- 글 작성자의 id
@@ -106,7 +121,7 @@ CREATE SEQUENCE board_notice_seq;
 
 
 
-<QnA 게시판>
+--QnA 게시판
 CREATE TABLE board_qna(
 	num NUMBER PRIMARY KEY,
 	writer VARCHAR2(100) NOT NULL, -- 글 작성자의 id 
@@ -119,7 +134,7 @@ alter table board_qna add(itemNum number);
 
 CREATE SEQUENCE board_qna_seq;
 
-<QnA 게시판 댓글>
+--QnA 게시판 댓글
 CREATE TABLE board_qna_comment(
 	num NUMBER PRIMARY KEY, -- 댓글의 글번호
 	writer VARCHAR2(100), -- 댓글 작성자
@@ -144,6 +159,10 @@ likeCount number,
 upCount number,
 regdate date);
 
+--리뷰 likeCount 제약조건 (1부터 10까지만 입력가능하게)  **추가하기**
+alter table board_review 
+add constraint review_likeCount_ch check(likeCount>=1 and likeCount<=10);
+
 --리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
@@ -162,8 +181,20 @@ CREATE TABLE board_review_comment(
 --review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
+-- 리뷰 좋아요 테이블
+create table review_upCount
+(num number, 
+id varchar2(100), 
+reviewNum number,
+regdate date,
+itemNum number
+);
+create sequence reviewUpCount_seq;
+
 --orders table
 create table orders(
+	orderNum number primary key,
+	userId varchar2(50) not null,
 	orderRec varchar2(50) not null,   --수신자
 	userAddr1 varchar2(20) not null,
 	userAddr2 varchar2(50) not null,
@@ -175,42 +206,18 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
+);
 
-
-alter table cartList add(money number);
-
-alter table cartList
-add constraint cartList_userId foreign key(userId)
-references tbl_member(userId);
-
-alter table cartList
-add constraint cartList_itemNum foreign key(itemNum)
-references tbl_items(itemNum);
-
-<!-- 카테고리별 상품 리스트 : 1차 분류 -->
-select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
-    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
-        from tbl_items i
-            inner join goods_category c
-                on i.cateCode = c.cateCode           
-            where i.cateCode = #{cateCode}
-             or c.cateCodeRef = #{cateCodeRef}
-
-
-<!-- 카테고리별 상품 리스트 : 2차 분류 -->
-select
-    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
-    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
-        from tbl_items i
-            inner join goods_category c
-                on i.cateCode = c.cateCode           
-            where i.cateCode = #{cateCode}
 
 create sequence orders_seq;
 
 alter table orders
     add constraint orders_userId_fk foreign key(userId)
     references tbl_member(userId);
+    
+alter table orders modify(userAddr1 varchar2(100));
+alter table orders modify(userAddr2 varchar2(100));
+alter table orders modify(userAddr3 varchar2(100));
 
 --orders detail table
 create table order_detail(
@@ -258,5 +265,17 @@ add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
 
+alter table cartList add(money number);
 
+drop table order_detail;
+drop table orders;
+drop table board_qna_comment;
+drop table board_qna;
+drop table board_review_comment;
+drop table board_review;
+drop table cartlist;
+drop table tbl_items;
+drop table goods_category;
+drop table review_upcount;
+drop table tbl_member;
 

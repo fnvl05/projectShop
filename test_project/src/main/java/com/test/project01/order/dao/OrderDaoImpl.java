@@ -15,7 +15,6 @@ public class OrderDaoImpl implements OrderDao {
 
 	@Override
 	public List<Integer> getOrderNum(String userId) {
-		
 		return session.selectList("order.getOrderNum",userId);
 	}
 	
@@ -28,6 +27,11 @@ public class OrderDaoImpl implements OrderDao {
 	public List<OrdersDto> orderInfo(OrdersDto dto) {
 		
 		return session.selectList("order.orderInfo",dto);
+	}
+
+	@Override
+	public List<Integer> getOrderNum2(String userId) {
+		return session.selectList("order.getOrderNum2",userId);
 	}
 
 	

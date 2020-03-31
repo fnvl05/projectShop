@@ -22,4 +22,5 @@ public interface CartDao {
 	public int sumMoney(String userId);
 	//장바구니 전체 삭제
 	public void deleteAll(String userId);
+
 }
