@@ -34,6 +34,7 @@
 						WHERE writer LIKE '%'||#{writer}||'%'
 					</when>
 				</choose>
+				where board_qna.itemNum=tbl_items.itemNum
 	</select>
 	
 	<select id="getCount2" resultType="int" parameterType="qnaJoinDto">
