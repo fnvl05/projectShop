@@ -72,8 +72,8 @@
 					<thead>
 						<tr>
 							<th>글 번호</th>
-							<th>아이템 명</th>
 							<th>이미지</th>
+							<th>아이템명</th>
 							<th>별점</th>
 							<th>좋아요</th>
 							<th>작성자</th>
@@ -84,9 +84,8 @@
 						<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 							<tr>
 								<td>${status.count}</td>  <!-- <td>${tmp.reviewNum}</td> -->
-								<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a>
-								</td>
-								<td><img src="../resources${tmp.itemImg }" /></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" /></a></td>
+								<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a></td>
 								<td>
 								<span class="wrap-star"> 
 									<span class='star-rating'>

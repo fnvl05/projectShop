@@ -65,8 +65,8 @@ img {
 				<thead>
 					<tr>
 						<th>글 번호</th>
-						<th>아이템 명</th>
 						<th>이미지</th>
+						<th>아이템명</th>
 						<th>리뷰</th>
 						<th>별점</th>
 						<th>좋아요</th>
@@ -79,9 +79,8 @@ img {
 						<tr>
 							<!--<td>${tmp.reviewNum }</td>-->
 							<td>${status.count }</td>
-							<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a>
-							</td>
-							<td><img src="../resources${tmp.itemImg }" /></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" /></a></td>
+							<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.itemName }</a></td>
 							<td>${tmp.reviewContent }</td>
 							<td><span class="wrap-star"> <span class='star-rating'>
 										<span

@@ -51,7 +51,7 @@
 					<c:forEach var="tmp" items="${qnalist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><img src="../resources${tmp.itemImg }" /></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" /></a></td>
 							<td>${tmp.title }</td>
 							<td>${tmp.viewCount }</td>
 							<td>${tmp.regdate }</td>
@@ -83,7 +83,7 @@
 					<c:forEach var="tmp2" items="${reviewlist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><img src="../resources${tmp2.itemImg }" /></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }"><img src="../resources${tmp2.itemImg }" /></a></td>
 							<td>${tmp2.itemName }</td>
 							<td>${tmp2.likeCount }</td>
 							<td>${tmp2.upCount }</td>
