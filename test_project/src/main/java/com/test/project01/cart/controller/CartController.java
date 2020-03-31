@@ -133,7 +133,7 @@ public class CartController {
 	}
 	//바로 주문폼으로 넘어가게 하기
 	@RequestMapping(value = "/Users_Item/cart2", method = RequestMethod.POST)
-	public String User_addCart2(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//String userId=(String)session.getAttribute("userId");
@@ -147,7 +147,7 @@ public class CartController {
 			//있으면 update
 			service.updateCart(dto);
 		}
-		return "redirect:../shop/orderform.do";
+		return "redirect:../shop/cartList.do";
 	}
 }
 

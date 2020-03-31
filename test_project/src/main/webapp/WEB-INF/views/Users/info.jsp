@@ -9,14 +9,14 @@
 
 </head>
 <body>
-<section id="contect">
+<section id="content">
 <form action="info.do">
 	<div class="select_area">
 		<h1>개인 정보 페이지</h1>
 		<table>
 			<tr>
 				<th>ID</th>
-				<td>${usersDto.userId }</td>
+				<td>${dto.userId}</td>
 			</tr>
 			<tr>
 				<th>PassWord</th>
@@ -24,31 +24,35 @@
 			</tr>
 			<tr>
 				<th>이름</th>
-				<td>${usersDto.userName }</td>
+				<td>${dto.userName}</td>
 			</tr>
 			<tr>
 				<th>연락처</th>
-				<td>${usersDto.userPhone }</td>
+				<td>${dto.userPhone}</td>
 			</tr>
 			<tr>
 				<th>E-mail</th>
-				<td>${usersDto.email }</td>
+				<td>${dto.email}</td>
 			</tr>
 			<tr>
 				<th>첫번째 주소</th>
-				<td>${usersDto.userAddr1 }</td>
+				<td>${dto.userAddr1}</td>
 			</tr>
 			<tr>
 				<th>두번째 주소</th>
-				<td>${usersDto.userAddr2 }</td>
+				<td>${dto.userAddr2}</td>
 			</tr>
 			<tr>
 				<th>세번째 주소</th>
-				<td>${usersDto.userAddr3 }</td>
+				<td>${dto.userAddr3}</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td>${dto.birthday}</td>
 			</tr>
 			<tr>
 				<th>가입일</th>
-				<td>${usersDto.regiDate }</td>
+				<td>${dto.regiDate}</td>
 			</tr>
 		</table>
 		<a href="${pageContext.request.contextPath}/home.do">홈으로</a>

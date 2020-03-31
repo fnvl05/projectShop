@@ -27,20 +27,20 @@ drop sequence cartList_seq;
 
 --회원 테이블--
 create table tbl_member (
-    userId      varchar2(50)    not null, -- 아이디
-    userPass    varchar2(100)   not null, -- 비밀번호
-    PassQuiz	varchar2(100)	not null, -- 비밀번호 질문
-    QuizAnswer	varchar2(100)	not null, -- 질문 답변
-    userName    varchar2(30)    not null, -- 이름
-    userPhone   varchar2(20)    not null, -- 핸드폰
-    email		varchar2(100) 	null, -- 이메일
-    userAddr1   varchar2(50)    null, -- 주소1
-    userAddr2   varchar2(50)    null, -- 주소2
-    userAddr3   varchar2(50)    null, -- 주소3
-    regiDate    date            default sysdate, -- 가입날짜
-    birthday	date 			not null, -- 생일
-    mileage		number			default 0, -- 마일리지
-    verify      number          default 0, -- 유저타입
+    userId      varchar2(50)    not null, 
+    userPass    varchar2(100)   not null, 
+    PassQuiz	varchar2(100)	not null, 
+    QuizAnswer	varchar2(100)	not null, 
+    userName    varchar2(30)    not null, 
+    userPhone   varchar2(20)    not null, 
+    email		varchar2(100) 	null, 
+    userAddr1   varchar2(100)   null, 
+    userAddr2   varchar2(100)   null, 
+    userAddr3   varchar2(100)   null, 
+    regiDate    date            default sysdate, 
+    birthday	date 			not null, 
+    mileage		number			default 0, 
+    verify      number          default 0, 
     primary key(userId)
 );
 create sequence tbl_member_seq;
@@ -53,13 +53,8 @@ insert into tbl_member (
 userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, email, userAddr1, userAddr2, userAddr3, birthday)
 values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010-9950-1095','gosla1002@naver.com','흥도동','흥도로','원흥동',TO_DATE('1993-10-20','yyyy-mm-dd'));
 
-<<<<<<< HEAD
---상품 테이블
-=======
 
-
--상품 테이블-
->>>>>>> refs/remotes/origin/hyun
+--상품 테이블--
 create table tbl_items (
     itemNum       number          not null,
     itemName      varchar2(50)    not null,
@@ -276,6 +271,8 @@ alter table orders
     add constraint orders_userId_fk foreign key(userId)
     references tbl_member(userId);
 
+
+<!-- 일단 여기까지 -->
 
 <!-- 카테고리별 상품 리스트 : 1차 분류 -->
 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,

@@ -3,9 +3,11 @@ package com.test.project01.users.serevice;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,42 +56,77 @@ public class UsersServiceImpl implements UsersService {
 			return false;
 		}
 	}
-	
-	// 개인정보
+
 	@Override
 	public void showInfo(String id, ModelAndView mView) {
-		UsersDto dto=dao.getData(id);	
+		UsersDto dto = dao.getData(id);	
 		mView.addObject("dto", dto);
 	}
-	
-	// 비밀번호 바꾸기
-	@Override
-	public void updatePass(UsersDto dto, ModelAndView mView) {
-		String PassHash=dao.getData(dto.getUserId()).getUserPass();
-		boolean isValid=BCrypt.checkpw(dto.getUserPass(), PassHash);
-		
-		if(isValid) {
-			String encodePass= new BCryptPasswordEncoder().encode(dto.getNewPass());
-			dto.setNewPass(encodePass);
-			dao.updatePass(dto);
-			mView.addObject("isSuccess", true);
-			
-		} else {
-			
-			mView.addObject("isSuccess", false);
-		
-		}
 
-	}
-	
-	// 개인정보 바꾸기
+	@Override
 	public void userUpdate(UsersDto dto) {
 		dao.update(dto);
 	}
 	
-	// 회원탈퇴
+	@Override
+	public void updatePass(UsersDto dto, ModelAndView mView) {
+		String PassHash=dao.getData(dto.getUserId()).getUserPass();
+		boolean isValid=BCrypt.checkpw(dto.getUserPass(), PassHash);
+			
+		if(isValid) {
+			String encodePass=
+					new BCryptPasswordEncoder().encode(dto.getNewPass());
+			dto.setNewPass(encodePass);
+			dao.updatePass(dto);				
+			mView.addObject("isSuccess", true);				
+		} 
+		else {
+			mView.addObject("isSuccess", false);	
+		}
+	}
+	
 	@Override
 	public void deleteUser(String id) {
 		dao.delete(id);
+	}
+	
+	// 아이디 찾기
+	@Override
+	public boolean findUsersId(UsersDto dto, HttpServletRequest request) {
+		String findId = dao.findId(dto);
+		
+		if(findId != null) {
+			
+			dto.setUserId(findId);
+			request.setAttribute("dto", dto);
+			
+			return true;
+		} 
+		else {			
+			return false;
+		}
+	}
+	
+
+	// 새로 비밀번호 바꾸기 (로그인x)
+	@Override
+	public boolean newUpdatePass(UsersDto dto, HttpServletRequest request) {
+		
+		String Id = dao.newpass(dto);	
+		if(Id != null) {
+			return true;			
+		} 
+		else {
+			return false;	
+		}
+		
+		
+	}
+	@Override
+	public void changeNewPassData(UsersDto dto) {
+		String encodedPwd = new BCryptPasswordEncoder().encode(dto.getNewPass());
+		dto.setNewPass(encodedPwd);
+		dao.changeNewPassData(dto);
+		
 	}
 }

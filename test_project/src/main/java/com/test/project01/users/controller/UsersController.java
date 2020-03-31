@@ -18,8 +18,6 @@ import com.test.project01.users.serevice.UsersService;
 public class UsersController {
 	@Autowired
 	private UsersService service;
-	
-	// 회원가입
 	@RequestMapping("/Users/signup_form")
 	public String signup_form() {
 		return "Users/signup_form";
@@ -38,10 +36,9 @@ public class UsersController {
 		mView.setViewName("index");
 		return mView;
 	}
-	
 	// 로그인
-	@RequestMapping("/Users/login_form")
-	public String logInForm(HttpServletRequest request) {
+	@RequestMapping("Users/login_form")
+	public String logInForm(HttpServletRequest request) {	
 		return "Users/login_form";
 	}
 	
@@ -58,72 +55,68 @@ public class UsersController {
 			return mView;
 		}
 	}
-	
-	// 로그아웃
+
+	//로그아웃
 	@RequestMapping("Users/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/index.do";
 	}
-	
 	// 개인 정보 보기 요청 처리
 	@RequestMapping("Users/info")
-	public ModelAndView authInfo(HttpServletRequest request, 
+	public ModelAndView Users_authInfo(HttpServletRequest request, 
 				ModelAndView mView) {
 		//로그인된 아이디 읽어오기
 		String id=(String)request.getSession().getAttribute("id");
-		
+			
 		//UsersService 객체를 이용해서 개인정보를 ModelAndView 객체에 담기도록 한다.
 		service.showInfo(id, mView);
 		//view page 정보를 담고 
 		mView.setViewName("Users/info");
 		return mView;//ModelAndView 객체를 리턴해주기 
 	}
-	
-	
+		
+		
 	// 비밀번호 수정하고 폼 요청 처리
 	@RequestMapping("/Users/newPassform")
-	public ModelAndView passForm(HttpServletRequest request, 
+	public ModelAndView Users_passForm(HttpServletRequest request, 
 			ModelAndView mView) {
 		mView.setViewName("Users/newPassform");
 		return mView;
 	}
-	
+		
 	@RequestMapping(value="/Users/newPass", method=RequestMethod.POST)
-	public ModelAndView passUpdate(HttpServletRequest request,
+	public ModelAndView Users_passUpdate(HttpServletRequest request,
 			ModelAndView mView,HttpSession session,@ModelAttribute UsersDto dto) {
-		UsersDto test=(UsersDto)session.getAttribute("usersDto");
+			
+		UsersDto test=(UsersDto)session.getAttribute("userDto");
 		dto.setUserId(test.getUserId());
 		System.out.println(dto.getNewPass());
 		service.updatePass(dto, mView);
-		
+			
 		mView.setViewName("/Users/newPass");
 		return mView;
 	}
-	
 	// 개인정보 수정 폼 요청
 	@RequestMapping("Users/updateform")
-	public ModelAndView updateForm(HttpServletRequest request,
+	public ModelAndView Users_updateForm(HttpServletRequest request,
 			ModelAndView mView) {
-		
+			
 		String id=(String)request.getSession().getAttribute("id");
 		service.showInfo(id, mView);
 		mView.setViewName("Users/updateform");
 		return mView;	
 	}
-	
+		
 	@RequestMapping(value="Users/update", method = RequestMethod.POST)
-	public ModelAndView update(@ModelAttribute UsersDto dto,
-			HttpServletRequest request,HttpSession session) {
-		UsersDto test=(UsersDto)session.getAttribute("userDto");
-		dto.setUserId(test.getUserId());
+	public String update(@ModelAttribute UsersDto dto) {
 		service.userUpdate(dto);
-		return new ModelAndView("/Users/info");
+		return "redirect:/Users/info.do";
 	}
-	
+		
 	// 회원탈퇴
 	@RequestMapping("Users/delete")
-	public ModelAndView delete(HttpServletRequest request,
+	public ModelAndView Users_delete(HttpServletRequest request,
 			ModelAndView mView) {
 		HttpSession session = request.getSession();
 		String id=(String) session.getAttribute("id");
@@ -131,10 +124,54 @@ public class UsersController {
 		service.deleteUser(id);
 		//로그아웃 처리
 		session.invalidate();
-		
+			
 		mView.addObject("id", id);
 		mView.setViewName("Users/delete");
 		return mView;
 	}
 	
+	// 아이디, 비밀번호 찾기
+	// 첫 화면(아이디 찾기 (정보 입력란))
+	@RequestMapping("Users/searchIdForm")
+	public ModelAndView find(HttpServletRequest request, ModelAndView mView) {
+		mView.setViewName("Users/searchIdForm");
+		return mView;
+	}
+	
+	// 입력한 정보의 값에 따라 true & false 로 나눠서 경로로 이동 
+	@RequestMapping(value="Users/searchPass", method = RequestMethod.POST)
+	public ModelAndView findId(@ModelAttribute UsersDto dto, HttpServletRequest request,ModelAndView mView) {		
+		if(service.findUsersId(dto, request)) {
+			mView.setViewName("Users/searchPass");
+			return mView;
+		}
+		else { // false 일 때, 인덱스 페이지로 다시 이동, 처음부터 다시 진행해야함.		
+			mView.setViewName("redirect:/index.do");
+			return mView;
+		}
+		
+	}
+	
+	// 입력한 정보가 true 이면, 찾으려는 아이디를 직접 보여주면서, 비밀번호 찾기 정보 입력.
+	@RequestMapping("Users/searchnewPass")
+	public ModelAndView newPassFind(HttpServletRequest request, ModelAndView mView,
+					@ModelAttribute UsersDto dto) {
+		boolean test=service.newUpdatePass(dto, request);
+		
+		if(test) {
+			request.setAttribute("dto", dto);
+			mView.setViewName("Users/searchnewPass");
+			return mView;
+		} else {
+			mView.setViewName("Users/searchIdForm");
+			return mView;
+		}
+	}
+	// 비밀번호 찾기 질문이 전부 true일 때, 비밀번호 수정 ... 수정 후, 바로 로그인 창으로 고고!
+	@RequestMapping(value="/Users/changeNewPassData", method = RequestMethod.POST)
+	public ModelAndView Users_searchnewPass(@ModelAttribute UsersDto dto) {
+		service.changeNewPassData(dto);
+		
+		return new ModelAndView("Users/login_form");
+	}
 }
