@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
 import com.test.project01.qna.service.QnaService;
-=======
->>>>>>> refs/remotes/origin/hyun
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewUpCountDto;

@@ -15,10 +15,7 @@ import com.test.project01.review.dao.ReviewDao;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewJoinDto;
-<<<<<<< HEAD
-=======
 import com.test.project01.review.dto.ReviewUpCountDto;
->>>>>>> refs/remotes/origin/hyun
 import com.test.project01.users.Dto.UsersDto;
 
 @Service

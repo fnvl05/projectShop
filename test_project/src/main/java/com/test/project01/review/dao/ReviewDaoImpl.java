@@ -78,6 +78,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public List<ReviewJoinDto> reviewList(String reviewWriter) {
 		return session.selectList("review.reviewList",reviewWriter);
+	}
 	public boolean isUped(ReviewUpCountDto dto) {
 		String id=session.selectOne("review.checkCount",dto);
 		
