@@ -269,7 +269,7 @@ create table cartList(
 	itemName varchar2(50),
 	itemPrice number,
 	itemImg varchar(200) null,
-	primary key(cartNum, userId)
+	primary key(cartNum)
 );
 
 create sequence cartList_seq;
@@ -284,7 +284,28 @@ references tbl_items(itemNum);
 
 alter table cartList add(money number);
 
+--wishlist--
+create table wishlist(
+	wishNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(itemNum, userId)
+);
 
+create sequence wishlist_seq;
+
+alter table wishlist
+add constraint wishlist_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table wishlist
+add constraint wishlist_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
 
 <참고>
 alter table [ 테이블 이름 ] add
