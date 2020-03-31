@@ -24,9 +24,6 @@
 		</div>
 	</header>
 		<section id="container">
-			<aside>
-				<%@ include file="../include/master_aside.jsp" %>
-			</aside>
 				<div id="container_box">
 					<form action="item_modify.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="itemNum" value="${dto.itemNum} "/>

@@ -29,7 +29,6 @@
 		<section id="container">
 			<div id="container_box">
 				<h2>상품 목록</h2>
-				<div id="container_box">
 					<table>
 						 <thead>
 							 <tr>
@@ -57,7 +56,6 @@
 						  </c:forEach>
 						 </tbody>
 					</table>
-				</div>
 			</div>
 		</section>
 		<footer id="footer">
