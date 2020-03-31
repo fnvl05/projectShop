@@ -65,9 +65,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }">
+				<c:forEach var="tmp" items="${requestScope.list }"
+					varStatus="status">
 					<tr>
-						<td>${tmp.num }</td>
+						<td>${status.count }</td>
+						<%-- <td>${tmp.num }</td> --%>
 						<td><img src="../resources${tmp.itemImg }" /></td>
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
