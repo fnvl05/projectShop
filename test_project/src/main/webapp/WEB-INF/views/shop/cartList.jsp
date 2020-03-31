@@ -6,82 +6,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">  
-   <style>
-      /*
-      section#content ul li { display:inline-block; margin:10px; }
-      section#content div.goodsThumb img { width:200px; height:200px; }
-      section#content div.goodsName { padding:10px 0; text-align:center; }
-      section#content div.goodsName a { color:#000; }
-      */
-      section#content ul li { margin:10px 0; padding:10px 0; border-bottom:1px solid #999; }
-      section#content ul li img { width:250px; height:250px; }
-      section#content ul li::after { content:""; display:block; clear:both; }
-      section#content div.thumb { float:left; width:250px; }
-      section#content div.gdsInfo { float:right; width:calc(100% - 320px); }
-      section#content div.gdsInfo { font-size:20px; line-height:2; }
-      section#content div.gdsInfo span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
-      section#content div.gdsInfo .delete { text-align:right; }
-      section#content div.gdsInfo .delete button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
-      
-      .allCheck { float:left; width:200px; }
-      .allCheck input { width:16px; height:16px; }
-      .allCheck label { margin-left:10px; }
-      .delBtn { float:right; width:300px; text-align:right; }
-      .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
-      
-      .checkBox { float:left; width:30px; }
-      .checkBox input { width:16px; height:16px; }
-      
-      .listResult { padding:20px; background:#eee; }
-      .listResult .sum { float:left; width:45%; font-size:22px; }
-      
-      .listResult .orderOpne { float:right; width:45%; text-align:right; }
-      .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;}
-      .listResult::after { content:""; display:block; clear:both; } 
-      
-      .orderInfo { border:5px solid #eee; padding:20px; display:none; }
-      .orderInfo .inputArea { margin:10px 0; }
-      .orderInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
-      .orderInfo .inputArea input { font-size:14px; padding:5px; }
-      #userAddr2, #userAddr3 { width:250px; }
-      
-      .orderInfo .inputArea:last-child { margin-top:30px; }
-      .orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;}
-      
-      .orderInfo .inputArea #sample2_address { width:230px; }
-      .orderInfo .inputArea #sample2_detailAddress { width:280px; }
-      .orderInfo .inputArea #sample2_extraAddress { display:none; }
-      
-   </style>
-
+<title>shop/cartList</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include> 
 </head>
 <body>
 <div id="root">
-
-	<header id="header">
-		<div id="header_box">
-			<%@ include file="../include/header.jsp" %>
-		</div>
-	</header>
-	
-	
-	<nav id="nav">
-		<div id="nav_box">
-			<%@ include file="../include/nav.jsp" %>
-		</div>
-	</nav>
-	<section id="container">
-		<h1>장바구니</h1>
-	<div class = "buy" style="float:right">
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp"%>
+					</div>
+					<div id="index_logo_div">
+						<a href="../index.do"><img id="index_logo_img"
+							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+					</div>
+					<div class="navbar-left">
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+								<%@ include file="../include/users_aside.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="../include/unknown_aside.jsp"%>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
+			</div>
+		</header>
+	</div>
+	<div class="container">
+		<h1>Cart</h1>
+		<c:choose>
+			<c:when test="${map.count==0 }">
+				장바구니가 비어있습니다.
+			</c:when>
+			<c:otherwise>
+				<div class = "buy" style="float:right">
 		<button class="btn btn-warning" id="buyEach" style="float:left">삭제</button>		
 	</div>
-	<form action="${pageContext.request.contextPath }/shop/updateCart.do" method="post" id="form1" name="form1" >
-	<table class="table table-striped table-condensed">
+	
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="AllCheck"/></th>
@@ -100,7 +65,7 @@
 					<input type="checkbox" name="delBox" value="${tmp.cartNum }"/>
 				</td>
 				<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
-				<td>${tmp.itemName }</td>
+				<td> <a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
 				<td>
 					<input type="hidden" id="itemPrice" />
                 	<fmt:formatNumber value="${tmp.itemPrice}" 
@@ -109,8 +74,7 @@
 				<td>
                	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px" name="cartStock" id="${tmp.cartNum }"/>
                	<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
-               	<button type="button" class="btn btn-primary" id="${tmp.cartNum }">수정</button>
-               	
+               	<button type="button" class="btn btn-primary" id="${tmp.cartNum }">수정</button>             	
                 </td>
 				<td>
 					
@@ -129,13 +93,12 @@
 				</td>
 				<td>
 					<button type="button" class="btn btn-warning"
-						onclick="location.href='../home.do'">쇼핑계속</button>
+						onclick="location.href='../index.do'">쇼핑계속</button>
 				</td>
 			</tr>
 		</tfoot>
 	</table>
-	</form>
-	 <table class="table table-striped table-condensed">
+	 <table class="table table-hover">
          <thead>
             <tr>
                <th>총 상품금액</th>
@@ -164,7 +127,11 @@
             </tr>
          </tbody>
       </table>
-	</section>
+			</c:otherwise>
+		</c:choose>
+	
+	 
+	</div>
 	<!-- 전부 선택 -->
 	<script type="text/javascript">
 		 $("#AllCheck").click(function(){
@@ -203,7 +170,7 @@
               }   
            });
       });
-   </script> 
+   </script>      
    <script type="text/javascript">
    var tag = null;
    var targetVal = null;
@@ -233,14 +200,12 @@
    				}
    			})
 			})
-   </script>     
-   
+   </script>   
    <footer id="footer">
       <div id="footer_box">
          <%@ include file="../include/footer.jsp" %>
       </div>      
    </footer>
-
 </div>
 </body>
 </html>
