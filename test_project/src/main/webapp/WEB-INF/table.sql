@@ -389,7 +389,6 @@ references tbl_member(userId);
 alter table wishlist
 add constraint wishlist_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
->>>>>>> refs/heads/yun
 
 <참고>
 alter table [ 테이블 이름 ] add

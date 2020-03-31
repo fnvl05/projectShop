@@ -59,8 +59,7 @@ public class CartDaoImpl implements CartDao{
 	public void deleteAll(String userId) {
 		session.delete("cart.deleteAll",userId);
 	}
-		
-	}
+	
 	@Override
 	public void addWish(wishlistDto dto) {
 		session.insert("cart.addWish", dto);
