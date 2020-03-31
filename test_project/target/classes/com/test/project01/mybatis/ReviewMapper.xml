@@ -10,7 +10,7 @@
 			FROM
     			(SELECT result1.*, ROWNUM AS rnum
     			FROM
-        			(select reviewNum,reviewWriter,reivewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
 					from board_review,tbl_items
 					where board_review.itemNum=tbl_items.itemNum
 					order by reviewNum desc) result1)
@@ -28,7 +28,7 @@
 			FROM
     			(SELECT result1.*, ROWNUM AS rnum
     			FROM
-        			(select reviewNum,reviewWriter,reivewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
 					from board_review,tbl_items
 					where board_review.itemNum=tbl_items.itemNum and board_review.itemNum=#{itemNum}
 					order by reviewNum desc) result1)

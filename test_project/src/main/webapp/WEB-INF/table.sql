@@ -209,14 +209,13 @@ likeCount number,
 upCount number,
 regdate date);
 
-<<<<<<< HEAD
+
 --리뷰 likeCount 제약조건 (1부터 10까지만 입력가능하게)  **추가하기**
 alter table board_review 
 add constraint review_likeCount_ch check(likeCount>=1 and likeCount<=10);
 
 --리뷰 테이블의 시퀀스
-=======
->>>>>>> refs/remotes/origin/hyun
+
 create sequence board_review_seq;
 
 -- 리뷰 좋아요 테이블

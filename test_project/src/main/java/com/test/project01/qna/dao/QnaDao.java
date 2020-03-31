@@ -30,5 +30,4 @@ public interface QnaDao {
 	public List<QnaJoinDto> qnaList(String writer);
 	
 	public int getCommentCount(int num);
->>>>>>> refs/remotes/origin/hyun
 }
