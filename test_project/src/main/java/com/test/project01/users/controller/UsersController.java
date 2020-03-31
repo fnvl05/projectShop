@@ -25,6 +25,12 @@ public class UsersController {
 		return "Users/signup_form";
 	}
 	
+	//마이페이지 이동
+	@RequestMapping("/Users/myPage")
+	public String myPage() {
+		return "Users/myPage";
+	}
+	
 	@RequestMapping(value="/Users/signup", method = RequestMethod.POST)
 	public ModelAndView signup(@ModelAttribute("dto") UsersDto dto, 
 			ModelAndView mView) {
