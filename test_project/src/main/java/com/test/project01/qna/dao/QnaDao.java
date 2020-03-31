@@ -28,4 +28,7 @@ public interface QnaDao {
 	
 	//해당 아이디가 작성한 Q&A 리스트
 	public List<QnaJoinDto> qnaList(String writer);
+	
+	public int getCommentCount(int num);
+>>>>>>> refs/remotes/origin/hyun
 }

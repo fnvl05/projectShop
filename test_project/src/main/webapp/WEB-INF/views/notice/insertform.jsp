@@ -6,16 +6,7 @@
 <meta charset="UTF-8">
 <title>/notice/insertform.jsp</title>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
-<jsp:include page="../include/resource.jsp"></jsp:include>
-
-<style>
-	/* tetarea 의 크기가 SmartEditor 의 크기가 된다. */
-	#content{
-		width: 100%;
-		height: 400px;
-	}
-</style>
-
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <div class="container">

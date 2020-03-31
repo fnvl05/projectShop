@@ -1,11 +1,14 @@
 package com.test.project01.review.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
+import com.test.project01.review.dto.ReviewUpCountDto;
 
 public interface ReviewService {
 	//전체 리뷰 
@@ -34,5 +37,6 @@ public interface ReviewService {
 	public boolean isExist(HttpServletRequest request,int itemNum);
 	//board_list에서 내가쓴 리뷰 목록
 	public void reviewList(HttpServletRequest request);
-	
+	//리뷰 좋아요
+	public Map<String,Object> addUpCount(HttpServletRequest request,ReviewUpCountDto dto);
 }

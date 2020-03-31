@@ -1,6 +1,8 @@
 package com.test.project01.review.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,10 @@ import com.test.project01.review.dao.ReviewDao;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewJoinDto;
+<<<<<<< HEAD
+=======
+import com.test.project01.review.dto.ReviewUpCountDto;
+>>>>>>> refs/remotes/origin/hyun
 import com.test.project01.users.Dto.UsersDto;
 
 @Service
@@ -68,7 +74,6 @@ public class ReviewServiceImpl implements ReviewService{
 		//1.DB에서 글 목록을 얻어온다.
 		List<ReviewJoinDto> list=dao.getList(dto);
 		//2.글 목록을 응답한다
-		
 		//EL, JSTL 을 활용하기 위해 필요한 모델을 request에 담는다.
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
@@ -184,7 +189,11 @@ public class ReviewServiceImpl implements ReviewService{
 		int reviewNum=Integer.parseInt(request.getParameter("reviewNum"));
 		
 		ReviewDto dto=dao.getData(reviewNum);
-		
+		ReviewUpCountDto chDto=new ReviewUpCountDto();
+		chDto.setId((String)request.getSession().getAttribute("id"));
+		chDto.setReviewNum(reviewNum);
+		boolean isLike=dao.isUped(chDto);
+		dto.setIsLike(isLike);
 		request.setAttribute("dto",dto);
 		
 		List<ReviewCommentDto> commentList=reviewCommentDao.getList(reviewNum);
@@ -290,5 +299,31 @@ public class ReviewServiceImpl implements ReviewService{
 
 	
 	
+	public Map<String,Object> addUpCount(HttpServletRequest request, ReviewUpCountDto dto) {
+		dto.setId((String)request.getSession().getAttribute("id"));	
+		boolean isUped=dao.isUped(dto);
+		if(isUped) { 
+			dao.downCount(dto.getReviewNum());
+			dao.delUpCount(dto);
+			int count=dao.checkCount(dto.getReviewNum());
+			Map<String,Object> map=new HashMap<>();
+			map.put("checkUp", false);
+			map.put("count", count);
+			map.put("reviewNum",dto.getReviewNum());
+			return map;
+		}else {
+			dao.upCount(dto.getReviewNum());
+			//이상무
+			dao.addUpCount(dto);
+			//이상무
+			int count=dao.checkCount(dto.getReviewNum());
+			
+			Map<String,Object> map=new HashMap<>();
+			map.put("checkUp", true);
+			map.put("count", count);
+			map.put("reviewNum",dto.getReviewNum());
+			return map;
+		}
+	}
 	
 }

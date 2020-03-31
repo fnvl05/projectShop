@@ -6,46 +6,31 @@
 <head>
 <meta charset="UTF-8">
 <title>/review/updateform.jsp</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
-<style>
-#star_grade a {
-	text-decoration: none;
-	color: gray;
-}
-
-#star_grade a.on {
-	color: red;
-}
-
-.star_rating a:first-child {
-	margin-left: 0;
-}
-
-.star_rating a.on {
-	color: #777;
-}
-</style>
 <body>
-<div id="root">
-	<header>
-		<div class="header_box">
-			<nav id="nav">
-				<div class="navbar-right">
-					<%@ include file="../include/nav.jsp" %>
-				</div>
-				<div id="index_logo_div">
-					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
-				</div>
-				<div class="navbar-left">
-						<%@ include file="../include/users_aside.jsp" %>						
-				</div>
-			</nav>
-		</div>
-	</header>
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp" %>
+					</div>
+					<div id="index_logo_div">
+						<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+					</div>
+					<div class="navbar-left">
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+									<%@ include file="../include/users_aside.jsp" %>						
+							</c:when>
+							<c:otherwise>
+									<%@ include file="../include/unknown_aside.jsp" %>			
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
+			</div>
+		</header>
 	<section id="container">	
 	<div id="container_box">
 			<div class="container">
@@ -57,6 +42,8 @@
 						type="hidden" name="reviewWriter"
 						value="${sessionScope.userDto.userId }" /> <input type="hidden"
 						id="likeCount" name="likeCount" value=2 />
+				<div class="container">
+					<label for="likeCount">별점</label>
 					<div class="container">
 						<label for="reviewContent">상품 리뷰</label>
 						<textarea rows="10" cols="50" name="reviewContent"
@@ -93,34 +80,28 @@
 					<button type="submit" id="starBtn" class="btn btn-default">수정확인</button>
 					<button type="button" id="back_btn" class="btn btn-warning">취소</button>
 					<script>
-				
-					$("#starBtn").on("click",function(){
-						//제출 전 에디터 내용을 변수에 저장
-						var content=CKEDITOR.instances.reviewContent.getData();
-						//제출 전 에디터 내용 길이를 변수에 저장
-						var content_len=CKEDITOR.instances.reviewContent.getData().length;
-						//내용이 없는 경우
-						if(content==""){
-							alert("내용을 입력하세요.",function(){
-								//에디터 내용에 포커스 on
-								CKEDITOR.instances.reviewContent.focus();
-								
-							},"warning");
-							return false;
-						}
-						//내용이 30글자 미만인 경우
-						//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
-						if(content_len<18){
-							alert("내용을  30자 이상 입력하세요.",function(){
-								//에디터 내용에 초기화
-								CKEDITOR.instances.reviewContent.setData("");
-								//에디터 내용에 포커스 on
-								CKEDITOR.instances.reviewContent.focus();
-							},"warning");
-							return false;
-						}
-					});
-					
+						$('#star_grade a')
+								.click(
+										function() {
+											$(this).parent().children("a")
+													.removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+											$(this).addClass("on").prevAll("a")
+													.addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+											var likeCount = document
+													.querySelectorAll(".on").length * 2;
+											$("#likeCount").val(likeCount);
+											return false;
+										});
+					</script>
+				</div>
+				<button type="submit">수정확인</button>
+				<button type="reset">취소</button>
+				<script>
+					$("#back_btn")
+							.click(
+									function() {
+										location.href = "detail.do?reviewNum=${dto.reviewNum }&itemNum=${dto.itemNum}";
+									})
 				</script>
 					<script>
 						$("#back_btn").click(function() {
@@ -129,13 +110,27 @@
 					</script>
 				</form>
 				</div>
-			</div>
-		</section>
-		<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp"%>
-			</div>
-		</footer>
-	</div>
+		</div>
+	</section>
+	
+	<script>
+		$("#back_btn").click(function() {
+			location.href = "itemView_form.do?itemNum=" + $
+			{
+				dto.itemNum
+			}
+			;
+		})
+	</script>
+	<script>
+		$('#star_grade a').click(function() {
+			$(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */
+			$(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+			var likeCount = document.querySelectorAll(".on").length * 2;
+			$("#likeCount").val(likeCount);
+			return false;
+		});
+	</script>
+		
 </body>
 </html>

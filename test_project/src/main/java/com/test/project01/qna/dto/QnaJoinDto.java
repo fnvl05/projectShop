@@ -14,13 +14,19 @@ public class QnaJoinDto {
 	private int prevNum; //이전글의 글번호를 담을 필드
 	private int nextNum; //다음글의 글번호를 담을 필드
 	private String itemNum;
+	private int commentCount;
 	
 	public QnaJoinDto() {}
 
 	
 
+	
+
+
+
 	public QnaJoinDto(int num, String itemImg, String itemName, String writer, String title, String content,
-			int viewCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum, String itemNum) {
+			int viewCount, String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum, String itemNum,
+			int commentCount) {
 		super();
 		this.num = num;
 		this.itemImg = itemImg;
@@ -35,7 +41,32 @@ public class QnaJoinDto {
 		this.prevNum = prevNum;
 		this.nextNum = nextNum;
 		this.itemNum = itemNum;
+		this.commentCount = commentCount;
 	}
+
+
+
+
+
+
+
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+
+
+
+
+
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+
+
+
 
 
 

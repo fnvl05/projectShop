@@ -30,4 +30,11 @@
 		SET content=#{content}
 		WHERE num=#{num}
 	</update>
+	<select  id="getCommentCount" parameterType="int" resultType="int">
+		SELECT MAX(rnum) rnum
+		FROM(SELECT result1.*, ROWNUM AS rnum
+			FROM
+				(SELECT * FROM board_qna_comment
+				where ref_group=#{num} and deleted='no') result1)
+	</select>
 </mapper>

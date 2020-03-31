@@ -1,3 +1,30 @@
+drop table tbl_member;
+drop table tbl_items;
+drop table goods_category;
+drop table board_notice;
+drop table board_qna;
+drop table board_qna_comment;
+drop table board_review;
+drop table review_upCount;
+drop table board_review_comment;
+drop table orders;
+drop table order_detail;
+drop table cartList;
+
+drop sequence tbl_member_seq;
+drop sequence tbl_item_seq;
+drop sequence board_notice_seq;
+drop sequence board_qna_seq;
+drop sequence board_qna_comment_seq;
+drop sequence board_review_seq;
+drop sequence review_upCount_seq;
+drop sequence board_review_comment_seq;
+drop sequence orders_seq;
+drop sequence order_detail_seq;
+drop sequence cartList_seq;
+
+
+
 --회원 테이블--
 create table tbl_member (
     userId      varchar2(50)    not null, -- 아이디
@@ -16,13 +43,23 @@ create table tbl_member (
     verify      number          default 0, -- 유저타입
     primary key(userId)
 );
+create sequence tbl_member_seq;
+
+<마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
+update tbl_member set verify=1 where userId='master';
 
 -- 회원가입 --
 insert into tbl_member (
 userId, userPass, PassQuiz, QuizAnswer, userName, userPhone, email, userAddr1, userAddr2, userAddr3, birthday)
 values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010-9950-1095','gosla1002@naver.com','흥도동','흥도로','원흥동',TO_DATE('1993-10-20','yyyy-mm-dd'));
 
+<<<<<<< HEAD
 --상품 테이블
+=======
+
+
+-상품 테이블-
+>>>>>>> refs/remotes/origin/hyun
 create table tbl_items (
     itemNum       number          not null,
     itemName      varchar2(50)    not null,
@@ -34,8 +71,20 @@ create table tbl_items (
     itemDate      date            default sysdate,
     primary key(itemNum)  
 );
+create sequence tbl_item_seq;
 
---카테고리 테이블
+-별도의 테이블 쿼리-
+alter table tbl_items add
+    constraint goods_category
+    foreign key (cateCode)
+        references goods_category(cateCode);
+        
+<썸네일 칼럼 추가>
+ alter table tbl_items add(itemThumbImg varchar2(300));        
+
+
+        
+-카테고리 테이블-
 create table goods_category (
 	cateLevel	 varchar2(20)	 not null,
     cateName     varchar2(20)    not null,
@@ -62,6 +111,7 @@ create sequence tbl_member_seq;
 <마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
 update tbl_member set verify=1 where userId='master';
 
+
 <level 를 이용한 계층 표시>
 select cateLevel, cateName, cateCode, cateCodeRef from goods_category
 start with cateCodeRef is null connect by prior cateCode = cateCodeRef;
@@ -76,7 +126,7 @@ insert into goods_category values('2', '반지', '101', '100');
 insert into goods_category values('2', '귀걸이', '102', '100');
 insert into goods_category values('2', '목걸이', '103', '100');
 
-create sequence tbl_item_seq;
+
 
 <아이템 목록 리스트>
  select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
@@ -159,12 +209,25 @@ likeCount number,
 upCount number,
 regdate date);
 
+<<<<<<< HEAD
 --리뷰 likeCount 제약조건 (1부터 10까지만 입력가능하게)  **추가하기**
 alter table board_review 
 add constraint review_likeCount_ch check(likeCount>=1 and likeCount<=10);
 
 --리뷰 테이블의 시퀀스
+=======
+>>>>>>> refs/remotes/origin/hyun
 create sequence board_review_seq;
+
+-- 리뷰 좋아요 테이블
+create table review_upCount
+(num number, 
+id varchar2(100), 
+reviewNum number,
+regdate date,
+itemNum number
+);
+create sequence review_upCount_seq;
 
 --review comment table
 CREATE TABLE board_review_comment(
@@ -178,7 +241,6 @@ CREATE TABLE board_review_comment(
 	regdate DATE 
 );
 
---review comment sequence
 CREATE SEQUENCE board_review_comment_seq;
 
 -- 리뷰 좋아요 테이블
@@ -206,10 +268,34 @@ create table orders(
 	msg varchar2(100),
 	payment varchar2(30),
 	allPrice number
-);
+	);
 
 
 create sequence orders_seq;
+
+alter table orders
+    add constraint orders_userId_fk foreign key(userId)
+    references tbl_member(userId);
+
+
+<!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
 
 alter table orders
     add constraint orders_userId_fk foreign key(userId)
@@ -227,7 +313,6 @@ create table order_detail(
 	quantity number,
 	result varchar2(30) default '미처리'       --상품 처리여부
 );
-
 
 create sequence order_detail_seq;
 
@@ -264,6 +349,7 @@ alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
 references tbl_items(itemNum);
 
+alter table cartList add(money number);
 
 alter table cartList add(money number);
 
@@ -278,4 +364,11 @@ drop table tbl_items;
 drop table goods_category;
 drop table review_upcount;
 drop table tbl_member;
+
+<참고>
+alter table [ 테이블 이름 ] add
+    constraint [ 제약조건 이름 ]
+    foreign key ([ 참조할 컬럼 이름 ])
+        references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
+
 
