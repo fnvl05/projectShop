@@ -5,6 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -27,6 +30,8 @@ import com.google.gson.JsonObject;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.master.category.serevice.categoryService;
+import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
 @Controller
@@ -39,8 +44,9 @@ public class categoryController{
 	private String upLoadPath;
 	
 	@RequestMapping("/master/master_index")
-	public String master_index() {
-		return "master/master_index";
+	public ModelAndView Master_master_index(HttpServletRequest request,ModelAndView mView) {
+		mView.setViewName("master/master_index");
+		return mView;
 	}
 
 	@RequestMapping("/master/register_form")
@@ -51,45 +57,47 @@ public class categoryController{
 		return mView;
 	}
 	@RequestMapping(value="/master/register", method = RequestMethod.POST)
-	public ModelAndView ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file) throws IOException, Exception {
+	public ModelAndView Master_ItemInsert(@ModelAttribute ItemDto dto, MultipartFile file, HttpServletRequest request) throws IOException, Exception {
 		String imgUpLoadPath = upLoadPath + File.separator + "imgUpLoad";
 		String ymdPath = UpLoadFileUtils.calcPath(imgUpLoadPath);
 		String fileName = null;
-
+		
 		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UpLoadFileUtils.fileUpload(imgUpLoadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
 		 dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		 dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		} else {
+			
 		 fileName = File.separator + "images" + File.separator + "none.png";
 		 dto.setItemImg(fileName);
 		 dto.setItemThumbImg(fileName);
-		}
 
+		}
+		
 		service.itemInsert(dto);
 		return new ModelAndView("redirect:itemList.do");
 	}
 	@RequestMapping("/master/itemList")
-	public ModelAndView itemList(@ModelAttribute categoryDto dto, 
+	public ModelAndView Master_itemList(@ModelAttribute categoryDto dto, 
 			ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
 		service.itemList(mView);
 		mView.setViewName("master/itemList");
 		return mView;
 	}
 	@RequestMapping("/master/itemView_form")
-	public ModelAndView itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Master_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemView(mView, itemNum);
 		mView.setViewName("master/itemView_form");
 		return mView;
 	}
 	@RequestMapping("/master/item_modifyForm")
-	public ModelAndView itemModify_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Master_itemModify_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemViewList(mView, itemNum);
 		mView.setViewName("master/item_modifyForm");
 		return mView;
 	}
 	@RequestMapping(value="/master/item_modify", method = RequestMethod.POST)
-	public ModelAndView ItemUpDate(MultipartFile file, @ModelAttribute ItemDto dto, HttpServletRequest request, @RequestParam int itemNum) throws IOException, Exception {
+	public ModelAndView Master_ItemUpDate(MultipartFile file, @ModelAttribute ItemDto dto, HttpServletRequest request, @RequestParam int itemNum) throws IOException, Exception {
 		// 새로운 파일이 등록되었는지 확인
 		 if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		  // 기존 파일을 삭제
@@ -104,8 +112,7 @@ public class categoryController{
 		  dto.setItemImg(File.separator + "imgUpLoad" + ymdPath + File.separator + fileName);
 		  dto.setItemThumbImg(File.separator + "imgUpLoad" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		  
-		 } else {  // 새로운 파일이 등록되지 않았다면
-		  // 기존 이미지를 그대로 사용
+		 } else { 
 		  dto.setItemImg(request.getParameter("itemImg"));
 		  dto.setItemThumbImg(request.getParameter("itemThumbImg"));
 		  
@@ -115,7 +122,7 @@ public class categoryController{
 				("redirect:itemView_form.do?itemNum="+itemNum);
 	}
 	@RequestMapping(value="/master/delete")
-	public ModelAndView ItemDelete(@RequestParam int itemNum, HttpServletRequest request) {
+	public ModelAndView Master_ItemDelete(@RequestParam int itemNum, HttpServletRequest request) {
 		service.itemDelete(itemNum,request);
 		return new ModelAndView("redirect:itemList.do");	
 	}
@@ -172,12 +179,48 @@ public class categoryController{
 		return null;
 	}	
 
+	@RequestMapping("/master/no_master")
+	public ModelAndView no_master(ModelAndView mView) {
+		mView.setViewName("master/no_master");
+		return mView;	
+	}
 	
+	@RequestMapping("/master/usersList")
+	public ModelAndView userList(ModelAndView mView) {
+		service.TotalList(mView);
+		mView.setViewName("master/usersList");
+		return mView;	
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="/master/resultUpDate", method=RequestMethod.POST)
+	public Map<String, Object> resultData(@RequestParam(value="resultArray[]")List<String> item) {
+		OrderDetailDto detailDto = new OrderDetailDto();
+		detailDto.setResult(item.get(0));
+		detailDto.setOdNum(Integer.parseInt(item.get(1)));
+		service.upResult(detailDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
+	}
 	
+	@RequestMapping("/master/userVerify")
+	public ModelAndView userVerify(ModelAndView mView) {
+		service.getUserAllList(mView);
+		mView.setViewName("master/userVerify");
+		return mView;	
+	}
 	
-	
-	
-	
+	@ResponseBody
+	@RequestMapping(value="/master/verifyUpDate", method=RequestMethod.POST)
+	public Map<String, Object> verifyUpDate(@RequestParam(value="verifyArray[]")List<String> item) {
+		UsersDto userDto = new UsersDto();
+		userDto.setUserId(item.get(0));
+		userDto.setVerify(Integer.parseInt(item.get(1)));
+		service.userVerify(userDto);
+		Map<String,Object> map=new HashMap<>();
+		map.put("isSuccess", true);
+		return map;
+	}
 	
 }

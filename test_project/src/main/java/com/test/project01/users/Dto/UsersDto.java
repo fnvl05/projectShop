@@ -1,34 +1,22 @@
 package com.test.project01.users.Dto;
 
-import java.util.Date;
-
 public class UsersDto {
-	
 	private String userId;
 	private String userPass;
+	private String PassQuiz;
+	private String QuizAnswer;
 	private String userName;
-	private String userPhon;
-	private String userAdd1;
-	private String userAdd2;
-	private String userAdd3;
-	private Date regiDate;
+	private String userPhone;
+	private String email;
+	private String userAddr1;
+	private String userAddr2;
+	private String userAddr3;
+	private String regiDate;
+	private String birthday;
+	private int mileage;
 	private int verify;
-		
-	public UsersDto() {}
+	private String newPass;
 	
-	public UsersDto(String userId, String userPass, String userName, String userPhon, String userAdd1, String userAdd2,
-			String userAdd3) {
-		super();
-		this.userId = userId;
-		this.userPass = userPass;
-		this.userName = userName;
-		this.userPhon = userPhon;
-		this.userAdd1 = userAdd1;
-		this.userAdd2 = userAdd2;
-		this.userAdd3 = userAdd3;
-	}
-
-
 	public String getUserId() {
 		return userId;
 	}
@@ -41,41 +29,71 @@ public class UsersDto {
 	public void setUserPass(String userPass) {
 		this.userPass = userPass;
 	}
+	public String getPassQuiz() {
+		return PassQuiz;
+	}
+	public void setPassQuiz(String passQuiz) {
+		PassQuiz = passQuiz;
+	}
+	public String getQuizAnswer() {
+		return QuizAnswer;
+	}
+	public void setQuizAnswer(String quizAnswer) {
+		QuizAnswer = quizAnswer;
+	}
 	public String getUserName() {
 		return userName;
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getUserPhon() {
-		return userPhon;
+	public String getUserPhone() {
+		return userPhone;
 	}
-	public void setUserPhon(String userPhon) {
-		this.userPhon = userPhon;
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
 	}
-	public String getUserAdd1() {
-		return userAdd1;
+	public String getEmail() {
+		return email;
 	}
-	public void setUserAdd1(String userAdd1) {
-		this.userAdd1 = userAdd1;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getUserAdd2() {
-		return userAdd2;
+	public String getUserAddr1() {
+		return userAddr1;
 	}
-	public void setUserAdd2(String userAdd2) {
-		this.userAdd2 = userAdd2;
+	public void setUserAddr1(String userAddr1) {
+		this.userAddr1 = userAddr1;
 	}
-	public String getUserAdd3() {
-		return userAdd3;
+	public String getUserAddr2() {
+		return userAddr2;
 	}
-	public void setUserAdd3(String userAdd3) {
-		this.userAdd3 = userAdd3;
+	public void setUserAddr2(String userAddr2) {
+		this.userAddr2 = userAddr2;
 	}
-	public Date getRegiDate() {
+	public String getUserAddr3() {
+		return userAddr3;
+	}
+	public void setUserAddr3(String userAddr3) {
+		this.userAddr3 = userAddr3;
+	}
+	public String getRegiDate() {
 		return regiDate;
 	}
-	public void setRegiDate(Date regiDate) {
+	public void setRegiDate(String regiDate) {
 		this.regiDate = regiDate;
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public int getMileage() {
+		return mileage;
+	}
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
 	}
 	public int getVerify() {
 		return verify;
@@ -83,6 +101,15 @@ public class UsersDto {
 	public void setVerify(int verify) {
 		this.verify = verify;
 	}
+	public String getNewPass() {
+		return newPass;
+	}
+	public void setNewPass(String newPass) {
+		this.newPass = newPass;
+	}
+	
+
+	
 	
 	
 }

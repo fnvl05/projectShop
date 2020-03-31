@@ -11,7 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.project01.master.category.Dao.categoryDao;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
+import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
+import com.test.project01.master.category.Dto.User_Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
+import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.users.Dto.UsersDto;
 
 import net.sf.json.JSONArray;
 
@@ -59,6 +63,31 @@ public class categoryServicelmpl implements categoryService {
 	@Override
 	public void itemDelete(int itemNum, HttpServletRequest request) {
 		dao.ItemDelete(itemNum);
+	}
+
+
+	@Override
+	public void upResult(OrderDetailDto detailDto) {
+		dao.upResult(detailDto);
+	}
+	
+	@Override
+	public void TotalList(ModelAndView mView) {
+		List<User_Orders_Dto> userDto = dao.userList();
+		List<Item_OrderDetail_Dto> itemDto = dao.item_orderList();
+		mView.addObject("userList", JSONArray.fromObject(userDto));	
+		mView.addObject("itemList", JSONArray.fromObject(itemDto));
+	}
+
+	@Override
+	public void getUserAllList(ModelAndView mView) {
+		List<UsersDto> dto = dao.userAllList();
+		mView.addObject("userAllList", JSONArray.fromObject(dto));		
+	}
+
+	@Override
+	public void userVerify(UsersDto userDto) {
+		dao.userVerify(userDto);
 	}
 	
 	

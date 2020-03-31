@@ -1,47 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-
-<style>
-	.oriImg{width: 500px; height: auto}
-	.thumbImg{width: 200px; height: auto}
-</style>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp" %>
+					</div>
+					<div id="index_logo_div">
+						<%@ include file="../include/header.jsp" %>
+					</div>
+					<div class="navbar-left">
+						<%@ include file="../include/master_aside.jsp" %>						
+					</div>
+				</nav>
 			</div>
 		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
 		<section id="container">
-			<aside>
-				<c:choose>
-					<c:when test="${not empty sessionScope.userDto.userId }">
-						<c:if test="${sessionScope.userDto.verify eq 1}">
-							<%@ include file="../include/master_aside.jsp" %>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-							<%@ include file="../include/user_aside.jsp" %>
-					</c:otherwise>
-				</c:choose>
-			</aside>
-			<form role="form" action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
+			<form role="form" autocomplete="off" enctype="multipart/form-data">
 			<input type="hidden" name="itemNum" value="${dto.itemNum }"/>
 				<div class="inputArea">
 					 <label>1차 분류</label>
@@ -93,6 +78,13 @@
 					});
 				</script>
 			</form>
+			<a href="../qna/itemList_qna.do?itemNum=${dto.itemNum }">QnA</a><br/>
+
+			<a href="../shop/orderform.do?">바로 주문하기</a>
+
+			<a href="../shop/orderform.do?">바로 주문하기</a>
+
+			<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">

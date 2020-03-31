@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인/view/Users/login_form</title>
 </head>
 <body>
 <section id="content">
  <form action="login.do" method="post">
   <div class="input_area">
+   <h2>로그인 정보 입력</h2>
    <label for="userId">아이디</label>
    <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      
   </div>
@@ -21,6 +22,8 @@
   </div>
   
   <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
+  <br/>
+  <a href="${pageContext.request.contextPath }/Users/searchIdForm.do">아이디/패스워드 찾기</a>
  </form>   
 </section> 	
 </body>

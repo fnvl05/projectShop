@@ -3,128 +3,113 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css">
-<style>
-	.select_img img{width: 500px; margin: 20px 0;}
-</style>
 </head>
 <body>
-	<div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
-			</div>
-		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<%@ include file="../include/header.jsp" %>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/master_aside.jsp" %>						
+				</div>
+			</nav>
+		</div>
+	</header>
 		<section id="container">
-			<aside>
-				<c:choose>
-					<c:when test="${not empty sessionScope.userDto.userId }">
-						<c:if test="${sessionScope.userDto.verify eq 1}">
-							<%@ include file="../include/master_aside.jsp" %>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-							<%@ include file="../include/user_aside.jsp" %>
-					</c:otherwise>
-				</c:choose>
-			</aside>
-			<form action="item_modify.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="itemNum" value="${dto.itemNum} "/>
 				<div id="container_box">
-					<h2>상품 수정</h2>
-					 <label>1차 분류</label>
-					 <select class="category1">
-					  <option value="">전체</option>
-					 </select>
-					 
-					 <label>2차 분류</label>
-					 <select class="category2" name="cateCode">
-					  <option value="">전체</option>
-					 </select>
-				</div>
-				<div id="inputArea">
-					<label for="itmeName">상품명</label>
-					<input type="text" id="itemName" name="itemName" value="${dto.itemName }"/>
-				</div>
-				<div id="inputArea">
-					<label for="itmePrice">상품가격</label>
-					<input type="text" name="itemPrice" value="${dto.itemPrice }" id="itemPrice"/>
-				</div>
-				<div id="inputArea">
-					<label for="itemCount">상품수량</label>
-					<input type="text" name="itemCount" value="${dto.itemCount }" id="itemCount"/>
-				</div>
-				<script>
-					var regExp = /[^0-9]/gi;
-					
-					$("#itemPrice").keyup(function(){ numCheck($(this)); });
-					$("#itemCount").keyup(function(){ numCheck($(this)); });
-					
-					function numCheck(selector) {
-					 var tempVal = selector.val();
-					 selector.val(tempVal.replace(regExp, ""));
-					}
-				</script>
-				<div id="inputArea">
-					<label for="itemDes">상품설명</label>
-					<textarea rows="10" cols="50" name="itemDes" id="itemDes">${dto.itemDes }</textarea>
-					<script type="text/javascript">
-						$(function(){
-							CKEDITOR.replace('itemDes',{
-								filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
-							});
-						});
-					</script>
-				</div>
-				
-				<div class="inputArea">
-					<label for="itemImg">이미지</label>
-					<input type="file" id="itemImg" name="file"/>
-					<div class="select_img">
-						<img src="../resources${dto.itemImg}"/>
-						<input type="hidden" name = "itemImg" value="../resources${dto.itemImg}"/>
-						<input type="hidden" name = "itemThumbImg" value="../resources${dto.itemThumbImg}"/>
-					</div>
-					<script>
-						$("#itemImg").change(function() {
-							if(this.files && this.files[0]){
-								var reader = new FileReader;
-								reader.onload = function(data) {
-									$(".select_img img").attr("src", data.target.result).width(500);
-								}
-								reader.readAsDataURL(this.files[0]);
+					<form action="item_modify.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="itemNum" value="${dto.itemNum} "/>
+							<h2>상품 수정</h2>
+							 <label>1차 분류</label>
+							 <select class="category1">
+							  <option value="">전체</option>
+							 </select>
+							 
+							 <label>2차 분류</label>
+							 <select class="category2" name="cateCode">
+							  <option value="">전체</option>
+							 </select>
+						<div id="inputArea">
+							<label for="itmeName">상품명</label>
+							<input type="text" id="itemName" name="itemName" value="${dto.itemName }"/>
+						</div>
+						<div id="inputArea">
+							<label for="itmePrice">상품가격</label>
+							<input type="text" name="itemPrice" value="${dto.itemPrice }" id="itemPrice"/>
+						</div>
+						<div id="inputArea">
+							<label for="itemCount">상품수량</label>
+							<input type="text" name="itemCount" value="${dto.itemCount }" id="itemCount"/>
+						</div>
+						<script>
+							var regExp = /[^0-9]/gi;
+							
+							$("#itemPrice").keyup(function(){ numCheck($(this)); });
+							$("#itemCount").keyup(function(){ numCheck($(this)); });
+							
+							function numCheck(selector) {
+							 var tempVal = selector.val();
+							 selector.val(tempVal.replace(regExp, ""));
 							}
-						})
-					</script>
+						</script>
+						<div id="inputArea">
+							<label for="itemDes">상품설명</label>
+							<textarea rows="10" cols="50" name="itemDes" id="itemDes">${dto.itemDes }</textarea>
+							<script type="text/javascript">
+								$(function(){
+									CKEDITOR.replace('itemDes',{
+										filebrowserUploadUrl: '${pageContext.request.contextPath }/fileupload.do'
+									});
+								});
+							</script>
+						</div>
+						
+						<div class="inputArea">
+							<label for="itemImg">이미지</label>
+							<input type="file" id="itemImg" name="file"/>
+							<div class="select_img">
+								<img src="${dto.itemImg}"/>
+								<input type="hidden" name = "itemImg" id="itemImg" value="${dto.itemImg}"/>
+								<input type="hidden" name = "itemThumbImg" id="itemThumbImg" value="${dto.itemImg}"/>
+							</div>
+							<script>
+								$("#itemImg").change(function() {
+									if(this.files && this.files[0]){
+										var reader = new FileReader;
+										reader.onload = function(data) {
+											$(".select_img img").attr("src", data.target.result).width(500);
+										}
+										reader.readAsDataURL(this.files[0]);
+									}
+								})
+							</script>
+						</div>
+						
+						<div id="inputArea">
+							<button type="submit" id="update_btn" class="btn btn-primary">완료</button>
+							<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+							<script>
+								$("#back_btn").click(function(){
+									location.href="itemView_form.do?itemNum=" + ${dto.itemNum};
+								})
+							</script>
+						</div>
+					</form>
 				</div>
-				
-				<div id="inputArea">
-					<button type="submit" id="update_btn" class="btn btn-primary">완료</button>
-					<button type="button" id="back_btn" class="btn btn-warning">취소</button>
-					<script>
-						$("#back_btn").click(function(){
-							location.href="itemView_form.do?itemNum=" + ${dto.itemNum};
-						})
-					</script>
-				</div>
-			</form>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
-	</div>
 	
 	<script>
 	var jsonData = JSON.parse('${list}');
