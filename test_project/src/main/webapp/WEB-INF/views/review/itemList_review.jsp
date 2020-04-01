@@ -73,8 +73,7 @@
 						<td><img src="../resources${tmp.itemImg }" /></td>
 						<td>${tmp.reviewContent }</td>
 						<td><span class="wrap-star"> <span class='star-rating'>
-									<span
-									style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
+									<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
 							</span>
 						</span></td>
 						<td><span class="glyphicon glyphicon-thumbs-up"></span>

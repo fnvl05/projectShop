@@ -9,18 +9,10 @@
 <title>/shop/orderform.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
-<style>
-	img{
-		width:100px;
-		height:auto;
-	}
-	#required{
-		color: red;
-	}
-</style>
+
 
 </head>
-<body ng-app>
+<body>
 	<div id="root">
 		<header>
 		<div class="header_box">
