@@ -291,5 +291,3 @@ alter table [ 테이블 이름 ] add
     constraint [ 제약조건 이름 ]
     foreign key ([ 참조할 컬럼 이름 ])
         references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
-
-

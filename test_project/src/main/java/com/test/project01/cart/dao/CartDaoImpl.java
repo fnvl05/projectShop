@@ -57,7 +57,8 @@ public class CartDaoImpl implements CartDao{
 	@Override
 	public void deleteAll(String userId) {
 		session.delete("cart.deleteAll",userId);
-		
-	}		
-	
+
+	}
+
+
 }

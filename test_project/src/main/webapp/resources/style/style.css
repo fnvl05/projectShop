@@ -140,7 +140,7 @@ ul {
 	margin: 40px;
 }
 
-#container_box table td { width:150px; text-align: center }
+#container_box table td { width:150px; }
 
 .thumbImg{width: 100px; height: 70px;}
 
@@ -213,4 +213,34 @@ ul {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
+}
+
+/* 별점 css */
+ #star_grade a{
+    text-decoration: none;
+    color: gray;
+}
+#star_grade a.on{
+    color: red;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#777;}
+
+.star-rating {
+      width: 75px;
+   }
+   
+.star-rating, .star-rating span {
+   display: inline-block;
+   height: 14px;
+   overflow: hidden;
+   background:
+      url(../images/star.png)
+      no-repeat;
+}
+
+.star-rating span {
+   background-position: left bottom;
+   line-height: 0;
+   vertical-align: top;
 }

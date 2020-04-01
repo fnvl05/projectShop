@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.project01.qna.service.QnaService;
 import com.test.project01.review.dto.ReviewCommentDto;
 import com.test.project01.review.dto.ReviewDto;
 import com.test.project01.review.dto.ReviewUpCountDto;
@@ -24,6 +25,8 @@ import com.test.project01.review.service.ReviewService;
 public class ReviewController {
 	@Autowired
 	ReviewService service;
+	@Autowired
+	QnaService qnaService;
 	
 	//리뷰 목록보기
 	@RequestMapping("/review/list")
@@ -40,7 +43,7 @@ public class ReviewController {
 		mView.setViewName("review/itemList_review");
 		return mView;
 	}
-	
+	//리뷰 인서트폼
 	@RequestMapping("/review/insertform")
 	public ModelAndView Users_Insertform(HttpServletRequest request) {
 		service.insertform(request);
@@ -86,7 +89,7 @@ public class ReviewController {
 		service.delete(request, reviewNum);
 		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
 	}
-	
+	//댓글 삭제
 	@ResponseBody
 	@RequestMapping(value="/review/comment_delete",method=RequestMethod.POST )
 	public Map<String, Object> authCommentDelete(HttpServletRequest request,
@@ -98,14 +101,14 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map; 
 	}
-	
+	//댓글등록
 	@RequestMapping(value="/review/comment_insert",method = RequestMethod.POST)
 	public ModelAndView authCommentInsert(HttpServletRequest request,
 			@RequestParam int ref_group) {
 		service.saveComment(request);
 		return new ModelAndView("redirect:/review/detail.do?reviewNum="+ref_group);
 	}
-	
+	//댓글 수정
 	@ResponseBody
 	@RequestMapping("/review/comment_update")
 	public Map<String, Object> authCommentUpdate(HttpServletRequest request,
@@ -118,6 +121,7 @@ public class ReviewController {
 		return map;
 	}
 	
+
 	//리뷰 좋아요 처리
 	@ResponseBody
 	@RequestMapping(value = "/review/reviewUpCount", 
@@ -131,5 +135,16 @@ public class ReviewController {
 	 
 		return map;
 	}
+
+	//board_list 에서 qna목록, review 목록
+	@RequestMapping("/Users/boardList")
+	public ModelAndView User_boardList(HttpServletRequest request,ModelAndView mView) {
+		service.reviewList(request);
+		qnaService.qnalist(request);
+		mView.setViewName("Users/boardList");
+		return mView;
+	}
+
+
 	
 }

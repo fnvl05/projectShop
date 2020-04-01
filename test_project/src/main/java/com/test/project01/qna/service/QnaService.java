@@ -23,4 +23,6 @@ public interface QnaService {
 	public void deleteComment(int num);
 	//댓글 수정하는 메소드
 	public void updateComment(QnaCommentDto dto);
+	//해당아이디가 작성한 Q&A 리스트
+	public void qnalist(HttpServletRequest request);
 }
