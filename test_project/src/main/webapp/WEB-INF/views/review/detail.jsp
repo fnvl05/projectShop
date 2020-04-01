@@ -10,175 +10,29 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
+
 	<div id="root">
 		<header>
 			<div class="header_box">
 				<nav id="nav">
 					<div class="navbar-right">
-						<%@ include file="../include/nav.jsp" %>
+						<%@ include file="../include/nav.jsp"%>
 					</div>
 					<div id="index_logo_div">
-						<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+						<a href="index.do"><img id="index_logo_img"
+							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
-						<c:choose>
-							<c:when test="${not empty sessionScope.id }">
-									<%@ include file="../include/users_aside.jsp" %>						
-							</c:when>
-							<c:otherwise>
-									<%@ include file="../include/unknown_aside.jsp" %>			
-							</c:otherwise>
-						</c:choose>
+						<%@ include file="../include/users_aside.jsp"%>
 					</div>
 				</nav>
 			</div>
-		</header>
 	</div>
-		<h3>리뷰 글 상세 보기</h3>
-		<table class="table table-bordered table-condensed">
-			<colgroup>
-				<col class="col-xs-3" />
-				<col class="col-xs-9" />
-			</colgroup>
-			<tr>
-				<th>글 번호</th>
-				<td>${dto.reviewNum }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${dto.reviewWriter }</td>
-			</tr>
-			<tr>
-				<th>별점</th>
-				<td><span class="wrap-star"> <span class='star-rating'>
-							<span
-							style="width:<fmt:formatNumber value="${dto.likeCount *10}" pattern=".0"/>%"></span>
-					</span> <c:if test="${dto.likeCount gt 0 }">
-							<fmt:formatNumber value="${dto.likeCount }" pattern=".0" />
-						</c:if>
-				</span></td>
-			</tr>
-			<tr>
-				<th>좋아요</th>
-				<td>
-					<form action="reivewUpCount.do" id="upForm" method="post"
-						style="display: inline;">
-						<input type="hidden" name="reviewNum" value="${dto.reviewNum}" />
-						<input type="hidden" name="itemNum" value="${dto.itemNum}" />
-						<button
-							<c:if test="${dto.isLike eq true}">style="color:red;"</c:if>
-							class="up btn btn-link" type="button">
-							<span class="glyphicon glyphicon-thumbs-up"></span>
-						</button>
-					</form> <span class="${dto.reviewNum }">${dto.upCount }</span>
-				</td>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<td>${dto.regdate }</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>${dto.reviewContent }</td>
-			</tr>
-		</table>
-		<br /> <br />
-
-		<c:if test="${dto.reviewWriter eq userDto.userId }">
-			<a
-				href="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum } ">삭제하기</a>
-			<a
-				href="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
-		</c:if>
-		<br /> <br />
-		<div class="comments">
-			<ul>
-				<c:forEach items="${commentList }" var="tmp">
-					<c:choose>
-						<c:when test="${tmp.deleted ne 'yes' }">
-							<li class="comment" id="comment${tmp.num }"
-								<c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>
-								<c:if test="${tmp.num ne tmp.comment_group }">
-									<img class="reply_icon"
-										src="${pageContext.request.contextPath}/resources/images/re.gif" />
-								</c:if>
-
-								<dl>
-									<dt>
-
-										<span>${tmp.writer }</span>
-										<c:if test="${tmp.num ne tmp.comment_group }">
-									to <strong>${tmp.target_id }</strong>
-										</c:if>
-										<span>${tmp.regdate }</span> <a href="javascript:"
-											class="reply_link">답글</a>
-										<c:choose>
-											<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
-											<c:when test="${userDto.userId eq tmp.writer }">
-												<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
-										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
-											</c:when>
-											<c:otherwise>
-												<a href="javascript:">신고</a>
-											</c:otherwise>
-										</c:choose>
-									</dt>
-									<dd>
-										<pre>${tmp.content }</pre>
-									</dd>
-								</dl>
-								<form class="comment-insert-form" action="comment_insert.do"
-									method="post">
-									<!-- 덧글 그룹 -->
-									<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
-									<!-- 덧글 대상 -->
-									<input type="hidden" name="target_id" value="${tmp.writer }" />
-									<input type="hidden" name="comment_group"
-										value="${tmp.comment_group }" />
-									<textarea name="content"><c:if
-											test="${empty userDto.userId }">로그인이 필요합니다.</c:if></textarea>
-									<button type="submit">등록</button>
-								</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
-									test="${userDto.userId eq tmp.writer }">
-									<form class="comment-update-form" action="comment_update.do"
-										method="post">
-										<input type="hidden" name="num" value="${tmp.num }" />
-										<textarea name="content">${tmp.content }</textarea>
-										<button type="submit">수정</button>
-									</form>
-								</c:if>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li
-								<c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>삭제된
-								댓글 입니다.</li>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-			</ul>
-			<div class="clearfix"></div>
-
-			<!-- 원글에 댓글을 작성할 수 있는 폼 -->
-
-			<div class="comment_form">
-				<form action="comment_insert.do" method="post">
-					<!-- 댓글의 그룹번호는 원글의 글번호가 된다.-->
-					<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
-					<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
-					<input type="hidden" name="target_id" value="${dto.reviewWriter}" />
-					<textarea name="content">
-					<c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if>
-				</textarea>
-
-					<button type="submit">등록</button>
-				</form>
-			</div>
-		</div>
-	<section id="container">	
-	<div id="container_box">
+	</header>
+	<section id="container">
+		<div id="container_box">
 			<h3>리뷰 글 상세 보기</h3>
-		
+
 			<table class="table table-bordered table-condensed">
 				<colgroup>
 					<col class="col-xs-3" />
@@ -204,7 +58,18 @@
 				</tr>
 				<tr>
 					<th>좋아요</th>
-					<td>${dto.upCount }</td>
+					<td>
+						<form action="reivewUpCount.do" id="upForm" method="post"
+							style="display: inline;">
+							<input type="hidden" name="reviewNum" value="${dto.reviewNum}" />
+							<input type="hidden" name="itemNum" value="${dto.itemNum}" />
+							<button
+								<c:if test="${dto.isLike eq true}">style="color:red;"</c:if>
+								class="up btn btn-link" type="button">
+								<span class="glyphicon glyphicon-thumbs-up"></span>
+							</button>
+						</form> <span class="${dto.reviewNum }">${dto.upCount }</span>
+					</td>
 				</tr>
 				<tr>
 					<th>등록일</th>
@@ -215,17 +80,15 @@
 					<td>${dto.reviewContent }</td>
 				</tr>
 			</table>
-			<br />
-			<br />
-		
+			<br /> <br />
+
 			<c:if test="${dto.reviewWriter eq userDto.userId }">
 				<a
 					href="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum } ">삭제하기</a>
 				<a
 					href="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
 			</c:if>
-			<br />
-			<br />
+			<br /> <br />
 			<div class="comments">
 				<ul>
 					<c:forEach items="${commentList }" var="tmp">
@@ -239,7 +102,7 @@
 									</c:if>
 									<dl>
 										<dt>
-		
+
 											<span>${tmp.writer }</span>
 											<c:if test="${tmp.num ne tmp.comment_group }">
 											to <strong>${tmp.target_id }</strong>
@@ -264,7 +127,8 @@
 									<form class="comment-insert-form" action="comment_insert.do"
 										method="post">
 										<!-- 덧글 그룹 -->
-										<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
+										<input type="hidden" name="ref_group"
+											value="${dto.reviewNum }" />
 										<!-- 덧글 대상 -->
 										<input type="hidden" name="target_id" value="${tmp.writer }" />
 										<input type="hidden" name="comment_group"
@@ -292,9 +156,9 @@
 					</c:forEach>
 				</ul>
 				<div class="clearfix"></div>
-		
+
 				<!-- 원글에 댓글을 작성할 수 있는 폼 -->
-		
+
 				<div class="comment_form">
 					<form action="comment_insert.do" method="post">
 						<!-- 댓글의 그룹번호는 원글의 글번호가 된다.-->
@@ -311,11 +175,12 @@
 		</div>
 	</section>
 	<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp" %>
-			</div>
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
 	</footer>
-<script>
+	</div>
+	<script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)
@@ -402,7 +267,7 @@
 		.find(".comment-insert-form")   //세번 올라간 parent의 자손요소에서 ".comment-insert-form"을 찾는다.
 		.slideToggle(200);    //접혀있으면 펼치고 펼쳐있으면 접는다.
 		
-		//답글 <=> 취소가 서로 토글 되도록 한다. 
+		// 답글 <=> 취소가 서로 토글 되도록 한다. 
 		if($(this).text()=="답글"){
 			$(this).text("취소");
 		}else{
@@ -428,10 +293,8 @@
 			url: "reviewUpCount.do",//이동할 주소
 			type: "post",
 			data: {"arrEachItemNum": arrItemNum},
-
 			success:function(responseData){
 				
-
 				var count=responseData.count;
 				var checkUp=responseData.checkUp;
 				var itemNum=responseData.reviewNum;
@@ -440,7 +303,6 @@
 				console.log(checkUp);
 				console.log(reviewNum);
 				
-
 				if(responseData.checkUp==false){
 					ele.prop("style","color: black;");
 					$("."+reviewNum).text(count);
