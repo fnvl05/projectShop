@@ -6,21 +6,19 @@
 		from
 		board_review
 	</select>
-	<select id="getList" resultType="reviewJoinDto"
-		parameterType="reviewJoinDto">
-		SELECT *
-		FROM
-		(SELECT result1.*, ROWNUM AS rnum
-		FROM
-		(select
-		reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD')
-		AS regdate
-		from board_review,tbl_items
-		where board_review.itemNum=tbl_items.itemNum
-		order by reviewNum desc) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND
-		#{endRowNum}
 
+	<select id="getList" resultType="reviewJoinDto" parameterType="reviewJoinDto">
+		SELECT * 
+			FROM
+    			(SELECT result1.*, ROWNUM AS rnum
+    			FROM
+        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+					from board_review,tbl_items
+					where board_review.itemNum=tbl_items.itemNum
+					order by reviewNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
+		
+		
 
 	</select>
 	<select id="getCount2" resultType="int"
@@ -29,22 +27,19 @@
 		from board_review
 		where itemNum=#{itemNum}
 	</select>
-	<select id="getList2" resultType="reviewJoinDto"
-		parameterType="reviewJoinDto">
-		SELECT *
-		FROM
-		(SELECT result1.*, ROWNUM AS rnum
-		FROM
-		(select
-		reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD')
-		AS regdate
-		from board_review,tbl_items
-		where board_review.itemNum=tbl_items.itemNum and
-		board_review.itemNum=#{itemNum}
-		order by reviewNum desc) result1)
-		WHERE rnum BETWEEN #{startRowNum} AND
-		#{endRowNum}
 
+	<select id="getList2" resultType="reviewJoinDto" parameterType="reviewJoinDto">
+		SELECT * 
+			FROM
+    			(SELECT result1.*, ROWNUM AS rnum
+    			FROM
+        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+					from board_review,tbl_items
+					where board_review.itemNum=tbl_items.itemNum and board_review.itemNum=#{itemNum}
+					order by reviewNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
+		
+		
 
 	</select>
 	<insert id="insert" parameterType="reviewDto">
@@ -90,15 +85,12 @@
 		r.reviewNum,r.reviewWriter,r.itemNum,r.reviewContent,r.likeCount,r.upCount,r.regdate,
 		i.itemName,i.itemImg
 		from board_review r,tbl_items i
-		where
-		r.itemNum=i.itemNum and r.reviewWriter=#{reviewWriter}
-		order by
-		r.regdate DESC
+		where r.itemNum=i.itemNum and r.reviewWriter=#{reviewWriter}
+		order by r.regdate DESC
 	</select>
-
-	<select id="checkCount" parameterType="ReviewUpCountDto"
-		resultType="String">
-		select id from review_UpCount
+	
+	<select id="checkCount" parameterType="ReviewUpCountDto" resultType="String">
+		select id from review_UpCount 
 		where id=#{id} and reviewNum=#{reviewNum}
 	</select>
 	<insert id="addUpCount" parameterType="ReviewUpCountDto">
@@ -126,10 +118,9 @@
 		FROM reviewUpCount
 		WHERE id=#{id} and itemNum=#{itmeNum}
 	</select>
-	<select id="checkUpCount" parameterType="Integer"
-		resultType="int">
-		select upCount from board_review where
-		reviewNum=#{reviewNum}
+
+	<select id="checkUpCount" parameterType="Integer" resultType="int">
+		select upCount from board_review where reviewNum=#{reviewNum}
 	</select>
 </mapper>
 

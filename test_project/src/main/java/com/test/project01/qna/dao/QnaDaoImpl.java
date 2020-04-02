@@ -70,6 +70,10 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	@Override
+	public List<QnaJoinDto> qnaList(String writer) {
+		return session.selectList("qna.qnalist",writer);
+	}
+
 	public int getCommentCount(int num) {
 		Object test=session.selectOne("qnaComment.getCommentCount",num);	
 		if(test==null) {
@@ -77,11 +81,6 @@ public class QnaDaoImpl implements QnaDao {
 		}else {
 			return (int)test;
 		}
-	}
-	@Override
-	public List<QnaJoinDto> qnaList(String writer) {
-		return session.selectList("qna.qnalist", writer);
-
 	}
 
 }

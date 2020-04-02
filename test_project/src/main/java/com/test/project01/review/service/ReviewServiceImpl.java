@@ -262,6 +262,25 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public boolean isExist(HttpServletRequest request, int itemNum) {
+		UsersDto userDto = (UsersDto) request.getSession().getAttribute("userDto");
+		String reviewWriter = userDto.getUserId();
+		ReviewDto dto = new ReviewDto();
+		dto.setReviewWriter(reviewWriter);
+		dto.setItemNum(itemNum);
+		boolean isExist = dao.isExist(dto);
+		return isExist;
+	}
+
+	@Override
+	public void reviewList(HttpServletRequest request) {
+		UsersDto userDto = (UsersDto) request.getSession().getAttribute("userDto");
+		String reviewWriter = userDto.getUserId();
+		List<ReviewJoinDto> reviewlist = dao.reviewList(reviewWriter);
+		request.setAttribute("reviewlist", reviewlist);
+	}
+
+	@Override
 	public Map<String, Object> addUpCount(HttpServletRequest request, ReviewUpCountDto dto) {
 		dto.setId((String) request.getSession().getAttribute("id"));
 		boolean isUped = dao.isUped(dto);
@@ -288,26 +307,5 @@ public class ReviewServiceImpl implements ReviewService {
 			return map;
 		}
 	}
-
-	@Override
-	public boolean isExist(HttpServletRequest request, int itemNum) {
-		UsersDto userDto = (UsersDto) request.getSession().getAttribute("userDto");
-		String reviewWriter = userDto.getUserId();
-		ReviewDto dto = new ReviewDto();
-		dto.setReviewWriter(reviewWriter);
-		dto.setItemNum(itemNum);
-		boolean isExist = dao.isExist(dto);
-		return isExist;
-	}
-
-	@Override
-	public void reviewList(HttpServletRequest request) {
-		UsersDto userDto=(UsersDto)request.getSession()
-				.getAttribute("userDto");
-		String reviewWriter=userDto.getUserId();
-		List<ReviewJoinDto> reviewlist=dao.reviewList(reviewWriter);
-		request.setAttribute("reviewlist", reviewlist);
-	}
-
 
 }

@@ -10,6 +10,7 @@ drop table board_review_comment;
 drop table orders;
 drop table order_detail;
 drop table cartList;
+drop table wishlist;
 
 drop sequence tbl_member_seq;
 drop sequence tbl_item_seq;
@@ -22,25 +23,26 @@ drop sequence board_review_comment_seq;
 drop sequence orders_seq;
 drop sequence order_detail_seq;
 drop sequence cartList_seq;
+drop sequence wishlist_seq;
 
 
 
 --회원 테이블--
 create table tbl_member (
-    userId      varchar2(50)    not null, -- 아이디
-    userPass    varchar2(100)   not null, -- 비밀번호
-    PassQuiz	varchar2(100)	not null, -- 비밀번호 질문
-    QuizAnswer	varchar2(100)	not null, -- 질문 답변
-    userName    varchar2(30)    not null, -- 이름
-    userPhone   varchar2(20)    not null, -- 핸드폰
-    email		varchar2(100) 	null, -- 이메일
-    userAddr1   varchar2(50)    null, -- 주소1
-    userAddr2   varchar2(50)    null, -- 주소2
-    userAddr3   varchar2(50)    null, -- 주소3
-    regiDate    date            default sysdate, -- 가입날짜
-    birthday	date 			not null, -- 생일
-    mileage		number			default 0, -- 마일리지
-    verify      number          default 0, -- 유저타입
+    userId      varchar2(50)    not null, 
+    userPass    varchar2(100)   not null, 
+    PassQuiz	varchar2(100)	not null, 
+    QuizAnswer	varchar2(100)	not null, 
+    userName    varchar2(30)    not null, 
+    userPhone   varchar2(20)    not null, 
+    email		varchar2(100) 	null, 
+    userAddr1   varchar2(100)   null, 
+    userAddr2   varchar2(100)   null, 
+    userAddr3   varchar2(100)   null, 
+    regiDate    date            default sysdate, 
+    birthday	date 			not null, 
+    mileage		number			default 0, 
+    verify      number          default 0, 
     primary key(userId)
 );
 create sequence tbl_member_seq;
@@ -55,7 +57,7 @@ values('tkdwh104','kim1002','집에 가고 싶습니까?','네','김대경','010
 
 
 
--상품 테이블-
+--상품 테이블--
 create table tbl_items (
     itemNum       number          not null,
     itemName      varchar2(50)    not null,
@@ -91,6 +93,25 @@ create table goods_category (
 );
 
 
+--별도의 테이블 쿼리
+alter table tbl_items add
+    constraint goods_category
+    foreign key (cateCode)
+        references goods_category(cateCode);
+
+<참고>
+alter table [ 테이블 이름 ] add
+    constraint [ 제약조건 이름 ]
+    foreign key ([ 참조할 컬럼 이름 ])
+        references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
+
+create sequence tbl_member_seq;
+
+<마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
+update tbl_member set verify=1 where userId='master';
+
+
+
 <level 를 이용한 계층 표시>
 select cateLevel, cateName, cateCode, cateCodeRef from goods_category
 start with cateCodeRef is null connect by prior cateCode = cateCodeRef;
@@ -112,7 +133,10 @@ insert into goods_category values('2', '목걸이', '103', '100');
  from tbl_items
  order by itemNum desc
 
- 
+
+ --썸네일 칼럼 추가
+ alter table tbl_items add(itemThumbImg varchar2(300));
+
  
 <공지 게시판>
 CREATE TABLE board_notice(
@@ -168,6 +192,13 @@ likeCount number,
 upCount number,
 regdate date);
 
+
+
+--리뷰 likeCount 제약조건 (1부터 10까지만 입력가능하게)  **추가하기**
+alter table board_review 
+add constraint review_likeCount_ch check(likeCount>=1 and likeCount<=10);
+
+--리뷰 테이블의 시퀀스
 create sequence board_review_seq;
 
 -- 리뷰 좋아요 테이블
@@ -195,6 +226,17 @@ CREATE TABLE board_review_comment(
 CREATE SEQUENCE board_review_comment_seq;
 
 
+-- 리뷰 좋아요 테이블
+create table review_upCount
+(num number, 
+id varchar2(100), 
+reviewNum number,
+regdate date,
+itemNum number
+);
+create sequence reviewUpCount_seq;
+
+
 --orders table
 create table orders(
 	orderRec varchar2(50) not null,   --수신자
@@ -210,12 +252,15 @@ create table orders(
 	allPrice number
 	);
 
+
 create sequence orders_seq;
 
 alter table orders
     add constraint orders_userId_fk foreign key(userId)
     references tbl_member(userId);
 
+
+<!-- 일단 여기까지 -->
 
 <!-- 카테고리별 상품 리스트 : 1차 분류 -->
 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
@@ -236,6 +281,14 @@ select
                 on i.cateCode = c.cateCode           
             where i.cateCode = #{cateCode}
 
+
+alter table orders
+    add constraint orders_userId_fk foreign key(userId)
+    references tbl_member(userId);
+    
+alter table orders modify(userAddr1 varchar2(100));
+alter table orders modify(userAddr2 varchar2(100));
+alter table orders modify(userAddr3 varchar2(100));
 
 
 --orders detail table
@@ -269,7 +322,7 @@ create table cartList(
 	itemName varchar2(50),
 	itemPrice number,
 	itemImg varchar(200) null,
-	primary key(cartNum, userId)
+	primary key(cartNum)
 );
 
 create sequence cartList_seq;
@@ -284,7 +337,27 @@ references tbl_items(itemNum);
 
 alter table cartList add(money number);
 
+--wishlist--
+create table wishlist(
+	wishNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(itemNum, userId)
+);
+create sequence wishlist_seq;
 
+alter table wishlist
+add constraint wishlist_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table wishlist
+add constraint wishlist_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
 
 <참고>
 alter table [ 테이블 이름 ] add

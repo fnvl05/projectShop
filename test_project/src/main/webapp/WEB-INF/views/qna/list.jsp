@@ -153,6 +153,12 @@
 				value="${keyword }" />
 			<button type="submit">검색</button>
 		</form>
+		<br/>
+		<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp" %>
+		</div>
+	</footer>
 	</div>
 
 </body>

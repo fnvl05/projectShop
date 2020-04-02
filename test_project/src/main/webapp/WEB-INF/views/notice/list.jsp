@@ -157,6 +157,12 @@
 			<!-- EL은 아무것도 들어있지 않으면 null이 아니라 빈문자열을 출력한다 -->
 			<button type="submit">검색</button>
 		</form>
+		<br/>
+		<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp" %>
+		</div>
+	</footer>
 	</div>
 
 

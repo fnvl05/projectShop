@@ -27,8 +27,8 @@
 					</div>
 				</nav>
 			</div>
+		</header>
 	</div>
-	</header>
 	<section id="container">
 		<div id="container_box">
 			<h3>리뷰 글 상세 보기</h3>
@@ -179,7 +179,6 @@
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>
-	</div>
 	<script>
 
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
@@ -294,10 +293,8 @@
 			url: "reviewUpCount.do",//이동할 주소
 			type: "post",
 			data: {"arrEachItemNum": arrItemNum},
-
 			success:function(responseData){
 				
-
 				var count=responseData.count;
 				var checkUp=responseData.checkUp;
 				var itemNum=responseData.reviewNum;
@@ -306,7 +303,6 @@
 				console.log(checkUp);
 				console.log(reviewNum);
 				
-
 				if(responseData.checkUp==false){
 					ele.prop("style","color: black;");
 					$("."+reviewNum).text(count);

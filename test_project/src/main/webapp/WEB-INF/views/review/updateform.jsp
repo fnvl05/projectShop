@@ -101,7 +101,6 @@
 																//에디터 내용에 포커스 on
 																CKEDITOR.instances.reviewContent
 																		.focus();
-
 															}, "warning");
 													return false;
 												}

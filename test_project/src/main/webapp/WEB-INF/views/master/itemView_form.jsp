@@ -72,11 +72,14 @@
 				</script>
 			</form>
 
-			<a href="../qna/itemList_qna.do?itemNum=${dto.itemNum }">QnA</a><br />
+			<a href="../qna/itemList_qna.do?itemNum=${dto.itemNum }">QnA</a><br/>
 
+			<a href="../shop/orderform.do?">바로 주문하기</a>
 
-			<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당
-				상품의 리뷰보기</a>
+			<a href="../shop/orderform.do?">바로 주문하기</a>
+
+			<a href="../review/itemList_review.do?itemNum=${dto.itemNum} ">해당 상품의 리뷰보기</a>
+
 		</section>
 		<footer id="footer">
 			<div id="footer_box">

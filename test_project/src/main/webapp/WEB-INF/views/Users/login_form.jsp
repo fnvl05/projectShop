@@ -22,6 +22,8 @@
   </div>
   
   <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
+  <br/>
+  <a href="${pageContext.request.contextPath }/Users/searchIdForm.do">아이디/패스워드 찾기</a>
  </form>   
 </section> 	
 </body>

@@ -59,6 +59,7 @@ public class ReviewDaoImpl implements ReviewDao {
 	}
 
 	@Override
+
 	public List<Integer> likeCount(int itemNum) {
 		return session.selectList("review.likeCount", itemNum);
 	}
@@ -76,6 +77,7 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public List<ReviewJoinDto> reviewList(String reviewWriter) {
+
 		return session.selectList("review.reviewList", reviewWriter);
 
 	}
@@ -123,7 +125,8 @@ public class ReviewDaoImpl implements ReviewDao {
 
 	@Override
 	public int checkCount(int reviewNum) {
-		return session.selectOne("review.checkUpCount", reviewNum);
+
+		return session.selectOne("review.checkUpCount",reviewNum);
 
 	}
 
