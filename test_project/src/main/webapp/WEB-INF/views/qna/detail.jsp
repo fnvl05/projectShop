@@ -93,6 +93,7 @@
 						수정 </a>
 					<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 				</c:if>
+				<br/><br/>
 				<div class="comments">
 					<ul>
 						<c:forEach items="${commentList }" var="tmp">
@@ -163,6 +164,11 @@
 						</c:choose>
 					</div>
 				</div>
+				<footer id="footer">
+					<div id="footer_box">
+						<%@ include file="../include/footer.jsp"%>
+					</div>
+				</footer>
 			</div>
 		</c:when>
 		<c:otherwise>

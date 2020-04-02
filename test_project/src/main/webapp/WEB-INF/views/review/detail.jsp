@@ -23,7 +23,14 @@
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
-						<%@ include file="../include/users_aside.jsp"%>
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+								<%@ include file="../include/users_aside.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="../include/unknown_aside.jsp"%>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</nav>
 			</div>
@@ -172,13 +179,14 @@
 					</form>
 				</div>
 			</div>
+			<br/>
+			<footer id="footer">
+				<div id="footer_box">
+					<%@ include file="../include/footer.jsp"%>
+				</div>
+			</footer>
 		</div>
 	</section>
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
 	<script>
 
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
