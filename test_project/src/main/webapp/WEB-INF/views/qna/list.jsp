@@ -70,7 +70,10 @@
 					<tr>
 						<td>${status.count }</td>
 						<%-- <td>${tmp.num }</td> --%>
-						<td><img src="../resources${tmp.itemImg }" /></td>
+						<td>
+							<a href="../qna/detail.do?num=${tmp.num }">
+							<img src="../resources${tmp.itemImg }" /></a>
+						</td>
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>

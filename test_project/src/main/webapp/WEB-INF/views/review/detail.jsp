@@ -19,7 +19,7 @@
 						<%@ include file="../include/nav.jsp"%>
 					</div>
 					<div id="index_logo_div">
-						<a href="index.do"><img id="index_logo_img"
+						<a href="../index.do"><img id="index_logo_img"
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
