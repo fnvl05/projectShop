@@ -37,6 +37,9 @@
 			<div class="myInfo" onclick="location.href='#'">
 				<img src="../resources/images/myshop_myinfo.png" alt="회원정보 조회/수정" />			
 			</div>
+			<div class="myBoard" onclick="location.href='boardList.do'">
+				<img src="../resources/images/myshop_myboard.png" alt="게시물 관리" />			
+			</div>
 		</div>
 	</div>
 </section>
