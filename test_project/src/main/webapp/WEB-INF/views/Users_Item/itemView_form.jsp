@@ -77,7 +77,7 @@
 				</div>
 				<div class="inputArea">
 					<div class = "addCart">
-						<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>
+						<button type="button" id="shop_btn" class="btn btn-warning" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
 						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
 						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
 						<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>

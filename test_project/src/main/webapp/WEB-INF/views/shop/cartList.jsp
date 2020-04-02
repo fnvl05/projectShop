@@ -72,7 +72,7 @@
                     	 pattern="###,###,###"/>원
                 </td>
 				<td>
-               	<input type="number" min="1" value="${tmp.cartStock }" style="width:40px" name="cartStock" id="${tmp.cartNum }"/>
+               	<input type="number" min="1" value="${tmp.cartStock }" max="${tmp.itemCount }" style="width:40px" name="cartStock" id="${tmp.cartNum }"/>
                	<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
                	<button type="button" class="btn btn-primary" id="${tmp.cartNum }">수정</button>             	
                 </td>

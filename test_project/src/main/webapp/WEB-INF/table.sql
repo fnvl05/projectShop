@@ -295,7 +295,7 @@ select
 
 alter table orders
     add constraint orders_userId_fk foreign key(userId)
-    references tbl_member(userId);
+    references tbl_member(userId) on delete cascade;
     
 alter table orders modify(userAddr1 varchar2(100));
 alter table orders modify(userAddr2 varchar2(100));

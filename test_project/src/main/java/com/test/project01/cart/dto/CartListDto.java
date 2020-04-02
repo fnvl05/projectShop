@@ -13,6 +13,7 @@ public class CartListDto {
 	private int itemPrice;
 	private String itemImg;
 	private int money;
+	private int itemCount;
 	
 	public CartListDto() {}
 
@@ -29,6 +30,14 @@ public class CartListDto {
 		this.itemPrice = itemPrice;
 		this.itemImg = itemImg;
 		this.money = (int)(itemPrice*cartStock);
+	}
+	
+	public int getItemCount() {
+		return itemCount;
+	}
+
+	public void setItemCount(int itemCount) {
+		this.itemCount = itemCount;
 	}
 
 	public int getCartNum() {

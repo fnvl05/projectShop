@@ -61,6 +61,7 @@ public class CartController {
 		map.put("sumMoney", sumMoney);
 		map.put("fee", fee);
 		map.put("allPrice", sumMoney+fee);
+		map.put("itemCount", list);
 		mView.setViewName("shop/cartList");
 		mView.addObject("map", map);
 		return mView;		
