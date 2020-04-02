@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <style>
 	#container_box table td { width:150px; text-align: center }
@@ -19,21 +19,32 @@
 </head>
 <body>
 <div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp"%>
+					</div>
+					<div id="index_logo_div">
+						<a href="../index.do"><img id="index_logo_img"
+							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+					</div>
+					<div class="navbar-left">
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+								<%@ include file="../include/users_aside.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="../include/unknown_aside.jsp"%>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
 			</div>
 		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
+	</div>
 		<section id="container">
 			<div id="container_box">
-			<aside>
-				<%@ include file="../include/users_aside.jsp" %>
-			</aside>
 				<h2>상품 목록</h2>
 					<ul id="ul1">
 					 <c:forEach items="${cateList}" var="cateList">
