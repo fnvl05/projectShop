@@ -318,7 +318,7 @@ alter table order_detail
 
 alter table order_detail
 	add constraint order_detail_itemNum_fk foreign key(itemNum)
-	references tbl_items(itemNum);
+	references tbl_items(itemNum) on delete cascade;
 
 
 --카트
