@@ -69,20 +69,14 @@
                </td>
                <td>
                		<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>      
-		   	   		<input type="button" onclick="deleteWish(${tmp.wishNum})" value="삭제" />
+		   	   		<input type="button" class="btn btn-warning" onclick="deleteWish(${tmp.wishNum})" value="삭제" />
                </td>     	
            </tr>
          </c:forEach>
          </tbody>
-         <tfoot>
-            <tr>              
-               <td>
-                  <button type="button" class="btn btn-warning"
-                     onclick="location.href='../index.do'">쇼핑계속</button>
-               </td>
-            </tr>
-         </tfoot>
       </table>
+     	<button type="button" class="btn btn-warning"
+                     onclick="location.href='../index.do'" style="float:right">쇼핑계속</button>
       </form>
         </div>
       </c:otherwise>

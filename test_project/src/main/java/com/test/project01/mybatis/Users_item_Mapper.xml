@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Users_item">
+	<select id="getCount" parameterType="users_item_Dto" resultType="int">
+		select nvl(max(rownum),0)
+		from tbl_items
+		<choose>
+			<when test="itemName != null" >
+				where itemName like '%'||#{itemName}||'%'
+			</when>
+		</choose>
+	</select>
+
 	<select id="itemSelect"  resultType="users_item_Dto">
 		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
  		from tbl_items
@@ -16,7 +26,12 @@
     	itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
         from tbl_items i
             inner join goods_category c
-                on i.cateCode = c.cateCode           
+                on i.cateCode = c.cateCode   
+                <choose>
+					<when test="itemName != null" >
+						where itemName like '%'||#{itemName}||'%'
+					</when>
+				</choose>        
             where i.cateCode = #{cateCode}
              or c.cateCodeRef = #{cateCodeRef}
 	</select>
