@@ -17,7 +17,6 @@ img {
 </style>
 </head>
 <body>
-
 	<div id="root">
 		<header>
 			<div class="header_box">
@@ -26,7 +25,7 @@ img {
 						<%@ include file="../include/nav.jsp"%>
 					</div>
 					<div id="index_logo_div">
-						<a href="index.do"><img id="index_logo_img"
+						<a href="../index.do"><img id="index_logo_img"
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
@@ -42,9 +41,7 @@ img {
 					<br /> <br /> <br /> <br />
 					<table>
 						<thead>
-
 							<tr>
-
 								<th>글 번호</th>
 								<th>이미지</th>
 								<th>아이템명</th>
@@ -53,7 +50,6 @@ img {
 								<th>좋아요</th>
 								<th>작성자</th>
 								<th>등록일</th>
-
 							</tr>
 						</thead>
 						<tbody>
@@ -121,11 +117,7 @@ img {
 								</c:otherwise>
 							</c:choose>
 						</ul>
-
-
-
 					</div>
-
 				</div>
 			</div>
 		</section>

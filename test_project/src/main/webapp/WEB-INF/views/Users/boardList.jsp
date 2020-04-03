@@ -52,7 +52,7 @@
 						<tr>
 							<td>${status.count }</td>
 							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" /></a></td>
-							<td>${tmp.title }</td>
+							<td><a href="../qna/detail.do?num=${tmp.num }">${tmp.title }</a></td>
 							<td>${tmp.viewCount }</td>
 							<td>${tmp.regdate }</td>
 							<td>${tmp.writer }</td>
@@ -73,6 +73,7 @@
 						<th>글번호</th>
 						<th>이미지</th>
 						<th>아이템명</th>
+						<th>리뷰</th>
 						<th>평점</th>
 						<th>좋아요</th>
 						<th>등록일</th>
@@ -85,6 +86,7 @@
 							<td>${status.count }</td>
 							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }"><img src="../resources${tmp2.itemImg }" /></a></td>
 							<td>${tmp2.itemName }</td>
+							<td><a href="../review/detail.do?itemNum=${tmp2.itemNum }">${tmp2.reviewContent }</a></td>
 							<td>${tmp2.likeCount }</td>
 							<td>${tmp2.upCount }</td>
 							<td>${tmp2.regdate }</td>
