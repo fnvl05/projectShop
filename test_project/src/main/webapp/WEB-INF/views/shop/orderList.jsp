@@ -29,10 +29,21 @@
 	<section id="container">	
 	<div id="container_box">
 		<div class="container">
+				<br/>
+				<br/>
 				<p><strong>[${sessionScope.userDto.userName }]</strong> 님이 쇼핑몰에서 주문한 내역입니다.</p>
 				<br/>
 				<br/>
-				<table>
+				<table class="table" id="orderform_t">
+					<colgroup>
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-2" />
+						<col class="col-xs-2" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />			
+					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>
@@ -53,7 +64,7 @@
 								<fmt:parseDate value="${tmp.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
 								<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
 								</td>
-								<td>${tmp.itemName}</td>	
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>	
 								<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
 								<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
 								<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>

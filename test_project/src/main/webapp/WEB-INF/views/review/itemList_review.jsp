@@ -7,12 +7,6 @@
 <meta charset="UTF-8">
 <title>review/list.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-	img{
-		width:100px;
-		height:auto;
-	}
-</style>
 </head>
 <body>
 <div id="root">
@@ -63,7 +57,7 @@
 						<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 							<tr>
 								<td>${status.count}</td>  <!-- <td>${tmp.reviewNum}</td> -->
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" /></a></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
 								<td>${tmp.itemName }</td>
 								<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<td>

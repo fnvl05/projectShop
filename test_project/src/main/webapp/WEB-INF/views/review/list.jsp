@@ -10,10 +10,10 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <style>
-img {
-	width: 100px;
-	height: auto;
-}
+	#itemImg{
+		width:100px;
+		height:auto;
+	}
 </style>
 </head>
 <body>
@@ -58,9 +58,9 @@ img {
 								<tr>
 									<!--<td>${tmp.reviewNum }</td>-->
 									<td>${status.count }</td>
-									<td><a
-										href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img
-											src="../resources${tmp.itemImg }" /></a></td>
+									<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
+											<img src="../resources${tmp.itemImg }" id="itemImg"/>
+										</a></td>
 									<td>${tmp.itemName }</td>
 									<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 									<td><span class="wrap-star"> <span
