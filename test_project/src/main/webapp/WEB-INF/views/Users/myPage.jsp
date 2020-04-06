@@ -46,7 +46,7 @@
 			<div class="wishlist" onclick="location.href='../shop/wishlist.do'">
 				<img src="../resources/images/myshop_wish.png" alt="위시리스트" />			
 			</div>
-			<div class="myInfo" onclick="location.href='#'">
+			<div class="myInfo" onclick="location.href='../Users/info.do'">
 				<img src="../resources/images/myshop_myinfo.png" alt="회원정보 조회/수정" />			
 			</div>
 			<div class="myBoard" onclick="location.href='boardList.do'">

@@ -45,7 +45,7 @@ img {
 
 
 	<div class="container">
-		<h1>Review</h1>
+		<h1>REVIEW</h1>
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col-xs-1" />

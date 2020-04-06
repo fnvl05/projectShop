@@ -44,7 +44,7 @@
 		</c:if>
 	</div>
 	<div class="container">
-		<h1>QnA</h1>
+		<h1>Q&A</h1>
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col-xs-1" />

@@ -12,8 +12,14 @@
 		<li role="presentation"><a href="${pageContext.request.contextPath }/Unknown/itemList.do?cateCode=200&cateLevel=1">여성의류</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath }/Unknown/itemList.do?cateCode=300&cateLevel=1">남성의류</a></li>
 		<li role="presentation"><a href="${pageContext.request.contextPath }/Unknown/itemAllList.do">전체 상품 목록</a></li>	
-		<li role="presentation"><a href="${pageContext.request.contextPath }/Users/login_form.do">상품 리뷰</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath }/qna/list.do">QnA</a></li>
-		<li role="presentation"><a href="${pageContext.request.contextPath }/notice/list.do">Notice</a></li>
+		<li role="presentation" class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+      		COMMUNITY <span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li role="presentation"><a href="${pageContext.request.contextPath }/review/list.do">REVIEW</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath }/qna/list.do">Q&A</a></li>
+					<li role="presentation"><a href="${pageContext.request.contextPath }/notice/list.do">NOTICE</a></li>
+				</ul>
+		</li>
 	</ul>
 	
