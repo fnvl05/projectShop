@@ -69,7 +69,7 @@
 }
 
 .eff {
-	width: 140px;
+	width: 100px;
 	height: 50px;
 	border: 0px solid #34495e;
 	position: absolute;

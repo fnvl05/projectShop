@@ -5,56 +5,86 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.table_center {
+display : table;
+margin-left : auto;
+margin-right : auto;
+}
+</style>
 </head>
 <jsp:include page="/resources/style/total.jsp"></jsp:include> 
 <body>
 <div id="root">
-		<header>
-			<div class="header_box">
-				<nav id="nav">
-					<div class="navbar-right">
-						<%@ include file="../include/nav.jsp"%>
-					</div>
-					<div id="index_logo_div">
-						<a href="../index.do"><img id="index_logo_img"
-							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
-					</div>
-					<div class="navbar-left">
-						<c:choose>
-							<c:when test="${not empty sessionScope.id }">
-								<%@ include file="../include/users_aside.jsp"%>
-							</c:when>
-							<c:otherwise>
-								<%@ include file="../include/unknown_aside.jsp"%>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</nav>
-			</div>
-		</header>
-	</div>
-	<div class="container">
-		<h1>MyPage</h1>
-	<div class="container_box">
-		<div id="myShopMain" class="xans-element- xans-myshop xans-myshop-main ">
-				<div class="order" onclick="location.href='../shop/orderList.do'">
-					<img src="../resources/images/myshop_order.png" alt="주문조회" />
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp"%>
 				</div>
-				<div class="cart" onclick="location.href='../shop/cartList.do'">
-					<img src="../resources/images/myshop_cart.png" alt="장바구니" />
+				<div id="index_logo_div">
+					<a href="../index.do"><img id="index_logo_img"
+						src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 				</div>
-				<div class="wishlist" onclick="location.href='../shop/wishlist.do'">
-					<img src="../resources/images/myshop_wish.png" alt="위시리스트" />			
+				<div class="navbar-left">
+					<c:choose>
+						<c:when test="${not empty sessionScope.id }">
+							<%@ include file="../include/users_aside.jsp"%>
+						</c:when>
+						<c:otherwise>
+							<%@ include file="../include/unknown_aside.jsp"%>
+						</c:otherwise>
+					</c:choose>
 				</div>
-				<div class="myInfo" onclick="location.href='info.do'">
-					<img src="../resources/images/myshop_myinfo.png" alt="회원정보 조회/수정" />			
-				</div>
-				<div class="myBoard" onclick="location.href='boardList.do'">
-					<img src="../resources/images/myshop_myboard.png" alt="게시물 관리" />			
-				</div>
-			</div>
+			</nav>
 		</div>
-	</div>	
+	</header>
+</div>
+<div class="container">
+	<h1>MyPage</h1>
+<div class="container_box">
+	<div id="myShopMain" class="xans-element- xans-myshop xans-myshop-main ">
+			<table class="table_center">
+				<thead>
+				 	<tr>
+				 		<th>
+				 			<div class="order" onclick="location.href='../shop/orderList.do'">
+							<img src="../resources/images/myshop_order.png" alt="주문조회" />
+							</div>
+				 		</th>
+				 		<th>
+				 			<div class="cart" onclick="location.href='../shop/cartList.do'">
+							<img src="../resources/images/myshop_cart.png" alt="장바구니" />
+							</div>
+				 		</th>
+				 		<th>
+				 			<div class="wishlist" onclick="location.href='../shop/wishlist.do'">
+							<img src="../resources/images/myshop_wish.png" alt="위시리스트" />			
+							</div>
+				 		</th>
+				 	</tr>
+				 	<tr>
+				 		<th>
+				 			<div class="myInfo" onclick="location.href='info.do'">
+							<img src="../resources/images/myshop_myinfo.png" alt="회원정보 조회/수정" />			
+							</div>
+				 		</th>
+				 		<th>
+				 			<div class="myBoard" onclick="location.href='boardList.do'">
+							<img src="../resources/images/myshop_myboard.png" alt="게시물 관리" />			
+							</div>
+				 		</th>
+				 	</tr>
+				</thead>					
+			</table>				
+		</div>
+	</div>
+</div>
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp"%>
+	</div>
+</footer>	
 	
 </body>
 </html>  
