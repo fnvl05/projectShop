@@ -5,6 +5,11 @@
 <title>Home</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
+<style>
+	body{
+		background:aqua;
+	}
+</style>
 <body>
 	<div id="root">
 		<header>
