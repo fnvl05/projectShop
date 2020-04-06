@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/notice/detail.jsp</title>
+<title>NOTICE</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>

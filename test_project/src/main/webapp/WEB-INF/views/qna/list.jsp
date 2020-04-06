@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/list.jsp</title>
+<title>Q&A</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>

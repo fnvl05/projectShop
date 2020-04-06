@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Q&A</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 </head>

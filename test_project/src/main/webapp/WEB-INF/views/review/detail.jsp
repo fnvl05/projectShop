@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/detail.jsp</title>
+<title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
