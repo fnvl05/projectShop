@@ -269,9 +269,9 @@ public class QnaServiceImpl implements QnaService{
 			int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
 			//보여줄 페이지 데이터의 끝 ResultSet row 번호
 			int endRowNum=pageNum*PAGE_ROW_COUNT;
-			
+			dto.setItemNum(itemNum);
 			//전체 row 의 갯수를 읽어온다.
-			int totalRow=qnaDao.getCount(dto);
+			int totalRow=qnaDao.getCount2(dto);
 			//전체 페이지의 갯수 구하기
 			int totalPageCount=
 					(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);

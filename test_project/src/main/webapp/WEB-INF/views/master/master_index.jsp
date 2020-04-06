@@ -7,12 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-	img{
-		display: block;
-		margin: 0px auto;
-	}
-</style>
+
 </head>
 <body>
 	<div id="root">		
@@ -33,7 +28,7 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
-				<img src="${pageContext.request.contextPath }/resources/images/main_banner1.png" />
+				
 			</div>
 		</section>
 		<footer id="footer">

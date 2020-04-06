@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<style>
+	table{
+		width:100%;
+	}
+</style>
 </head>
 <body>
 
@@ -33,17 +38,20 @@
 						</c:choose>
 					</div>
 				</nav>
+
 			</div>
 		</header>
 	</div>
+
 	<section id="container">
 		<div id="container_box">
-			<h3>리뷰 글 상세 보기</h3>
-
+			<br/>
+			<h3>리뷰 상세보기</h3>
+			<br/>
 			<table class="table table-bordered table-condensed">
 				<colgroup>
-					<col class="col-xs-3" />
-					<col class="col-xs-9" />
+					<col class="col-xs-2" />
+					<col class="col-xs-10" />
 				</colgroup>
 				<tr>
 					<th>글 번호</th>
@@ -90,10 +98,18 @@
 			<br /> <br />
 
 			<c:if test="${dto.reviewWriter eq userDto.userId }">
-				<a
-					href="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum } ">삭제하기</a>
-				<a
-					href="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }  ">수정하기</a>
+				<div style="float: right;">
+				<button id="update" >수정</button>
+				<button id="delete" >삭제</button>
+				</div>
+				<script>
+					$("#update").click(function() {
+						location.href ="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+					});
+					$("#delete").click(function() {
+						location.href ="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+					});
+				</script>
 			</c:if>
 			<br /> <br />
 			<div class="comments">

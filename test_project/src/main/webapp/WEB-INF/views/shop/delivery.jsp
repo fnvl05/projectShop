@@ -30,7 +30,7 @@
 		<div class="container">
 		<c:forEach var="tmp" items="${list }">
 		<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${tmp.orderNum} 의  배달현황입니다.</p>
-		
+			<br/>
 			<p>해당 주문번호:${tmp.orderNum} 의 배송 현황은 '${tmp.delivery }' 입니다.</p>
 		</c:forEach>
 		</div>

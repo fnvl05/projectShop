@@ -38,7 +38,7 @@
 		<c:when test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum}">목록</a></li>
 					<li>글 상세 보기</li>
 				</ol>
 				<c:if test="${not empty keyword }">
@@ -50,12 +50,12 @@
 
 				<c:if test="${dto.prevNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+						href="detail.do?num=${dto.prevNum }&itemNum=${itemNum}&pageNum=${pageNum}">이전글</a>
 				</c:if>
 
 				<c:if test="${dto.nextNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+						href="detail.do?num=${dto.nextNum }&itemNum=${itemNum}&pageNum=${pageNum}">다음글</a>
 				</c:if>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
@@ -121,7 +121,7 @@
 												<pre>${tmp.content }</pre>
 											</dd>
 										</dl>
-										<form class="comment-insert-form" action="comment_insert.do"
+										<form class="comment-insert-form" action="comment_insert.do?itemNum=${itemNum}&pageNum=${pageNum}"
 											method="post">
 											<!-- 덧글 그룹 -->
 											<input type="hidden" name="ref_group" value="${dto.num }" />
@@ -151,7 +151,7 @@
 						<c:choose>
 							<c:when test="${not empty sessionScope.userDto.userId }">
 								<c:if test="${sessionScope.userDto.verify eq 1}">
-									<form action="comment_insert.do" method="post">
+									<form action="comment_insert.do?itemNum=${itemNum}&pageNum=${pageNum}" method="post">
 										<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
 										<input type="hidden" name="ref_group" value="${dto.num }" />
 										<!-- 댓글의 대상자는 원글의 작성자가 된다. -->

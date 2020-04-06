@@ -8,12 +8,6 @@
 <meta charset="UTF-8">
 <title>/shop/detailList.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-	img{
-		width:100px;
-		heigth:auto;
-	}
-</style>
 </head>
 <body>
 	<div id="root">
@@ -35,20 +29,50 @@
 	<section id="container">	
 	<div id="container_box">
 		<div class="container">
+				<br/>
+				<br/>
 				<c:forEach var="list2" items="${list }">
-				<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${list2.orderNum} 의  주문 상세내역입니다.</p>
+				<p><strong>[${sessionScope.userDto.userName }]</strong> 님께서 
+					${list2.orderDate} 에 주문하신 내역입니다.</p>
 				</c:forEach>
 				<br/>
-				<table>
+				<br/>
+				<table class="table table-sm">
+					<caption id="caption">주문자 정보</caption>
+					<colgroup>
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+					</colgroup>
 					<c:forEach var="list" items="${list }">
 					<tr>
 						<th>주문번호</th>
 						<td>${list.orderNum}</td>
-					</tr>
-					<tr>
 						<th>주문자</th>
 						<td>${userDto.userId }</td>
 					</tr>
+					<tr>
+						<th>주문날짜</th>
+						<td>
+						<fmt:parseDate value="${list.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
+						</td>
+						<th>입금현황</th>
+						<td>입금완료</td>
+					</tr>
+					</c:forEach>
+				</table>
+				<br/>
+				<table class="table">
+					<caption id="caption">배송지 정보</caption>
+					<colgroup>
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+					</colgroup>
+					<c:forEach var="list" items="${list }">
 					<tr>
 						<th>수신자</th>
 						<td>${list.orderRec }</td>
@@ -57,7 +81,16 @@
 						<th>연락처1</th>
 						<td>${list.orderPhone1 }</td>
 						<th>연락처2</th>
-						<td>${list.orderPhone2 }</td>
+						<td>
+							<c:choose>
+								<c:when test="${empty list.orderPhone2}">
+									x
+								</c:when>
+								<c:otherwise>
+									${list.orderPhone2 }
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 					<tr>
 						<th>주소</th>
@@ -97,7 +130,16 @@
 				<br/>
 				<br/>
 				<br/>
-				<table>
+				<table class="table">
+					<caption id="caption">주문 상품 정보</caption>
+					<colgroup>
+						<col class="col-xs-1" />
+						<col class="col-xs-2" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+						<col class="col-xs-1" />
+					</colgroup>
 					<thead>
 						<tr>
 							<th>이미지</th>
@@ -112,9 +154,9 @@
 						<c:forEach var="tmp" items="${list2 }">
 							<tr>
 								<td>
-									<img src="../resources${tmp.itemImg }"/>
+									<img src="../resources${tmp.itemImg }" id="itemImg"/>
 								</td>
-								<td>${tmp.itemName }</td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>
 								<td>${tmp.quantity }</td>
 								<td><fmt:formatNumber value="${ tmp.itemPrice}" pattern="###,###,###"/>원</td>
 								<td>
@@ -122,12 +164,8 @@
 								<input type="hidden" value=${tmp.itemNum } name="itemNum" id="${tmp.itemNum }" />
 								</td>
 								<td>
-								
 									<button  type="button" id="${tmp.itemNum }">리뷰쓰기</button>
 								</td>
-								
-								
-								
 							</tr>
 						</c:forEach>
 					</tbody>

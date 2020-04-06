@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.project01.qna.service.QnaService;
+import com.test.project01.review.service.ReviewService;
 import com.test.project01.unknown.Dto.Unknown_itemDto;
 import com.test.project01.unknown.service.Unknown_service;
 
@@ -18,6 +20,10 @@ public class Users_item_Controller {
 	
 	@Autowired
 	Unknown_service serviec;
+	@Autowired
+	ReviewService reviewService;
+	@Autowired
+	QnaService qnaService;
 	
 	@RequestMapping("/Users_Item/itemAllList")
 	public ModelAndView Users_itemList(ModelAndView mView, HttpServletRequest request) {
@@ -26,8 +32,11 @@ public class Users_item_Controller {
 		return mView;
 	}
 	@RequestMapping("/Users_Item/itemView_form")
-	public ModelAndView Users_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Users_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView,@RequestParam int pageNum) {
 		serviec.getItemView(mView, itemNum);
+		reviewService.list2(request);
+		String itemNum2=Integer.toString(itemNum);
+		qnaService.getList2(request, itemNum2);
 		mView.setViewName("Users_Item/itemView_form");
 		return mView;
 	}
