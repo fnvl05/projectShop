@@ -1,5 +1,6 @@
 package com.test.project01.review.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,12 +141,19 @@ public class ReviewServiceImpl implements ReviewService{
 		dto.setEndRowNum(endRowNum);
 		
 		//1.DB에서 글 목록을 얻어온다.
-		List<ReviewJoinDto> list=dao.getList2(dto);
-		//2.글 목록을 응답한다
+		List<ReviewJoinDto> reviewlist=dao.getList2(dto);
+		//list에서 reviewContent
+//		List<ReviewJoinDto> reviewList2=dao.getList2(dto);
+//		List<ReviewJoinDto> resultDto = new ArrayList<ReviewJoinDto>();
+//		for(int i = 0; i < reviewList2.size(); i++) {
+//			String a = reviewlist.get(i).getReviewContent();
+//			
+//			
+//		}
 		
 		//EL, JSTL 을 활용하기 위해 필요한 모델을 request에 담는다.
 		
-		request.setAttribute("list", list);
+		request.setAttribute("reviewlist", reviewlist);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("startPageNum", startPageNum);
 		request.setAttribute("endPageNum", endPageNum);

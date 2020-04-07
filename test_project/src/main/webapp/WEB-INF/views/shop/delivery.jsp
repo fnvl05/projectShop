@@ -9,38 +9,36 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-<div id="root">
-	<header>
-		<div class="header_box">
-			<nav id="nav">
-				<div class="navbar-right">
-					<%@ include file="../include/nav.jsp" %>
-				</div>
-				<div id="index_logo_div">
-					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
-				</div>
-				<div class="navbar-left">
-						<%@ include file="../include/users_aside.jsp" %>						
-				</div>
-			</nav>
-		</div>
-	</header>
-	<section id="container">	
-	<div id="container_box">
-		<div class="container">
-		<c:forEach var="tmp" items="${list }">
-		<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${tmp.orderNum} 의  배달현황입니다.</p>
-		
-			<p>해당 주문번호:${tmp.orderNum} 의 배송 현황은 '${tmp.delivery }' 입니다.</p>
-		</c:forEach>
+	<br/>
+	<div class="container">
+		<div  style="text-align: center;" >
+			<img style="width: 200px;" id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/>
 		</div>
 	</div>
-	</section>
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
+	<br/>
+	<br/>
+		<div class="container">
+		<c:forEach var="tmp" items="${list }">
+			<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${tmp.orderNum} 의  배송현황입니다.</p>
+			<br/>
+			<p>해당 주문번호의 배송 현황은 '${tmp.delivery }' 입니다.</p>
+		</c:forEach>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+			<div style="text-align: center;">
+				<button onclick="site();">배송 조회</button>
+				<button onclick="self.close();">닫기</button>
+			</div>
 		</div>
-	</footer>
-</div>
+		<script>
+			function site(){
+				window.open("https://www.cjlogistics.com/ko/tool/parcel/tracking","checkdelivery",
+						"width=1000,height=900,top=200,left=550,resizable=no");
+			}
+		</script>
+
 </body>
 </html>

@@ -28,14 +28,15 @@
 					<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
 						<h2>상품 등록</h2>
 						 <label>1차 분류</label>
-						 <select class="category1">
+						 <select class="category1" id="cate1">
 						  <option value="">전체</option>
 						 </select>
 						 
 						 <label>2차 분류</label>
-						 <select class="category2" name="cateCode">
+						 <select class="category2" name="cateCode" id="cate2">
 						  <option value="">전체</option>
 						 </select>
+						 
 						<div class="inputArea">
 							<label for="itmeName">상품명</label>
 							<input type="text" id="itemName" name="itemName">
@@ -173,5 +174,26 @@
 		});
 	
 	</script>
+	<script>
+	$("#register_Btn").on("click",function(){
+		var cateSelect=document.getElementById("cate1");
+	 	var cate1=cateSelect.options[document.getElementById("cate1").selectedIndex].value;
+	 	var cateSelect2=document.getElementById("cate2");
+	 	var cate2=cateSelect2.options[document.getElementById("cate2").selectedIndex].value;
+	 	if(cate1==""){
+	 		alert("1차 상품분류를 선택해주세요 :)",function(){
+                  $("#cate1").focus();
+            },"warning");
+            return false;
+	 	}
+	 	if(cate2==""){
+	 		alert("2차 상품분류를 선택해주세요 :)",function(){
+                 $("#cate2").focus();
+            },"warning");
+            return false;
+	 	}
+	});
+		
+	 </script>
 </body>
 </html>

@@ -10,14 +10,13 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <style>
-img {
-	width: 100px;
-	height: auto;
-}
+	#itemImg{
+		width:100px;
+		height:auto;
+	}
 </style>
 </head>
 <body>
-
 	<div id="root">
 		<header>
 			<div class="header_box">
@@ -26,7 +25,7 @@ img {
 						<%@ include file="../include/nav.jsp"%>
 					</div>
 					<div id="index_logo_div">
-						<a href="index.do"><img id="index_logo_img"
+						<a href="../index.do"><img id="index_logo_img"
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
@@ -42,9 +41,7 @@ img {
 					<br /> <br /> <br /> <br />
 					<table>
 						<thead>
-
 							<tr>
-
 								<th>글 번호</th>
 								<th>이미지</th>
 								<th>아이템명</th>
@@ -53,20 +50,26 @@ img {
 								<th>좋아요</th>
 								<th>작성자</th>
 								<th>등록일</th>
-
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="tmp" items="${requestScope.list }"
-								varStatus="status">
+							<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 								<tr>
 									<!--<td>${tmp.reviewNum }</td>-->
 									<td>${status.count }</td>
-									<td><a
-										href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img
-											src="../resources${tmp.itemImg }" /></a></td>
+									<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
+											<img src="../resources${tmp.itemImg }" id="itemImg"/>
+										</a></td>
 									<td>${tmp.itemName }</td>
-									<td><a href="detail.do?reviewNum=${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+									<td><a href="detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+										<script>
+											/* reviewContent에 img가 있을 경우 삭제해줌*/
+											$(document).ready(function(){
+												$(".review${tmp.reviewNum} p img").remove();
+												var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
+												$(".review${tmp.reviewNum} p").text(text1);
+											})
+										</script>
 									<td><span class="wrap-star"> <span
 											class='star-rating'> <span
 												style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
@@ -121,11 +124,7 @@ img {
 								</c:otherwise>
 							</c:choose>
 						</ul>
-
-
-
 					</div>
-
 				</div>
 			</div>
 		</section>
@@ -135,6 +134,5 @@ img {
 			</div>
 		</footer>
 	</div>
-
 </body>
 </html>
