@@ -62,7 +62,7 @@
 				<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
 				<script type="text/javascript">
 					$("#back_btn").click(function () {
-						location.href="../home.do";
+						history.back();
 					})
 				</script>
 			</div>
