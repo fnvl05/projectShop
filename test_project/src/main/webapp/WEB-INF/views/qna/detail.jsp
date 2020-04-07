@@ -39,7 +39,7 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li><a href="${pageContext.request.contextPath }/qna/list.do">전체 목록</a></li>
-					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum}&reviewNum=${reveiwNum}">목록</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=1&reviewNum=1">목록</a></li>
 					<li>글 상세 보기</li>
 				</ol>
 				<c:if test="${not empty keyword }">
@@ -123,7 +123,7 @@
 												<pre>${tmp.content }</pre>
 											</dd>
 										</dl>
-										<form class="comment-insert-form" action="comment_insert.do?itemNum=${itemNum}&pageNum=${pageNum}"
+										<form class="comment-insert-form" action="comment_insert.do?itemNum=${itemNum}"
 											method="post">
 											<!-- 덧글 그룹 -->
 											<input type="hidden" name="ref_group" value="${dto.num }" />
@@ -153,7 +153,7 @@
 						<c:choose>
 							<c:when test="${not empty sessionScope.userDto.userId }">
 								<c:if test="${sessionScope.userDto.verify eq 1}">
-									<form action="comment_insert.do?itemNum=${itemNum}&pageNum=${pageNum}" method="post">
+									<form action="comment_insert.do?itemNum=${itemNum}" method="post">
 										<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
 										<input type="hidden" name="ref_group" value="${dto.num }" />
 										<!-- 댓글의 대상자는 원글의 작성자가 된다. -->

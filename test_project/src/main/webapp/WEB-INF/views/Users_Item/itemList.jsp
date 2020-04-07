@@ -53,7 +53,7 @@
 					   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
 					  </div> 
 					  <div class="itemName">
-					   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
+					   <a href="itemView_form.do?itemNum=${cateList.itemNum}&pageNum=1&reviewNum=1">${cateList.itemName}</a>
 					  </div>
 					 </li>
 					 </c:forEach>
