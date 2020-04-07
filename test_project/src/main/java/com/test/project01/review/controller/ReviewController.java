@@ -120,16 +120,6 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map;
 	}
-	
-
-	//board_list 에서 qna목록, review 목록
-	@RequestMapping("/Users/boardList")
-	public ModelAndView Users_boardList(HttpServletRequest request,ModelAndView mView) {
-		service.reviewList(request);
-		qnaService.qnalist(request);
-		mView.setViewName("Users/boardList");
-		return mView;
-	}
 
 	//리뷰 좋아요 처리
 	@ResponseBody
