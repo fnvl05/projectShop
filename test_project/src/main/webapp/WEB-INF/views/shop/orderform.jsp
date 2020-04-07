@@ -9,44 +9,38 @@
 <title>/shop/orderform.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
-<style>
-   #required{
-      color: red;
-   }
-</style>
 
 </head>
-<body ng-app>
-   <div id="root">
-      <header>
-      <div class="header_box">
-         <nav id="nav">
-            <div class="navbar-right">
-               <%@ include file="../include/nav.jsp" %>
-            </div>
-            <div id="index_logo_div">
-               <a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
-            </div>
-            <div class="navbar-left">
-                  <%@ include file="../include/users_aside.jsp" %>                  
-            </div>
-         </nav>
-      </div>
-   </header>
-   <section id="container">   
-   <div id="container_box">
-            <table class="table table-striped table-condensed">
-               <thead>
-                  <tr>
-                     <th>상품번호</th>
-                     <th>상품이미지</th>
-                     <th>상품명</th>
-                     <th>수량</th>
-                     <th>가격</th>
-                     
-                  </tr>
-               </thead>
-
+<body>
+	<div id="root">
+		<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp" %>
+				</div>
+				<div id="index_logo_div">
+					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+				</div>
+				<div class="navbar-left">
+						<%@ include file="../include/users_aside.jsp" %>						
+				</div>
+			</nav>
+		</div>
+	</header>
+	<section id="container">	
+	<div id="container_box">
+				<table class="table table-striped table-condensed">
+					<thead>
+						<tr>
+							<th>상품번호</th>
+							<th>상품이미지</th>
+							<th>상품명</th>
+							<th>수량</th>
+							<th>가격</th>
+							
+						</tr>
+					</thead>
                <tbody>
                   <c:forEach var="tmp" items="${requestScope.list }">
                      <tr>

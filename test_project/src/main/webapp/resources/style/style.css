@@ -214,6 +214,7 @@ ul {
 	border-radius: 50%;
 }
 
+<<<<<<< HEAD
 
 /* 별점 css */
  #star_grade a{
@@ -709,4 +710,127 @@ input[type=password]{
     background-color: transparent;
     border:1px solid white;  
 }
-/*----------------------------김대경---------------------------*/
+/*----------------------------대경---------------------------*/
+#star_grade a{
+	color: green;
+}
+.btn {
+	width: 50px;
+	height: 30px;
+	border: 2px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 0 20px;
+}
+.orderbtn {
+	width: 100px;
+	height: 50px;
+	border: 2px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
+
+.orderbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.shopbtn {
+	width: 100px;
+	height: 50px;
+	border: 2px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
+
+.shopbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+
+.eff {
+	width: 100px;
+	height: 50px;
+	border: 0px solid #34495e;
+	position: absolute;
+	transition: all .5s ease;
+	z-index: 1;
+	box-sizing: border-box;
+}
+
+.orderbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.orderbtn:hover a {
+	color: #fff;
+}
+
+.shopbtn:hover .eff {
+	border: 70px solid #34495e;
+}
+
+.shopbtn:hover a {
+	color: #fff;
+}
+.table_center {
+display : table;
+margin-left : auto;
+margin-right : auto;
+}
+.order{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+.cart{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+.wishlist{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+.myInfo{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+.myBoard{
+margin-bottom: 30px;
+margin-left: 30px;
+}
+.mypage_btn_wrap {}
+.mypage_btn_wrap:after {content:"";display:block;clear:both;}
+.mypage_btn {}
+.mypage_btn .item {width:270px;float:left;margin-left:30px;margin-bottom:30px;padding-bottom:20px;border:1px solid #a0a0a0;background:#ffffff;text-align:center;}
+.mypage_btn .item:nth-child(4n+1){margin-left:0;clear:left;}
+.mypage_btn .item:hover {background:#f9d448;}
+.mypage_btn .item .mytitle {color:#101010;font-size:20px;margin-bottom:9x;margin-top:28px;font-weight:bold;}
+.mypage_btn .item .mytitle_kr {color:#101010;font-size:12px;margin-bottom:16px;font-weight:bold;}
+.mypage_btn .item .desc {color:#737373;font-size:12px;min-height:34px;padding:0 17px;}
+/*----------------------------윤주-----------------------------*/
+

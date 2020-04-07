@@ -1,5 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<style>
+	.form-control{
+	display:inline-block;
+	width:auto;
+	padding-bottom:10;
+	vertical-align:middle;
+	}
+	.navText{
+	margin: 0;
+    position: relative;
+    display: block;
+    top: 10px;
+    padding: 10px 10px;
+    padding-top: 15px;
+	}
+	.nav>li>a>img {
+    max-width: none;
+    position: relative;
+    bottom: 4px;
+	}
+	
+</style>
 <ul class="nav nav-tabs">
 	<c:choose>
 		<c:when test="${not empty id}">
@@ -29,6 +51,7 @@
 					onmouseout="this.src='${pageContext.request.contextPath }/resources/images/header_mypage_icon.png'"/>	
 					</a>
 				</li>
+				 
 		</c:when>
 		<c:otherwise>
 			<li>
@@ -48,3 +71,8 @@
 		</c:otherwise>
 	</c:choose>
 </ul>
+
+
+
+
+
