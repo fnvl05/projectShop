@@ -11,4 +11,6 @@
 	<h2>회원탈퇴가 완료되었습니다.그동안 이용해주셔서 감사합니다.</h2>
 	<p><a href="${pageContext.request.contextPath }/home.do">홈으로</a></p>
 </body>
+
+
 </html>

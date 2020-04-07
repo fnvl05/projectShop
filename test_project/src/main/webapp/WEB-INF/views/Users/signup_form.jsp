@@ -7,54 +7,82 @@
 <meta charset="UTF-8">
 <title>view/Users/signup_form</title>
 	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+	<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
+<div id="root">
+<header>
+	<div class="header_box">
+		<nav id="nav">
+			<div class="navbar-right">
+				<%@ include file="../include/nav.jsp"%>
+			</div>
+			<div id="index_logo_div">
+				<a href="../index.do"><img id="index_logo_img"
+					src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+			</div>
+			<div class="navbar-left">
+				<c:choose>
+					<c:when test="${not empty sessionScope.id }">
+						<%@ include file="../include/users_aside.jsp"%>
+					</c:when>
+					<c:otherwise>
+						<%@ include file="../include/unknown_aside.jsp"%>
+					</c:otherwise>
+				</c:choose>
+				</div>
+			</nav>
+		</div>
+	</header>
+</div>
 <section id="content">
- <form action="signup.do" method="post">
-  <div class="input_area">
-   <label for="userId">ID</label>
-   <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      
+<form action="signup.do" method="post">
+ <h1>회원가입</h1>
+ <div class="formwrap">
+
+  <h1>회원가입</h1>
+  <hr>
+  <div>
+  <input type="text" placeholder="아이디를 입력하세요.">  
   </div>
   
-  <div class="input_area">
-   <label for="userPass">PassWord</label>
-   <input type="password" id="userPass" name="userPass" required="required" />      
+  <div>
+  <input type="password" placeholder="비밀번호를 입력하세요.">  
   </div>
   
-  <div class="input_area">
-		<label for="PassQuiz">비밀번호 찾기 질문</label>
-		<select name="PassQuiz" id="PassQuiz" required="required">
-			<option value="titlename" >질문을 선택하세요.</option>
+  <div class="dropdown">
+     <select name="one" class="dropdown-select">
+      <option value="titlename">질문을 선택하세요.</option>
 			<option value="Mom">어머니의 성함은?</option>
 			<option value="Dad">아버지의 성함은?</option>
 			<option value="Pet">애완동물의 이름은?</option>
 			<option value="Love">가장 사랑하는 인물은?</option>
 			<option value="Faverite">가장 존경하는 인물은?</option>
-		</select>
+     </select>
+   </div>
+  
+  <div>
+  <input type="text" placeholder="비밀번호 찾기 답변">  
   </div>
   
-  <div class="input_area">
-  	<label for="quizAnswer">비밀번호 찾기 답변</label>
-  	<input type="text" id="quizAnswer" name="quizAnswer" placeholder="답을 입력하세요." required="required" />
+  <div>
+  <input type="text" placeholder="이름">  
   </div>
   
-  <div class="input_area">
-   <label for="userName">이름</label>
-   <input type="text" id="userName" name="userName" placeholder="닉네임을 입력해주세요" required="required" />      
+  <div>
+  <input type="text" placeholder="연락처">  
   </div>
   
-  <div class="input_area">
-   <label for="userPhone">연락처</label>
-   <input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />      
+  <div>
+  <input type="email" placeholder="email">  
   </div>
   
-  <div class="input_area">
-  	<label for="email">E-Mail</label>
-  	<input type="email" id="email" name="email" placeholder="E-Mail을 입력하세요."/>
+  <div>
+  <input type="date" id="birthday" name="birthday" required="required" />  
   </div>
   
-  <div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
-            <label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
+ <div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
+            <label for="userAddr1"><strong id="required"></strong></label>
             <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
             <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
             <span ng-show="myForm.userAddr1.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
@@ -62,25 +90,26 @@
          </div>
          
          <div class="container" ng-class="{'has-success':myForm.userAddr2.$valid,'has-error':myForm.userAddr2.$invalid &&myForm.userAddr2.$dirty}">
-            <label for="userAddr2">기본 주소 <strong id="required">*</strong></label>
+            <label for="userAddr2"><strong id="required"></strong></label>
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
             <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
          </div>
          <span id="guide" style="color:#999;display:none"></span>
          <div class="container">
-            <label for="userAddr3">상세 주소</label>
+            <label for="userAddr3"></label>
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
-  </div>
+  </div> 
   
-  <div class="input_area">
-  	<label for="birthday">생일</label>
-  	<input type="date" id="birthday" name="birthday" required="required" />
-  </div>
   
-  <button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
- </form>   
+ 
+  <p>
+   <button type="submit" id="signup_btn" name="signup_btn">회원가입</button>
+  </p>
+ </div>		
+</form>   
 </section>
+
 <!-- 다음 주소 API 사용 -->    
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script>

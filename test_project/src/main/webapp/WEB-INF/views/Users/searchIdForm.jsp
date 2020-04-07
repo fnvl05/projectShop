@@ -9,7 +9,7 @@
 </head>
 <body>
 <section id="content">
- <form action="searchPass.do" method="post">
+ <form action="PassAndLogin.do" method="post">
  	<div class="input_area">
    		<label for="userName">이름</label>
    		<input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요" required="required" />      
