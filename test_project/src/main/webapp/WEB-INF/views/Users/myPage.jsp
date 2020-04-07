@@ -78,7 +78,7 @@ margin-left: 30px;
 <div class="xans-element- xans-myshop xans-myshop-main mypage_btn_wrap ">
 <div class="mypage_btn">
 		<div class="item">
-			<a href="/myshop/order/list.html">
+			<a href="../shop/orderList.do">
 			<div class="mytitle">
 <i class="xi-credit-card"></i> ORDER</div>
 			<div class="mytitle_kr">주문내역 조회</div>
@@ -89,7 +89,7 @@ margin-left: 30px;
 			</a>
 		</div>
 <div class="item">
-			<a href="/myshop/wish_list.html">
+			<a href="../shop/wishlist.do">
 			<div class="mytitle">
 <i class="xi-heart-o"></i> WISHLIST</div>
 			<div class="mytitle_kr">관심 상품</div>
@@ -115,7 +115,7 @@ margin-left: 30px;
 
 
 		<div class="item">
-			<a href="/myshop/board_list.html">
+			<a href="boardList.do">
 			<div class="mytitle">
 <i class="xi-paper-o"></i> BOARD</div>
 			<div class="mytitle_kr">내가 쓴 글 보기</div>
@@ -127,19 +127,7 @@ margin-left: 30px;
 		</div>
 
 		<div class="item">
-			<a href="/myshop/addr/list.html">
-			<div class="mytitle">
-<i class="xi-truck"></i> ADDRESS</div>
-			<div class="mytitle_kr">배송 주소록 관리</div>
-
-			<div class="desc">
-자주 사용하는 배송지를 등록하고 관리하실 수 있습니다.
-			</div>
-			</a>
-		</div>
-
-		<div class="item">
-			<a href="/member/modify.html">
+			<a href="info.do">
 			<div class="mytitle">
 <i class="xi-profile-o"></i> PROFILE</div>
 			<div class="mytitle_kr">회원 정보</div>
@@ -150,6 +138,17 @@ margin-left: 30px;
 			</a>
 		</div>
 
+<div class="item">
+			<a href="../shop/cartList.do">
+			<div class="mytitle">
+<i class="xi-profile-o"></i> CART</div>
+			<div class="mytitle_kr">장바구니</div>
+
+			<div class="desc">
+고객님의 장바구니를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
+</div>
+			</a>
+		</div>
 
 	</div>
 </div>
@@ -157,41 +156,7 @@ margin-left: 30px;
 
 
 
-	<div id="myShopMain" class="xans-element- xans-myshop xans-myshop-main ">
-			<table class="table_center">
-				<thead>
-				 	<tr>
-				 		<th>
-				 			<div class="order" onclick="location.href='../shop/orderList.do'">
-							<img src="../resources/images/myshop_order.png" alt="주문조회" />
-							</div>
-				 		</th>
-				 		<th>
-				 			<div class="cart" onclick="location.href='../shop/cartList.do'">
-							<img src="../resources/images/myshop_cart.png" alt="장바구니" />
-							</div>
-				 		</th>
-				 		<th>
-				 			<div class="wishlist" onclick="location.href='../shop/wishlist.do'">
-							<img src="../resources/images/myshop_wish.png" alt="위시리스트" />			
-							</div>
-				 		</th>
-				 	</tr>
-				 	<tr>
-				 		<th>
-				 			<div class="myInfo" onclick="location.href='info.do'">
-							<img src="../resources/images/myshop_myinfo.png" alt="회원정보 조회/수정" />			
-							</div>
-				 		</th>
-				 		<th>
-				 			<div class="myBoard" onclick="location.href='boardList.do'">
-							<img src="../resources/images/myshop_myboard.png" alt="게시물 관리" />			
-							</div>
-				 		</th>
-				 	</tr>
-				</thead>					
-			</table>				
-		</div>
+	
 	</div>
 </div>
 <footer id="footer">
