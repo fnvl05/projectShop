@@ -10,4 +10,6 @@ public interface Unknown_service {
 	public void itemList(ModelAndView mView);
 	public void getItemView(ModelAndView mView, int itemNum);
 	public List<Unknown_itemDto> cateList(int cateCode, int cateLevel);
+	public void bestItemList(ModelAndView mView);
+	public void newItemList(ModelAndView mView);
 }

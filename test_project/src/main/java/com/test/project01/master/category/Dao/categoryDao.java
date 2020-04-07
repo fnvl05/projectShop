@@ -25,5 +25,5 @@ public interface categoryDao {
 	public void upResult(OrderDetailDto detailDto);
 	public List<UsersDto> userAllList();
 	public void userVerify(UsersDto userDto);
-
+	
 }

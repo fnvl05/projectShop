@@ -31,7 +31,6 @@ public class OrderServiceImpl implements OrderService{
 	CartDao cartDao;
 	@Autowired
 	categoryDao categoryDao;
-	
 
 	
 	@Override
@@ -91,6 +90,8 @@ public class OrderServiceImpl implements OrderService{
 			detailDao.detailInsert(detailDto);
 			//해당 아이템의 재고량 줄이기
 			categoryDao.minusCount(detailDto);
+			System.out.println(itemNum);
+			dao.itemGetCount(itemNum);
 		}
 		//해당 아이디의 장바구니 삭제하기
 		cartDao.deleteAll(userId);

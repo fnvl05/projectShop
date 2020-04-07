@@ -91,5 +91,6 @@ public class categoryDaolmpl implements categoryDao{
 	public void userVerify(UsersDto userDto) {
 		session.update("category.userVerify", userDto);
 	}
+
 	
 }

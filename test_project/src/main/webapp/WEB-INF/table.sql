@@ -45,6 +45,7 @@ create table tbl_member (
 );
 create sequence tbl_member_seq;
 
+
 <마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
 update tbl_member set verify=1 where userId='master';
 
@@ -67,6 +68,8 @@ create table tbl_items (
     primary key(itemNum)  
 );
 create sequence tbl_item_seq;
+
+alter table tbl_items add(itemGetCount number);
 
 -별도의 테이블 쿼리-
 alter table tbl_items add
@@ -130,6 +133,7 @@ insert into goods_category values('2', '목걸이', '103', '100');
 
  --썸네일 칼럼 추가
  alter table tbl_items add(itemThumbImg varchar2(300));
+ 
  
  <!-- 카테고리별 상품 리스트 : 1차 분류 -->
 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,

@@ -137,7 +137,7 @@ ul {
 .thumbImg{width: 200px; height: auto}
 
 #container_box{
-	margin: 40px;
+	margin: 60px;
 }
 
 #container_box table td { width:150px; }
@@ -243,4 +243,21 @@ ul {
    background-position: left bottom;
    line-height: 0;
    vertical-align: top;
+}
+
+/*베스트 & 최신 상품*/
+
+#newItemBox{
+  	width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+}
+#bestItemBox{
+	width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+}
+#indexItemImg{
+	width:250px;
+	height: 300px;
 }
