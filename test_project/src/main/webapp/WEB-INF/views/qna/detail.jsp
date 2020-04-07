@@ -38,6 +38,7 @@
 		<c:when test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
 			<div class="container">
 				<ol class="breadcrumb">
+					<li><a href="${pageContext.request.contextPath }/qna/list.do">전체 목록</a></li>
 					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum}">목록</a></li>
 					<li>글 상세 보기</li>
 				</ol>
@@ -89,7 +90,7 @@
 		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
 	--%>
 				<c:if test="${dto.writer eq id }">
-					<a class="btn btn-info" href="updateform.do?num=${dto.num }">
+					<a class="btn btn-info" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>
 					<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 				</c:if>
@@ -105,10 +106,11 @@
 											test="${tmp.num ne tmp.comment_group }">
 									to <strong>${tmp.target_id }</strong>
 										</c:if> <span>${tmp.regdate }</span> <a href="javascript:"
-										class="reply_link">답글</a> <c:choose>
+										class="reply_link">답글</a>&nbsp;
+										<c:choose>
 											<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
 											<c:when test="${id eq tmp.writer }">
-												<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
+												<a href="javascript:" class="comment-update-link">수정</a>&nbsp;
 										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
 											</c:when>
 											<c:otherwise>
@@ -179,7 +181,7 @@
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)
-		.parent().parent().parent()
+		.parent()
 		.find(".comment-update-form")
 		.slideToggle(200);
 	});

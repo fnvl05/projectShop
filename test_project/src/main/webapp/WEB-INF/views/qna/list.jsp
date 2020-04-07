@@ -71,7 +71,7 @@
 						<td>${status.count }</td>
 						<%-- <td>${tmp.num }</td> --%>
 						<td>
-							<a href="../qna/detail.do?num=${tmp.num }">
+							<a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
 							<img src="../resources${tmp.itemImg }" /></a>
 						</td>
 						<td><c:choose>
@@ -80,7 +80,7 @@
 										<c:when
 											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
 											<a
-												href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
+												href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>

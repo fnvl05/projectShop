@@ -275,8 +275,7 @@
 				<br />
 				<p style="font-weight: bold;">
 					리뷰 평점 : <span class="wrap-star"> <span class='star-rating'>
-							<span
-							style="width:<fmt:formatNumber value="${avg *10}" pattern=".0"/>%"></span>
+							<span style="width:<fmt:formatNumber value="${avg *10}" pattern=".0"/>%"></span>
 					</span>
 					</span>
 				</p>
