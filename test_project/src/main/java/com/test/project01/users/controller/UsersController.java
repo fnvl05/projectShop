@@ -138,11 +138,21 @@ public class UsersController {
 		return mView;
 	}
 	
+	@RequestMapping("Users/PassAndLogin")
+	public ModelAndView idAndlogin(@ModelAttribute UsersDto dto, HttpServletRequest request, ModelAndView mView) {
+		service.findUsersId(dto, request);
+		mView.setViewName("Users/PassAndLogin");
+		return mView;
+	}
+	@RequestMapping("Users/searchPassForm")
+	public ModelAndView searchPassForm() {
+		return new ModelAndView("/Users/searchPassForm");
+	}
 	// 입력한 정보의 값에 따라 true & false 로 나눠서 경로로 이동 
 	@RequestMapping(value="Users/searchPass", method = RequestMethod.POST)
 	public ModelAndView findId(@ModelAttribute UsersDto dto, HttpServletRequest request,ModelAndView mView) {		
 		if(service.findUsersId(dto, request)) {
-			mView.setViewName("Users/searchPass");
+			mView.setViewName("Users/searchnewPass");
 			return mView;
 		}
 		else { // false 일 때, 인덱스 페이지로 다시 이동, 처음부터 다시 진행해야함.		
@@ -169,7 +179,7 @@ public class UsersController {
 	}
 	// 비밀번호 찾기 질문이 전부 true일 때, 비밀번호 수정 ... 수정 후, 바로 로그인 창으로 고고!
 	@RequestMapping(value="/Users/changeNewPassData", method = RequestMethod.POST)
-	public ModelAndView Users_searchnewPass(@ModelAttribute UsersDto dto) {
+	public ModelAndView searchnewPass(@ModelAttribute UsersDto dto) {
 		service.changeNewPassData(dto);
 		
 		return new ModelAndView("Users/login_form");
