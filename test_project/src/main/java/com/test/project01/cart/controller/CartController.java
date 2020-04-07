@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,15 +121,22 @@ public class CartController {
 	}
 	//8. 위시리스트에서 장바구니로 추가
 	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
-	public String User_insertCart(HttpSession session){
+	public String User_insertCart(HttpSession session, @ModelAttribute("dto") CartListDto dto, @RequestParam int wishNum){
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();	
 		//장바구니에 기존 상품 있나 검사
-		service.wishList_addCart(userId);		
-//			int count=service.countCart(dto.getItemNum(), userId);
-//			if(count == 0) {		
-//			}
-
+//		service.wishList_addCart(userId);		
+//		int itemNum=Integer.parseInt(request.getParameter("itemNum"));
+		
+			int count=service.countCart(dto.getItemNum(), userId);
+			System.out.println(dto.getItemNum());
+			if(count == 0) {	
+				service.wishList_addCart(userId);
+			}else {
+				return "redirect:cartList.do";
+				
+			}
+		service.deleteWish(wishNum);
 		return "redirect:cartList.do";
 	}
 	//바로 주문폼으로 넘어가게 하기

@@ -180,15 +180,15 @@
 					<button class="btn" id="buyEach" style="float: left">삭제</button>
 				</div>
 
-				<table class="table table-hover">
+				<table class="table table-hover" style="text-align: center">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="AllCheck" /></th>
-							<th>이미지</th>
-							<th>상품명</th>
-							<th>가격</th>
-							<th>수량</th>
-							<th>최종 가격</th>
+							<th style="text-align: center"><input type="checkbox" id="AllCheck" /></th>
+							<th style="text-align: center">이미지</th>
+							<th style="text-align: center">상품명</th>
+							<th style="text-align: center">가격</th>
+							<th style="text-align: center">수량</th>
+							<th style="text-align: center">최종 가격</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -219,15 +219,14 @@
 				</table>
 				<br />
 				<br />
-				<p style="text-align: left;">50,000원 이상 무료 배송</p>
 				<br />
-				<table class="table table-hover">
+				<table class="table" style="text-align: center">
 					<thead>
 						<tr>
-							<th>총 상품금액</th>
-							<th>총 배송비</th>
-							<th>결제예정금액</th>
-							<th></th>
+							<th style="text-align: center">총 상품금액</th>
+							<th style="text-align: center">총 배송비</th>
+							<th style="text-align: center">결제예정금액</th>
+							<th style="text-align: center"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -244,12 +243,15 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="button" style="float: right">
-					<div class="orderbtn">
+				<br /><br /><br />
+				
+				<div class="button" >
+				<p style="text-align: left;">50,000원 이상 무료 배송</p>
+					<div class="orderbtn" style="float: right">
 						<div class="eff"></div>
 						<a href="orderform.do">주문하기</a>
 					</div>
-					<div class="shopbtn">
+					<div class="shopbtn" style="float: right">
 						<div class="eff"></div>
 						<a href="../index.do">쇼핑계속</a>
 					</div>
@@ -291,10 +293,10 @@
 				success : function(responseData) {
 					if (responseData.isSuccess) {
 						//알림 띄우고 새로고침
-						alert("성공.");
+						alert("장바구니에서 상품을 삭제했습니다.");
 						location.reload();
 					} else {
-						alert("실패.");
+						alert("아몰랑~ 실패");
 					}
 				}
 			});
@@ -323,10 +325,10 @@
 				success : function(responseData) {
 					if (responseData.isSuccess) {
 						//알림 띄우고 새로고침
-						alert("성공.");
+						alert("상품수량을 변경하였습니다.");
 						location.reload();
 					} else {
-						alert("실패.");
+						alert("실패지롱");
 					}
 				}
 			})

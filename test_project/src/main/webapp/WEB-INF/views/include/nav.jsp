@@ -51,15 +51,6 @@
 					onmouseout="this.src='${pageContext.request.contextPath }/resources/images/header_mypage_icon.png'"/>	
 					</a>
 				</li>
-				
-				<li>
-					<form class="navbar-form navbar-left" role="search" action="itemAllList.do" method="get">
-					  <div class="form-group">
-					    <input type="text" class="form-control" name="keyword" placeholder="Search">
-					    <input type="image" src="${pageContext.request.contextPath }/resources/images/header_search_bt.png"/>					 
-					  </div>					  
-					</form>
-				</li>
 				 
 		</c:when>
 		<c:otherwise>

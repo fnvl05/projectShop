@@ -95,25 +95,28 @@
       <div class="container">
       <h1>WishList</h1>
 	  <form role="form" enctype="multipart/form-data" >
-      <table class="table table-hover">
+      <br />
+      <br />
+      <table class="table table-hover" style="text-align: center">
          <thead>
             <tr>
-               <th>이미지</th>
-               <th>상품명</th>
-               <th>가격</th>
-               <th>선택</th>
+               <th style="text-align: center">이미지</th>
+               <th style="text-align: center">상품명</th>
+               <th style="text-align: center">가격</th>
+               <th style="text-align: center">선택</th>
             </tr>
          </thead>
          <tbody>
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
             <tr>
-
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
                <td> 
                		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a>
                		<input type="hidden" value="${tmp.itemName }" name="itemName">
+               		<input type="hidden" value="${tmp.wishNum }" name="wishNum"/>
                </td>       
                <td>
+               		<input type="hidden" value="${tmp.itemNum }" name="itemNum"/>
                		<input type="hidden" value="${tmp.itemPrice }" name="itemPrice">
               		 <fmt:formatNumber value="${tmp.itemPrice}" 
                       pattern="###,###,###"/>원
@@ -126,6 +129,8 @@
          </c:forEach>
          </tbody>
       </table>
+      <br />
+      <br />
       <div class="button" style="float: right">
      		<div class="shopbtn">
 				<div class="eff"></div>

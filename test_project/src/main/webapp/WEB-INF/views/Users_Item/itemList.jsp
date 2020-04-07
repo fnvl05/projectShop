@@ -7,53 +7,73 @@
 <title>Insert title here</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=rZRNbgMhDIX3mWx7Dqs_x-glwOMyJGBTbKrm9mWSjNSqm2rKBiHL73s2MoZFMsHjU4VSJVSXoZJKq0iAqvBWhQ1QchY-9sAD_CWf8KCSmkXhg5fPncJmttc0uQvVfVJzPtE3KeHUlKpCSY49CpTmU8RpsZxAZ5pm0hgY9Bz55Rm6szQD7zTi1WHOIryazw1tSlFtP3zl5Q5KtAEhE7fi8OwCDeWuhbLU7NJQ7A1ZXIgcBj7yrwH9L_AWGD4G2NQkj8eObv-G9eLqPA2t-bSxU_QKp_dG9XJMMSzW9wRsl-GdXM_JpHjH_GMz7B_pu1VuyaIuUl5Hfe07GIU_ur7vpIIr9ws&type=css&k=8dad99db3c03e2204f6885130760cc2f3fa286a8&t=1582009673" />
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <style>
-	#container_box table td { width:150px; text-align: center }
+
 	 #ul1 li { display:inline-block; margin:10px; }
 	.thumbImg { width:200px; height:200px; }
 	.itemName { padding:10px 0; text-align:center; }
 	.itemName a { color:#000; }
+#ul1.column5 li.itemThumb { width:20%; }
+
 </style>
 
 </head>
 <body>
 <div id="root">
-		<header id="heder_box">
-			<div>
-				<%@ include file="../include/header.jsp" %>
-			</div>
-		</header>
-		<nav id="nav">
-			<div id="nav_box">
-				<%@ include file="../include/nav.jsp" %>
-			</div>
-		</nav>
-		<section id="container">
-			<div id="container_box">
-			<aside>
-				<%@ include file="../include/users_aside.jsp" %>
-			</aside>
-				<h2>상품 목록</h2>
-					<ul id="ul1">
-					 <c:forEach items="${cateList}" var="cateList">
-					 <li>
-					  <div class="itemThumb">
-					   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
-					  </div> 
-					  <div class="itemName">
-					   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
-					  </div>
-					 </li>
-					 </c:forEach>
-					</ul>
-			</div>
-		</section>
-		<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp" %>
-			</div>
-		</footer>
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp"%>
+				</div>
+				<div id="index_logo_div">
+					<a href="../index.do"><img id="index_logo_img"
+						src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+				</div>
+				<div class="navbar-left">
+					<c:choose>
+						<c:when test="${not empty sessionScope.id }">
+							<%@ include file="../include/users_aside.jsp"%>
+						</c:when>
+						<c:otherwise>
+							<%@ include file="../include/unknown_aside.jsp"%>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</nav>
+		</div>
+	</header>
+</div>
+<div class="container">
+<h2>상품 목록</h2>
+<br />
+<br />
+<br />
+	<ul id="ul1" style="text-align: center;" class="column5">
+	 <c:forEach items="${cateList}" var="cateList">
+	 <li>
+	  <div class="itemThumb">
+		   <img alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg" 
+		   style="width:250px ;height:250px "
+		   onclick="location.href='itemView_form.do?itemNum=${cateList.itemNum}'" />
+	  </div> 
+	  <div class="itemName">
+	  	   <a href="itemView_form.do?itemNum=${cateList.itemNum}">${cateList.itemName}</a>
+	  </div>
+	  <div class="itemPrice" style="text-align: center;">${cateList.itemPrice }원</div>
+	 </li>
+	 </c:forEach>
+	</ul>
+</div>
+
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
 	</div>
+</footer>
+
 </body>
 </html>
