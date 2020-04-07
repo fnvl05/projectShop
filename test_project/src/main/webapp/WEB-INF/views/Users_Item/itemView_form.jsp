@@ -230,7 +230,7 @@
 						<c:choose>
 							<c:when test="${startPageNum ne 1 }">
 								<li>
-									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${startPageNum-1 }">&laquo;</a>	
+									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${startPageNum-1 }&reviewNum=${reviewNum }">&laquo;</a>	
 							   	</li>
 							</c:when>
 							<c:otherwise>
@@ -242,12 +242,12 @@
 							<c:choose>
 								<c:when test="${i eq pageNum }">
 									<li class="active">
-										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${i }">${i }</a>
+										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${i }&reviewNum=${reviewNum }">${i }</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${i }">${i }</a>
+										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${i }&reviewNum=${reviewNum }">${i }</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -256,7 +256,7 @@
 						<c:choose>
 							<c:when test="${endPageNum lt totalPageCount }">
 								<li>
-									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${endPageNum+1 }">&raquo;</a>
+									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${endPageNum+1 }&reviewNum=${reviewNum }">&raquo;</a>
 								</li>
 							</c:when>
 							<c:otherwise>
@@ -311,11 +311,11 @@
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
 								<td><a
-									href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img
+									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
 										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break: break-all"><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}">${tmp.reviewContent }</a></td>
 								<td><span class="wrap-star"> <span
 										class='star-rating'> <span
 											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
@@ -335,9 +335,9 @@
 				<div class="page-display">
 					<ul class="pagination pagination-sm">
 						<c:choose>
-							<c:when test="${startPageNum ne 1 }">
-								<li><a
-									href="../review/itemList_review.do?pageNum=${startPageNum-1 }&itemNum=${itemNum}">&laquo;</a>
+							<c:when test="${RstartPageNum ne 1 }">
+								<li>
+									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum }&reviewNum=${RendPageNum-1}">&laquo;</a>
 								</li>
 							</c:when>
 							<c:otherwise>
@@ -345,25 +345,25 @@
 							</c:otherwise>
 						</c:choose>
 						<%-- step="1" 은 기본값이다. --%>
-						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
+						<c:forEach var="i" begin="${RstartPageNum }" end="${RendPageNum }"
 							step="1">
 							<c:choose>
-								<c:when test="${i eq pageNum }">
-									<li class="active"><a
-										href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
+								<c:when test="${i eq reviewNum }">
+									<li class="active">
+										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum }&reviewNum=${i}">${i }</a>
 									</li>
 								</c:when>
 								<c:otherwise>
-									<li><a
-										href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
+									<li>
+										<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum }&reviewNum=${i}">${i }</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						<c:choose>
-							<c:when test="${endPageNum < totalPageCount }">
-								<li><a
-									href="../review/itemList_review.do?pageNum=${endPageNum+1}&itemNum=${itemNum}">&raquo;</a>
+							<c:when test="${RendPageNum < RtotalPageCount }">
+								<li>
+									<a href="itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum }&reviewNum=${RendPageNum+1}">&raquo;</a>
 								</li>
 							</c:when>
 							<c:otherwise>

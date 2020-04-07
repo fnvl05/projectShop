@@ -108,10 +108,11 @@ public class ReviewServiceImpl implements ReviewService {
 		// 보여줄 페이지의 번호
 		int pageNum = 1;
 		// 보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.
-		String strPageNum = request.getParameter("pageNum");
-		if (strPageNum != null) {// 페이지 번호가 파라미터로 넘어온다면
+		//String strPageNum = request.getParameter("pageNum");
+		String strReviewNum = request.getParameter("reviewNum");
+		if (strReviewNum != null) {// 페이지 번호가 파라미터로 넘어온다면
 			// 페이지 번호를 설정한다.
-			pageNum = Integer.parseInt(strPageNum);
+			pageNum = Integer.parseInt(strReviewNum);
 		}
 		// 보여줄 페이지 데이터의 시작 ResultSet row 번호 (startRowNum을 계산하는 식)
 		int startRowNum = 1 + (pageNum - 1) * PAGE_ROW_COUNT;
@@ -142,11 +143,11 @@ public class ReviewServiceImpl implements ReviewService {
 		//EL, JSTL 을 활용하기 위해 필요한 모델을 request에 담는다.
 		
 		request.setAttribute("reviewlist", reviewlist);
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("startPageNum", startPageNum);
-		request.setAttribute("endPageNum", endPageNum);
-		request.setAttribute("totalPageCount", totalPageCount);
-		request.setAttribute("totalRow", totalRow);
+		request.setAttribute("reviewNum", pageNum);
+		request.setAttribute("RstartPageNum", startPageNum);
+		request.setAttribute("RendPageNum", endPageNum);
+		request.setAttribute("RtotalPageCount", totalPageCount);
+		request.setAttribute("RtotalRow", totalRow);
 
 	}
 

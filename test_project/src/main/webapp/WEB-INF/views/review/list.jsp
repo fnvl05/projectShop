@@ -72,7 +72,7 @@
 							<!--<td>${tmp.reviewNum }</td>-->
 							<td>${status.count }</td>
 							<td><a
-								href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
+								href="../review/detail.do?reviewNum=${tmp.reviewNum }">
 									<img src="../resources${tmp.itemImg }" id="itemImg" />
 							</a></td>
 							<td>${tmp.itemName }</td>
