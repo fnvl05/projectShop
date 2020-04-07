@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/notice/detail.jsp</title>
+<title>NOTICE</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -91,6 +91,12 @@
 			</a>
 			<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 		</c:if>
+		<br/><br/><br/>
+		<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp"%>
+			</div>
+		</footer>
 	</div>
 	<script>
 		function deleteConfirm() {

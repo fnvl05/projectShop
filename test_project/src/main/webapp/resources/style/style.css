@@ -150,7 +150,12 @@ ul {
 /* notice 중요글 제목 사이즈 */
 #title {
 	font-size: 18px;
+<<<<<<< HEAD
     color: red;
+=======
+	color: red;
+
+>>>>>>> refs/heads/hyun
 }
 
 
@@ -215,7 +220,10 @@ ul {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/heads/hyun
 /* 별점 css */
  #star_grade a{
     text-decoration: none;

@@ -64,7 +64,7 @@
 								<fmt:parseDate value="${tmp.orderDate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
 								<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
 								</td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>	
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>	
 								<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
 								<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
 								<td><a onclick="showDelivery();">조회</a></td>

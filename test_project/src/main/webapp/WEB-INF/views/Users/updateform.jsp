@@ -102,6 +102,5 @@
               }).open();
           }        
 </script>
->>>>>>> refs/remotes/origin/Sangjo
 </body>
 </html>

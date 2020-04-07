@@ -32,7 +32,7 @@ public class Users_item_Controller {
 		return mView;
 	}
 	@RequestMapping("/Users_Item/itemView_form")
-	public ModelAndView Users_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
+	public ModelAndView Users_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView,@RequestParam int pageNum,@RequestParam int reviewNum) {
 		serviec.getItemView(mView, itemNum);
 		reviewService.list2(request);
 		String itemNum2=Integer.toString(itemNum);

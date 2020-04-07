@@ -42,6 +42,7 @@
                      <th>가격</th>
                   </tr>
                </thead>
+
                <tbody>
                   <c:forEach var="tmp" items="${requestScope.list }">
                      <tr>

@@ -121,6 +121,7 @@ public class ReviewController {
 		return map;
 	}
 	
+
 	//board_list 에서 qna목록, review 목록
 	@RequestMapping("/Users/boardList")
 	public ModelAndView Users_boardList(HttpServletRequest request,ModelAndView mView) {
@@ -139,8 +140,17 @@ public class ReviewController {
 		dto.setReviewNum(eachItemNum.get(1));
 		Map<String,Object> map=service.addUpCount(request,dto);
 	
-	 
 		return map;
+	}
+
+
+	//board_list 에서 qna목록, review 목록
+	@RequestMapping("/Users/boardList")
+	public ModelAndView User_boardList(HttpServletRequest request,ModelAndView mView) {
+		service.reviewList(request);
+		qnaService.qnalist(request);
+		mView.setViewName("Users/boardList");
+		return mView;
 	}
 	
 }

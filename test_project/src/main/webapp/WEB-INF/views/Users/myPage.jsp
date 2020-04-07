@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- <link rel="stylesheet" type="text/css" href="https://www.66girls.co.kr/ind-script/optimizer.php?filename=tZTRbsMgDEXfk732O7ytUv8HHC9BNRhhM7V_P5SpUqu-dBl5xOIemytzYZFI8PFZIBeZi4tQSKUWJEBV-CqSDFBilPTWCgd45T7hoMLVgqTBy2WjsJptbcruSmWb1JxnupMSjlWpKETHfDpBrp4DjotFBp1onEjDnEDPIR3foTWWauCdBlwbPFn3T95voR-vPb0daKihP9NE2ELuD16Id6C2BZkq7uBtdnNIzmgHh53vD336eL24D0nQzwHewdh2DTdT12BhuiiH6SGG_o6JbSWZbnOipO8mbzGV1-l-AA&type=css&k=b414c2e697d93f2f255a5c1822c4ce1f15ac242b&t=1582009750" />-->
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
-<jsp:include page="/resources/style/total.jsp"></jsp:include> 
 <body>
 <div id="root">
 	<header>
@@ -35,6 +36,7 @@
 	</header>
 </div>
 <div class="container">
+
 	<h1>MyPage</h1>
 	<br /><br /><br />
 <div class="container_box">
@@ -74,6 +76,7 @@
 			<div class="desc">
 적립금은 상품 구매 시 사용하실 수 있습니다.
 			</div>
+
 			</a>
 		</div>
 
@@ -86,6 +89,7 @@
 
 			<div class="desc">
 고객님께서 작성하신 글을 한눈에 관리하실 수 있습니다.
+
 			</div>
 			</a>
 		</div>

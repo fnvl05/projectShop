@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/insertform.jsp</title>
+<title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
@@ -67,6 +67,7 @@
 						history.back();
 						/*location.href="itemList_review.do?itemNum=" + ${itemNum};*/
 					})
+
 					</script>
 
 				</form>

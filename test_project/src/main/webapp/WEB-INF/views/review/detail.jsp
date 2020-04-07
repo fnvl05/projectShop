@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/detail.jsp</title>
+<title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <style>
 	table{
@@ -27,11 +27,21 @@
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
-						<%@ include file="../include/users_aside.jsp"%>
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+								<%@ include file="../include/users_aside.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="../include/unknown_aside.jsp"%>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</nav>
-			</div>	
+
+			</div>
 		</header>
+	</div>
+
 	<section id="container">
 		<div id="container_box">
 			<div class="container">
@@ -182,15 +192,16 @@
 					</div>
 				</div>
 			</div>
+			<br/>
+			<footer id="footer">
+				<div id="footer_box">
+					<%@ include file="../include/footer.jsp"%>
+				</div>
+			</footer>
 		</div>
 	</section>
-	<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp"%>
-		</div>
-	</footer>
-	</div>
 	<script>
+
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)
