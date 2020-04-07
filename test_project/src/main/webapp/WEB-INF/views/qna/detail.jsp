@@ -39,7 +39,7 @@
 			<div class="container">
 				<ol class="breadcrumb">
 					<li><a href="${pageContext.request.contextPath }/qna/list.do">전체 목록</a></li>
-					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum}">목록</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=${pageNum}&reviewNum=${reveiwNum}">목록</a></li>
 					<li>글 상세 보기</li>
 				</ol>
 				<c:if test="${not empty keyword }">

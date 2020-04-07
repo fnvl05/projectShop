@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -275,7 +276,7 @@
 				<br />
 				<p style="font-weight: bold;">
 					리뷰 평점 : <span class="wrap-star"> <span class='star-rating'>
-							<span style="width:<fmt:formatNumber value="${avg *10}" pattern=".0"/>%"></span>
+							<span style="width:<fmt:formatNumber value="${avg *10}" pattern=".0"/>%"></span>						
 					</span>
 					</span>
 				</p>
@@ -318,7 +319,7 @@
 									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}">${tmp.reviewContent }</a></td>
 								<td><span class="wrap-star"> <span
 										class='star-rating'> <span
-											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
+											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
 									</span>
 								</span></td>
 								<td><span class="glyphicon glyphicon-thumbs-up"></span>
