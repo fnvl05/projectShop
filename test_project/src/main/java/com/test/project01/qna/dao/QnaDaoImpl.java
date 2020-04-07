@@ -82,5 +82,9 @@ public class QnaDaoImpl implements QnaDao {
 			return (int)test;
 		}
 	}
+	@Override
+	public QnaDto getData3(QnaDto dto) {
+		return session.selectOne("qna.getData3",dto);
+	}
 
 }

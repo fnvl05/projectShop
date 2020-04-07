@@ -201,7 +201,7 @@
 												<c:when
 													test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
 													<a
-														href="../qna/detail.do?num=${tmp.num }&itemNum=${itemNum}">
+														href="../qna/itemDetail.do?num=${tmp.num }&itemNum=${itemNum}">
 														${tmp.title }[${tmp.commentCount }] </a>
 												</c:when>
 												<c:otherwise>

@@ -182,7 +182,27 @@ public class QnaServiceImpl implements QnaService{
 			request.setAttribute("commentList", commentList);
 			
 		}
-
+		@Override
+		public void getItemDetail(HttpServletRequest request) {
+			//파라미터로 전달되는 글번호
+			int num=Integer.parseInt(request.getParameter("num"));
+			int itemNum=Integer.parseInt(request.getParameter("itemNum"));
+			//QnaDto 객체 생성 (select 할때 필요한 정보를 담기 위해)
+			QnaDto dto=new QnaDto();
+			//QnaDto 에 글번호도 담기
+			dto.setNum(num);
+			dto.setItemNum(itemNum);
+			//글정보를 얻어와서
+			QnaDto dto2=qnaDao.getData3(dto);
+			//조회수 1 증가 시키기
+			qnaDao.addViewCount(num);
+			//request 에 글정보를 담고 
+			request.setAttribute("dto", dto2);
+			//댓글 목록을 얻어와서 request 에 담아준다.
+			List<QnaCommentDto> commentList=qnaCommentDao.getList(num);
+			request.setAttribute("commentList", commentList);
+			
+		}
 		@Override
 		public void deleteContent(int num, HttpServletRequest request) {
 			String id=(String)request.getSession().getAttribute("id");
