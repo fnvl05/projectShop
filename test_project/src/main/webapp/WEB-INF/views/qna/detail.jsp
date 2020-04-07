@@ -51,12 +51,12 @@
 
 				<c:if test="${dto.prevNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.prevNum }&itemNum=${itemNum}&pageNum=${pageNum}">이전글</a>
+						href="detail.do?num=${dto.prevNum }&itemNum=${itemNum}">이전글</a>
 				</c:if>
 
 				<c:if test="${dto.nextNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.nextNum }&itemNum=${itemNum}&pageNum=${pageNum}">다음글</a>
+						href="detail.do?num=${dto.nextNum }&itemNum=${itemNum}">다음글</a>
 				</c:if>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
