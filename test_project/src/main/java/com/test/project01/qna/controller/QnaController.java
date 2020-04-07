@@ -63,14 +63,13 @@ public class QnaController {
 		//서비스를 이용해서 DB 에 저장
 		service.saveContent(dto);
 		//글 목록 보기로 리다일렉트 이동 
-		return new ModelAndView("redirect:/Users_Item/itemView_form.do?itemNum="+dto.getItemNum()+"&pageNum=1");
+		return new ModelAndView("redirect:/Users_Item/itemView_form.do?itemNum="+dto.getItemNum()+"&pageNum=1&reviewNum=1");
 	}
 	//글 자세히 보기 요청 처리
 	@RequestMapping("/qna/detail")
-	public String detail(HttpServletRequest request,@RequestParam int itemNum,@RequestParam int pageNum){
+	public String detail(HttpServletRequest request,@RequestParam int itemNum){
 		service.getDetail(request);
 		request.setAttribute("itemNum", itemNum);
-		request.setAttribute("pageNum", pageNum);
 		//view page 로 forward 이동해서 글 자세히 보기 
 		return "qna/detail";
 	}
@@ -112,11 +111,10 @@ public class QnaController {
 	@RequestMapping(value = "/qna/comment_insert", 
 			method = RequestMethod.POST)
 	public ModelAndView authCommentInsert(HttpServletRequest request,
-			@RequestParam int ref_group,@RequestParam int itemNum,@RequestParam int pageNum) {
+			@RequestParam int ref_group,@RequestParam int itemNum) {
 		service.saveComment(request);
 		request.setAttribute("itemNum", itemNum);
-		request.setAttribute("pageNum", pageNum);
-		return new ModelAndView("redirect:/qna/detail.do?num="+ref_group+"&"+"itemNum="+itemNum+"&"+"pageNum="+pageNum);
+		return new ModelAndView("redirect:/qna/detail.do?num="+ref_group+"&"+"itemNum="+itemNum);
 	}
 	
 	//댓글 삭제 요청 처리

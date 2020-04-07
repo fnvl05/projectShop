@@ -40,7 +40,7 @@
 	<div class="container">
 		<ol class="breadcrumb">
 			<li><a
-				href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=1">목록</a></li>
+				href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=1&reviewNum=1">목록</a></li>
 			<li>새글 작성</li>
 		</ol>
 		<form action="insert.do" method="post">
@@ -77,7 +77,7 @@
 						.click(
 								function() {
 									location.href = "${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum="
-											+ ${itemNum}+"&pageNum=1"
+											+ ${itemNum}+"&pageNum=1&reviewNum=1"
 									;
 								})
 			</script>

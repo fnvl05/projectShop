@@ -80,7 +80,7 @@
 										<c:when
 											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
 											<a
-												href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
+												href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
