@@ -67,7 +67,13 @@
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>	
 								<td><fmt:formatNumber value="${tmp.allPrice }" pattern="###,###,###"/>원</td>
 								<td><a href="detailList.do?orderNum=${tmp.orderNum }">조회</a></td>
-								<td><a href="delivery.do?orderNum=${tmp.orderNum }">조회</a></td>
+								<td><a onclick="showDelivery();">조회</a></td>
+								<script>
+									function showDelivery(){
+										window.open("delivery.do?orderNum=${tmp.orderNum }","delivery",
+												"width=500,height=400,top=250,left=550,resizable=no");
+									}
+								</script>
 							</tr>
 						</c:forEach>
 					</tbody>

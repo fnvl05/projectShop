@@ -50,9 +50,9 @@
 				<div class="inputArea">
 					<p><span>상품 가격: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" /> 원</p>
 				</div>
-				<div class="inputArea">
+				<!--  <div class="inputArea">
 					<p><span>상품 재고: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemCount}" /> EA</p>
-				</div>
+				</div> -->
 				<div class="cartStock">
 					<span>구입 수량: </span>
 					<p class="cartStock"> 
@@ -175,8 +175,7 @@
 										<c:choose>
 											<c:when
 												test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-												<a
-													href="../qna/detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
+												<a href="../qna/detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
 													${tmp.title }[${tmp.commentCount }] </a>
 											</c:when>
 											<c:otherwise>
@@ -273,7 +272,15 @@
 							<td>${status.count}</td>  <!-- <td>${tmp.reviewNum}</td> -->
 							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
 							<td>${tmp.itemName }</td>
-							<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+							<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+								<script>
+									/* reviewContent에 img가 있을 경우 삭제해줌*/
+									$(document).ready(function(){
+										$(".review${tmp.reviewNum} p img").remove();
+										var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
+										$(".review${tmp.reviewNum} p").text(text1);
+									})
+								</script>
 							<td>
 							<span class="wrap-star"> 
 								<span class='star-rating'>
@@ -296,8 +303,8 @@
 				<ul class="pagination pagination-sm" >
 					<c:choose>
 						<c:when test="${startPageNum ne 1 }">
-							<li><a
-								href="../review/itemList_review.do?pageNum=${startPageNum-1 }&itemNum=${itemNum}">&laquo;</a>
+							<li>
+								<a href="../review/itemList_review.do?pageNum=${startPageNum-1 }&itemNum=${itemNum}">&laquo;</a>
 							</li>
 						</c:when>
 						<c:otherwise>
@@ -309,21 +316,21 @@
 						step="1">
 						<c:choose>
 							<c:when test="${i eq pageNum }">
-								<li class="active"><a
-									href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
+								<li class="active">
+									<a href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
 								</li>
 							</c:when>
 							<c:otherwise>
-								<li><a
-									href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
+								<li>
+									<a href="../review/itemList_review.do?pageNum=${i }&itemNum=${itemNum}">${i }</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:choose>
 						<c:when test="${endPageNum < totalPageCount }">
-							<li><a
-								href="../review/itemList_review.do?pageNum=${endPageNum+1}&itemNum=${itemNum}">&raquo;</a>
+							<li>
+								<a href="../review/itemList_review.do?pageNum=${endPageNum+1}&itemNum=${itemNum}">&raquo;</a>
 							</li>
 						</c:when>
 						<c:otherwise>

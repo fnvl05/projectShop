@@ -81,7 +81,7 @@ public class CartController {
 	//4. 장바구니 수정
 	@ResponseBody
 	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
-	public Map<String, Object> updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
+	public Map<String, Object> Users_updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
 		CartListDto cartDto=new CartListDto();
 		cartDto.setCartNum(dto.get(0));
 		cartDto.setCartStock(dto.get(1));
