@@ -6,10 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>/Users_item/itemView_form.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <style>
-#underline {
+ #underline {
 	text-decoration: underline;
 	text-underline-position: under;
 	text-decoration-style: solid;
@@ -74,24 +74,24 @@
 					<button type="button" class ="minus">-</button>
 					<script>
 					  $(".plus").click(function(){
-					   var num = $(".numBox").val();
-					   var plusNum = Number(num) + 1;
-					   if(plusNum > ${dto.itemCount}) {
-					    $(".numBox").val(num);
-					   } else {
-					    $(".numBox").val(plusNum);          
-					   }
+						   var num = $(".numBox").val();
+						   var plusNum = Number(num) + 1;
+						   if(plusNum > ${dto.itemCount}) {
+						    $(".numBox").val(num);
+						   } else {
+						    $(".numBox").val(plusNum);
+						   }
 					  });
 					  
 					  $(".minus").click(function(){
-					   var num = $(".numBox").val();
-					   var minusNum = Number(num) - 1;
-					   
-					   if(minusNum <= 0) {
-					    $(".numBox").val(num);
-					   } else {
-					    $(".numBox").val(minusNum);          
-					   }
+						   var num = $(".numBox").val();
+						   var minusNum = Number(num) - 1;
+						   
+						   if(minusNum <= 0) {
+						    $(".numBox").val(num);
+						   } else {
+						    $(".numBox").val(minusNum);          
+						   }
 					  });
 					 </script>
 					 <p>
@@ -99,15 +99,16 @@
 				<div class="inputArea">
 					<div class = "addCart">
 						<button type="button" id="shop_btn" class="btn btn-warning" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
-						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
+						<!-- 뒤로가기 버튼 삭제 
+						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>-->
 						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
 						<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>
-						<script>
-
+						
+						<!--  <script>
 							$("#back_btn").click(function () {
 								location.href="../index.do";
 							})
-						</script>
+						</script>   -->
 						</div>
 					</div>
 					<script>
@@ -196,15 +197,14 @@
 														${tmp.title }[${tmp.commentCount }] </a>
 												</c:when>
 												<c:otherwise>
-										비밀글입니다. <img
-														src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+													비밀글입니다. <i class="fas fa-lock"></i>
 												</c:otherwise>
 											</c:choose>
 
 										</c:when>
 										<c:otherwise>
-								로그인을 하세요.
-							</c:otherwise>
+											비밀글입니다. <i class="fas fa-lock"></i>
+										</c:otherwise>
 									</c:choose></td>
 								<td>${tmp.writer }</td>
 								<td>${tmp.viewCount }</td>

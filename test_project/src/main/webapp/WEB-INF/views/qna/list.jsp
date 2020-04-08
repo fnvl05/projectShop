@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/list.jsp</title>
+<title>Q&A/list.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -48,7 +49,7 @@
 			<colgroup>
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
-				<col class="col-xs-5" />
+				<col class="col-xs-3" />
 				<col class="col-xs-1" />
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
@@ -66,8 +67,12 @@
 			<tbody>
 				<c:forEach var="tmp" items="${requestScope.list }">
 					<tr>
-						<td>${tmp.num }</td>
-						<td><img src="../resources${tmp.itemImg }" /></td>
+						<td>${status.count }</td>
+						<%-- <td>${tmp.num }</td> --%>
+						<td>
+							<a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
+							<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
+						</td>
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>
@@ -78,8 +83,12 @@
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
-									비밀글입니다. <img
-												src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+											비밀글입니다. 
+											<img src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+											<span class="glyphicon glyphicon-lock"></span>
+											<svg class="bi bi-lock" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											  <path fill-rule="evenodd" d="M11.5 8h-7a1 1 0 00-1 1v5a1 1 0 001 1h7a1 1 0 001-1V9a1 1 0 00-1-1zm-7-1a2 2 0 00-2 2v5a2 2 0 002 2h7a2 2 0 002-2V9a2 2 0 00-2-2h-7zm0-3a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+											</svg>
 										</c:otherwise>
 									</c:choose>
 
@@ -90,7 +99,8 @@
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td>${tmp.regdate }</td>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>

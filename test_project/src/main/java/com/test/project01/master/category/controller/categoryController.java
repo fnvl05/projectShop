@@ -31,6 +31,8 @@ import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.master.category.serevice.categoryService;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.qna.service.QnaService;
+import com.test.project01.review.service.ReviewService;
 import com.test.project01.users.Dto.UsersDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
@@ -39,6 +41,10 @@ public class categoryController{
 	
 	@Autowired
 	private categoryService service;
+	@Autowired
+	ReviewService reviewService;
+	@Autowired
+	QnaService qnaService;
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
@@ -87,6 +93,10 @@ public class categoryController{
 	@RequestMapping("/master/itemView_form")
 	public ModelAndView Master_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemView(mView, itemNum);
+		/*리뷰,Q&A 추가*/
+		reviewService.list2(request);
+		String itemNum2=Integer.toString(itemNum);
+		qnaService.getList2(request, itemNum2);
 		mView.setViewName("master/itemView_form");
 		return mView;
 	}

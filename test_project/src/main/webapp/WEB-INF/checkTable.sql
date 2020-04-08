@@ -48,7 +48,7 @@ create table tbl_items (
     cateCode     varchar2(30)    not null,
     itemPrice     number          not null,
     itemCount     number          default 0,
-    itemDes       varchar(500)    null,
+    itemDes       varchar(4000)    null,
     itemImg       varchar(200)    null,
     itemDate      date            default sysdate,
     itemThumbImg varchar2(300),

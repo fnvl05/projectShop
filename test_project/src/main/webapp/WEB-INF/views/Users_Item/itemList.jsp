@@ -46,7 +46,7 @@
 				</nav>
 			</div>
 		</header>
-	</div>
+
 		<section id="container">
 			<div id="container_box">
 				<h2>상품 목록</h2>
@@ -69,5 +69,6 @@
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
+		</div>
 </body>
 </html>

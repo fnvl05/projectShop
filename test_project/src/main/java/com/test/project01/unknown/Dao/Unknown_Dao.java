@@ -13,4 +13,8 @@ public interface Unknown_Dao {
 
 //	public List<ItemDto> itemBestList();
 //	public List<ItemDto> itemNewList();
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/css_hyewon2
 }

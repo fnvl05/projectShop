@@ -10,6 +10,10 @@ public interface Unknown_service {
 	public void itemList(ModelAndView mView);
 	public void getItemView(ModelAndView mView, int itemNum);
 	public List<Unknown_itemDto> cateList(int cateCode, int cateLevel);
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/css_hyewon2
 //	public void bestItemList(ModelAndView mView);
 //	public void newItemList(ModelAndView mView);
 

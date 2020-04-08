@@ -10,25 +10,25 @@
 </head>
 <body>
 <div id="root">
-	<header>
-		<div class="header_box">
-			<nav id="nav">
-				<div class="navbar-right">
-					<%@ include file="../include/nav.jsp"%>
-				</div>
-				<div id="index_logo_div">
-					<a href="../index.do"><img id="index_logo_img"
-						src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
-				</div>
-				<div class="navbar-left">
-					<c:choose>
-						<c:when test="${not empty sessionScope.id }">
-							<%@ include file="../include/users_aside.jsp"%>
-						</c:when>
-						<c:otherwise>
-							<%@ include file="../include/unknown_aside.jsp"%>
-						</c:otherwise>
-					</c:choose>
+<header>
+	<div class="header_box">
+		<nav id="nav">
+			<div class="navbar-right">
+				<%@ include file="../include/nav.jsp"%>
+			</div>
+			<div id="index_logo_div">
+				<a href="../index.do">
+				<img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+			</div>
+			<div class="navbar-left">
+				<c:choose>
+					<c:when test="${not empty sessionScope.id }">
+						<%@ include file="../include/users_aside.jsp"%>
+					</c:when>
+					<c:otherwise>
+						<%@ include file="../include/unknown_aside.jsp"%>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</nav>
 		</div>

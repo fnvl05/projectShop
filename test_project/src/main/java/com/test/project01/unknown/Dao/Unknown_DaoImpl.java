@@ -40,7 +40,12 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		List<Unknown_itemDto> dto = session.selectList("unknown.cateList2", cateCode);
 		return dto;
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/heads/css_hyewon2
 	
+<<<<<<< HEAD
 	/*
 	@Override
 	public List<ItemDto> itemBestList() {
@@ -54,4 +59,19 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		return dto;
 	}
 	*/
+=======
+//	@Override
+//	public List<ItemDto> itemBestList() {
+//		List<ItemDto> dto = session.selectList("category.bestItemList");
+//		return dto;
+//	}
+//
+//	@Override
+//	public List<ItemDto> itemNewList() {
+//		List<ItemDto> dto = session.selectList("category.newItemLsit");
+//		return dto;
+//	}
+
+	
+>>>>>>> refs/heads/css_hyewon2
 }
