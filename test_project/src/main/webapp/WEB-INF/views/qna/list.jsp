@@ -95,7 +95,7 @@
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
 						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
 						
 					</tr>

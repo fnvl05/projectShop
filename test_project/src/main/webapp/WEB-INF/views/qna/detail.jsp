@@ -79,7 +79,7 @@
 					<tr>
 						<th>등록일</th>
 						<td>
-							<fmt:parseDate value="${dto.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+							<fmt:parseDate value="${dto.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
 							<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
 						</td>
 					</tr>
