@@ -25,4 +25,6 @@ public interface QnaService {
 	public void updateComment(QnaCommentDto dto);
 	//해당아이디가 작성한 Q&A 리스트
 	public void qnalist(HttpServletRequest request);
+	
+	public void getItemDetail(HttpServletRequest request);
 }

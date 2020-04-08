@@ -137,4 +137,11 @@ public class QnaController {
 		map.put("isSuccess", true);
 		return map;
 	}
+	@RequestMapping("/qna/itemDetail")
+	public String itemDetail(HttpServletRequest request,@RequestParam int itemNum){
+		service.getItemDetail(request);
+		request.setAttribute("itemNum", itemNum);
+		//view page 로 forward 이동해서 글 자세히 보기 
+		return "qna/itemDetail";
+	}
 }

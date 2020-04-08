@@ -95,6 +95,7 @@
 			</choose>
 			ORDER BY num DESC) result1
 		WHERE num=#{num }
+		
 	</select>
 	<select id="getData2" parameterType="int"
 		resultType="qnaDto">
@@ -108,7 +109,18 @@
 			ORDER BY num DESC) result1
 		WHERE num=#{num }
 	</select>	
-	
+	<select id="getData3" parameterType="int" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num, writer, title, content, viewCount, 
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
+			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
+			FROM board_qna
+			where itemNum=#{itemNum}
+			ORDER BY num DESC) result1
+		WHERE num=#{num}
+	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM board_qna
 		WHERE num=#{num}

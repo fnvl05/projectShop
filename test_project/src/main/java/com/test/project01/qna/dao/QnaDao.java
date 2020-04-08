@@ -38,5 +38,7 @@ public interface QnaDao {
 	public List<QnaJoinDto> qnaList(String writer);
 
 	public int getCommentCount(int num);
+	
+	public QnaDto getData3(QnaDto dto);
 
 }
