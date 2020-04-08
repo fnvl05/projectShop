@@ -93,7 +93,7 @@
 				<div class="buy" style="float: right">
 					<button class="btn" id="buyEach" style="float: left">삭제</button>
 				</div>
-
+				<br /><br /><br />
 				<table class="table table-hover" style="text-align: center">
 					<thead>
 						<tr>
@@ -160,7 +160,7 @@
 				<br /><br /><br />
 				
 				<div class="button" >
-				<p style="text-align: left;">50,000원 이상 무료 배송</p>
+				<span class="del">50,000원 이상 무료 배송</span>
 					<div class="orderbtn" style="float: right">
 						<div class="eff"></div>
 						<a href="orderform.do">주문하기</a>
