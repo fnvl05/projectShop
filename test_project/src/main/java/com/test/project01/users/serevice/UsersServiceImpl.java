@@ -111,16 +111,13 @@ public class UsersServiceImpl implements UsersService {
 	// 새로 비밀번호 바꾸기 (로그인x)
 	@Override
 	public boolean newUpdatePass(UsersDto dto, HttpServletRequest request) {
-		
 		String Id = dao.newpass(dto);	
 		if(Id != null) {
 			return true;			
 		} 
 		else {
 			return false;	
-		}
-		
-		
+		}		
 	}
 	@Override
 	public void changeNewPassData(UsersDto dto) {

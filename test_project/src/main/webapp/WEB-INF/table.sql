@@ -139,8 +139,7 @@ insert into goods_category values('2', '목걸이', '103', '100');
 
  --썸네일 칼럼 추가
  alter table tbl_items add(itemThumbImg varchar2(300));
-<<<<<<< HEAD
- 
+
  
  <!-- 카테고리별 상품 리스트 : 1차 분류 -->
 select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
@@ -150,8 +149,6 @@ select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
                 on i.cateCode = c.cateCode           
             where i.cateCode = #{cateCode}
              or c.cateCodeRef = #{cateCodeRef}
-=======
->>>>>>> refs/heads/hyun
 
  
 <공지 게시판>
@@ -320,7 +317,7 @@ create sequence order_detail_seq;
 
 alter table order_detail 
 	add constraint order_detail_orderNum_fk foreign key(orderNum)
-	references orders(orderNum);
+	references orders(orderNum) on delete cascade;
 
 alter table order_detail
 	add constraint order_detail_itemNum_fk foreign key(itemNum)
@@ -345,11 +342,11 @@ create sequence cartList_seq;
 
 alter table cartList
 add constraint cartList_userId foreign key(userId)
-references tbl_member(userId);
+references tbl_member(userId) on delete cascade;
 
 alter table cartList
 add constraint cartList_itemNum foreign key(itemNum)
-references tbl_items(itemNum);
+references tbl_items(itemNum)  on delete cascade;
 
 alter table cartList add(money number);
 
