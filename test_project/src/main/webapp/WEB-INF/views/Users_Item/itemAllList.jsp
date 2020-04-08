@@ -43,7 +43,7 @@
 				</nav>
 			</div>
 		</header>
-	</div>
+
 		<section id="container">
 			<div id="container_box">
 				<h2>상품 목록</h2>
@@ -61,8 +61,8 @@
 							  <tr>
 								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
 								   <td><a href="itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">${list.itemName}</a></td>
-								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> </td>
-								   <td>${list.itemCount}</td>
+								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/>원 </td>
+								   <td><fmt:formatNumber value="${list.itemCount}" pattern="###,###,###"/>개</td>
 							  </tr> 
 						  </c:forEach>
 						 </tbody>
@@ -74,8 +74,8 @@
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
-	</div>
-</footer>
+</div>
+
 
 </body>
 </html>

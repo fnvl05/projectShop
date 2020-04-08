@@ -48,7 +48,7 @@
 				</nav>
 			</div>
 		</header>
-	</div>
+
 		<section id="container">
 			<div id="container_box">
 				<h2>상품 목록</h2>
@@ -73,7 +73,6 @@
 		</footer>
 
 	</div>
-</footer>
 
 </body>
 </html>

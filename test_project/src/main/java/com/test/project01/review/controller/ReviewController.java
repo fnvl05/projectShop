@@ -61,7 +61,7 @@ public class ReviewController {
 	
 	//디테일
 	@RequestMapping("/review/detail")
-	public ModelAndView detail(ModelAndView mView,HttpServletRequest request) {
+	public ModelAndView Users_detail(ModelAndView mView,HttpServletRequest request) {
 		service.getReviewData(request);
 		mView.setViewName("review/detail");
 		return mView;

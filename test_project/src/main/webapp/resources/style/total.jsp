@@ -8,3 +8,4 @@
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 <script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/style/hye_style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
