@@ -64,7 +64,7 @@
 					});
 				</script>
 			</div>
-			<button class="btn btn-primary" type="submit" onclick="submitContents(this);" id="insertBtn">저장</button>
+			<button class="btn btn-primary" type="submit" id="insertBtn">저장</button>
 			<button class="btn btn-warning" type="reset">초기화</button>
 			<!--  뒤로가기 버튼 삭제
 			<button class="btn btn-danger" type="button" id="btn_back">뒤로가기</button>

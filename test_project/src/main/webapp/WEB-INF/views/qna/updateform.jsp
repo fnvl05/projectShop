@@ -63,8 +63,7 @@
 					});
 				</script>
 			</div>
-			<button class="btn btn-primary" type="submit"
-				onclick="submitContents(this);" id="updateBtn">수정</button>
+			<button class="btn btn-primary" type="submit" id="updateBtn">수정</button>
 			<button class="btn btn-warning" href="${pageContext.request.contextPath }/qna/list.do">취소</button>
 			<script>
 				$("#updateBtn").on("click",function(){

@@ -47,7 +47,7 @@
 			</script>
 		</div>
 		<input type="hidden" name="pageNum" value="${pageNum }" />
-		<button class="btn btn-primary" type="submit" onclick="submitContents(this);" id="updateBtn">수정</button>
+		<button class="btn btn-primary" type="submit" id="updateBtn">수정</button>
 		<button class="btn btn-warning" type="reset">초기화</button>
 		<!--  <a class="btn btn-warning" href="${pageContext.request.contextPath }/notice/list.do">취소</a> -->
 	</form>
