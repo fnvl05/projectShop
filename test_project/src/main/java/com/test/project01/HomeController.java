@@ -26,10 +26,6 @@ public class HomeController {
 	
 	@RequestMapping("/index.do")
 	public ModelAndView index(ModelAndView mView) {
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/heads/css_hyewon2
 //		serviec.bestItemList(mView);
 //		serviec.newItemList(mView);
 		mView.setViewName("index");
