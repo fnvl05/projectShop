@@ -522,7 +522,7 @@ padding:0 17px;
     margin-right: auto;
 }
 /* 로그인 */
-.login {
+.title {
     display: table;
     margin-left: auto;
     margin-right: auto;
@@ -547,13 +547,13 @@ padding:0 17px;
     background: #f2f2f2;
     border: 1px solid #f2f2f2;
     padding: 0 5px;
-    width: 350px;
+    width: 400px;
     outline: none;
 }
 
 #signup_btn {
     display: block;
-    width: 350px;
+    width: 400px;
     height: 50px;
     border: 1px solid;
     line-height: 50px;
@@ -567,7 +567,7 @@ padding:0 17px;
 
 .login_pg_box .ot_link {
 	display: table; 
-	width: 350px;
+	width: 400px;
 	margin: auto;
 	padding:0;
     text-align: center;
@@ -578,9 +578,10 @@ padding:0 17px;
     padding: 10px 0;
     margin-top:10px;
     margin-botton:10px;
+    margin-left:5px;
     background: #fff;
     transition: 0.2s;
-    width: 110px;
+    width: 126.4px;
 }
 
 .icon>img{
@@ -595,9 +596,91 @@ padding:0 17px;
     text-align: center;
 }
 .login_pg_box .ot_link li:nth-child(3n+1) a {
-    margin: 10px 10px 0 0;
+    margin: 10px 5px 0 0;
 }
 .login_pg_box .ot_link li:nth-child(3n-1) a {
-    margin: 10px 10px;
+    margin: 10px 5px;
 }
+
+#logincontent{
+	margin-top:200px;
+}
+
+/*회원가입*/
+.typeWrite {
+    table-layout: fixed;
+    width:950px;
+    line-height: 180%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #d
+}
+
+#signup{
+	width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#signbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.typeWrite th {
+    width: 170px;
+    padding: 20px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #333;
+}
+.typeWrite input {
+    width: 250px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#PassQuiz{
+	width: 250px;
+	height: 30px;
+}
+
+.typeWrite tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+#userAddr1{
+	width:114px;
+	margin-bottom: 2px;
+}
+
+#addrbtn{
+	width:114px;
+}
+
+.signbtn {
+	width: 100px;
+	height: 50px;
+	border: 2px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+
+}
+
+
 /*----------------------------윤주-----------------------------*/

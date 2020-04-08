@@ -34,11 +34,11 @@
 		</div>
 	</header>
 </div>
-<section id="content">
+<section id="logincontent">
 <div class="login_pg_box">
  <form action="login.do" method="post">
-   <h2 class="login">로그인</h2>
-  
+   <h2 class="title">로그인</h2>
+   <br /><br />
   <div class="item">
 	<label class="ePlaceholder" title="아이디">
 	<input type="text" id="userId" name="userId" placeholder="아이디" required="required" />
@@ -57,7 +57,7 @@
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6601.png" alt=""></div>아이디찾기</a></li>
 	<li><a href="#">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6602.png" alt=""></div>비밀번호찾기</a></li>
-	<li><a href="#">
+	<li><a href="signup_form.do">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6603.png" alt=""></div>회원가입</a></li>
 </ul>
 </div>
