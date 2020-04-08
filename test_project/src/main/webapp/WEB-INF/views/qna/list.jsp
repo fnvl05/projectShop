@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,26 +77,27 @@
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>
-										<c:when
-											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-											<a
-												href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">
+										<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+											<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
-									비밀글입니다. <img
-												src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+											비밀글입니다. 
+											<img src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
 										</c:otherwise>
 									</c:choose>
 
 								</c:when>
 								<c:otherwise>
-							로그인을 하세요.
-						</c:otherwise>
+									비밀글입니다. 
+									<img src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+								</c:otherwise>
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td>${tmp.regdate }</td>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
+						
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -144,7 +145,7 @@
 		</div>
 		<%-- 글 검색 기능 폼 --%>
 
-		<form action="list.do" method="get">
+		<form action="list.do" method="get" style="align-content: right">
 			<label for="condition">검색조건</label> <select name="condition"
 				id="condition">
 				<option value="titlecontent"

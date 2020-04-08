@@ -13,7 +13,7 @@
 	<c:choose>
 		<c:when test="${isSuccess }">
 			<script>
-				alert("${num} 번 글을 삭제 했습니다.")
+				alert("해당 공지를 삭제 했습니다.")
 				location.href="${pageContext.request.contextPath }/notice/list.do"
 			</script>
 		</c:when>
