@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.project01.cart.dao.CartDao;
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.dto.wishlistDto;
 import com.test.project01.cart.service.CartService;
@@ -29,6 +30,8 @@ import com.test.project01.users.Dto.UsersDto;
 public class CartController {
 	@Autowired
 	private CartService service;
+	@Autowired
+	CartDao cartDao;
 	
 	//1. 장바구니 추가
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
@@ -142,7 +145,7 @@ public class CartController {
 	}
 	//바로 주문폼으로 넘어가게 하기
 	@RequestMapping(value = "/Users_Item/cart2", method = RequestMethod.POST)
-	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session,HttpServletRequest request) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//String userId=(String)session.getAttribute("userId");
@@ -156,7 +159,12 @@ public class CartController {
 			//있으면 update
 			service.updateCart(dto);
 		}
-		return "redirect:../shop/cartList.do";
+		
+		//장바구니에 담긴 리스트
+		List<CartListDto> list=cartDao.cartList(userId);
+		request.setAttribute("list", list);
+//		return "redirect:../shop/cartList.do";
+		return "redirect:../shop/orderform.do";
 	}
 }
 
