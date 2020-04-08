@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <section id="content">

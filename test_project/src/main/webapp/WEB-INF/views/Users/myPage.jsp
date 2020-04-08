@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>Insert title here</title>
 </head>
 <body>
 <div id="root">

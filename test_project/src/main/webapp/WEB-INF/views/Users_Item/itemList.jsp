@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/ind-script/optimizer.php?filename=rZRNbgMhDIX3mWx7Dqs_x-glwOMyJGBTbKrm9mWSjNSqm2rKBiHL73s2MoZFMsHjU4VSJVSXoZJKq0iAqvBWhQ1QchY-9sAD_CWf8KCSmkXhg5fPncJmttc0uQvVfVJzPtE3KeHUlKpCSY49CpTmU8RpsZxAZ5pm0hgY9Bz55Rm6szQD7zTi1WHOIryazw1tSlFtP3zl5Q5KtAEhE7fi8OwCDeWuhbLU7NJQ7A1ZXIgcBj7yrwH9L_AWGD4G2NQkj8eObv-G9eLqPA2t-bSxU_QKp_dG9XJMMSzW9wRsl-GdXM_JpHjH_GMz7B_pu1VuyaIuUl5Hfe07GIU_ur7vpIIr9ws&type=css&k=8dad99db3c03e2204f6885130760cc2f3fa286a8&t=1582009673" />
-
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <style>
@@ -71,9 +69,5 @@
 				<%@ include file="../include/footer.jsp" %>
 			</div>
 		</footer>
-
-	</div>
-</footer>
-
 </body>
 </html>

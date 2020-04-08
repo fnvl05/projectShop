@@ -7,15 +7,6 @@
 <title>Insert title here</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<style>
-	#container_box table td { width:150px; text-align: center }
-	 #ul1 li { display:inline-block; margin:10px; }
-	.thumbImg { width:200px; height:200px; }
-	.itemName { padding:10px 0; text-align:center; }
-	.itemName a { color:#000; }
-</style>
-
 </head>
 <body>
 <div id="root">

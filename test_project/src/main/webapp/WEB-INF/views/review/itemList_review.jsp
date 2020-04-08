@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-
 <style>
 #itemImg {
 	width: 100px;

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/Users/newPassform.jsp</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <section id="content">
