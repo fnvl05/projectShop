@@ -614,19 +614,18 @@ padding:0 17px;
     display: table;
     margin-left: auto;
     margin-right: auto;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #d
 }
 
 #signup{
 	width: 100%;
     border: 0;
     border-spacing: 0;
+    border-top:1px solid #444444;
+    border-bottom:1px solid #444444;
     border-collapse: collapse;
     display: table;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 #signbody {
@@ -641,11 +640,19 @@ padding:0 17px;
     text-align: left;
     font-weight: bold;
     vertical-align: middle;
-    font-size: 12px;
+    font-size: 13px;
     color: #333;
+    border-right:0px solid #e8e8e8;
+    border-left:0px solid #e8e8e8;
+    border-bottom: 0px solid #e8e8e8;   
+}
+.typeWrite td{
+	border-left:0px solid #e8e8e8; 
+	border-right:0px solid #e8e8e8;
+	border-bottom: 0px solid #e8e8e8;
 }
 .typeWrite input {
-    width: 250px;
+    width: 270px;
     height: 30px;
     line-height: 18px;
 }
@@ -658,7 +665,7 @@ padding:0 17px;
 .typeWrite tr{
     display: table-row;
     vertical-align: inherit;
-    border-color: inherit;
+	border-top:0px solid #e8e8e8;
 }
 
 #userAddr1{
@@ -668,6 +675,11 @@ padding:0 17px;
 
 #addrbtn{
 	width:114px;
+}
+.typeWrite .sbtn{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .signbtn {
@@ -679,7 +691,7 @@ padding:0 17px;
 	position: relative;
 	box-sizing: border-box;
 	overflow: hidden;
-
+	margin-right: 10px;
 }
 
 

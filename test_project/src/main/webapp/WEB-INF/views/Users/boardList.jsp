@@ -30,7 +30,7 @@
 	<div id="container_box">
 		<div class="container">
 			<h3>Q&A</h3>
-			<table>
+			<table class="table table-hover">
 				<colgroup>
 					<col class="col-xs-1" />
 					<col class="col-xs-1" />
@@ -72,7 +72,7 @@
 		<br/>
 		<div class="container">
 			<h3>Review</h3>
-			<table>
+			<table class="table table-hover">
 				<colgroup>
 					<col class="col-xs-1" />
 					<col class="col-xs-1" />

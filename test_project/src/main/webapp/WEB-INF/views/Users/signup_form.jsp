@@ -34,17 +34,18 @@
       </div>
    </header>
 </div>
+<br /><br />
 <section id="content">
 <div class="typeWrite">
+<h2 class="title">회원가입</h2>
  <form action="signup.do" method="post">
- <table id="signup">
-    <h2 class="title">회원가입</h2>
+ <table id="signup" border="1" summary>
+    <img src="${pageContext.request.contextPath }/resources/images/join_sub_title.png"/>
     <tbody id="signbody">
     <tr>
     	<th class="row" ><label for="userId">아이디</label></th>
     	<td>
     		<input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
-    		<span id="idMsg">(영문소문자/숫자, 4~16자)</span>
     	</td>
     </tr>
     <tr>
@@ -102,13 +103,11 @@
             <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
             
             <input id="addrbtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><label for="userAddr1"><strong id="required"></strong></label><br>
-            <span ng-show="myForm.userAddr1.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr1.$invalid && myForm.userAddr1.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+            
     		
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
-            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+           
     		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
             <label for="userAddr3">상세 주소</label>
@@ -123,7 +122,7 @@
 </tbody>
 </table>    
 <br /><br />
-<div class="d">
+<div class="sbtn">
 	<button type="reset" class="signbtn">취소</button>
 	<button type="submit" id="login_button" class="signbtn" name="signup_btn">회원가입</button>
 </div>
@@ -132,8 +131,6 @@
 </form> 
 </div>
 </section>    
-
-     
 
 <footer id="footer">
    <div id="footer_box">
