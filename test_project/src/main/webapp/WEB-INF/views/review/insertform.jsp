@@ -60,6 +60,7 @@
 					</div>
 					<button id="starBtn" type="submit" >등록</button>
 					<button type="reset">취소</button>
+					<!-- 뒤로가기 버튼 삭제  
 					<button type="button" id="back_btn">돌아가기</button>
 				
 					<script type="text/javascript">
@@ -68,7 +69,7 @@
 						/*location.href="itemList_review.do?itemNum=" + ${itemNum};*/
 					})
 
-					</script>
+					</script>  -->
 
 				</form>
 				<script>

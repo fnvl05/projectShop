@@ -75,22 +75,21 @@
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>
-										<c:when
-											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-											<a
-												href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
+										<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+											<a href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
 												${tmp.title }[${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
-									비밀글입니다. <img
-												src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+											비밀글입니다. 
+											<img src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
 										</c:otherwise>
 									</c:choose>
 
 								</c:when>
 								<c:otherwise>
-							로그인을 하세요.
-						</c:otherwise>
+									비밀글입니다. 
+									<img src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+								</c:otherwise>
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
@@ -146,17 +145,17 @@
 		</div>
 		<%-- 글 검색 기능 폼 --%>
 
-		<form action="list.do" method="get">
-			<label for="condition">검색조건</label> <select name="condition"
-				id="condition">
+		<form action="list.do" method="get" style="text-align: right">
+			<label for="condition">검색조건</label> 
+			<select name="condition"id="condition">
 				<option value="titlecontent"
 					<c:if test="${condition eq 'titlecontent' }">selected</c:if>>제목+내용</option>
 				<option value="title"
 					<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
 				<option value="writer"
 					<c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
-			</select> <input type="text" name="keyword" placeholder="검색어 입력..."
-				value="${keyword }" />
+			</select> 
+			<input type="text" name="keyword" placeholder="검색어 입력..." value="${keyword }" />
 			<button type="submit">검색</button>
 		</form>
 		<br/>

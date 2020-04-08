@@ -86,9 +86,9 @@
 				</table>
 
 				<%-- 
-		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
-		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
-	--%>
+					글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
+					즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
+				--%>
 				<c:if test="${dto.writer eq id }">
 					<a class="btn btn-info" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>
