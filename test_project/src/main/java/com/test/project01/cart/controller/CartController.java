@@ -163,7 +163,6 @@ public class CartController {
 		//장바구니에 담긴 리스트
 		List<CartListDto> list=cartDao.cartList(userId);
 		request.setAttribute("list", list);
-//		return "redirect:../shop/cartList.do";
 		return "redirect:../shop/orderform.do";
 	}
 }
