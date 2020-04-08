@@ -46,13 +46,11 @@
 		</c:if>
 
 		<c:if test="${dto.prevNum ne 0 }">
-			<a
-				href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+			<a href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
 		</c:if>
 
 		<c:if test="${dto.nextNum ne 0 }">
-			<a
-				href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+			<a href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
 		</c:if>
 		<table class="table table-bordered table-condensed">
 			<colgroup>
@@ -87,8 +85,7 @@
 		--%>
 		<c:if test="${dto.writer eq id }">
 			<!-- 글 작성자와 session에 있는 아이디가 같을 때! -->
-			<a class="btn btn-info" href="updateform.do?num=${dto.num }"> 수정
-			</a>
+			<a class="btn btn-info" href="updateform.do?num=${dto.num }"> 수정</a>
 			<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
 		</c:if>
 		<br/><br/><br/>
