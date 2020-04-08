@@ -1,5 +1,8 @@
 package com.test.project01.users.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.users.Dto.UsersDto;
@@ -42,18 +46,22 @@ public class UsersController {
 		return "Users/login_form";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value ="/Users/login", method = RequestMethod.POST)
-	public ModelAndView logIn(@ModelAttribute UsersDto dto,
+	public Map<String, Object> logIn(@ModelAttribute UsersDto dto,
 			ModelAndView mView, HttpServletRequest request, 
 			HttpServletResponse response) {
 		boolean test=service.validUsers(dto, request.getSession(), mView);
-		if(test) {
-			mView.setViewName("index");
-			return mView;
-		} else {
-			mView.setViewName("Users/login_form");
-			return mView;
-		}
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", test);
+		return map;
+//		if(test) {
+//			mView.setViewName("index");
+//			return mView;
+//		} else {
+//			mView.setViewName("Users/login_form");
+//			return mView;
+//		}
 	}
 
 	//로그아웃

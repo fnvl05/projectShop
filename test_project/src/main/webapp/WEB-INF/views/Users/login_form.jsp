@@ -50,6 +50,8 @@
 	</label>	
 </div>
   
+  	<p id="check" style="color: red;"></p>
+  
   <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
 <div class="item">
 <ul class="ot_link">
@@ -65,5 +67,34 @@
  </form>  
  </div> 
 </section> 	
+<script>
+$(document).ready(function() {
+
+	$("#signup_btn").on("click",function(){
+		var userId=$("#userId").val();
+		var userPass=$("#userPass").val();
+		var dto={'userId':userId,'userPass':userPass};
+		var url=$(this).attr("action");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/Users/login.do",
+			method:"POST",     
+			data:dto,
+			success:function(responseData){   
+				if(responseData.isSuccess){ 
+					location.href="../index.do";
+				}else{
+					$("#check").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");
+					$("#useId").val()="";
+					$("#userPass").val()="";
+				}
+
+			}
+		});
+		
+		return false;
+	});
+
+})
+</script>
 </body>
 </html>
