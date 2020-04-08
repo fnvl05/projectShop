@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Unknown/itemView_form.jsp</title>
+<title>Insert title here</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <style>
  #underline {

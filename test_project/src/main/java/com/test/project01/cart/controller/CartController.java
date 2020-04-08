@@ -35,7 +35,7 @@ public class CartController {
 	
 	//1. 장바구니 추가
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
-	public String User_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//장바구니에 기존 상품 있나 검사
@@ -74,7 +74,7 @@ public class CartController {
 	//3. 장바구니 삭제
 	@ResponseBody
 	@RequestMapping(value="/shop/deleteEachCart", method=RequestMethod.POST)
-	public Map<String, Object> User_deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
+	public Map<String, Object> Users_deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
 		for(int i=0; i<list.size(); i++) {
 			service.deleteCart(Integer.parseInt(list.get(i)));
 		}
@@ -98,7 +98,7 @@ public class CartController {
 	
 	//5. 위시리스트  추가
 	@RequestMapping(value = "/Users_Item/addwish", method = RequestMethod.POST)
-	public String User_addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
+	public String Users_addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();
 		//위시리스트에 기존 상품 있나 검사
@@ -111,7 +111,7 @@ public class CartController {
 	}
 	//6. 위시리스트 목록
 	@RequestMapping("/shop/wishlist")
-	public void User_getWishList(HttpSession session, Model model) {
+	public void Users_getWishList(HttpSession session, Model model) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		List<wishlistDto> wishlist=service.wishlist(userId);
@@ -119,13 +119,13 @@ public class CartController {
 	}
 	//7. 위시리스트 삭제
 	@RequestMapping("/shop/deleteWish")
-	public String User_deleteWish(@RequestParam int wishNum) {
+	public String Users_deleteWish(@RequestParam int wishNum) {
 		service.deleteWish(wishNum);
 		return "redirect:wishlist.do";
 	}
 	//8. 위시리스트에서 장바구니로 추가
 	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
-	public String User_insertCart(HttpSession session, @ModelAttribute("dto") CartListDto dto, @RequestParam int wishNum){
+	public String Users_insertCart(HttpSession session, @ModelAttribute("dto") CartListDto dto, @RequestParam int wishNum){
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();	
 		//장바구니에 기존 상품 있나 검사

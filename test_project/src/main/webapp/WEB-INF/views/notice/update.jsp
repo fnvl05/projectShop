@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 </head>
 <body>
 <div class="container">

@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/Users/boardList.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>/Users/boardList.jsp</title>
 </head>
 <body>
 <div id="root">

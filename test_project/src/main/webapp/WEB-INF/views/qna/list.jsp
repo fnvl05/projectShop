@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,8 +65,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }"
-					varStatus="status">
+				<c:forEach var="tmp" items="${requestScope.list }">
 					<tr>
 						<td>${status.count }</td>
 						<%-- <td>${tmp.num }</td> --%>
@@ -77,8 +76,10 @@
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>
-										<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-											<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">
+										<c:when
+											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+											<a
+												href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
@@ -95,7 +96,6 @@
 						<td>${tmp.viewCount }</td>
 						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
 						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
-						
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -104,27 +104,24 @@
 			<ul class="pagination pagination-sm" style="padding-left: 36%;">
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
-						<%-- startPageNum != 1 --%>
 						<li><a
-							href="list.do?pageNum=${requestScope.startPageNum-1 }&condition=${condition}&keyword=${encodedKeyword}">&laquo;</a>
-						</li>
+							href="list.do?pageNum=${startPageNum-1 }&condition=${condition }&keyword=${encodedKeyword }">
+								&laquo; </a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="disabled"><a href="javascript:">&laquo;</a> <%-- : 아무것도 적지 않으면  동작하지 않는 링크가 된다. --%>
-						</li>
+						<li class="disabled"><a href="javascript:">&laquo;</a></li>
 					</c:otherwise>
 				</c:choose>
-				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
+					step="1">
 					<c:choose>
-						<c:when test="${i eq requestScope.pageNum }">
+						<c:when test="${i eq pageNum }">
 							<li class="active"><a
-								href="list.do?pageNum=${i }&condition=${condition}&keyword=${encodedKeyword}">${i }</a>
-							</li>
+								href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
 						</c:when>
 						<c:otherwise>
 							<li><a
-								href="list.do?pageNum=${i }&condition=${condition}&keyword=${encodedKeyword}">${i }</a>
-							</li>
+								href="list.do?pageNum=${i }&condition=${condition }&keyword=${encodedKeyword }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -132,8 +129,8 @@
 				<c:choose>
 					<c:when test="${endPageNum lt totalPageCount }">
 						<li><a
-							href="list.do?pageNum=${endPageNum+1 }&condition=${condition}&keyword=${encodedKeyword}">&raquo;</a>
-						</li>
+							href="list.do?pageNum=${endPageNum+1 }&condition=${condition }&keyword=${encodedKeyword }">
+								&raquo; </a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="disabled"><a href="javascript:">&raquo;</a></li>
@@ -143,7 +140,7 @@
 		</div>
 		<%-- 글 검색 기능 폼 --%>
 
-		<form action="list.do" method="get" style="align-content: right">
+		<form action="list.do" method="get">
 			<label for="condition">검색조건</label> <select name="condition"
 				id="condition">
 				<option value="titlecontent"
@@ -156,12 +153,6 @@
 				value="${keyword }" />
 			<button type="submit">검색</button>
 		</form>
-		<br/>
-		<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
 	</div>
 
 </body>

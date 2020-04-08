@@ -39,7 +39,6 @@ public class Unknown_serviceImpl implements Unknown_service{
 			return dao.cateList2(cateCode);
 		}
 	}
-
 //
 //	@Override
 //	public void bestItemList(ModelAndView mView) {
@@ -61,10 +60,6 @@ public class Unknown_serviceImpl implements Unknown_service{
 //		mView.addObject("newItemList", result);
 //		
 //	}
-	
-
-	
-	
 	
 
 }

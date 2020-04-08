@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인/view/Users/login_form</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>로그인/view/Users/login_form</title>
 </head>
 <body>
 <div id="root">
@@ -34,33 +34,36 @@
 		</div>
 	</header>
 </div>
-<section id="content">
+<section id="logincontent">
+<div class="login_pg_box">
  <form action="login.do" method="post">
-   <h2>Sign In</h2>
-   <p>
-   <label for="userId">ID</label>
-   <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      
-   </p>
-   <p>
-     <label for="userPass">Password</label>
-     <input type="password" id="userPass" name="userPass" placeholder="비밀번호를 입력해주세요" required="required" />        
-   </p>
-   <p>
-     <button type="submit" id="signup_btn" name="signup_btn">로그인</button> 
-   </p>
-   <p>
-     <button type="button"><a href="${pageContext.request.contextPath }/Users/searchIdForm.do">아이디/패스워드 찾기</a></button>
-   </p>
-   <p>
-     <button type="button"><a href="${pageContext.request.contextPath }/Users/signup_form.do">회원가입</a></button>
-   </p> 
- </form>   
-</section>
-<footer id="footer">
-   <div id="footer_box">
-      <%@ include file="../include/footer.jsp" %>
-   </div>      
-</footer>
-
+   <h2 class="title">로그인</h2>
+   <br /><br />
+  <div class="item">
+	<label class="ePlaceholder" title="아이디">
+	<input type="text" id="userId" name="userId" placeholder="아이디" required="required" />
+	</label>
+</div>
+<div class="item">
+	<label class="ePlaceholder" title="패스워드">
+	<input id="userPass" name="userPass" type="password" placeholder="패스워드" required="required" />
+	</label>	
+</div>
+  
+  <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
+<div class="item">
+<ul class="ot_link">
+	<li><a href="#">
+	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6601.png" alt=""></div>아이디찾기</a></li>
+	<li><a href="#">
+	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6602.png" alt=""></div>비밀번호찾기</a></li>
+	<li><a href="signup_form.do">
+	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6603.png" alt=""></div>회원가입</a></li>
+</ul>
+</div>
+  
+ </form>  
+ </div> 
+</section> 	
 </body>
 </html>

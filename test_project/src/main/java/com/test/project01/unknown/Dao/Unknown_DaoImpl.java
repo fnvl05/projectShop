@@ -41,18 +41,17 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		return dto;
 	}
 
-	
-//	@Override
-//	public List<ItemDto> itemBestList() {
-//		List<ItemDto> dto = session.selectList("category.bestItemList");
-//		return dto;
-//	}
-//
-//	@Override
-//	public List<ItemDto> itemNewList() {
-//		List<ItemDto> dto = session.selectList("category.newItemLsit");
-//		return dto;
-//	}
+	/*
+	@Override
+	public List<ItemDto> itemBestList() {
+		List<ItemDto> dto = session.selectList("category.bestItemList");
+		return dto;
+	}
 
-	
+	@Override
+	public List<ItemDto> itemNewList() {
+		List<ItemDto> dto = session.selectList("category.newItemLsit");
+		return dto;
+	}
+	*/
 }

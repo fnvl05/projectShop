@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <style>
 	#container_box table td { width:150px; text-align: center }
 	.thumbImg{width: 100px; height: 70px;}

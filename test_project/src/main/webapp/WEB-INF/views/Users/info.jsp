@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <title>회원수정 창/Users/info.jsp</title>
-
 </head>
 <body>
 <section id="content">
