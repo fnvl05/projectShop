@@ -29,7 +29,7 @@
 					<input type="hidden" name="itemNum" value="${dto.itemNum} "/>
 							<h2>상품 수정</h2>
 							 <label>1차 분류</label>
-							 <select class="category1">
+							 <select class="category1" id="cate1">
 							  <option value="">전체</option>
 							 </select>
 							 
@@ -94,13 +94,63 @@
 						</div>
 						
 						<div id="inputArea">
-							<button type="submit" id="update_btn" class="btn btn-primary">완료</button>
+							<button type="submit" id="update_btn" class="btn btn-primary">수정</button>
 							<button type="button" id="back_btn" class="btn btn-warning">취소</button>
 							<script>
+								/*취소 버튼을 눌렀을 때 뒤로가기*/
 								$("#back_btn").click(function(){
 									location.href="itemView_form.do?itemNum=" + ${dto.itemNum};
 								})
+								/*수정 버튼을 눌렀을 때 */
+								$("#update_btn").on("click",function(){
+									var cateSelect=document.getElementById("cate1");
+								 	var cate1=cateSelect.options[document.getElementById("cate1").selectedIndex].value;
+								 	if(cate1==""){
+								 		alert("1차 상품분류를 선택해주세요 :)",function(){
+							                  $("#cate1").focus();
+							            },"warning");
+							            return false;
+								 	}
+								 	
+								 	//제출전 상품명,가격,수량 변수에 저장
+								 	var itemName=$("#itemName").val();
+								 	var itemPrice=$("#itemPrice").val();
+								 	var itemCount=$("#itemCount").val();
+								 	if(itemName==""){
+								 		alert("상품명을 입력해주세요 :)",function(){
+							                $("#itemName").focus();
+							          },"warning");
+							          return false;
+								 	}
+								 	if(itemPrice==""){
+								 		alert("가격을 입력해주세요 :)",function(){
+							                $("#itemPrice").focus();
+							          },"warning");
+							          return false;
+								 	}
+								 	if(itemCount==""){
+								 		alert("상품재고 수량을 입력해주세요 :)",function(){
+							                $("#itemCount").focus();
+							          },"warning");
+							          return false;
+								 	}
+								 	//제출 전 에디터 내용을 변수에 저장
+									var content=CKEDITOR.instances.itemDes.getData();
+									//제출 전 에디터 내용 길이를 변수에 저장
+									var content_len=CKEDITOR.instances.itemDes.getData().length;
+									//내용이 없는 경우
+									if(content==""){
+										alert("상품설명을 입력해주세요 :)",function(){
+											//에디터 내용에 포커스 on
+											CKEDITOR.instances.itemDes.focus();
+											
+										},"warning");
+										return false;
+									}
+									
+								});
 							</script>
+							
 						</div>
 					</form>
 				</div>

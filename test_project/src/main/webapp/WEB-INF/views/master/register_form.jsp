@@ -33,7 +33,7 @@
 						 </select>
 						 
 						 <label>2차 분류</label>
-						 <select class="category2" name="cateCode" id="cate2">
+						 <select class="category2" name="cateCode">
 						  <option value="">전체</option>
 						 </select>
 						 
@@ -178,20 +178,49 @@
 	$("#register_Btn").on("click",function(){
 		var cateSelect=document.getElementById("cate1");
 	 	var cate1=cateSelect.options[document.getElementById("cate1").selectedIndex].value;
-	 	var cateSelect2=document.getElementById("cate2");
-	 	var cate2=cateSelect2.options[document.getElementById("cate2").selectedIndex].value;
 	 	if(cate1==""){
 	 		alert("1차 상품분류를 선택해주세요 :)",function(){
                   $("#cate1").focus();
             },"warning");
             return false;
 	 	}
-	 	if(cate2==""){
-	 		alert("2차 상품분류를 선택해주세요 :)",function(){
-                 $("#cate2").focus();
-            },"warning");
-            return false;
+	 	
+	 	//제출전 상품명,가격,수량 변수에 저장
+	 	var itemName=$("#itemName").val();
+	 	var itemPrice=$("#itemPrice").val();
+	 	var itemCount=$("#itemCount").val();
+	 	if(itemName==""){
+	 		alert("상품명을 입력해주세요 :)",function(){
+                $("#itemName").focus();
+          },"warning");
+          return false;
 	 	}
+	 	if(itemPrice==""){
+	 		alert("가격을 입력해주세요 :)",function(){
+                $("#itemPrice").focus();
+          },"warning");
+          return false;
+	 	}
+	 	if(itemCount==""){
+	 		alert("상품재고 수량을 입력해주세요 :)",function(){
+                $("#itemCount").focus();
+          },"warning");
+          return false;
+	 	}
+	 	//제출 전 에디터 내용을 변수에 저장
+		var content=CKEDITOR.instances.itemDes.getData();
+		//제출 전 에디터 내용 길이를 변수에 저장
+		var content_len=CKEDITOR.instances.itemDes.getData().length;
+		//내용이 없는 경우
+		if(content==""){
+			alert("상품설명을 입력해주세요 :)",function(){
+				//에디터 내용에 포커스 on
+				CKEDITOR.instances.itemDes.focus();
+				
+			},"warning");
+			return false;
+		}
+		
 	});
 		
 	 </script>
