@@ -12,7 +12,6 @@
       <li role="presentation"><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=200&cateLevel=1">여성의류</a></li>
       <li role="presentation"><a href="${pageContext.request.contextPath }/Users_Item/itemList.do?cateCode=300&cateLevel=1">남성의류</a></li>
       <li role="presentation"><a href="${pageContext.request.contextPath }/Users_Item/itemAllList.do">전체 상품 목록</a></li>   
-      <li role="presentation"><a href="${pageContext.request.contextPath }/review/list.do">상품 리뷰</a></li>
 		
 		<li role="presentation" class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
