@@ -8,92 +8,6 @@
 <meta charset="UTF-8">
 <title>shop/cartList</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-.btn {
-	width: 50px;
-	height: 30px;
-	border: 2px solid #34495e;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 0 0 0 20px;
-}
-.orderbtn {
-	width: 100px;
-	height: 50px;
-	border: 2px solid #34495e;
-	float: left;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 0 0 40px 50px;
-}
-
-.orderbtn a {
-	font-family: arial;
-	font-size: 16px;
-	color: #34495e;
-	text-decoration: none;
-	line-height: 50px;
-	transition: all .5s ease;
-	z-index: 2;
-	position: relative;
-}
-
-.shopbtn {
-	width: 100px;
-	height: 50px;
-	border: 2px solid #34495e;
-	float: left;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 0 0 40px 50px;
-}
-
-.shopbtn a {
-	font-family: arial;
-	font-size: 16px;
-	color: #34495e;
-	text-decoration: none;
-	line-height: 50px;
-	transition: all .5s ease;
-	z-index: 2;
-	position: relative;
-}
-
-.eff {
-	width: 100px;
-	height: 50px;
-	border: 0px solid #34495e;
-	position: absolute;
-	transition: all .5s ease;
-	z-index: 1;
-	box-sizing: border-box;
-}
-
-.orderbtn:hover .eff {
-	border: 70px solid #34495e;
-}
-
-.orderbtn:hover a {
-	color: #fff;
-}
-
-.shopbtn:hover .eff {
-	border: 70px solid #34495e;
-}
-
-.shopbtn:hover a {
-	color: #fff;
-}
-</style>
 </head>
 <body>
 	<div id="root">
@@ -179,7 +93,7 @@
 				<div class="buy" style="float: right">
 					<button class="btn" id="buyEach" style="float: left">삭제</button>
 				</div>
-
+				<br /><br /><br />
 				<table class="table table-hover" style="text-align: center">
 					<thead>
 						<tr>
@@ -246,7 +160,7 @@
 				<br /><br /><br />
 				
 				<div class="button" >
-				<p style="text-align: left;">50,000원 이상 무료 배송</p>
+				<span class="del">50,000원 이상 무료 배송</span>
 					<div class="orderbtn" style="float: right">
 						<div class="eff"></div>
 						<a href="orderform.do">주문하기</a>

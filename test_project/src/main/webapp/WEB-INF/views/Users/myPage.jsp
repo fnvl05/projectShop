@@ -5,43 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 <!-- <link rel="stylesheet" type="text/css" href="https://www.66girls.co.kr/ind-script/optimizer.php?filename=tZTRbsMgDEXfk732O7ytUv8HHC9BNRhhM7V_P5SpUqu-dBl5xOIemytzYZFI8PFZIBeZi4tQSKUWJEBV-CqSDFBilPTWCgd45T7hoMLVgqTBy2WjsJptbcruSmWb1JxnupMSjlWpKETHfDpBrp4DjotFBp1onEjDnEDPIR3foTWWauCdBlwbPFn3T95voR-vPb0daKihP9NE2ELuD16Id6C2BZkq7uBtdnNIzmgHh53vD336eL24D0nQzwHewdh2DTdT12BhuiiH6SGG_o6JbSWZbnOipO8mbzGV1-l-AA&type=css&k=b414c2e697d93f2f255a5c1822c4ce1f15ac242b&t=1582009750" />-->
-<style>
-.table_center {
-display : table;
-margin-left : auto;
-margin-right : auto;
-}
-.order{
-margin-bottom: 30px;
-margin-left: 30px;
-}
-.cart{
-margin-bottom: 30px;
-margin-left: 30px;
-}
-.wishlist{
-margin-bottom: 30px;
-margin-left: 30px;
-}
-.myInfo{
-margin-bottom: 30px;
-margin-left: 30px;
-}
-.myBoard{
-margin-bottom: 30px;
-margin-left: 30px;
-}
-.mypage_btn_wrap {}
-.mypage_btn_wrap:after {content:"";display:block;clear:both;}
-.mypage_btn {}
-.mypage_btn .item {width:270px;float:left;margin-left:30px;margin-bottom:30px;padding-bottom:20px;border:1px solid #a0a0a0;background:#ffffff;text-align:center;}
-.mypage_btn .item:nth-child(4n+1){margin-left:0;clear:left;}
-.mypage_btn .item:hover {background:#f9d448;}
-.mypage_btn .item .mytitle {color:#101010;font-size:20px;margin-bottom:9x;margin-top:28px;font-weight:bold;}
-.mypage_btn .item .mytitle_kr {color:#101010;font-size:12px;margin-bottom:16px;font-weight:bold;}
-.mypage_btn .item .desc {color:#737373;font-size:12px;min-height:34px;padding:0 17px;}
-</style>
 </head>
 <jsp:include page="/resources/style/total.jsp"></jsp:include> 
 <body>
@@ -70,95 +35,70 @@ margin-left: 30px;
 		</div>
 	</header>
 </div>
+<section>
 <div class="container">
 	<h1>MyPage</h1>
 	<br /><br /><br />
-<div class="container_box">
-
-<div class="xans-element- xans-myshop xans-myshop-main mypage_btn_wrap ">
-<div class="mypage_btn">
+	<div class="mypage_btn">
 		<div class="item">
 			<a href="../shop/orderList.do">
-			<div class="mytitle">
-<i class="xi-credit-card"></i> ORDER</div>
+			<div class="mytitle"> ORDER</div>
 			<div class="mytitle_kr">주문내역 조회</div>
-
 			<div class="desc">
-고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
+				고객님께서 주문하신 상품의 주문내역을 확인하실 수 있습니다.
 			</div>
 			</a>
 		</div>
-<div class="item">
+		<div class="item">
 			<a href="../shop/wishlist.do">
-			<div class="mytitle">
-<i class="xi-heart-o"></i> WISHLIST</div>
-			<div class="mytitle_kr">관심 상품</div>
-
+			<div class="mytitle">WISHLIST</div>
+			<div class="mytitle_kr">관심 상품</div>		
 			<div class="desc">
-관심상품으로 등록하신 상품의 목록을 보여드립니다.
+				관심상품으로 등록하신 상품의 목록을 보여드립니다.
 			</div>
 			</a>
 		</div>
-
-
 		<div class="item">
 			<a href="/myshop/mileage/historyList.html">
-			<div class="mytitle">
-<i class="xi-piggy-bank"></i> MILEAGE</div>
+			<div class="mytitle">MILEAGE</div>
 			<div class="mytitle_kr">적립금 조회</div>
-
 			<div class="desc">
-적립금은 상품 구매 시 사용하실 수 있습니다.
+				적립금은 상품 구매 시 사용하실 수 있습니다.
 			</div>
 			</a>
 		</div>
-
-
 		<div class="item">
 			<a href="boardList.do">
-			<div class="mytitle">
-<i class="xi-paper-o"></i> BOARD</div>
+			<div class="mytitle">BOARD</div>
 			<div class="mytitle_kr">내가 쓴 글 보기</div>
-
 			<div class="desc">
-고객님께서 작성하신 글을 한눈에 관리하실 수 있습니다.
+				고객님께서 작성하신 글을 한눈에 관리하실 수 있습니다.
 			</div>
 			</a>
 		</div>
 
 		<div class="item">
 			<a href="info.do">
-			<div class="mytitle">
-<i class="xi-profile-o"></i> PROFILE</div>
+			<div class="mytitle">PROFILE</div>
 			<div class="mytitle_kr">회원 정보</div>
-
 			<div class="desc">
-회원이신 고객님의 개인정보를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
-</div>
+				회원이신 고객님의 개인정보를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
+			</div>
 			</a>
 		</div>
 
-<div class="item">
+		<div class="item">
 			<a href="../shop/cartList.do">
-			<div class="mytitle">
-<i class="xi-profile-o"></i> CART</div>
+			<div class="mytitle">CART</div>
 			<div class="mytitle_kr">장바구니</div>
-
 			<div class="desc">
-고객님의 장바구니를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
-</div>
+				고객님의 장바구니를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
+			</div>
 			</a>
 		</div>
-
 	</div>
 </div>
-
-
-
-
-	
-	</div>
-</div>
+</section>
 <footer id="footer">
 	<div id="footer_box">
 		<%@ include file="../include/footer.jsp"%>
