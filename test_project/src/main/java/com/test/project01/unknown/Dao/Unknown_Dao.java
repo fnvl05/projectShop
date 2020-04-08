@@ -10,6 +10,8 @@ public interface Unknown_Dao {
 	public Unknown_itemDto itemViewData(int itemNum);
 	public List<Unknown_itemDto> cateList1(int cateCode, int cateCodeRef);
 	public List<Unknown_itemDto> cateList2(int cateCode);
+
 //	public List<ItemDto> itemBestList();
 //	public List<ItemDto> itemNewList();
+
 }
