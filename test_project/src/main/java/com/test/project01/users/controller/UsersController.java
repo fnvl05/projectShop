@@ -110,7 +110,7 @@ public class UsersController {
 		System.out.println(dto.getNewPass());
 		service.updatePass(dto, mView);
 			
-		mView.setViewName("/Users/newPass");
+		mView.setViewName("/Users/newPassform");
 		return mView;
 	}
 	// 개인정보 수정 폼 요청
@@ -164,18 +164,20 @@ public class UsersController {
 	public ModelAndView searchPassForm() {
 		return new ModelAndView("/Users/searchPassForm");
 	}
+	
 	// 입력한 정보의 값에 따라 true & false 로 나눠서 경로로 이동 
 	@RequestMapping(value="Users/searchPass", method = RequestMethod.POST)
 	public ModelAndView findId(@ModelAttribute UsersDto dto, HttpServletRequest request,ModelAndView mView) {		
 		if(service.newUpdatePass(dto, request)) {
+			request.setAttribute("check", "true");
 			mView.setViewName("Users/searchnewPass");
-//			return mView;
-		}else if(service.newUpdatePass(dto, request)){ // false 일 때, false값을 보내서 false이면 알림이 뜨게하기
-			mView.addObject("false", false);
+			return mView;
+		}else { // false 일 때,
 			mView.setViewName("Users/searchPassForm");
-//			return mView;
+			request.setAttribute("check", "false");
+			return mView;
 		}
-		return mView;
+		
 	}
 	
 	// 입력한 정보가 true 이면, 찾으려는 아이디를 직접 보여주면서, 비밀번호 찾기 정보 입력.

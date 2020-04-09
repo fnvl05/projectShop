@@ -52,11 +52,9 @@
  </form>
 </section>
 <script>
-$("#update_Btn").on("click",function(){
-	if(${false}==false){
-		alert("정보가 틀렸습니다. 다시 시도해주세요");
+	if(${check}==false){
+		alert("입력하신 정보가 틀렸습니다. 다시 입력해주세요 :)");
 	}
-})
 </script>
 </body>
 </html>

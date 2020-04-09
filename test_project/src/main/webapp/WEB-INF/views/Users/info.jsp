@@ -53,7 +53,7 @@
             <script>
                function newpassform(){
                   window.open("newPassform.do","newpass",
-                        "width=400,height=300,top=250,left=550,resizable=no");
+                        "width=500,height=400,top=250,left=550,resizable=no");
                }
             </script>
 			<tr>
