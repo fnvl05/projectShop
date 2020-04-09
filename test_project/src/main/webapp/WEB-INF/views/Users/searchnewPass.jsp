@@ -33,7 +33,7 @@
 	//비밀번호를 입력할때 실행할 함수 등록
 	$("#newuserPass1, #newuserPass2").on("input", function(){
 		//상태값을 바꿔준다. 
-		isPwdDirty=true;
+		var isPwdDirty=true;
 		
 		//입력한 비밀번호를 읽어온다.
 		var pwd=$("#newuserPass1").val();
@@ -53,6 +53,16 @@
 		//비밀번호 에러 여부 
 		var isError=!isPwdEqual || !isPwdInput;
 	});
+	$("#searchupPass_Btn").on("click",function(){
+		var pwd=$("#newuserPass1").val();
+		var pwd2=$("#newuserPass2").val();
+		if(pwd != pwd2){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#newuserPass1").val("");
+			$("#newuserPass2").val("");
+			return false;
+		}
+	})
 
 </script>
 </body>
