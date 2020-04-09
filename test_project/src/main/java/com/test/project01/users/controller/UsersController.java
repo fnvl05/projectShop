@@ -1,7 +1,6 @@
 package com.test.project01.users.controller;
 
 import java.util.HashMap;
->>>>>>> refs/heads/css_hyewon2
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
-=======
->>>>>>> refs/heads/css_hyewon2
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
