@@ -102,7 +102,7 @@ public class UsersController {
 		System.out.println(dto.getNewPass());
 		service.updatePass(dto, mView);
 			
-		mView.setViewName("/Users/newPass");
+		mView.setViewName("/Users/newPassform");
 		return mView;
 	}
 	// 개인정보 수정 폼 요청

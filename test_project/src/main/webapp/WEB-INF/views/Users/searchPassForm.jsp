@@ -53,7 +53,7 @@
 </section>
 <script>
 	if(${check}==false){
-		alert("다시");
+		alert("입력하신 정보가 틀렸습니다. 다시 입력해주세요 :)");
 	}
 </script>
 </body>
