@@ -102,8 +102,8 @@
 						</div>
 					  </div>
 					</div>
-				 </div>
 					-->
+				 </div>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
