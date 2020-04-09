@@ -48,6 +48,7 @@ create table tbl_member (
 
 create sequence tbl_member_seq;
 
+<<<<<<< HEAD
 -- 카테고리 테이블
 create table goods_category (
    cateLevel    varchar2(20)    not null,
@@ -57,6 +58,11 @@ create table goods_category (
     primary key(cateCode),
     foreign key(cateCodeRef) references goods_category(cateCode)
 );
+=======
+
+<마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
+update tbl_member set verify=1 where userId='master';
+>>>>>>> refs/heads/css_kang
 
 --<level1 카테고리 예시>
 insert into goods_category values('1', '악세서리', '100', '');
@@ -92,7 +98,90 @@ alter table tbl_items add
 
 create sequence tbl_item_seq;
 
+<<<<<<< HEAD
 -- 공지 게시판
+=======
+alter table tbl_items add(itemGetCount number);
+
+-별도의 테이블 쿼리-
+alter table tbl_items add
+    constraint goods_category
+    foreign key (cateCode)
+        references goods_category(cateCode);
+        
+<썸네일 칼럼 추가>
+ alter table tbl_items add(itemThumbImg varchar2(300));        
+
+
+        
+-카테고리 테이블-
+create table goods_category (
+	cateLevel	 varchar2(20)	 not null,
+    cateName     varchar2(20)    not null,
+    cateCode     varchar2(30)    not null,
+    cateCodeRef  varchar2(30)    null,
+    primary key(cateCode),
+    foreign key(cateCodeRef) references goods_category(cateCode)
+);
+
+
+--별도의 테이블 쿼리
+alter table tbl_items add
+    constraint goods_category
+    foreign key (cateCode)
+        references goods_category(cateCode);
+
+<참고>
+alter table [ 테이블 이름 ] add
+    constraint [ 제약조건 이름 ]
+    foreign key ([ 참조할 컬럼 이름 ])
+        references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
+
+create sequence tbl_member_seq;
+
+<마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
+update tbl_member set verify=1 where userId='master';
+
+
+
+<level 를 이용한 계층 표시>
+select cateLevel, cateName, cateCode, cateCodeRef from goods_category
+start with cateCodeRef is null connect by prior cateCode = cateCodeRef;
+
+<level1 카테고리 예시>
+insert into goods_category values('1', '악세서리', '100', '');
+insert into goods_category values('1', '여성의류', '200', '');
+insert into goods_category values('1', '남성의류', '300', '');
+
+<level2 카테고리 예시>
+insert into goods_category values('2', '반지', '101', '100');
+insert into goods_category values('2', '귀걸이', '102', '100');
+insert into goods_category values('2', '목걸이', '103', '100');
+
+
+
+<아이템 목록 리스트>
+ select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ from tbl_items
+ order by itemNum desc
+
+
+ --썸네일 칼럼 추가
+ alter table tbl_items add(itemThumbImg varchar2(300));
+
+ 
+ <!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+ 
+<공지 게시판>
+>>>>>>> refs/heads/css_kang
 CREATE TABLE board_notice(
    num Number PRIMARY key,
    noticeNum number not null,
@@ -248,6 +337,41 @@ alter table orders
 
 -- 배송 정보 자세히보기 테이블
 
+<<<<<<< HEAD
+=======
+<!-- 일단 여기까지 -->
+
+<!-- 카테고리별 상품 리스트 : 1차 분류 -->
+select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+             or c.cateCodeRef = #{cateCodeRef}
+
+
+<!-- 카테고리별 상품 리스트 : 2차 분류 -->
+select
+    i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
+    itemPrice, itemCount, itemDes, itemDate, i.itemImg, i.itemThumbImg
+        from tbl_items i
+            inner join goods_category c
+                on i.cateCode = c.cateCode           
+            where i.cateCode = #{cateCode}
+
+
+alter table orders
+    add constraint orders_userId_fk foreign key(userId)
+    references tbl_member(userId) on delete cascade;
+    
+alter table orders modify(userAddr1 varchar2(100));
+alter table orders modify(userAddr2 varchar2(100));
+alter table orders modify(userAddr3 varchar2(100));
+
+
+--orders detail table
+>>>>>>> refs/heads/css_kang
 create table order_detail(
    odNum number primary key,
    orderNum number,
@@ -259,9 +383,74 @@ create table order_detail(
 create sequence order_detail_seq;
 
 alter table order_detail 
+<<<<<<< HEAD
    add constraint order_detail_orderNum_fk foreign key(orderNum)
    references orders(orderNum) on delete cascade;
+=======
+	add constraint order_detail_orderNum_fk foreign key(orderNum)
+	references orders(orderNum) on delete cascade;
+>>>>>>> refs/heads/css_kang
 
 alter table order_detail
+<<<<<<< HEAD
    add constraint order_detail_itemNum_fk foreign key(itemNum)
    references tbl_items(itemNum) on delete cascade;
+=======
+	add constraint order_detail_itemNum_fk foreign key(itemNum)
+	references tbl_items(itemNum) on delete cascade;
+
+
+--카트
+create table cartList(
+	cartNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	cartStock number not null, -- 카트 수량 -- 
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(cartNum)
+);
+
+create sequence cartList_seq;
+
+alter table cartList
+add constraint cartList_userId foreign key(userId)
+references tbl_member(userId) on delete cascade;
+
+alter table cartList
+add constraint cartList_itemNum foreign key(itemNum)
+references tbl_items(itemNum)  on delete cascade;
+
+alter table cartList add(money number);
+
+--wishlist--
+create table wishlist(
+	wishNum number not null,
+	userId varchar2(50) not null,
+	itemNum number not null,
+	addDate date default sysdate,
+	num number,
+	itemName varchar2(50),
+	itemPrice number,
+	itemImg varchar(200) null,
+	primary key(itemNum, userId)
+);
+create sequence wishlist_seq;
+
+alter table wishlist
+add constraint wishlist_userId foreign key(userId)
+references tbl_member(userId);
+
+alter table wishlist
+add constraint wishlist_itemNum foreign key(itemNum)
+references tbl_items(itemNum);
+
+<참고>
+alter table [ 테이블 이름 ] add
+    constraint [ 제약조건 이름 ]
+    foreign key ([ 참조할 컬럼 이름 ])
+        references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
+>>>>>>> refs/heads/css_kang

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.unknown.Dto.Unknown_itemDto;
 
 @Repository
@@ -39,6 +40,19 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		List<Unknown_itemDto> dto = session.selectList("unknown.cateList2", cateCode);
 		return dto;
 	}
+	/*
+	@Override
+	public List<ItemDto> itemBestList() {
+		List<ItemDto> dto = session.selectList("category.bestItemList");
+		return dto;
+	}
+
+	@Override
+	public List<ItemDto> itemNewList() {
+		List<ItemDto> dto = session.selectList("category.newItemLsit");
+		return dto;
+	}
+	*/
 
 	
 }

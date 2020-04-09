@@ -59,29 +59,20 @@
 						<p>
 							<span>상품명: </span>${dto.itemName }</p>
 					</div>
-					<div class="inputArea">
-						<p>
-							<span>상품 가격: </span>
-							<fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" />
-							원
-						</p>
-					</div>
-					<div class="inputArea">
-						<p>
-							<span>상품 재고: </span>
-							<fmt:formatNumber pattern="###,###,###" value="${dto.itemCount}" />
-							EA
-						</p>
-					</div>
-					<div class="cartStock">
-						<span>구입 수량: </span>
-						<p class="cartStock">
-							<button type="button" class="plus">+</button>
-							<input type="number" class="numBox" min="1"
-								max="${dto.itemCount }" value="1" name="cartStock"
-								readonly="readonly" />
-							<button type="button" class="minus">-</button>
-							<script>
+
+				<div class="inputArea">
+					<p><span>상품 가격: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" /> 원</p>
+				</div>
+				<!--  <div class="inputArea">
+					<p><span>상품 재고: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemCount}" /> EA</p>
+				</div> -->
+				<div class="cartStock">
+					<span>구입 수량: </span>
+					<p class="cartStock"> 
+					<button type="button" class ="plus">+</button>
+					<input type = "number" class ="numBox" min="1" max="${dto.itemCount }" value="1" name="cartStock" readonly="readonly"/>
+					<button type="button" class ="minus">-</button>
+					<script>
 					  $(".plus").click(function(){
 					   var num = $(".numBox").val();
 					   var plusNum = Number(num) + 1;
@@ -103,16 +94,16 @@
 					   }
 					  });
 					 </script>
-						<p>
-					</div>
-					<div class="inputArea">
-						<div class="addCart">
-							<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>
-							<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
-							<button type="button" id="order_btn" class="btn btn-warning">바로
-								주문하기</button>
-							<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>
-							<script>
+					 <p>
+				</div>
+				<div class="inputArea">
+					<div class = "addCart">
+						<button type="button" id="shop_btn" class="btn btn-warning" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
+						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
+						<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>
+						<script>
+
 							$("#back_btn").click(function () {
 								location.href="../index.do";
 							})
@@ -315,8 +306,16 @@
 									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
 										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
 								<td>${tmp.itemName }</td>
-								<td style="word-break: break-all"><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}">${tmp.reviewContent }</a></td>
+								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+								<script>
+									/* reviewContent에 img가 있을 경우 삭제해줌*/
+									$(document).ready(function(){
+										$(".review${tmp.reviewNum} p img").remove();
+										var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
+										$(".review${tmp.reviewNum} p").text(text1);
+									})
+								</script>
+							<td>
 								<td><span class="wrap-star"> <span
 										class='star-rating'> <span
 											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
@@ -330,10 +329,10 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<c:if test="${empty reviewlist  }">
-					<p style="text-align: center;">해당 아이템의 리뷰가 없습니다.</p>
-				</c:if>
-				<div class="page-display">
+			<c:if test="${empty reviewlist  }">
+				<p style="text-align: center;">해당 아이템의 리뷰가 없습니다.</p>
+			</c:if>
+			<div class="page-display">
 					<ul class="pagination pagination-sm">
 						<c:choose>
 							<c:when test="${RstartPageNum ne 1 }">

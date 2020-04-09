@@ -89,10 +89,4 @@ public class categoryServicelmpl implements categoryService {
 	public void userVerify(UsersDto userDto) {
 		dao.userVerify(userDto);
 	}
-	
-	
-
-	
-
-
 }

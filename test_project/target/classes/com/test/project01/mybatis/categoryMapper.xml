@@ -74,4 +74,15 @@
 		set verify = #{verify}
 		where userId = #{userId}	
 	</update>
+	<update id="addGetCount" parameterType="int">
+		update tbl_items
+		Set itemGetCount=itemGetCount+1
+		Where itemNum=#{itemNum}
+	</update>
+	<select id="bestItemList" resultType="ItemDto">
+		select * from tbl_items order by itemGetCount asc
+	</select>
+	<select id="newItemLsit" resultType="ItemDto">
+		SELECT * FROM tbl_items ORDER BY itemdate DESC
+	</select>
 </mapper>

@@ -15,4 +15,6 @@ public interface OrderDao {
 	
 	//해당 아이디의 주문번호 리스트 (DESC)
 	public List<Integer> getOrderNum2(String userId);
+	
+	public void itemGetCount(int itemNum);
 }

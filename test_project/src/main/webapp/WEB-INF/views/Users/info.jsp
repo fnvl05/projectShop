@@ -59,8 +59,6 @@
 		<p><a href="updateform.do">개인 정보 수정하기</a></p>
 		
 		<%-- <p><a href="${pageContext.request.contextPath}/Users/updateform.do">개인 정보 수정하기</a></p> --%>
-		
-		<p><a href="${pageContext.request.contextPath}/Users/delete.do">회원 탈퇴</a></p>
 	</div>
 </form>
 </section>

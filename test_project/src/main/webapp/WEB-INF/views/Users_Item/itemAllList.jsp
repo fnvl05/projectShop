@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<style>
+	 #ul1 li { display:inline-block; margin:10px; }
+	.thumbImg { width:200px; height:200px; }
+	.itemName { padding:10px 0; text-align:center; }
+	.itemName a { color:#000; }
+	#ul1.column5 li.itemThumb { width:20%; }
+</style>
+
 </head>
 <body>
 <div id="root">
@@ -65,5 +75,7 @@
 			</div>
 		</footer>
 	</div>
+</footer>
+
 </body>
 </html>

@@ -103,7 +103,7 @@ public class ReviewController {
 	}
 	//댓글등록
 	@RequestMapping(value="/review/comment_insert",method = RequestMethod.POST)
-	public ModelAndView authCommentInsert(HttpServletRequest request,
+	public ModelAndView Users_authCommentInsert(HttpServletRequest request,
 			@RequestParam int ref_group) {
 		service.saveComment(request);
 		return new ModelAndView("redirect:/review/detail.do?reviewNum="+ref_group);
@@ -120,13 +120,11 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map;
 	}
-	
 
 	//리뷰 좋아요 처리
 	@ResponseBody
-	@RequestMapping(value = "/review/reviewUpCount", 
-			method = RequestMethod.POST)
-	public Map<String, Object> authAddUpCount(HttpServletRequest request,
+	@RequestMapping(value = "/review/reviewUpCount", method = RequestMethod.POST)
+	public Map<String, Object> Users_authAddUpCount(HttpServletRequest request,
 			@ModelAttribute("dto") ReviewUpCountDto dto,@RequestParam(value="arrEachItemNum[]")List<Integer> eachItemNum) {
 		dto.setItemNum(eachItemNum.get(0));
 		dto.setReviewNum(eachItemNum.get(1));

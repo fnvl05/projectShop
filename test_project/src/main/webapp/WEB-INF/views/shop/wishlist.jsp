@@ -8,7 +8,58 @@
 <meta charset="UTF-8">
 <title>shop/wishlist</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<style>
+.btn {
+	width: 75px;
+	height: 30px;
+	border: 2px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 0 20px;
+}
+.shopbtn {
+	width: 100px;
+	height: 50px;
+	border: 2px solid #34495e;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	margin: 0 0 40px 50px;
+}
 
+.shopbtn a {
+	font-family: arial;
+	font-size: 16px;
+	color: #34495e;
+	text-decoration: none;
+	line-height: 50px;
+	transition: all .5s ease;
+	z-index: 2;
+	position: relative;
+}
+.eff {
+	width: 100px;
+	height: 50px;
+	border: 0px solid #34495e;
+	position: absolute;
+	transition: all .5s ease;
+	z-index: 1;
+	box-sizing: border-box;
+}
+.shopbtn:hover .eff {
+	border: 50px solid #34495e;
+}
+
+.shopbtn:hover a {
+	color: #fff;
+}
+</style>
 </head>
 <body>
 	<div id="root">
@@ -44,45 +95,48 @@
       <div class="container">
       <h1>WishList</h1>
 	  <form role="form" enctype="multipart/form-data" >
-      <table class="table table-hover">
+      <br />
+      <br />
+      <table class="table table-hover" style="text-align: center">
          <thead>
             <tr>
-               <th>이미지</th>
-               <th>상품명</th>
-               <th>가격</th>
-               <th>선택</th>
+               <th style="text-align: center">이미지</th>
+               <th style="text-align: center">상품명</th>
+               <th style="text-align: center">가격</th>
+               <th style="text-align: center">선택</th>
             </tr>
          </thead>
          <tbody>
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
             <tr>
-
                <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
                <td> 
                		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a>
                		<input type="hidden" value="${tmp.itemName }" name="itemName">
+               		<input type="hidden" value="${tmp.wishNum }" name="wishNum"/>
                </td>       
                <td>
+               		<input type="hidden" value="${tmp.itemNum }" name="itemNum"/>
                		<input type="hidden" value="${tmp.itemPrice }" name="itemPrice">
               		 <fmt:formatNumber value="${tmp.itemPrice}" 
                       pattern="###,###,###"/>원
                </td>
-               <td>
-               		<button type="button" id="shop_btn" class="btn btn-warning">장바구니</button>      
-		   	   		<input type="button" onclick="deleteWish(${tmp.wishNum})" value="삭제" />
+               <td>        
+                	<button type="button" id="shop_btn" class="btn">장바구니</button>      		   	   	
+		   	   		<input type="button" class="btn" onclick="deleteWish(${tmp.wishNum})" value="삭제" />
                </td>     	
            </tr>
          </c:forEach>
          </tbody>
-         <tfoot>
-            <tr>              
-               <td>
-                  <button type="button" class="btn btn-warning"
-                     onclick="location.href='../index.do'">쇼핑계속</button>
-               </td>
-            </tr>
-         </tfoot>
       </table>
+      <br />
+      <br />
+      <div class="button" style="float: right">
+     		<div class="shopbtn">
+				<div class="eff"></div>
+				<a href="../index.do">쇼핑계속</a>
+			</div>
+		</div>
       </form>
         </div>
       </c:otherwise>

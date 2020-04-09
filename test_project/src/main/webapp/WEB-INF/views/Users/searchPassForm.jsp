@@ -11,7 +11,7 @@
  	<h1>${dto.userId }</h1>
  	<h2>바로 비밀번호를 찾으로 갑니다. 고고!</h2>
 <section id="content">
- <form action="searchnewPass.do" method="post">
+ <form action="searchPass.do" method="post">
  	<div class="input_area">
    		<label for="userId">ID</label>
    		<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      

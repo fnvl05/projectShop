@@ -10,7 +10,6 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-   <div id="root">
       <header>
       <div class="header_box">
          <nav id="nav">
@@ -479,6 +478,5 @@
             <%@ include file="../include/footer.jsp" %>
          </div>
       </footer>
-   </div>
 </body>
 </html>

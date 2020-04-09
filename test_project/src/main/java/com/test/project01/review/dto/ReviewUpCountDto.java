@@ -60,11 +60,11 @@ public class ReviewUpCountDto {
 		this.itemNum = itemNum;
 	}
 
-	public boolean isLike() {
+	public boolean getIsLike() {
 		return isLike;
 	}
 
-	public void setLike(boolean isLike) {
+	public void setIsLike(boolean isLike) {
 		this.isLike = isLike;
 	}
 
