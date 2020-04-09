@@ -68,8 +68,8 @@
  </div> 
 </section> 	
 <script>
+var isCheck=false;
 $(document).ready(function() {
-
 	$("#signup_btn").on("click",function(){
 		var userId=$("#userId").val();
 		var userPass=$("#userPass").val();
@@ -83,18 +83,30 @@ $(document).ready(function() {
 				if(responseData.isSuccess){ 
 					location.href="../index.do";
 				}else{
-					$("#check").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");
-					$("#useId").val()="";
-					$("#userPass").val()="";
+					<!--$("#check").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>"); -->
+					$("#check").text("아이디 또는 비밀번호가 잘못되었습니다.");
+					isCheck=true;
+					$("#userId").val("");
+					$("#userPass").val("");
 				}
-
 			}
 		});
-		
 		return false;
 	});
-
 })
+
+$("#userId").on("input",function(){
+	if(isCheck){
+		$("#check").text("");
+		isCheck=false;
+	}
+});
+$("#userPass").on("input",function(){
+	if(isCheck){
+		$("#check").text("");
+		isCheck=false;
+	}
+});
 </script>
 </body>
 </html>
