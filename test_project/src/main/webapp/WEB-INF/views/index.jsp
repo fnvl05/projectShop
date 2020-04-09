@@ -33,16 +33,16 @@
 		<section id="container">
 			<div id="container_box">
  
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px; height: 600px; margin: auto;">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1100px; height: 700px; margin: auto;">
 				    <!-- Indicators -->
-				    <ol class="carousel-indicators">
+				   <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>
 				      <li data-target="#myCarousel" data-slide-to="2"></li>
 				      <li data-target="#myCarousel" data-slide-to="3"></li>
 				    </ol>
 			
-				    <div class="carousel-inner" style="width:1000px; height: 600px;">
+				    <div class="carousel-inner" style="width:1100px; height: 700px;">
 				      <div class="item active">
 				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/-4-2 (1).jpg" alt="Los Angeles" style="width:100%; height: 100%;">
 				      </div>
@@ -79,7 +79,8 @@
 								   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}">
 										   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
 								   		</a>
-									   		<p style="padding:10px;">${list.itemName }</p>
+									   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
+									   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
 								   		</div>
 								   	</div>
 						  </c:forEach>		
@@ -94,7 +95,8 @@
 								   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}">
 										   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
 								   		</a>
-									   		<p style="padding:10px;">${list.itemName }</p>
+									   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
+									   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
 								   		</div>
 								   	</div>
 						  </c:forEach>		
