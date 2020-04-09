@@ -62,7 +62,7 @@
 	<select id="findPass" parameterType="UsersDto" resultType="String">
 		select userId
 		from tbl_member
-		where userId=#{userId} and PassQuiz=#{PassQuiz} and quizAnswer=#{quizAnswer} and 
+		where userId=#{userId} and PassQuiz=#{PassQuiz} and QuizAnswer=#{QuizAnswer} and 
 		userName=#{userName} and userPhone=#{userPhone} and email=#{email}
 	</select>
 

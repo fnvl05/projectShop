@@ -1,5 +1,7 @@
 package com.test.project01.users.controller;
 
+import java.util.HashMap;
+>>>>>>> refs/heads/css_hyewon2
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
+=======
+>>>>>>> refs/heads/css_hyewon2
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -53,18 +58,22 @@ public class UsersController {
 		return "Users/login_form";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value ="/Users/login", method = RequestMethod.POST)
-	public ModelAndView logIn(@ModelAttribute UsersDto dto,
+	public Map<String, Object> logIn(@ModelAttribute UsersDto dto,
 			ModelAndView mView, HttpServletRequest request, 
 			HttpServletResponse response) {
 		boolean test=service.validUsers(dto, request.getSession(), mView);
-		if(test) {
-			mView.setViewName("index");
-			return mView;
-		} else {
-			mView.setViewName("Users/login_form");
-			return mView;
-		}
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("isSuccess", test);
+		return map;
+//		if(test) {
+//			mView.setViewName("index");
+//			return mView;
+//		} else {
+//			mView.setViewName("Users/login_form");
+//			return mView;
+//		}
 	}
 
 	//로그아웃
@@ -162,15 +171,15 @@ public class UsersController {
 	// 입력한 정보의 값에 따라 true & false 로 나눠서 경로로 이동 
 	@RequestMapping(value="Users/searchPass", method = RequestMethod.POST)
 	public ModelAndView findId(@ModelAttribute UsersDto dto, HttpServletRequest request,ModelAndView mView) {		
-		if(service.findUsersId(dto, request)) {
+		if(service.newUpdatePass(dto, request)) {
 			mView.setViewName("Users/searchnewPass");
-			return mView;
+//			return mView;
+		}else if(service.newUpdatePass(dto, request)){ // false 일 때, false값을 보내서 false이면 알림이 뜨게하기
+			mView.addObject("false", false);
+			mView.setViewName("Users/searchPassForm");
+//			return mView;
 		}
-		else { // false 일 때, 인덱스 페이지로 다시 이동, 처음부터 다시 진행해야함.		
-			mView.setViewName("redirect:/index.do");
-			return mView;
-		}
-		
+		return mView;
 	}
 	
 	// 입력한 정보가 true 이면, 찾으려는 아이디를 직접 보여주면서, 비밀번호 찾기 정보 입력.

@@ -33,6 +33,13 @@
    		<div class="container">
             <table class="table table-condensed" id="orderform_t">
             	<caption id="caption">주문 상품</caption>
+            	<colgroup>
+            		<col class="col-xs-1" />
+					<col class="col-xs-2" />
+					<col class="col-xs-3" />
+					<col class="col-xs-1" />
+					<col class="col-xs-1" />
+            	</colgroup>
                <thead>
                   <tr>
                      <th>상품번호</th>
@@ -49,8 +56,12 @@
                         <td>${tmp.itemNum }</td>
                         <td><img src="../resources${tmp.itemImg }" style="width: 50px;height: 50px"/></td>
                         <td>${tmp.itemName }</td>
-                        <td>${tmp.cartStock }</td>
-                        <td>${tmp.itemPrice *tmp.cartStock}</td>
+                        <td>
+                        	<fmt:formatNumber value="${tmp.cartStock }" pattern="###,###,###"/>개
+                        </td>
+                        <td>
+                        	<fmt:formatNumber value="${tmp.itemPrice *tmp.cartStock}" pattern="###,###,###"/> 원 
+                        </td>
                      </tr>
                      <c:set var="sumMoney" value="${sumMoney+(tmp.itemPrice * tmp.cartStock) }"/>
                   </c:forEach>
@@ -356,6 +367,7 @@
                   	<label class="form-check-label" for="phone">휴대폰결제</label>
                   </div>
                </div>
+               <div align="center">
                <button type="submit"  id="btn">결제하기</button>
                <script>
 	               $("#btn").on("click",function(){
@@ -412,6 +424,7 @@
                   location.href="cartList.do"; 
                   })
                </script>
+               </div>
             </form>
         </div>
             <!-- 다음 주소 API 사용 -->
