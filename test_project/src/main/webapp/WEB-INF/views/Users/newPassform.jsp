@@ -26,6 +26,14 @@
 
  </div>
 </form>
+<script>
+	$("#upPass_Btn").on("click",function(){
+		parent.close()
+		window.close()
+		self.close()
+
+	})
+</script>
 </section>
 </body>
 </html>
