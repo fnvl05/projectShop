@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-
 </head>
 <body>
 	<div id="root">
@@ -16,7 +15,7 @@
 						<%@ include file="include/nav.jsp" %>
 					</div>
 					<div id="index_logo_div">
-						<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+						<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
 					</div>
 					<div class="navbar-left">
 						<c:choose>
@@ -33,11 +32,10 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
-
+ 
 				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px; height: 600px; margin: auto;">
 				    <!-- Indicators -->
-				<!--  
-				    <ol class="carousel-indicators">
+				   <!--  <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>
 				      <li data-target="#myCarousel" data-slide-to="2"></li>

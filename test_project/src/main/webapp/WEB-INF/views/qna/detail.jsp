@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,7 +78,10 @@
 					</tr>
 					<tr>
 						<th>등록일</th>
-						<td>${dto.regdate }</td>
+						<td>
+							<fmt:parseDate value="${dto.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
+							<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
+						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
@@ -86,9 +90,9 @@
 				</table>
 
 				<%-- 
-		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
-		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
-	--%>
+					글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
+					즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
+				--%>
 				<c:if test="${dto.writer eq id }">
 					<a class="btn btn-info" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>

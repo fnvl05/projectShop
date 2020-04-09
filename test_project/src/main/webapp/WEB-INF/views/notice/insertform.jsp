@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>NOTICE</title>
-<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -39,15 +38,53 @@
 			});
 			</script>
 		</div>
-		<button class="btn btn-primary" type="submit" onclick="submitContents(this);">저장</button>
+		<button class="btn btn-primary" type="submit"  id="inserBtn">저장</button>
 		<button class="btn btn-warning" type="reset">초기화</button>
-		<button class="btn btn-danger" type="button" id="back-btn">뒤로가기</button>
-		<script>
-			$("#back-btn").click(function () {
-				location.href="list.do";
-			})	
-		</script>
+		<!--  뒤로가기 버튼 삭제하기
+			<button class="btn btn-danger" type="button" id="back-btn">뒤로가기</button>
+			<script>
+				$("#back-btn").click(function () {
+					location.href="list.do";
+				})	
+			</script>
+		 -->
 	</form>
+	<script>
+		$("#insertBtn").on("click",function(){
+			//제출 전 제목을 변수에 저장
+			var title=$("#title").val();
+			if(title==""){
+				alert("제목을 입력하세요.",function(){
+					//제목에 포커스 on
+					$("#title").focus();
+				},"warning");
+				return false;
+			}
+			//제출 전 에디터 내용을 변수에 저장
+			var content=CKEDITOR.instances.content.getData();
+			//제출 전 에디터 내용 길이를 변수에 저장
+			var content_len=CKEDITOR.instances.content.getData().length;
+			//내용이 없는 경우
+			if(content==""){
+				alert("내용을 입력하세요.",function(){
+					//에디터 내용에 포커스 on
+					CKEDITOR.instances.content.focus();
+				},"warning");
+				return false;
+			}
+			//내용이 30글자 미만인 경우
+			//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
+			if(content_len<18){
+				alert("내용을  30자 이상 입력하세요.",function(){
+					//에디터 내용에 초기화
+					CKEDITOR.instances.content.setData("");
+					//에디터 내용에 포커스 on
+					CKEDITOR.instances.content.focus();
+				},"warning");
+				return false;
+			}
+		});
+	</script>
 </div>
 </body>
 </html>

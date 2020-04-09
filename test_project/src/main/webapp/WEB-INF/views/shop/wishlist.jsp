@@ -8,58 +8,6 @@
 <meta charset="UTF-8">
 <title>shop/wishlist</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-.btn {
-	width: 75px;
-	height: 30px;
-	border: 2px solid #34495e;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 0 0 0 20px;
-}
-.shopbtn {
-	width: 100px;
-	height: 50px;
-	border: 2px solid #34495e;
-	float: left;
-	text-align: center;
-	cursor: pointer;
-	position: relative;
-	box-sizing: border-box;
-	overflow: hidden;
-	margin: 0 0 40px 50px;
-}
-
-.shopbtn a {
-	font-family: arial;
-	font-size: 16px;
-	color: #34495e;
-	text-decoration: none;
-	line-height: 50px;
-	transition: all .5s ease;
-	z-index: 2;
-	position: relative;
-}
-.eff {
-	width: 100px;
-	height: 50px;
-	border: 0px solid #34495e;
-	position: absolute;
-	transition: all .5s ease;
-	z-index: 1;
-	box-sizing: border-box;
-}
-.shopbtn:hover .eff {
-	border: 50px solid #34495e;
-}
-
-.shopbtn:hover a {
-	color: #fff;
-}
-</style>
 </head>
 <body>
 	<div id="root">

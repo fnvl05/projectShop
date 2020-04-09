@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NOTICE</title>
+<title>/notice/list.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
+
 </head>
 <body>
 	<div id="root">
@@ -45,7 +46,7 @@
 		</c:if>
 	</div>
 	<div class="container">
-		<h1>NOTICE</h1>
+		<h1>Notice</h1>
 		<table class="table table-hover">
 			<%-- 칼럼의 폭을 임의로 조절할 수 있다. 합이 12이여야 한다(12등분이므로) --%>
 			<colgroup>
@@ -65,11 +66,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
+				<c:forEach var="tmp" items="${requestScope.list }">
 					<%-- request에 담긴 list --%>
 					<tr>
-						<td>${status.count }</td>
-						<%-- <td>${tmp.num }</td> --%>
+						<td>${tmp.num }</td>
 						<td><c:choose>
 								<c:when test="${tmp.noticeNum==1 }">
 									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}"> <strong
@@ -156,12 +156,6 @@
 			<!-- EL은 아무것도 들어있지 않으면 null이 아니라 빈문자열을 출력한다 -->
 			<button type="submit">검색</button>
 		</form>
-		<br/>
-		<footer id="footer">
-		<div id="footer_box">
-			<%@ include file="../include/footer.jsp" %>
-		</div>
-	</footer>
 	</div>
 
 

@@ -6,51 +6,97 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 수정/Users/updateform.jsp</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
-<section id="context">
+<div id="root">
+		<header>
+			<div class="header_box">
+				<nav id="nav">
+					<div class="navbar-right">
+						<%@ include file="../include/nav.jsp"%>
+					</div>
+					<div id="index_logo_div">
+						<a href="../index.do"><img id="index_logo_img"
+							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+					</div>
+					<div class="navbar-left">
+						<c:choose>
+							<c:when test="${not empty sessionScope.id }">
+								<%@ include file="../include/users_aside.jsp"%>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="../include/unknown_aside.jsp"%>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</nav>
+			</div>
+		</header>
+	</div>
+	<br /><br />
+<section id="content">
+<div class="typeWrite">
  <form action="update.do" method="post">
- 	<div class="input_area">
- 		<h2>개인정보 수정 페이지</h2>
- 		<div>
- 			<label for="userId">ID</label>
- 			<input type="text" name="userId" id="Id" readonly="readonly" value="${dto.getUserId() }" />
- 		</div>
- 		<div>
- 			<label for="userName">이름</label>
- 			<input type="text" name="userName" id="newuserName" required="required" value="${dto.getUserName() }" />
- 		</div>
- 		<div>
- 			<label for="userPhone">연락처</label>
- 			<input type="text" name="userPhone" id="newUserPhone" />
- 		</div>
- 		<div>
- 			<label for="email">E-mail</label>
- 			<input type="text" name="email" id="newemail" required="required" />
- 		</div>
-  		<div class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
-            <label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
-            <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
-            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-            <span ng-show="myForm.userAddr1.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr1.$invalid && myForm.userAddr1.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-         </div>
-         
-         <div class="container" ng-class="{'has-success':myForm.userAddr2.$valid,'has-error':myForm.userAddr2.$invalid &&myForm.userAddr2.$dirty}">
-            <label for="userAddr2">기본 주소 <strong id="required">*</strong></label>
-            <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
-            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-         </div>
-         <span id="guide" style="color:#999;display:none"></span>
-         <div class="container">
-            <label for="userAddr3">상세 주소</label>
-            <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
-  		</div>
- 		
- 		<button type="submit" id="update_Btn" name="update_Btn">개인정보 수정완료</button>
+ 	<h2 class="title">개인 정보 페이지</h2>
+	<br />
+ 	<table id="signup">
+	 		<tbody id="signbody">
+	    <tr>
+	    	<th class="row" ><label for="userId">아이디</label></th>
+	    	<td>
+	    		<p>${dto.userId }</p>
+	    		<input type="hidden" id="login_input" name="userId" value="${dto.userId}" required="required" />
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th class="row"><label for="userName">이름</label></th>
+	    	<td>
+	    		<input type="text" id="login_input" name="userName" value="${dto.userName}" required="required" /> 
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th class="row"> <label for="userPhone">연락처</label></th>
+	    	<td>
+	    		<input type="text" id="login_input" name="userPhone" value="${dto.userPhone }" required="required" />
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th class="row"> <label for="email">이메일</label></th>
+	    	<td>
+	    		<input type="email" id="login_input" name="email" value="${dto.email }"/> 
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th class="row">주소</th>
+	    	<td ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
+	            <input type="text" name="userAddr1" id="userAddr1" value="${dto.userAddr1}" ng-model="userAddr1" ng-required="true"/>
+	            
+	            <input id="addrbtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><label for="userAddr1"><strong id="required"></strong></label><br>
+	            
+	    		
+	            <input type="text" name="userAddr2" id="userAddr2" value="${dto.userAddr2}" ng-model="userAddr2" ng-required="true"/>
+	            <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
+	           
+	    		<br />
+	            <input type="text" name="userAddr3" id="userAddr3" value="${dto.userAddr3}"/>
+	            <label for="userAddr3">상세 주소</label>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<th class="row"><label for="birthday">생년월일</label></th>
+	    	<td>
+	  			<input type="date" id="login_input" name="birthday" required="required"/>
+	    	</td>
+	    </tr>
+	</tbody>
+ 	</table>
+ 	<br /><br />
+ 	<div class="sbtn">
+ 		<button type="submit" class="signbtn" id="update_Btn" name="update_Btn">수정완료</button>
  	</div>
  </form>	
+ </div>
 </section>
 <!-- 다음 주소 API 사용 -->     
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

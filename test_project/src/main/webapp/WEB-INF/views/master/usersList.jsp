@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">

@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>/Users/newPassform.jsp</title>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <section id="content">
-<form action="newPass.do" method="post">
+<form name="newPass" action="newPass.do" method="post">
  <div class="input_area">
  	<h2>비밀번호 수정 페이지</h2>
  	<div>

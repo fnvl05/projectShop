@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>view/Users/signup_form</title>
-   <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-   <jsp:include page="/resources/style/total.jsp"></jsp:include>
+ <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -35,73 +34,104 @@
       </div>
    </header>
 </div>
+<br /><br />
 <section id="content">
- <form action="signup.do" method="post" id="kim_form">
-    <h1 class="kim_h1">Login or Register</h1>
-    <p>
-        <label for="userId">ID</label>
-         <input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
-    </p>
-    <p>
-        <label for="userPass">PassWord</label>
-         <input type="password" id="login_input" name="userPass" placeholder="비밀번호를 입력하세요." required="required" /> 
-    </p>
-    <p>
-      <label for="PassQuiz">비밀번호 찾기 질문</label>
-      <select name="PassQuiz" id="PassQuiz" required="required">
-         <option value="titlename" >질문을 선택하세요.</option>
-         <option value="Mom">어머니의 성함은?</option>
-         <option value="Dad">아버지의 성함은?</option>
-         <option value="Pet">애완동물의 이름은?</option>
-         <option value="Love">가장 사랑하는 인물은?</option>
-         <option value="Faverite">가장 존경하는 인물은?</option>
-      </select>
-    </p>  
-    <p>
-       <label for="QuizAnswer">비밀번호 찾기 답변</label>
-        <input type="text" id="login_input" name="QuizAnswer" placeholder="비밀번호 정답을 입력하세요." required="required" />
-    </p>
-    <p>
-        <label for="userName">이름</label>
-         <input type="text" id="login_input" name="userName" placeholder="이름을 입력해주세요" required="required" /> 
-    </p>
-    <p>
-        <label for="userPhone">연락처</label>
-         <input type="text" id="login_input" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />
-    </p>
-    <p>
-        <label for="email">E-Mail</label>
-        <input type="email" id="login_input" name="email" placeholder="E-Mail을 입력하세요."/> 
-    </p>
-     <p class="container" ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
-            <label for="userAddr1">우편 번호 <strong id="required"></strong></label>
-            <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/><br>
-            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-            <span ng-show="myForm.userAddr1.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr1.$invalid && myForm.userAddr1.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-         </p>
-         <br>
-         <p class="container" ng-class="{'has-success':myForm.userAddr2.$valid,'has-error':myForm.userAddr2.$invalid &&myForm.userAddr2.$dirty}">
-            <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
+<div class="typeWrite">
+<h2 class="title">회원가입</h2>
+ <form action="signup.do" method="post">
+ 
+ <table id="signup" border="1" summary>
+    <img src="${pageContext.request.contextPath }/resources/images/join_sub_title.png"/>
+    <tbody id="signbody">
+    <tr>
+    	<th class="row" ><label for="userId">아이디</label></th>
+    	<td>
+    		<input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"><label for="userPass">비밀번호</label></th>
+    	<td>
+    		 <input type="password" id="login_input" name="userPass" placeholder="비밀번호를 입력하세요." required="required" /> 
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"><label for="userPass2">비밀번호 확인</label></th>
+    	<td>
+    		<input type="password" id="login_input2" name="userPass2" placeholder="비밀번호를 입력하세요." required="required" /> 
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"> <label for="PassQuiz">비밀번호 확인 질문</label></th>
+    	<td>
+    		<select name="PassQuiz" id="PassQuiz" required="required">
+		    	 <option value="titlename" >질문을 선택하세요.</option>
+		         <option value="Mom">어머니의 성함은?</option>
+		         <option value="Dad">아버지의 성함은?</option>
+		         <option value="Pet">애완동물의 이름은?</option>
+		         <option value="Love">가장 사랑하는 인물은?</option>
+		         <option value="Faverite">가장 존경하는 인물은?</option>
+    		</select>
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"> <label for="QuizAnswer">비밀번호 확인 답변</label></th>
+    	<td>
+    		<input type="text" id="login_input" name="QuizAnswer" placeholder="비밀번호 정답을 입력하세요." required="required" />
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"><label for="userName">이름</label></th>
+    	<td>
+    		<input type="text" id="login_input" name="userName" placeholder="이름을 입력해주세요" required="required" /> 
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"> <label for="userPhone">연락처</label></th>
+    	<td>
+    		<input type="text" id="login_input" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"> <label for="email">이메일</label></th>
+    	<td>
+    		<input type="email" id="login_input" name="email" placeholder="E-Mail을 입력하세요."/> 
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row">주소</th>
+    	<td ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
+            <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
+            
+            <input id="addrbtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><label for="userAddr1"><strong id="required"></strong></label><br>
+            
+    		
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
-            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
-         </p>
-         <span id="guide" style="color:#999;display:none"></span>
-         <br>
-         <p class="container">
-            <label for="userAddr3">상세 주소</label>
+            <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
+           	<span id="guide" style="color:#999;display:none"></span>
+    		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
-        </p>
-  
-  <label for="birthday">생년월일</label> 
-  <input type="date" id="login_input" name="birthday" required="required" />  
-   </p>
-   <p>
-      <button type="submit" id="login_button" name="signup_btn">회원가입</button>
-   </p>       
+            <label for="userAddr3">상세 주소</label>
+    	</td>
+    </tr>
+    <tr>
+    	<th class="row"><label for="birthday">생년월일</label></th>
+    	<td>
+  			<input type="date" id="login_input" name="birthday" required="required" />
+    	</td>
+    </tr>
+</tbody>
+</table>    
+<br /><br />
+<div class="sbtn">
+	<button type="reset" class="signbtn" onclick="location.href='../index.do'">취소</button>
+	<button type="submit" id="login_button" class="signbtn" name="signup_btn">회원가입</button>
+</div>
+
+
 </form> 
-</section>
+</div>
+</section>    
 
 <footer id="footer">
    <div id="footer_box">

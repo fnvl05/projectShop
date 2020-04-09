@@ -1,33 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<style>
-	.form-control{
-	display:inline-block;
-	width:auto;
-	padding-bottom:10;
-	vertical-align:middle;
-	}
-	.navText{
-	margin: 0;
-    position: relative;
-    display: block;
-    top: 10px;
-    padding: 10px 10px;
-    padding-top: 15px;
-	}
-	.nav>li>a>img {
-    max-width: none;
-    position: relative;
-    bottom: 4px;
-	}
-	
-</style>
 <ul class="nav nav-tabs">
 	<c:choose>
 		<c:when test="${not empty id}">
 			<c:if test="${sessionScope.verify eq 1}">
 				<li role="presentation"><a href="${pageContext.request.contextPath }/master/master_index.do">관리자</a></li>
-				<li role="presentation"><a href="../index.do">홈으로</a></li>		
+				<li role="presentation"><a href="index.do">홈으로</a></li>		
 			</c:if>
 				<li role="presentation"><span class="navText"><strong>${id}님</strong> 환영합니다</span></li>
 				<li>
@@ -68,6 +46,7 @@
 						onmouseout="this.src='${pageContext.request.contextPath }/resources/images/header_join_icon.png'"/>
 				</a>
 			</li>
+
 		</c:otherwise>
 	</c:choose>
 </ul>
