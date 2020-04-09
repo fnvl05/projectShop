@@ -33,6 +33,13 @@
    		<div class="container">
             <table class="table table-condensed" id="orderform_t">
             	<caption id="caption">주문 상품</caption>
+            	<colgroup>
+            		<col class="col-xs-1" />
+					<col class="col-xs-2" />
+					<col class="col-xs-3" />
+					<col class="col-xs-1" />
+					<col class="col-xs-1" />
+            	</colgroup>
                <thead>
                   <tr>
                      <th>상품번호</th>

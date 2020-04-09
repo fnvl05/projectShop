@@ -9,8 +9,7 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
- 	<h1>${dto.userId }</h1>
- 	<h2>바로 비밀번호를 찾으로 갑니다. 고고!</h2>
+ 	<h2>비밀번호 찾기</h2>
 <section id="content">
  <form action="searchPass.do" method="post">
  	<div class="input_area">
@@ -52,5 +51,12 @@
   <button type="submit" id="update_Btn" name="update_Btn">비밀번호 찾기</button>
  </form>
 </section>
+<script>
+$("#update_Btn").on("click",function(){
+	if(${false}==false){
+		alert("정보가 틀렸습니다. 다시 시도해주세요");
+	}
+})
+</script>
 </body>
 </html>

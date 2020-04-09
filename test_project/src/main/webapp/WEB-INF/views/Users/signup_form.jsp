@@ -107,6 +107,7 @@
     		
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
+            <span id="guide" style="color:#999;display:none"></span>
             <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
             <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
     		<br />

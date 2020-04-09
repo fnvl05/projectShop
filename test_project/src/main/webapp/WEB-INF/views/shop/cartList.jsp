@@ -109,25 +109,18 @@
 						<c:set var="sumMoney" value="0" />
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
-								<td><input type="checkbox" name="delBox"
-									value="${tmp.cartNum }" /></td>
-								<td><img src="../resources/${tmp.itemImg }" width="156px"
-									height="120px" /></td>
-								<td><a
-									href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
-								<td><input type="hidden" id="itemPrice" /> <fmt:formatNumber
-										value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
+								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
+								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
+								<td><input type="hidden" id="itemPrice" /> 
+									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
 								<td><input type="number" min="1" value="${tmp.cartStock }"
-									style="width: 40px" name="cartStock" id="${tmp.cartNum }" /> 
+										style="width: 40px" name="cartStock" id="${tmp.cartNum }" /> 
 									<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
-									<button type="button" class="btn"
-										id="${tmp.cartNum }">수정</button></td>
-								<td><fmt:formatNumber
-										value="${tmp.cartStock * tmp.itemPrice}" pattern="###,###,###" />원
-								</td>
+									<button type="button" class="btn" id="${tmp.cartNum }">수정</button></td>
+								<td><fmt:formatNumber value="${tmp.cartStock * tmp.itemPrice}" pattern="###,###,###" />원</td>
 							</tr>
-							<c:set var="sumMoney"
-								value="${sumMoney+(tmp.cartStock * tmp.itemPrice) }" />
+							<c:set var="sumMoney" value="${sumMoney+(tmp.cartStock * tmp.itemPrice) }" />
 						</c:forEach>
 					</tbody>
 				</table>
@@ -146,14 +139,11 @@
 					<tbody>
 						<tr>
 							<c:set var="allPrice" value="${sumMoney+fee }" />
-							<td><fmt:formatNumber value="${sumMoney }"
-									pattern="###,###,###" />원</td>
-							<td>+<fmt:formatNumber value="${map.fee }"
-									pattern="###,###,###" />원
+							<td><fmt:formatNumber value="${sumMoney }" pattern="###,###,###" />원</td>
+							<td>+<fmt:formatNumber value="${map.fee }" pattern="###,###,###" />원
 							</td>
-							<td><fmt:formatNumber value="${map.allPrice }"
-									pattern="###,###,###" />원 <input type="hidden" name="allPrice"
-								id="allPrice" value="${allPrice}" /></td>
+							<td><fmt:formatNumber value="${map.allPrice }" pattern="###,###,###" />원 <input type="hidden" name="allPrice"
+									id="allPrice" value="${allPrice}" /></td>
 						</tr>
 					</tbody>
 				</table>
@@ -198,11 +188,7 @@
 			$.ajax({
 				url : "deleteEachCart.do", //이동할 주소
 				type : "post", //form 전송 방식
-				data :
-				//데이터는 arrEachCode라는 이름으로 배열 전달
-				{
-					"arrCheckBox" : arrCheckBox
-				},
+				data : {"arrCheckBox" : arrCheckBox}, //데이터는 arrEachCode라는 이름으로 배열 전달
 				//ajax 성공이라면 전달된값을 전달자로 받아 함수실행
 				success : function(responseData) {
 					if (responseData.isSuccess) {
@@ -210,7 +196,7 @@
 						alert("장바구니에서 상품을 삭제했습니다.");
 						location.reload();
 					} else {
-						alert("아몰랑~ 실패");
+						alert("삭제에 실패했습니다.");
 					}
 				}
 			});
@@ -233,9 +219,7 @@
 			$.ajax({
 				url : "updateCartStock.do",
 				type : "post",
-				data : {
-					"tarArray" : tarArray
-				},
+				data : {"tarArray" : tarArray},
 				success : function(responseData) {
 					if (responseData.isSuccess) {
 						//알림 띄우고 새로고침
