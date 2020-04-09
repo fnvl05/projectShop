@@ -45,15 +45,14 @@
 	</div>
 	<section id="container">
 		<div id="container_box">
+		<div class="detail">
 			<form role="form" enctype="multipart/form-data">
 				<input type="hidden" name="itemNum" value="${dto.itemNum }" /> <input
 					type="hidden" name="itemPrice" value="${dto.itemPrice }" /> <input
 					type="hidden" name="userId" value="${sessionScope.userDto.userId}" />
-				<div class="itemImg_box">
 					<div class="itemImg">
 						<img alt="이미지" src="../resources${dto.itemImg}" />
 					</div>
-				</div>
 				<div class="itemInfo">
 					<div class="inputArea">
 						<p>
@@ -149,6 +148,8 @@
 				</script>
 				</div>
 			</form>
+			</div>
+			
 			<br/><br/>
 			<div align="center" id="underline">
 				<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> <span><a
