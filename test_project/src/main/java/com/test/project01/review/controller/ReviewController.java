@@ -55,13 +55,13 @@ public class ReviewController {
 	public ModelAndView Users_Insert(HttpServletRequest request,
 			ModelAndView mView,@ModelAttribute ("dto") ReviewDto dto,@RequestParam int itemNum) {
 		service.insert(request, dto);
-		
-		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum) ;
+		return new ModelAndView("redirect:list.do");
+//		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum) ;
 	}
 	
 	//디테일
 	@RequestMapping("/review/detail")
-	public ModelAndView detail(ModelAndView mView,HttpServletRequest request) {
+	public ModelAndView Users_detail(ModelAndView mView,HttpServletRequest request) {
 		service.getReviewData(request);
 		mView.setViewName("review/detail");
 		return mView;

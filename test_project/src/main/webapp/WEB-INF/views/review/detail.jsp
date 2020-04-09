@@ -69,18 +69,50 @@
 					</tr>
 					<tr>
 						<th>좋아요</th>
-						<td>
-							<form action="reivewUpCount.do" id="upForm" method="post"
-								style="display: inline;">
-								<input type="hidden" name="reviewNum" value="${dto.reviewNum}" />
-								<input type="hidden" name="itemNum" value="${dto.itemNum}" />
-								<button
-									<c:if test="${dto.isLike eq true}">style="color:red;"</c:if>
-									class="up btn btn-link" type="button">
-									<span class="glyphicon glyphicon-thumbs-up"></span>
-								</button>
-							</form> <span class="${dto.reviewNum }">${dto.upCount }</span>
-						</td>
+					<td>
+						<form action="reivewUpCount.do" id="upForm" method="post" style="display:inline;">
+						<input type="hidden" name="reviewNum" value="${dto.reviewNum}"/>
+						<input type="hidden" name="itemNum" value="${dto.itemNum}"/>
+						<button <c:if test="${dto.isLike eq true}">style="color:red;"</c:if> class="up btn btn-link" type="button">
+							<span class="glyphicon glyphicon-thumbs-up"></span>
+						</button>
+						</form>
+						<span class="${dto.reviewNum }">${dto.upCount }</span>
+						<script>
+						$(".up").click(function(){
+							var ele=$(this);
+							var reviewNum=ele.parent().children()[0].value;
+							var itemNum=ele.parent().children()[1].value;
+							//var formData = ele.parent().serialize();
+							var arrItemNum=[];
+							arrItemNum.push(itemNum);
+							arrItemNum.push(reviewNum);
+							$.ajax({
+								url: "reviewUpCount.do",//이동할 주소
+								type: "post",
+								data: {"arrEachItemNum": arrItemNum},
+								success:function(responseData){
+									
+									var count=responseData.count;
+									var checkUp=responseData.checkUp;
+									var itemNum=responseData.reviewNum;
+									//공백체크함수로 response된 code에 공백이 있다면
+									console.log(count);
+									console.log(checkUp);
+									console.log(reviewNum);
+									
+									if(responseData.checkUp==false){
+										ele.prop("style","color: black;");
+										$("."+reviewNum).text(count);
+									}else{
+										ele.prop("style","color: red;");
+										$("."+reviewNum).text(count);
+									}
+								}
+							});
+						});
+						</script>
+					</td>
 					</tr>
 					<tr>
 						<th>등록일</th>
@@ -302,38 +334,7 @@
 		}
 	}
 	
-	$(".up").click(function(){
-		var ele=$(this);
-		var reviewNum=ele.parent().children()[0].value;
-		var itemNum=ele.parent().children()[1].value;
-		//var formData = ele.parent().serialize();
-		var arrItemNum=[];
-		arrItemNum.push(itemNum);
-		arrItemNum.push(reviewNum);
-		$.ajax({
-			url: "reviewUpCount.do",//이동할 주소
-			type: "post",
-			data: {"arrEachItemNum": arrItemNum},
-			success:function(responseData){
-				
-				var count=responseData.count;
-				var checkUp=responseData.checkUp;
-				var itemNum=responseData.reviewNum;
-				//공백체크함수로 response된 code에 공백이 있다면
-				console.log(count);
-				console.log(checkUp);
-				console.log(reviewNum);
-				
-				if(responseData.checkUp==false){
-					ele.prop("style","color: black;");
-					$("."+reviewNum).text(count);
-				}else{
-					ele.prop("style","color: red;");
-					$("."+reviewNum).text(count);
-				}
-			}
-		})
-	});
+
 </script>
 </body>
 </html>

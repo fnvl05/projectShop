@@ -681,7 +681,6 @@ padding:0 17px;
     margin-left: auto;
     margin-right: auto;
 }
-
 .signbtn {
 	width: 100px;
 	height: 50px;
@@ -699,22 +698,133 @@ padding:0 17px;
 	height: 500px;
 	margin-left: 80px;
 	margin-right: 80px;
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #container_box .detail .itemImg{
-	float: left;
-	margin-right: 90px;
+    display: inline-block;
+    position: relative;
+    float: left;
+    width: 600px;
 }
 
 #container_box .detail .itemImg>img{
-	width: 470px;
-	height: 490px;
+	width: 450px;
+	height: 450px;
+	margin-left: 65px;
 }
 
 #container_box .detail .itemInfo{
 	position: relative;
+    float: right;
+    width: 500px;
+    margin-top: 90px;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+#container_box .detail .itemInfo>h2{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 23px !important;
+    font-weight: 600 !important;
+    font-family: 'Roboto','Lato',arial,"맑은 고딕",'Malgun Gothic',AppleGothic,"돋움",Dotum,sans-serif;
+    color: #000;
+}
+
+
+#container_box .detail .itemInfo .inputArea{
+	position: relative;
+    float: right;
+    width: 500px;
+}
+
+
+
+/* 판매가 글씨 */
+#container_box .detail .itemInfo .inputArea .dd{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;	
+}
+
+/* 상품가격 */
+#container_box .detail .itemInfo .inputArea .num{
+	font-size: 20px;
+    color: #f15b24;
+    font-weight: bold;
+    margin-left: 40px;
+}
+
+#container_box .detail .itemInfo .cartStock .dd{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    float: left;	
+	margin-top: 3px;
+}
+
+#container_box .detail .itemInfo .cartStock .num{
+	font-size: 20px;
+    color: #555555;
+    font-weight: bold;
+    margin-left: 150px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart{
+	width: 100%;
+    margin-bottom: 20px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart .wide{
+	width: 50%;
     float: left;
-    
+    margin-right: 10px;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart .wide .btn_buy{
+	background: #fad448;
+    color: #333;
+    width: 250px;
+    height: 140px;
+    font-size: 25px;
+    border: 1px solid #aaa;
+}
+
+#container_box .detail .itemInfo .inputArea .addCart .itembtn{
+	display: block;
+    background: #fff;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 125px;
+    height: 65px;
+    margin-top: 10px;
+}
+
+#container_box .itemDes{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+#container_box .itemDes>p{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
 /*----------------------------윤주-----------------------------*/
 
+#underline {
+	text-decoration: underline;
+	text-underline-position: under;
+	text-decoration-style: solid;
+	text-decoration-color: darkred;
+}

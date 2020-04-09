@@ -35,7 +35,6 @@
 		</div>
 	</header>
 		<div class="container">
-			<br /> <br /> <br /> <br />
 			<h1>REVIEW</h1>
 			<table class="table table-hover">
 				<colgroup>

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +86,8 @@
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td>${tmp.regdate }</td>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+							<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -98,7 +100,7 @@
 				</c:if>
 			</c:when>
 		</c:choose>
-		<div class="page-display">
+		<div class="page-display" align="center">
 			<ul class="pagination pagination-sm" style="padding-left: 36%;">
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
@@ -141,8 +143,8 @@
 		</div>
 		<!-- GET 방식으로 제출되므로 file/list.do?condition=x&keyword=xx 이런 형태로 주소창에 출력된다.-->
 		<form action="list.do" method="get">
-			<label for="condition">검색조건</label> <select name="condition"
-				id="condition">
+			<label for="condition">검색조건</label> 
+			<select name="condition" id="condition">
 				<option value="titlecontent"
 					<c:if test="${condition eq 'titlename' }">selected</c:if>>제목+내용</option>
 				<!-- selected 문자열을 조건문으로 찍어준다. -->

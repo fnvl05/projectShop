@@ -47,11 +47,17 @@
 				<td>${dto.userId}</td>
 			</tr>
 			<tr>
-				<th class="row">PassWord</th>
-				<td><a href="${pageContext.request.contextPath}/Users/newPassform.do">수정하기</a></td>
+				<th>PassWord</th>
+				<td><a onclick="newpassform();">수정하기</a></td>
 			</tr>
+            <script>
+               function newpassform(){
+                  window.open("newPassform.do","newpass",
+                        "width=500,height=400,top=250,left=550,resizable=no");
+               }
+            </script>
 			<tr>
-				<th class="row">이름</th>
+				<th>이름</th>  
 				<td>${dto.userName}</td>
 			</tr>
 			<tr>

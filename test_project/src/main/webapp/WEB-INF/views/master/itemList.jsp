@@ -45,9 +45,19 @@
 							  <tr>
 								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
 								   <td><a href="itemView_form.do?itemNum=${list.itemNum}">${list.itemName}</a></td>
-								   <td>${list.cateCode}</td>
-								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> </td>
-								   <td>${list.itemCount}</td>
+								   <td> <!-- 목록을 바꾼다면 카테코드 내용도 바꾸기 !! -->
+								   	<c:choose>
+								   		<c:when test="${list.cateCode eq 101}">악세사리-반지</c:when>
+								   		<c:when test="${list.cateCode eq 102}">악세사리-귀걸이</c:when>
+								   		<c:when test="${list.cateCode eq 103}">악세사리-목걸이</c:when>
+								   		<c:when test="${list.cateCode eq 200}">여성의류</c:when>
+								   		<c:when test="${list.cateCode eq 300}">남성의류</c:when>
+								   		<c:otherwise>카테코드를 지정해주세요</c:otherwise>
+								   	</c:choose>
+								   </td>
+								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/> 원 </td>
+								   <td>
+								   	<fmt:formatNumber value="${list.itemCount}" pattern="###,###,###"/>개</td>
 								   <td>
 								   <fmt:parseDate value="${list.itemDate}" var="itemDate"  pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
 								   <fmt:formatDate value="${itemDate}"  pattern="yyyy.MM.dd"/>

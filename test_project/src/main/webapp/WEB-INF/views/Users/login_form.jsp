@@ -10,25 +10,25 @@
 </head>
 <body>
 <div id="root">
-	<header>
-		<div class="header_box">
-			<nav id="nav">
-				<div class="navbar-right">
-					<%@ include file="../include/nav.jsp"%>
-				</div>
-				<div id="index_logo_div">
-					<a href="../index.do"><img id="index_logo_img"
-						src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
-				</div>
-				<div class="navbar-left">
-					<c:choose>
-						<c:when test="${not empty sessionScope.id }">
-							<%@ include file="../include/users_aside.jsp"%>
-						</c:when>
-						<c:otherwise>
-							<%@ include file="../include/unknown_aside.jsp"%>
-						</c:otherwise>
-					</c:choose>
+<header>
+	<div class="header_box">
+		<nav id="nav">
+			<div class="navbar-right">
+				<%@ include file="../include/nav.jsp"%>
+			</div>
+			<div id="index_logo_div">
+				<a href="../index.do">
+				<img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+			</div>
+			<div class="navbar-left">
+				<c:choose>
+					<c:when test="${not empty sessionScope.id }">
+						<%@ include file="../include/users_aside.jsp"%>
+					</c:when>
+					<c:otherwise>
+						<%@ include file="../include/unknown_aside.jsp"%>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</nav>
 		</div>
@@ -50,12 +50,14 @@
 	</label>	
 </div>
   
+  	<p id="check" style="color: red;"></p>
+  
   <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
 <div class="item">
 <ul class="ot_link">
-	<li><a href="#">
+	<li><a href="searchIdForm.do">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6601.png" alt=""></div>아이디찾기</a></li>
-	<li><a href="#">
+	<li><a href="searchPassForm.do">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6602.png" alt=""></div>비밀번호찾기</a></li>
 	<li><a href="signup_form.do">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6603.png" alt=""></div>회원가입</a></li>
@@ -65,5 +67,46 @@
  </form>  
  </div> 
 </section> 	
+<script>
+var isCheck=false;
+$(document).ready(function() {
+	$("#signup_btn").on("click",function(){
+		var userId=$("#userId").val();
+		var userPass=$("#userPass").val();
+		var dto={'userId':userId,'userPass':userPass};
+		var url=$(this).attr("action");
+		$.ajax({
+			url:"${pageContext.request.contextPath}/Users/login.do",
+			method:"POST",     
+			data:dto,
+			success:function(responseData){   
+				if(responseData.isSuccess){ 
+					location.href="../index.do";
+				}else{
+					<!--$("#check").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>"); -->
+					$("#check").text("아이디 또는 비밀번호가 잘못되었습니다.");
+					isCheck=true;
+					$("#userId").val("");
+					$("#userPass").val("");
+				}
+			}
+		});
+		return false;
+	});
+})
+
+$("#userId").on("input",function(){
+	if(isCheck){
+		$("#check").text("");
+		isCheck=false;
+	}
+});
+$("#userPass").on("input",function(){
+	if(isCheck){
+		$("#check").text("");
+		isCheck=false;
+	}
+});
+</script>
 </body>
 </html>

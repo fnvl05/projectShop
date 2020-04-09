@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <title>Home</title>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -35,7 +35,7 @@
  
 				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px; height: 600px; margin: auto;">
 				    <!-- Indicators -->
-				   <!--  <ol class="carousel-indicators">
+				    <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>
 				      <li data-target="#myCarousel" data-slide-to="2"></li>
@@ -100,7 +100,6 @@
 						  </c:forEach>		
 						</div>
 					  </div>
-				 -->
 					</div>
 				 </div>
 

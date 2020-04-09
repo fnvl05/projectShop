@@ -47,11 +47,8 @@
 						<strong>${keyword }</strong> 검색어로 검색된 결과 자세히 보기 입니다.
 					</p>
 				</c:if>
-
-
 				<c:if test="${dto.prevNum ne 0 }">
-					<a
-						href="itemDetail.do?num=${dto.prevNum }&itemNum=${itemNum}">이전글</a>
+					<a href="itemDetail.do?num=${dto.prevNum }&itemNum=${itemNum}">이전글</a>
 				</c:if>
 
 				<c:if test="${dto.nextNum ne 0 }">

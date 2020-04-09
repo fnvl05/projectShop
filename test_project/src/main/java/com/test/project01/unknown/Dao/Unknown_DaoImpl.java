@@ -40,8 +40,8 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		List<Unknown_itemDto> dto = session.selectList("unknown.cateList2", cateCode);
 		return dto;
 	}
+
 	
-	/*
 	@Override
 	public List<ItemDto> itemBestList() {
 		List<ItemDto> dto = session.selectList("category.bestItemList");
@@ -53,5 +53,5 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		List<ItemDto> dto = session.selectList("category.newItemLsit");
 		return dto;
 	}
-	*/
+	
 }

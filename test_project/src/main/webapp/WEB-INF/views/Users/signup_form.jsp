@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>view/Users/signup_form</title>
- <jsp:include page="/resources/style/total.jsp"></jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -39,26 +39,34 @@
 <div class="typeWrite">
 <h2 class="title">회원가입</h2>
  <form action="signup.do" method="post">
- 
+   <img src="${pageContext.request.contextPath }/resources/images/join_sub_title.png"/>
  <table id="signup" border="1" summary>
-    <img src="${pageContext.request.contextPath }/resources/images/join_sub_title.png"/>
     <tbody id="signbody">
     <tr>
     	<th class="row" ><label for="userId">아이디</label></th>
     	<td>
+    		<div class="form-group">
     		<input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
+    		<span id="idMsg">(영문소문자/숫자, 4~16자)</span>
+    		<p class="help-block" id="id_check"></p>
+			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
+			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+    		</div>
     	</td>
     </tr>
     <tr>
     	<th class="row"><label for="userPass">비밀번호</label></th>
     	<td>
-    		 <input type="password" id="login_input" name="userPass" placeholder="비밀번호를 입력하세요." required="required" /> 
+    		 <input type="password" id="Pass1_input" name="userPass" placeholder="비밀번호를 입력하세요." required="required" /> 
     	</td>
     </tr>
     <tr>
     	<th class="row"><label for="userPass2">비밀번호 확인</label></th>
     	<td>
-    		<input type="password" id="login_input2" name="userPass2" placeholder="비밀번호를 입력하세요." required="required" /> 
+    		<div class="form-group">
+	    		<input type="password" id="Pass2_input" name="userPass2" placeholder="비밀번호를 입력하세요." required="required" /> 
+    			<p id="pass_check"></p>
+    		</div>
     	</td>
     </tr>
     <tr>
@@ -77,7 +85,7 @@
     <tr>
     	<th class="row"> <label for="QuizAnswer">비밀번호 확인 답변</label></th>
     	<td>
-    		<input type="text" id="login_input" name="QuizAnswer" placeholder="비밀번호 정답을 입력하세요." required="required" />
+    		<input type="text" id="Quiz_input" name="QuizAnswer" placeholder="비밀번호 정답을 입력하세요." required="required" />
     	</td>
     </tr>
     <tr>
@@ -89,7 +97,35 @@
     <tr>
     	<th class="row"> <label for="userPhone">연락처</label></th>
     	<td>
-    		<input type="text" id="login_input" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />
+    		<input type="text" id="login_input" name="userPhone" onKeyup="inputPhoneNumber(this);" placeholder="연락처를 입력해주세요" required="required" />
+    		<script>
+	               function inputPhoneNumber(obj) {
+	                   var number = obj.value.replace(/[^0-9]/g, "");
+	                   var phone = "";
+	               	  
+	                   if(number.length < 4) {
+	                       return number;
+	                   } else if(number.length < 7) {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3);
+	                   } else if(number.length < 11) {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3, 3);
+	                       phone += "-";
+	                       phone += number.substr(6);
+	                   } else {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3, 4);
+	                       phone += "-";
+	                       phone += number.substr(7);
+	                   }
+	                   obj.value = phone;
+	                  
+	               }
+               </script>
     	</td>
     </tr>
     <tr>
@@ -108,7 +144,9 @@
     		
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
-           	<span id="guide" style="color:#999;display:none"></span>
+            <span id="guide" style="color:#999;display:none"></span>
+            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
+            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
     		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
             <label for="userAddr3">상세 주소</label>
@@ -127,7 +165,50 @@
 	<button type="reset" class="signbtn" onclick="location.href='../index.do'">취소</button>
 	<button type="submit" id="login_button" class="signbtn" name="signup_btn">회원가입</button>
 </div>
-
+<script type="text/javascript">
+	var isIdUsable=false;
+	var isIdInput=false;
+	var isIdDirty=false;
+	
+	$("#login_input").on("input", function(){
+		isIdDirty=true;
+		var inputId=$("#login_input").val();
+		$.ajax({
+			url:"${pageContext.request.contextPath}/Users/checkId.do",
+			method:"post",
+			data:{inputId:inputId},
+			success:function(responseData){
+				if(responseData.isExist){
+					$("#id_check").text("사용중인 아이디입니다.");
+					$("#id_check").css("color", "red");
+					$("#reg_submit").attr("disabled", true);
+				}else{
+					$("#id_check").text("");
+				}
+			}
+		});
+	});
+	
+	var isPassCheck = false;
+	$("#Pass2_input , #Pass1_input").on("input", function(){
+	var isPass1 = $("#Pass1_input").val();
+	var isPass2 = $("#Pass2_input").val();
+		if(isPass1 != isPass2){
+			isPassCheck = true;
+		}else {
+			isPassCheck = false;
+		}
+		if(isPassCheck){
+			$("#pass_check").text("비밀번호가 다릅니다.");
+			$("#pass_check").css("color", "red");
+			$("#reg_submit").attr("disabled", true);
+		}else if(!isPassCheck){
+			$("#pass_check").text("");
+		}else{
+			$("#pass_check").text("");
+		}
+	})
+</script>
 
 </form> 
 </div>

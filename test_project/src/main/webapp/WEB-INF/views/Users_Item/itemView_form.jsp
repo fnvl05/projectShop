@@ -6,16 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>/Users_item/itemView_form.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
-#underline {
-	text-decoration: underline;
-	text-underline-position: under;
-	text-decoration-style: solid;
-	text-decoration-color: darkred;
-}
-</style>
 </head>
 <body>
 	<div id="root">
@@ -54,59 +46,61 @@
 						<img alt="이미지" src="../resources${dto.itemImg}" />
 					</div>
 				<div class="itemInfo">
-					<div class="inputArea">
-						<p>
-							<span>상품명: </span>${dto.itemName }</p>
-					</div>
-
-				<div class="inputArea">
-					<p><span>상품 가격: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" /> 원</p>
+					<h2 class="prd_title">${dto.itemName }</h2>
+					<br />
+				<div class="inputArea">				
+					<p>
+					<span class="dd">판매가 </span>
+					<span class="num"><fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" /> 원</span>
+					</p>
 				</div>
 				<!--  <div class="inputArea">
 					<p><span>상품 재고: </span><fmt:formatNumber pattern="###,###,###" value="${dto.itemCount}" /> EA</p>
 				</div> -->
 				<div class="cartStock">
-					<span>구입 수량: </span>
-					<p class="cartStock"> 
+					<span class="dd">구입 수량 </span>
+					<div class="num">
+					<p class="cartStock"> 					
 					<button type="button" class ="plus">+</button>
 					<input type = "number" class ="numBox" min="1" max="${dto.itemCount }" value="1" name="cartStock" readonly="readonly"/>
 					<button type="button" class ="minus">-</button>
 					<script>
 					  $(".plus").click(function(){
-					   var num = $(".numBox").val();
-					   var plusNum = Number(num) + 1;
-					   if(plusNum > ${dto.itemCount}) {
-					    $(".numBox").val(num);
-					   } else {
-					    $(".numBox").val(plusNum);          
-					   }
+						   var num = $(".numBox").val();
+						   var plusNum = Number(num) + 1;
+						   if(plusNum > ${dto.itemCount}) {
+						    $(".numBox").val(num);
+						   } else {
+						    $(".numBox").val(plusNum);
+						   }
 					  });
 					  
 					  $(".minus").click(function(){
-					   var num = $(".numBox").val();
-					   var minusNum = Number(num) - 1;
-					   
-					   if(minusNum <= 0) {
-					    $(".numBox").val(num);
-					   } else {
-					    $(".numBox").val(minusNum);          
-					   }
+						   var num = $(".numBox").val();
+						   var minusNum = Number(num) - 1;
+						   if(minusNum <= 0) {
+						    $(".numBox").val(num);
+						   } else {
+						    $(".numBox").val(minusNum);          
+						   }
 					  });
 					 </script>
 					 <p>
+					 </div>
 				</div>
 				<div class="inputArea">
 					<div class = "addCart">
-						<button type="button" id="shop_btn" class="btn btn-warning" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
-						<button type="button" id="back_btn" class="btn btn-warning">뒤로가기</button>
-						<button type="button" id="order_btn" class="btn btn-warning">바로 주문하기</button>
-						<button type="button" id="wish_btn" class="btn btn-warning">Wish</button>
+					<div class="wide">
+						<button type="button" id="order_btn" class="btn_buy">바로 주문하기</button>
+					</div>
+						<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+						
+						<button type="button" id="wish_btn" class="itembtn">Wish</button>
 						<script>
-
 							$("#back_btn").click(function () {
 								location.href="../index.do";
 							})
-						</script>
+						</script>   -->
 						</div>
 					</div>
 					<script>
@@ -149,7 +143,7 @@
 			</form>
 			</div>
 			
-			<br/><br/>
+			<br/><br/><br /><br />
 			<div align="center" id="underline">
 				<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> <span><a
 					href="#qna">Q&A</a>&nbsp;&nbsp;&nbsp;</span> <span><a
@@ -157,6 +151,7 @@
 			</div>
 			<br /> <br />
 			<div class="itemDes" id="detail">${dto.itemDes }</div>
+			<br /><br /><br />
 			<!-- 해당아이템의  Q&A -->
 			<div class="container" id="qna">
 				<p style="text-align: center;" id="underline">
@@ -197,15 +192,14 @@
 														${tmp.title }[${tmp.commentCount }] </a>
 												</c:when>
 												<c:otherwise>
-										비밀글입니다. <img
-														src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+													비밀글입니다. <i class="fas fa-lock"></i>
 												</c:otherwise>
 											</c:choose>
 
 										</c:when>
 										<c:otherwise>
-								로그인을 하세요.
-							</c:otherwise>
+											비밀글입니다. <i class="fas fa-lock"></i>
+										</c:otherwise>
 									</c:choose></td>
 								<td>${tmp.writer }</td>
 								<td>${tmp.viewCount }</td>
@@ -274,12 +268,12 @@
 				</p>
 				<br /> <br />
 
-				<table class="table table-hover">
+					<table class="table table-hover">
 					<colgroup>
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
-						<col class="col-xs-4" />
+						<col class="col-xs-3" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
@@ -316,10 +310,9 @@
 										$(".review${tmp.reviewNum} p").text(text1);
 									})
 								</script>
-							<td>
-								<td><span class="wrap-star"> <span
-										class='star-rating'> <span
-											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
+								<td><span class="wrap-star"> 
+									<span class='star-rating'> 
+									<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
 									</span>
 								</span></td>
 								<td><span class="glyphicon glyphicon-thumbs-up"></span>

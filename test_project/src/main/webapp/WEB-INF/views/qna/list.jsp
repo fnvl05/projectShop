@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/list.jsp</title>
+<title>Q&A/list.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -43,12 +44,12 @@
 		</c:if>
 	</div>
 	<div class="container">
-		<h1>QnA</h1>
-		<table class="table table-hover">
+		<h1>Q&A</h1>
+		<table class="table">
 			<colgroup>
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
-				<col class="col-xs-5" />
+				<col class="col-xs-3" />
 				<col class="col-xs-1" />
 				<col class="col-xs-1" />
 				<col class="col-xs-2" />
@@ -66,8 +67,12 @@
 			<tbody>
 				<c:forEach var="tmp" items="${requestScope.list }">
 					<tr>
-						<td>${tmp.num }</td>
-						<td><img src="../resources${tmp.itemImg }" /></td>
+						<td>${status.count }</td>
+						<%-- <td>${tmp.num }</td> --%>
+						<td>
+							<a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
+							<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
+						</td>
 						<td><c:choose>
 								<c:when test="${not empty sessionScope.userDto.userId }">
 									<c:choose>
@@ -78,26 +83,24 @@
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
-									비밀글입니다. <img
-												src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+											비밀글입니다. <i class="fas fa-lock"></i>
 										</c:otherwise>
 									</c:choose>
 
 								</c:when>
 								<c:otherwise>
-							로그인을 하세요.
-						</c:otherwise>
+									비밀글입니다. <i class="fas fa-lock"></i>
+								</c:otherwise>
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td>${tmp.regdate }</td>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-
-
-		<div class="page-display">
+		<div class="page-display" >
 			<ul class="pagination pagination-sm" style="padding-left: 36%;">
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
