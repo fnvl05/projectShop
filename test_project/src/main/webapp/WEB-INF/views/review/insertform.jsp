@@ -59,17 +59,12 @@
 						</p>
 					</div>
 					<button id="starBtn" type="submit" >등록</button>
-					<button type="reset">취소</button>
-					<!-- 뒤로가기 버튼 삭제  
-					<button type="button" id="back_btn">돌아가기</button>
-				
-					<script type="text/javascript">
-					$("#back_btn").click(function () {
-						history.back();
-						/*location.href="itemList_review.do?itemNum=" + ${itemNum};*/
-					})
-
-					</script>  -->
+					<button type="button" id="back_btn">취소</button>
+					<script>
+						$("#back_btn").click(function () {
+							history.back();
+						});
+					</script>  
 
 				</form>
 				<script>
