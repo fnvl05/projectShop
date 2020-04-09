@@ -69,6 +69,7 @@
 				      <span class="sr-only">Next</span>
 				    </a>
 				  </div>  
+				  <!-- 
 				  <div id="listBox" style="margin-top:100px;">
 					  <div id="bestItemBox">
 					  <h4>인기상품 목록</h4>
@@ -102,7 +103,7 @@
 					  </div>
 					</div>
 				 </div>
-
+					-->
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
