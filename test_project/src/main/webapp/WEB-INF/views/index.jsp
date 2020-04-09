@@ -33,8 +33,8 @@
 		<section id="container">
 			<div id="container_box">
  
+			 <!-- 
 				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px; height: 600px; margin: auto;">
-				    <!-- Indicators -->
 				    <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -69,7 +69,6 @@
 				      <span class="sr-only">Next</span>
 				    </a>
 				  </div>  
-				  <!-- 
 				  <div id="listBox" style="margin-top:100px;">
 					  <div id="bestItemBox">
 					  <h4>인기상품 목록</h4>
@@ -102,8 +101,8 @@
 						</div>
 					  </div>
 					</div>
-				 </div>
 					-->
+				 </div>
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
