@@ -68,7 +68,6 @@
 
 				</form>
 				<script>
-				
 					$("#starBtn").on("click",function(){
 						//제출 전 에디터 내용을 변수에 저장
 						var content=CKEDITOR.instances.reviewContent.getData();
@@ -115,6 +114,9 @@
 	    return false;
 	});
 </script>
-
+<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

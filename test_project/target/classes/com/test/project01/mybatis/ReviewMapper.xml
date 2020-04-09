@@ -73,8 +73,7 @@
 		where itemNum=#{itemNum}
 	</select>
 	<select id="isExist" resultType="int" parameterType="reviewDto">
-		select
-		reviewNum
+		select reviewNum
 		from board_review
 		where itemNum=#{itemNum} and
 		reviewWriter=#{reviewWriter}
