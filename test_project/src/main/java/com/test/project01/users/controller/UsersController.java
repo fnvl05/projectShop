@@ -1,5 +1,7 @@
 package com.test.project01.users.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.users.Dto.UsersDto;
@@ -27,6 +31,13 @@ public class UsersController {
 	@RequestMapping("/Users/myPage")
 	public String myPage() {
 		return "Users/myPage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/Users/checkId", method = RequestMethod.POST)
+	public Map<String, Object> checkid(@RequestParam String inputId){
+		Map<String, Object> map=service.isExistId(inputId);
+		return map;
 	}
 	
 	@RequestMapping(value="/Users/signup", method = RequestMethod.POST)
