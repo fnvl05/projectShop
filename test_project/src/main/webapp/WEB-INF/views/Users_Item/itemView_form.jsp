@@ -278,7 +278,7 @@
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
-						<col class="col-xs-4" />
+						<col class="col-xs-3" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
@@ -315,10 +315,9 @@
 										$(".review${tmp.reviewNum} p").text(text1);
 									})
 								</script>
-							<td>
-								<td><span class="wrap-star"> <span
-										class='star-rating'> <span
-											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
+								<td><span class="wrap-star"> 
+									<span class='star-rating'> 
+									<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
 									</span>
 								</span></td>
 								<td><span class="glyphicon glyphicon-thumbs-up"></span>
