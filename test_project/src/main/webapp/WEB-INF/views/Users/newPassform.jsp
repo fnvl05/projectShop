@@ -10,7 +10,7 @@
 </head>
 <body>
 <section id="content">
-<form action="newPass.do" method="post">
+<form name="newPass" action="newPass.do" method="post">
  <div class="input_area">
  	<h2>비밀번호 수정 페이지</h2>
  	<div>

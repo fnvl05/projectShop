@@ -36,8 +36,8 @@
 	</div>
 	<br /><br />
 <section id="content">
+<div class="typeWrite">
 <form action="info.do">
-	<div class="typeWrite">
 		<h2 class="title">개인 정보 페이지</h2>
 		<br />
 		<table id="signup">
@@ -83,13 +83,16 @@
 				<td>${dto.regiDate}</td>
 			</tr>
 			</tbody>
-		</table>
-		<a href="${pageContext.request.contextPath}/home.do">홈으로</a>
-		<p><a href="updateform.do">개인 정보 수정하기</a></p>
-		
+		</table>		
 		<%-- <p><a href="${pageContext.request.contextPath}/Users/updateform.do">개인 정보 수정하기</a></p> --%>
-	</div>
-</form>
+	</form>
+	<br />
+<div class="sbtn">
+	<button class="signbtn" onclick="location.href='../index.do'">홈으로</button>
+	<button class="signbtn" onclick="location.href='updateform.do'">수정하기</button>
+</div>
+</div>
+
 </section>
 </body>
 </html>

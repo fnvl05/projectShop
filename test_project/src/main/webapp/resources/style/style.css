@@ -694,5 +694,27 @@ padding:0 17px;
 	margin-right: 10px;
 }
 
+/* 상품 디테일 */
+#container_box .detail{
+	height: 500px;
+	margin-left: 80px;
+	margin-right: 80px;
+}
 
+#container_box .detail .itemImg{
+	float: left;
+	margin-right: 90px;
+}
+
+#container_box .detail .itemImg>img{
+	width: 470px;
+	height: 490px;
+}
+
+#container_box .detail .itemInfo{
+	position: relative;
+    float: left;
+    
+}
 /*----------------------------윤주-----------------------------*/
+

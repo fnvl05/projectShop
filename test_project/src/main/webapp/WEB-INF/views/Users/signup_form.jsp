@@ -39,6 +39,7 @@
 <div class="typeWrite">
 <h2 class="title">회원가입</h2>
  <form action="signup.do" method="post">
+ 
  <table id="signup" border="1" summary>
     <img src="${pageContext.request.contextPath }/resources/images/join_sub_title.png"/>
     <tbody id="signbody">
@@ -107,7 +108,7 @@
     		
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
-           
+           	<span id="guide" style="color:#999;display:none"></span>
     		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
             <label for="userAddr3">상세 주소</label>
@@ -123,7 +124,7 @@
 </table>    
 <br /><br />
 <div class="sbtn">
-	<button type="reset" class="signbtn">취소</button>
+	<button type="reset" class="signbtn" onclick="location.href='../index.do'">취소</button>
 	<button type="submit" id="login_button" class="signbtn" name="signup_btn">회원가입</button>
 </div>
 
