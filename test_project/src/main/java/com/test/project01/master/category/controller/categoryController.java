@@ -194,14 +194,7 @@ public class categoryController{
 		mView.setViewName("master/no_master");
 		return mView;	
 	}
-	
-	@RequestMapping("/master/usersList")
-	public ModelAndView userList(ModelAndView mView) {
-		service.TotalList(mView);
-		mView.setViewName("master/usersList");
-		return mView;	
-	}
-	
+		
 	@ResponseBody
 	@RequestMapping(value="/master/resultUpDate", method=RequestMethod.POST)
 	public Map<String, Object> resultData(@RequestParam(value="resultArray[]")List<String> item) {
@@ -212,6 +205,13 @@ public class categoryController{
 		Map<String,Object> map=new HashMap<>();
 		map.put("isSuccess", true);
 		return map;
+	}
+	
+	@RequestMapping("/master/usersList")
+	public ModelAndView OrderAllList(ModelAndView mView) {
+		service.OrderList(mView);
+		mView.setViewName("master/usersList");
+		return mView;	
 	}
 	
 	@RequestMapping("/master/userVerify")

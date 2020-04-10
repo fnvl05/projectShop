@@ -11,8 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.test.project01.master.category.Dao.categoryDao;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
-import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
-import com.test.project01.master.category.Dto.User_Orders_Dto;
+import com.test.project01.master.category.Dto.Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
 import com.test.project01.users.Dto.UsersDto;
@@ -65,18 +64,15 @@ public class categoryServicelmpl implements categoryService {
 		dao.ItemDelete(itemNum);
 	}
 
-
 	@Override
 	public void upResult(OrderDetailDto detailDto) {
 		dao.upResult(detailDto);
 	}
 	
 	@Override
-	public void TotalList(ModelAndView mView) {
-		List<User_Orders_Dto> userDto = dao.userList();
-		List<Item_OrderDetail_Dto> itemDto = dao.item_orderList();
-		mView.addObject("userList", JSONArray.fromObject(userDto));	
-		mView.addObject("itemList", JSONArray.fromObject(itemDto));
+	public void OrderList(ModelAndView mView) {
+		List<Orders_Dto> orderDto = dao.orderList();
+		mView.addObject("orderList", JSONArray.fromObject(orderDto));	
 	}
 
 	@Override

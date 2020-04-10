@@ -32,8 +32,6 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
- 
-			 <!-- 
 				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1000px; height: 600px; margin: auto;">
 				    <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -101,7 +99,6 @@
 						</div>
 					  </div>
 					</div>
-					-->
 				 </div>
 		</section>
 		<footer id="footer">

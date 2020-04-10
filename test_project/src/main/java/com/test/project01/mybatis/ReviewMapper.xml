@@ -17,9 +17,6 @@
 					where board_review.itemNum=tbl_items.itemNum
 					order by reviewNum desc) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
-		
-		
-
 	</select>
 	<select id="getCount2" resultType="int"
 		parameterType="reviewJoinDto">
@@ -38,9 +35,6 @@
 					where board_review.itemNum=tbl_items.itemNum and board_review.itemNum=#{itemNum}
 					order by reviewNum desc) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
-		
-		
-
 	</select>
 	<insert id="insert" parameterType="reviewDto">
 		insert into board_review

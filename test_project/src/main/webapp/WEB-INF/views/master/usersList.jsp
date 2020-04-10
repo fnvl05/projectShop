@@ -34,28 +34,43 @@
 						 <thead>
 							 <tr>
 							   <th>아이디</th>
-							   <th>상품이름</th>
+							   <th>이름</th>
+							   <th>주소</th>
+							   <th>전화번호1</th>
+							   <th>전화번호2</th>
+							   <th>주소1</th>
+							   <th>주소2</th>
+							   <th>주소3</th>
+							   <th>주문날짜</th>
+							   <th>상품명</th>
 							   <th></th>
 							 </tr>
 						 </thead>
 						 <tbody>
-						  <c:forEach items="${userList}" var="userList" varStatus="i">
+						  <c:forEach items="${orderList}" var="orderList">
 							  <tr>
-								   <td>${userList.userId }</td>
-								   <c:forEach items="${itemList}" var="itemList" varStatus="j">
-								   <c:if test="${userList.orderNum eq itemList.orderNum }">
-									   		<td><input type="hidden" name="odNum" value="${itemList.odNum} "/>${itemList.itemName }<br/>
-										    <select class="itemResult" name="itemResult" id="${itemList.odNum}">	
-										    	<option value="처리" <c:if test="${itemList.result eq '처리'}">selected</c:if>>처리</option>
-										    	<option value="미처리"<c:if test="${itemList.result eq '미처리'}">selected</c:if>>미처리</option>					
-									   		</select>					     
-									   </td>
-								   </c:if>
-								   </c:forEach>
+								   <td>${orderList.userId }</td>
+								   <td>${orderList.orderRec }</td>
+								   <td>${orderList.orderPhone1 }</td>
+								   <td>${orderList.orderPhone2 }</td>
+								   <td>${orderList.userAddr1 }</td>
+								   <td>${orderList.userAddr2 }</td>
+								   <td>${orderList.userAddr3 }</td>
+								   <td>${orderList.orderDate }</td>
+								   <td>${orderList.itemName }</td>
+							   		<td>
+								    <select class="itemResult" name="itemResult" id="${orderList.delivery}">	
+								    	<option value="배송준비" <c:if test="${orderList.result eq '배송준비'}">selected</c:if>>배송준비</option>
+								    	<option value="배송중"<c:if test="${orderList.result eq '배송중'}">selected</c:if>>배송중</option>					
+								    	<option value="배송완료"<c:if test="${orderList.result eq '배송완료'}">selected</c:if>>배송완료</option>					
+							   		</select>					     
+							   		</td>
+							
 							  </tr>   
 						  </c:forEach>
 						 </tbody>
 					</table>
+					<!--
 					<script type="text/javascript">	
 						$("select").on("change",function(){
 								var resultArray = [];
@@ -77,6 +92,7 @@
 								});
 							});
 					</script>
+					-->
 				</div>
 			</div>
 		</section>
