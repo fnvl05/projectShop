@@ -1,7 +1,5 @@
 package com.test.project01.master.category.Dto;
 
-import java.sql.Date;
-
 public class Orders_Dto {
 	private int orderNum;
 	private String userId;
@@ -11,12 +9,17 @@ public class Orders_Dto {
 	private String userAddr1;
 	private String userAddr2;
 	private String userAddr3;
-	private Date orderDate;
+	private String orderDate;
 	private String delivery;
 	private String itemName;
 	private String itemImg;
 	
-
+	private int startRowNum;
+	private int endRowNum;
+	private int prevNum;
+	private int nextNum;
+	private int listCount;
+	
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -65,10 +68,10 @@ public class Orders_Dto {
 	public void setUserAddr3(String userAddr3) {
 		this.userAddr3 = userAddr3;
 	}
-	public Date getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(Date orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getDelivery() {
@@ -88,6 +91,38 @@ public class Orders_Dto {
 	}
 	public void setItemImg(String itemImg) {
 		this.itemImg = itemImg;
+	}
+	
+	
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+	public int getPrevNum() {
+		return prevNum;
+	}
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+	public int getNextNum() {
+		return nextNum;
+	}
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
 	}
 	
 	

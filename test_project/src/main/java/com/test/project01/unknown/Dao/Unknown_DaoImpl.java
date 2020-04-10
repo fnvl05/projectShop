@@ -17,9 +17,16 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 	private SqlSession session;
 	
 	@Override
-	public List<Unknown_itemDto> itemList() {
-		List<Unknown_itemDto> dto = session.selectList("unknown.itemSelect");
-		return dto;
+	public List<Unknown_itemDto> itemList(Unknown_itemDto dto) {
+		List<Unknown_itemDto> list = session.selectList("unknown.itemSelect" , dto);
+		return list;
+	}
+	
+	@Override
+	public int itemListCount() {
+		List<Unknown_itemDto> list = session.selectList("unknown.itemSelect_Count");
+		int count = list.size();
+		return count;
 	}
 
 	@Override
@@ -36,9 +43,24 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 	}
 	
 	@Override
+	public int cateList1_Count(int cateCode, int cateCodeRef) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("cateCode", cateCode);
+		map.put("cateCodeRef", cateCodeRef);	
+		List<Unknown_itemDto> list = session.selectList("unknown.cateList1_Count" , map);
+		return list.size();
+	}
+
+	@Override
 	public List<Unknown_itemDto> cateList2(int cateCode) {
 		List<Unknown_itemDto> dto = session.selectList("unknown.cateList2", cateCode);
 		return dto;
+	}
+
+	@Override
+	public int cateList2_Count(int cateCode) {	
+		List<Unknown_itemDto> list = session.selectList("unknown.cateList1_Count" , cateCode);
+		return list.size();
 	}
 
 	
@@ -53,5 +75,9 @@ public class Unknown_DaoImpl implements Unknown_Dao{
 		List<ItemDto> dto = session.selectList("category.newItemLsit");
 		return dto;
 	}
+
+
+
+
 	
 }

@@ -11,6 +11,7 @@ import com.test.project01.master.category.Dto.ItemViewDto;
 import com.test.project01.master.category.Dto.Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.order.dto.OrdersDto;
 import com.test.project01.users.Dto.UsersDto;
 
 
@@ -32,11 +33,17 @@ public class categoryDaolmpl implements categoryDao{
 	}
 
 	@Override
-	public List<ItemDto> itemList() {
-		List<ItemDto> list = session.selectList("category.itemSelect");
+	public List<ItemDto> itemList(ItemDto dto) {
+		List<ItemDto> list = session.selectList("category.itemSelect", dto);
 		return list;
 	}
-
+	@Override
+	public int getItemListCount() {
+		List<ItemDto> list = session.selectList("category.itemSelect_Count");
+		int count = list.size();
+		return count;
+	}
+	
 	@Override
 	public ItemDto itemViewData(int itemNum) {
 		return session.selectOne("category.itemViewContent", itemNum);
@@ -64,26 +71,36 @@ public class categoryDaolmpl implements categoryDao{
 	}
 
 	@Override
-	public List<Orders_Dto> orderList() {
-		List<Orders_Dto> orderList = session.selectList("category.select_orderList");
-		return orderList;
-	}
-	
-	@Override
-	public void upResult(OrderDetailDto detailDto) {
-		session.update("category.resultItem", detailDto);
+	public void upResult(OrdersDto Dto) {
+		session.update("category.resultItem", Dto);
 	}
 
 	@Override
-	public List<UsersDto> userAllList() {
-		List<UsersDto> dto = session.selectList("category.userAllList");
-		return dto;
+	public List<UsersDto> userAllList(UsersDto dto) {
+		List<UsersDto> usersList = session.selectList("category.userAllList", dto);
+		return usersList;
+	}
+	public int getUserAllCount() {
+		List<UsersDto> dto = session.selectList("category.userAllList_Count");
+		int count = dto.size();
+		return count;
 	}
 
 	@Override
 	public void userVerify(UsersDto userDto) {
 		session.update("category.userVerify", userDto);
 	}
-
 	
+	@Override
+	public List<Orders_Dto> orderList(Orders_Dto dto) {
+		List<Orders_Dto> orderList = session.selectList("category.select_orderList" , dto);
+		return orderList;
+	}
+
+	@Override
+	public int getOrderListCount() {
+		List<Orders_Dto> dto = session.selectList("category.select_orderList_Count");
+		int count = dto.size();
+		return count;
+	}	
 }

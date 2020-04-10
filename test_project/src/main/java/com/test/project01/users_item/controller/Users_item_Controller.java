@@ -12,14 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.qna.service.QnaService;
 import com.test.project01.review.service.ReviewService;
-import com.test.project01.unknown.Dto.Unknown_itemDto;
-import com.test.project01.unknown.service.Unknown_service;
+import com.test.project01.users_item.Dto.Users_item_Dto;
+import com.test.project01.users_item.service.Users_item_service;
 
 @Controller
 public class Users_item_Controller {
 	
 	@Autowired
-	Unknown_service serviec;
+	Users_item_service serviec;
 	@Autowired
 	ReviewService reviewService;
 	@Autowired
@@ -43,7 +43,7 @@ public class Users_item_Controller {
 	@RequestMapping("/Users_Item/itemList")
 	public ModelAndView Users_getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView,
 			HttpServletRequest request) {
-		List<Unknown_itemDto> cateList = null;
+		List<Users_item_Dto> cateList = null;
 		cateList = serviec.cateList(cateCode, cateLevel);
 		mView.addObject("cateList", cateList);
 		mView.setViewName("Users_Item/itemList");

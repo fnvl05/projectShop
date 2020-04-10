@@ -37,7 +37,7 @@
 	<div id="container_box">
 		<h2 class="title">상품 목록</h2>
 		<div class="row" style="width:1100px; height: 1500px; margin: auto;">
-		  <c:forEach items="${cateList}" var="cateList">
+		  <c:forEach items="${list}" var="cateList">
 		   	<div class="col-xs-6 col-md-3">
 		   		<div class="thumbnail">
 		   		<a href="itemView_form.do?itemNum=${cateList.itemNum}&pageNum=1&reviewNum=1">
@@ -49,8 +49,52 @@
 		   	</div>
 		  </c:forEach>		
 		</div>
+	 <div class="page-display">
+				<ul class="pagination">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<li>
+							<a href="itemAllList.do?pageNum=${startPageNum-1 }">
+								&laquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&laquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${startPageNum }" 
+					end="${endPageNum }" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li class="active"><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<li>
+							<a href="itemAllList.do?pageNum=${endPageNum+1 }">
+								&raquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&raquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				</ul>		
+			</div>
 	 </div>
-</section>ㄴ
+</section>
 <footer id="footer">
 	<div id="footer_box">
 		<%@ include file="../include/footer.jsp" %>
