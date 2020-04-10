@@ -212,9 +212,7 @@
 							<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
 							<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
 							<input type="hidden" name="target_id" value="${dto.reviewWriter}" />
-							<textarea name="content">
-								<c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if>
-							</textarea>
+							<textarea name="content"><c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if></textarea>
 							<button type="submit">등록</button>
 						</form>
 					</div>
