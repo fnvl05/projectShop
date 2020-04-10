@@ -135,7 +135,13 @@
 							location.href ="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
 						});
 						$("#delete").click(function() {
-							location.href ="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+							var result = confirm("해당 리뷰를 삭제하시겠습니까?");
+							if(result){
+								location.href ="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+							}else{
+							    return false;
+							}
+							
 						});
 					</script>
 				</c:if>

@@ -90,7 +90,7 @@ public class ReviewController {
 	@RequestMapping("/review/delete")
 	public ModelAndView Users_Delete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.delete(request, reviewNum);
-		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
+		return new ModelAndView("redirect:list.do?itemNum="+itemNum);
 	}
 	//댓글 삭제
 	@ResponseBody
