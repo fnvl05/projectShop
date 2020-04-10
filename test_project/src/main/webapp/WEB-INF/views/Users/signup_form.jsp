@@ -97,7 +97,7 @@
     <tr>
     	<th class="row"> <label for="userPhone">연락처</label></th>
     	<td>
-    		<input type="text" id="login_input" name="userPhone" onKeyup="inputPhoneNumber(this);" placeholder="연락처를 입력해주세요" required="required" />
+    		<input type="text" id="login_input" name="userPhone" onKeyup="inputPhoneNumber(this);" placeholder="연락처를 입력해주세요" required="required" maxlength="13"/>
     		<script>
 	               function inputPhoneNumber(obj) {
 	                   var number = obj.value.replace(/[^0-9]/g, "");
