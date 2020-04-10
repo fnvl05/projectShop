@@ -70,38 +70,77 @@
 				    </a>
 				  </div>  
 				  <div id="listBox" style="margin-top:100px;">
-					  <div id="bestItemBox">
-					  <h4>인기상품 목록</h4>
-						<div class="row">
-						  <c:forEach items="${bestItemList}" var="list">
-								   	<div class="col-xs-6 col-md-3">
-								   		<div class="thumbnail">
-								   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}">
-										   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
-								   		</a>
-									   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
-									   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
-								   		</div>
-								   	</div>
-						  </c:forEach>		
-						</div>
-					  </div>
-					  <div id="newItemBox">
-					  <h4>최신상품 목록</h4>
-						<div class="row">
-						  <c:forEach items="${newItemList}" var="list">
-								   	<div class="col-xs-6 col-md-3">
-								   		<div class="thumbnail">
-								   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}">
-										   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
-								   		</a>
-									   		<p style="padding:10px;  text-align: center;">${list.itemName}</p>
-									   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
-								   		</div>
-								   	</div>
-						  </c:forEach>		
-						</div>
-					  </div>
+					  <c:choose>
+					  	<c:when test="${not empty sessionScope.id }">
+					  		<div id="bestItemBox">
+					  		<h4>인기상품 목록</h4>
+							<div class="row">
+							  <c:forEach items="${bestItemList}" var="list">
+									   	<div class="col-xs-6 col-md-3">
+									   		<div class="thumbnail">
+									   		<a href="Users_Item/itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">
+											   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
+									   		</a>
+										   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
+										   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
+									   		</div>
+									   	</div>
+							  </c:forEach>		
+							</div>
+					 		</div>
+					 		<div id="newItemBox">
+							  <h4>최신상품 목록</h4>
+								<div class="row">
+								  <c:forEach items="${newItemList}" var="list">
+										   	<div class="col-xs-6 col-md-3">
+										   		<div class="thumbnail">
+										   		<a href="Users_Item/itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">
+												   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
+										   		</a>
+											   		<p style="padding:10px;  text-align: center;">${list.itemName}</p>
+											   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
+										   		</div>
+										   	</div>
+								  </c:forEach>		
+								</div>
+							  </div>
+					  	</c:when>
+					  	<c:otherwise>
+					  		<div id="bestItemBox">
+					  		<h4>인기상품 목록</h4>
+							<div class="row">
+							  <c:forEach items="${bestItemList}" var="list">
+									   	<div class="col-xs-6 col-md-3">
+									   		<div class="thumbnail">
+									   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">
+											   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
+									   		</a>
+										   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
+										   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
+									   		</div>
+									   	</div>
+							  </c:forEach>		
+							</div>
+					 		</div>
+					 		<div id="newItemBox">
+							  <h4>최신상품 목록</h4>
+								<div class="row">
+								  <c:forEach items="${newItemList}" var="list">
+										   	<div class="col-xs-6 col-md-3">
+										   		<div class="thumbnail">
+										   		<a href="Unknown/itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">
+												   <img id="indexItemImg" alt="이미지" src="resources${list.itemImg}" class="thumbImg"/>
+										   		</a>
+											   		<p style="padding:10px;  text-align: center;">${list.itemName}</p>
+											   		<p style="padding:10px;  text-align: center;">${list.itemPrice }원</p>
+										   		</div>
+										   	</div>
+								  </c:forEach>		
+								</div>
+							  </div>
+					  	</c:otherwise>
+					  </c:choose>	
+					  
 					</div>
 				 </div>
 
