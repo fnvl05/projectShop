@@ -181,22 +181,17 @@
 												<pre>${tmp.content }</pre>
 											</dd>
 										</dl>
-										<form class="comment-insert-form" action="comment_insert.do"
-											method="post">
+										<form class="comment-insert-form" action="comment_insert.do" method="post">
 											<!-- 덧글 그룹 -->
-											<input type="hidden" name="ref_group"
-												value="${dto.reviewNum }" />
+											<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
 											<!-- 덧글 대상 -->
 											<input type="hidden" name="target_id" value="${tmp.writer }" />
-											<input type="hidden" name="comment_group"
-												value="${tmp.comment_group }" />
-											<textarea name="content"><c:if
-													test="${empty userDto.userId }">로그인이 필요합니다.</c:if></textarea>
+											<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
+											<textarea name="content"><c:if test="${empty userDto.userId }">로그인이 필요합니다.</c:if></textarea>
 											<button type="submit">등록</button>
-										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
-											test="${userDto.userId eq tmp.writer }">
-											<form class="comment-update-form" action="comment_update.do"
-												method="post">
+										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> 
+										<c:if test="${userDto.userId eq tmp.writer }">
+											<form class="comment-update-form" action="comment_update.do" method="post">
 												<input type="hidden" name="num" value="${tmp.num }" />
 												<textarea name="content">${tmp.content }</textarea>
 												<button type="submit">수정</button>
@@ -204,11 +199,6 @@
 										</c:if>
 									</li>
 								</c:when>
-								<c:otherwise>
-									<li
-										<c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>삭제된
-										댓글 입니다.</li>
-								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 					</ul>
@@ -289,7 +279,7 @@
 				success:function(responseData){
 					if(responseData.isSuccess){
 						var sel="#comment"+num;  
-						$(sel).text("삭제된 댓글 입니다.");   //아이디가 comment${tmp.num}인 것을 삭제한다.
+						$(sel).hide();   //아이디가 comment${tmp.num}인 것을 삭제한다.
 					}
 				}
 			});

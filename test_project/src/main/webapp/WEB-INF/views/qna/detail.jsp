@@ -231,7 +231,7 @@
 				success:function(responseData){
 					if(responseData.isSuccess){
 						var sel="#comment"+num;
-						$(sel).text("");
+						$(sel).hide();
 					}
 				}
 			});
