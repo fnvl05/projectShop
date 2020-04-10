@@ -28,9 +28,9 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
-				<h2>유저 관리</h2>
+				<h2 class="title">유저 관리</h2>
 				<div id="container_box">
-					<table>
+					<table class="table table-hover" style="width: 1200px; margin-left: auto; margin-right: auto;">
 						 <thead>
 							 <tr>
 							   <th>아이디</th>

@@ -39,9 +39,9 @@
 		<div id="container_box">
 		<div class="detail">
 			<form role="form" enctype="multipart/form-data">
-				<input type="hidden" name="itemNum" value="${dto.itemNum }" /> <input
-					type="hidden" name="itemPrice" value="${dto.itemPrice }" /> <input
-					type="hidden" name="userId" value="${sessionScope.userDto.userId}" />
+				<input type="hidden" name="itemNum" value="${dto.itemNum }" />
+				<input type="hidden" name="itemPrice" value="${dto.itemPrice }" /> 
+				<input type="hidden" name="userId" value="${sessionScope.userDto.userId}" />
 					<div class="itemImg">
 						<img alt="이미지" src="../resources${dto.itemImg}" />
 					</div>
@@ -100,7 +100,7 @@
 							$("#back_btn").click(function () {
 								location.href="../index.do";
 							})
-						</script>   -->
+						</script>   
 						</div>
 					</div>
 					<script>

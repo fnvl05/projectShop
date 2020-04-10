@@ -8,81 +8,72 @@
 <title>/master/itemView_form.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 <style>
- #underline {
-	text-decoration: underline;
-	text-underline-position: under;
-	text-decoration-style: solid;
-	text-decoration-color: darkred;
-}
+
 </style>
 </head>
 <body>
-	<div id="root">
-		<header>
-			<div class="header_box">
-				<nav id="nav">
-					<div class="navbar-right">
-						<%@ include file="../include/nav.jsp"%>
-					</div>
-					<div id="index_logo_div">
-						<a href="../index.do"><img id="index_logo_img"
-							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
-					</div>
-					<div class="navbar-left">
-						<%@ include file="../include/master_aside.jsp"%>
-					</div>
-				</nav>
-			</div>
-		</header>
-	</div>
+<div id="root">
+	<header>
+		<div class="header_box">
+			<nav id="nav">
+				<div class="navbar-right">
+					<%@ include file="../include/nav.jsp"%>
+				</div>
+				<div id="index_logo_div">
+					<a href="../index.do"><img id="index_logo_img"
+						src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+				</div>
+				<div class="navbar-left">
+					<%@ include file="../include/master_aside.jsp"%>
+				</div>
+			</nav>
+		</div>
+	</header>
+</div>
 		<section id="container">
 		<div id="container_box">
+		<div class="detail">
 			<form role="form" autocomplete="off" enctype="multipart/form-data">
 				<input type="hidden" name="itemNum" value="${dto.itemNum }" />
-				<div class="inputArea">
-					<img alt="이미지" src="../resources${dto.itemImg}" class="oriImg" />
+				<input type="hidden" name="itemPrice" value="${dto.itemPrice }" /> 
+				<input type="hidden" name="userId" value="${sessionScope.userDto.userId}" />
+					<div class="itemImg">
+						<img alt="이미지" src="../resources${dto.itemImg}" />
+					</div>
+				<div class="itemInfo">
+					<h2 class="prd_title">${dto.itemName }</h2>
+					<br />
+				<div class="inputArea">				
+					<p>
+					<span class="dd">판매가 </span>
+					<span class="num"><fmt:formatNumber pattern="###,###,###" value="${dto.itemPrice}" /> 원</span>
+					</p>
+					<p>
+					<span class="dd">상품수량</span>
+					<span class="num1"><fmt:formatNumber value="${dto.itemCount }" pattern="###,###,###"/>개</span>
+					</p>
 				</div>
 				<div class="inputArea">
 					<!-- <label>1차 분류</label> <span class="category1"></span>  -->
 					<!-- 아이템 목록이 바뀐다면 바꾸기 -->
-					<label>상품 분류</label> 
-					<span class="category2">
+					<span class="dd">상품 분류</span> 
+					<span class="num2">
 						<c:choose>
-					   		<c:when test="${dto.cateCode eq 101}">악세사리-반지</c:when>
-					   		<c:when test="${dto.cateCode eq 102}">악세사리-귀걸이</c:when>
-					   		<c:when test="${dto.cateCode eq 103}">악세사리-목걸이</c:when>
+					   		<c:when test="${dto.cateCode eq 101}">악세사리 - 반지</c:when>
+					   		<c:when test="${dto.cateCode eq 102}">악세사리 - 귀걸이</c:when>
+					   		<c:when test="${dto.cateCode eq 103}">악세사리 - 목걸이</c:when>
 					   		<c:when test="${dto.cateCode eq 200}">여성의류</c:when>
 					   		<c:when test="${dto.cateCode eq 300}">남성의류</c:when>
 					   		<c:otherwise>카테코드를 지정해주세요</c:otherwise>
 					   	</c:choose>
 					</span>
 				</div>
-				<div class="inputArea">
-					<label for="itmeName">상품명</label> <span>${dto.itemName }</span>
-				</div>
-				<div class="inputArea">
-					<label for="itmePrice">상품가격</label> 
-					<span><fmt:formatNumber value="${dto.itemPrice }" pattern="###,###,###"/> 원</span>
-				</div>
-				<div class="inputArea">
-					<label for="itemCount">상품수량</label> 
-					<span><fmt:formatNumber value="${dto.itemCount }" pattern="###,###,###"/>개</span>
-				</div>
 				
 				<div class="inputArea">
-					<button type="button" id="modify_btn" class="btn btn-warning">수정</button>
-					<button type="button" id="delete_btn" class="btn btn-danger">삭제</button>
+				<div class="addCarts">
+					<button type="button" id="modify_btn" class="itembtn">수정</button>
+					<button type="button" id="delete_btn" class="itembtn">삭제</button>
 				</div>
-				<br/><br/>
-				<div align="center" id="underline">
-					<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> 
-					<span><a href="#qna">Q&A</a>&nbsp;&nbsp;&nbsp;</span> 
-					<span><a href="#review">Review</a>&nbsp;</span>
-				</div>
-				<br /> <br />
-				
-				<div class="inputArea">
-					<span>${dto.itemDes }</span>
 				</div>
 				<script>
 					var formObj = $("form[role='form']");
@@ -100,10 +91,20 @@
 						}
 					});
 				</script>
+				</div>
 			</form>
+			</div>
 			<br/>
 			<br/>
-
+			<br/><br/>
+				<div align="center" id="underline">
+					<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> 
+					<span><a href="#qna">Q&A</a>&nbsp;&nbsp;&nbsp;</span> 
+					<span><a href="#review">Review</a>&nbsp;</span>
+				</div>
+				<br /> <br />
+				<div class="itemDes" id="detail">${dto.itemDes }</div>
+				<br /><br /><br />
 			<!-- 해당아이템의  Q&A -->
 			<div class="container" id="qna">
 				<p style="text-align: center;" id="underline">
@@ -160,10 +161,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div align="right">
-					<a class="btn btn-info"
-						href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
-				</div>
 				<div class="page-display">
 					<ul class="pagination pagination-sm">
 						<c:choose>
@@ -322,13 +319,11 @@
 				</div>
 			</div>
 			</div>
-			
 		</section>
 		<footer id="footer">
 			<div id="footer_box">
 				<%@ include file="../include/footer.jsp"%>
 			</div>
 		</footer>
-	</div>
 </body>
 </html>

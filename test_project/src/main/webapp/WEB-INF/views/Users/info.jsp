@@ -69,17 +69,11 @@
 				<td>${dto.email}</td>
 			</tr>
 			<tr>
-				<th class="row">첫번째 주소</th>
-				<td>${dto.userAddr1}</td>
+				<th class="row">주소</th>
+				<td>${dto.userAddr1}<br />
+				${dto.userAddr2}, ${dto.userAddr3}</td>
 			</tr>
-			<tr>
-				<th class="row">두번째 주소</th>
-				<td>${dto.userAddr2}</td>
-			</tr>
-			<tr>
-				<th class="row">세번째 주소</th>
-				<td>${dto.userAddr3}</td>
-			</tr>
+			
 			<tr>
 				<th class="row">생년월일</th>
 				<td>${dto.birthday}</td>

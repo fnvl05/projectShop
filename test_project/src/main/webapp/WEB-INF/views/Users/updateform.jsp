@@ -81,12 +81,7 @@
 	    		<br />
 	            <input type="text" name="userAddr3" id="userAddr3" value="${dto.userAddr3}"/>
 	            <label for="userAddr3">상세 주소</label>
-	    	</td>
-	    </tr>
-	    <tr>
-	    	<th class="row"><label for="birthday">생년월일</label></th>
-	    	<td>
-	  			<input type="date" id="login_input" name="birthday" required="required"/>
+	            <br /><br />
 	    	</td>
 	    </tr>
 	</tbody>
