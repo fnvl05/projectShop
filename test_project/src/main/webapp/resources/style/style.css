@@ -668,7 +668,7 @@ padding:0 17px;
 	border-top:0px solid #e8e8e8;
 }
 
-#userAddr1{
+#userAddrA{
 	width:114px;
 	margin-bottom: 2px;
 }
@@ -862,7 +862,170 @@ h4{
 	text-align: center;
 }
 
+.input_area{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#upPass_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:65px;
+}
+
+#searchId_btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:220px;
+}
+
+/* 아이디 찾기 , 비밀번호 찾기 */
+#find{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 150px;
+}
+
+#findbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#findbody th {
+    width: 80px;
+    padding: 20px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#findbody input {
+    width: 150px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#findpwd{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 70px;
+}
+
+#findpwdbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#findpwdbody th {
+    width: 130px;
+    padding: 10px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#findpwdbody input {
+    width: 220px;
+    height: 30px;
+    line-height: 18px;
+}
+
+#update_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 10px;
+    margin-left:200px;
+}
+
+/* 비밀번호 수정 페이지 */
+#searchupPass_Btn{
+	background: #fff;
+    color: #333;
+    border: 1px solid #aaa;
+    padding: 14px 0;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 130px;
+    height: 60px;
+    margin-top: 30px;
+    margin-left:165px;
+}
+#change{
+	width: 400px;
+    border: 0;
+    display: table;
+    margin-left: 70px;
+}
+
+#changebody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#changebody tr{
+	margin-top:10px;
+}
+
+#changebody th {
+    width: 130px;
+    padding: 10px 0 17px 10px;
+    background-color: #fff;
+    text-align: left;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 13px;
+    color: #333; 
+}
+
+#changebody input {
+    width: 220px;
+    height: 30px;
+    line-height: 18px;
+}
 /*----------------------------윤주-----------------------------*/
 
 #underline {

@@ -44,7 +44,7 @@
 			
 				    <div class="carousel-inner" style="width:1100px; height: 700px;">
 				      <div class="item active">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/-4-2 (1).jpg" alt="Los Angeles" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/KakaoTalk_20200410_175841743.png" alt="Los Angeles" style="width:100%; height: 100%;">
 				      </div>
 				
 				      <div class="item">
@@ -56,7 +56,7 @@
 				      </div>
 				      
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/c488eeea-dcd2-4cd6-b39e-cfd7bba679b2_jiayue-wu-fe3h-byleth2-small.jpg" alt="New york" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/KakaoTalk_20200410_180123960.gif" alt="New york" style="width:100%; height: 100%;">
 				      </div>
 				    </div>
 				    

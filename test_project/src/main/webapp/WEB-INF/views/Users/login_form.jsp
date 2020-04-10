@@ -55,13 +55,23 @@
   <button type="submit" id="signup_btn" name="signup_btn">로그인</button>
 <div class="item">
 <ul class="ot_link">
-	<li><a href="searchIdForm.do">
+	<li><a onclick="searchId();">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6601.png" alt=""></div>아이디찾기</a></li>
-	<li><a href="searchPassForm.do">
+	<li><a onclick="searchPwd();">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6602.png" alt=""></div>비밀번호찾기</a></li>
 	<li><a href="signup_form.do">
 	<div class="icon"><img src="${pageContext.request.contextPath }/resources/images/ico_6603.png" alt=""></div>회원가입</a></li>
 </ul>
+<script>
+	function searchId(){
+		window.open("searchIdForm.do", "searchId",
+				"width=500,height=400,top=250,left=550,resizable=no");
+	}
+	function searchPwd(){
+		window.open("searchPassForm.do", "searchPwd",
+				"width=500,height=400,top=250,left=550,resizable=no");
+	}
+</script>
 </div>
   
  </form>  
