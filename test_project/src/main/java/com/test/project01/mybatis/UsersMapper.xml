@@ -67,6 +67,8 @@
 	</select>
 
 	<update id="changeNewPassData" parameterType="UsersDto">
-		update tbl_member set userPass=#{newPass} where userId=#{userId} and userName=#{userName}
+		update tbl_member 
+		set userPass=#{userPass} 
+		where userId=#{userId} 
 	</update>
 </mapper>

@@ -19,7 +19,7 @@ public interface UsersService {
 	public void deleteUser(String id);
 	public boolean findUsersId(UsersDto dto, HttpServletRequest request);
 	public boolean newUpdatePass(UsersDto dto, HttpServletRequest request);
-	public void changeNewPassData(UsersDto dto);
+	public void changeNewPassData(UsersDto dto,HttpServletRequest request);
 	public void updatePass(UsersDto dto, ModelAndView mView);
 	public void userUpdate(UsersDto dto);
 }

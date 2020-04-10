@@ -108,7 +108,7 @@ public class UsersServiceImpl implements UsersService {
 	}
 	
 
-	// 새로 비밀번호 바꾸기 (로그인x)
+
 	@Override
 	public boolean newUpdatePass(UsersDto dto, HttpServletRequest request) {
 		
@@ -122,10 +122,23 @@ public class UsersServiceImpl implements UsersService {
 			return false;
 		}		
 	}
+	// 새로 비밀번호 바꾸기 (로그인x)
 	@Override
-	public void changeNewPassData(UsersDto dto) {
-		String encodedPwd = new BCryptPasswordEncoder().encode(dto.getNewPass());
-		dto.setNewPass(encodedPwd);
+	public void changeNewPassData(UsersDto dto,HttpServletRequest request) {
+		//혜원수정
+		//해당 아이디,이름을 불러오기
+		String userId=request.getParameter("userId");
+	
+		String newPass=request.getParameter("newPass");
+	
+		String userPass = new BCryptPasswordEncoder().encode(newPass);
+		System.out.println(userId);
+
+		System.out.println(newPass);
+		System.out.println(userPass);
+		dto.setUserPass(userPass);
+		dto.setUserId(userId);
+
 		dao.changeNewPassData(dto);
 		
 	}

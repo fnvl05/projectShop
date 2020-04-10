@@ -9,9 +9,9 @@
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
- 	<h2>비밀번호 찾기</h2>
 <section id="content">
- <form action="searchPass.do" method="post">
+<h2>비밀번호 찾기</h2>
+ <form action="searchnewPass.do" method="post">
  	<div class="input_area">
    		<label for="userId">ID</label>
    		<input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required="required" />      

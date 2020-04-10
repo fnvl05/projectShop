@@ -14,7 +14,7 @@
  <div class="input_area">
  	<h2>비밀번호 수정 페이지</h2>
  	<input type="hidden" name="userId" value="${dto.userId }"/>
- 	<input type="hidden" name="userName" value="${dto.userName }"/>
+
 	<div>
  		<label for="newuserPass1">신규 비밀번호</label>
  		<input type="password" name="newPass" id="newuserPass1"  />
@@ -53,6 +53,7 @@
 		//비밀번호 에러 여부 
 		var isError=!isPwdEqual || !isPwdInput;
 	});
+	
 	$("#searchupPass_Btn").on("click",function(){
 		var pwd=$("#newuserPass1").val();
 		var pwd2=$("#newuserPass2").val();

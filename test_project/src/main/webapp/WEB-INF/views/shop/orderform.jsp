@@ -165,12 +165,11 @@
                   <span>${sessionScope.userDto.userPhone }</span>
                   <input type="hidden" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } disabled />
                </div>   -->
-               <input type="hidden" name="userName" id="userName" value=${sessionScope.userDto.userName } />
-               <input type="hidden" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } />
-               <input type="hidden" name="addr1" id="addr1" value=${sessionScope.userDto.userAddr1 } />
-               <input type="hidden" name="addr2" id="addr2" value=${sessionScope.userDto.userAddr2 } />
-               <input type="hidden" name="addr3" id="addr3" value=${sessionScope.userDto.userAddr3 } />
-               
+               <input type="hidden" name="userName" id="userName" value=${userDto.userName } />
+               <input type="hidden" name="userPhone" id="userPhone" value=${userDto.userPhone } />
+               <input type="hidden" name="addr1" id="addr1" value=${userDto.userAddr1 } />
+               <input type="hidden" name="addr2" id="addr2"  value='${userAddr2 }'/>
+               <input type="hidden" name="addr3" id="addr3" value=${userDto.userAddr3 } />
                <script>
                   var rec=null;
                   var phone1=null;

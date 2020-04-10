@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -191,15 +192,15 @@ public class UsersController {
 			mView.setViewName("Users/searchnewPass");
 			return mView;
 		} else {
-			mView.setViewName("Users/searchIdForm");
+			mView.setViewName("Users/searchPassForm");
+			request.setAttribute("check", "false");
 			return mView;
 		}
 	}
 	// 비밀번호 찾기 질문이 전부 true일 때, 비밀번호 수정 ... 수정 후, 바로 로그인 창으로 고고!
 	@RequestMapping(value="/Users/changeNewPassData", method = RequestMethod.POST)
-	public ModelAndView searchnewPass(@ModelAttribute UsersDto dto) {
-		service.changeNewPassData(dto);
-		
+	public ModelAndView searchnewPass(@ModelAttribute UsersDto dto,HttpServletRequest request) {
+		service.changeNewPassData(dto,request);
 		return new ModelAndView("Users/login_form");
 	}
 }
