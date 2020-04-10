@@ -59,21 +59,15 @@
 						</p>
 					</div>
 					<button id="starBtn" type="submit" >등록</button>
-					<button type="reset">취소</button>
-					<!-- 뒤로가기 버튼 삭제  
-					<button type="button" id="back_btn">돌아가기</button>
-				
-					<script type="text/javascript">
-					$("#back_btn").click(function () {
-						history.back();
-						/*location.href="itemList_review.do?itemNum=" + ${itemNum};*/
-					})
-
-					</script>  -->
+					<button type="button" id="back_btn">취소</button>
+					<script>
+						$("#back_btn").click(function () {
+							history.back();
+						});
+					</script>  
 
 				</form>
 				<script>
-				
 					$("#starBtn").on("click",function(){
 						//제출 전 에디터 내용을 변수에 저장
 						var content=CKEDITOR.instances.reviewContent.getData();
@@ -120,6 +114,9 @@
 	    return false;
 	});
 </script>
-
+<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

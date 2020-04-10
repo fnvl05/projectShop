@@ -53,8 +53,8 @@
 					<c:forEach var="tmp" items="${qnalist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
-							<td><a href="../qna/detail.do?num=${tmp.num }">${tmp.title }</a></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
+							<td><a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">${tmp.title }</a></td>
 							<td>${tmp.viewCount }</td>
 							<td>
 								<fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>

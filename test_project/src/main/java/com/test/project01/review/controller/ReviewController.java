@@ -54,6 +54,9 @@ public class ReviewController {
 	@RequestMapping(value="/review/insert", method= RequestMethod.POST)
 	public ModelAndView Users_Insert(HttpServletRequest request,
 			ModelAndView mView,@ModelAttribute ("dto") ReviewDto dto,@RequestParam int itemNum) {
+		boolean isExist=service.isExist(request, itemNum);
+		request.setAttribute("isExist", isExist);
+		System.out.println(isExist);
 		service.insert(request, dto);
 		return new ModelAndView("redirect:list.do");
 //		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum) ;
@@ -87,7 +90,7 @@ public class ReviewController {
 	@RequestMapping("/review/delete")
 	public ModelAndView Users_Delete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.delete(request, reviewNum);
-		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
+		return new ModelAndView("redirect:list.do?itemNum="+itemNum);
 	}
 	//댓글 삭제
 	@ResponseBody

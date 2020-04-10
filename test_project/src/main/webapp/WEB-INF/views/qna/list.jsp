@@ -65,12 +65,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }">
+				<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 					<tr>
 						<td>${status.count }</td>
 						<%-- <td>${tmp.num }</td> --%>
 						<td>
-							<a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}">
+							<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
 							<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
 						</td>
 						<td><c:choose>
@@ -78,8 +78,7 @@
 									<c:choose>
 										<c:when
 											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-											<a
-												href="detail.do?num=${tmp.num }&condition=${condition }&keyword=${encodedKeyword }">
+											<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}&condition=${condition }&keyword=${encodedKeyword }">
 												${tmp.title } [${tmp.commentCount }] </a>
 										</c:when>
 										<c:otherwise>
