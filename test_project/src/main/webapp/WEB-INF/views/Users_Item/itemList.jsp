@@ -44,7 +44,7 @@
 				   <img id="indexItemImg" alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
 		   		</a>
 			   		<p style="padding:10px;  text-align: center;">${cateList.itemName }</p>
-			   		<p style="padding:10px;  text-align: center;">${cateList.itemPrice }원</p>
+			   		<p style="padding:10px;  text-align: center;"><fmt:formatNumber value="${cateList.itemPrice}" pattern="###,###,###"/>원</p>
 		   		</div>
 		   	</div>
 		  </c:forEach>		

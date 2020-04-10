@@ -8,72 +8,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	 #ul1 li { display:inline-block; margin:10px; }
-	.thumbImg { width:200px; height:200px; }
-	.itemName { padding:10px 0; text-align:center; }
-	.itemName a { color:#000; }
-	#ul1.column5 li.itemThumb { width:20%; }
-</style>
-
 </head>
 <body>
-<div id="root">
-		<header>
-			<div class="header_box">
-				<nav id="nav">
-					<div class="navbar-right">
-						<%@ include file="../include/nav.jsp"%>
-					</div>
-					<div id="index_logo_div">
-						<a href="../index.do"><img id="index_logo_img"
-							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
-					</div>
-					<div class="navbar-left">
-						<c:choose>
-							<c:when test="${not empty sessionScope.id }">
-								<%@ include file="../include/users_aside.jsp"%>
-							</c:when>
-							<c:otherwise>
-								<%@ include file="../include/unknown_aside.jsp"%>
-							</c:otherwise>
-						</c:choose>
-					</div>
-				</nav>
+<header>
+	<div class="header_box">
+		<nav id="nav">
+			<div class="navbar-right">
+				<%@ include file="../include/nav.jsp"%>
 			</div>
-		</header>
+			<div id="index_logo_div">
+				<a href="../index.do"><img id="index_logo_img"
+					src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
+			</div>
+			<div class="navbar-left">
+				<c:choose>
+					<c:when test="${not empty sessionScope.id }">
+						<%@ include file="../include/users_aside.jsp"%>
+					</c:when>
+					<c:otherwise>
+						<%@ include file="../include/unknown_aside.jsp"%>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</nav>
+	</div>
+</header>
+<section id="container">
+	<div id="container_box">
+		<h2 class="title">상품 목록</h2>
+		<div class="row" style="width:1100px; height: 1500px; margin: auto;">
+		   <c:forEach items="${list}" var="list">
+		   	<div class="col-xs-6 col-md-3">
+		   		<div class="thumbnail">
+		   		<a href="itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">
+				   <img id="indexItemImg" alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/>
+		   		</a>
+			   		<p style="padding:10px;  text-align: center;">${list.itemName }</p>
+			   		<p style="padding:10px;  text-align: center;"><fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/>원</p>
+		   		</div>
+		   	</div>
+		  </c:forEach>		
+		</div>
+	 </div>
+</section>
 
-		<section id="container">
-			<div id="container_box">
-				<h2>상품 목록</h2>
-					<table>
-						 <thead>
-							 <tr>
-							   <th>이미지</th>
-							   <th>이름</th>
-							   <th>가격</th>
-							   <th>수량</th>
-							 </tr>
-						 </thead>
-						 <tbody>
-						  <c:forEach items="${list}" var="list">
-							  <tr>
-								   <td><img alt="이미지" src="../resources${list.itemImg}" class="thumbImg"/></td>
-								   <td><a href="itemView_form.do?itemNum=${list.itemNum}&pageNum=1&reviewNum=1">${list.itemName}</a></td>
-								   <td> <fmt:formatNumber value="${list.itemPrice}" pattern="###,###,###"/>원 </td>
-								   <td><fmt:formatNumber value="${list.itemCount}" pattern="###,###,###"/>개</td>
-							  </tr> 
-						  </c:forEach>
-						 </tbody>
-					</table>
-			</div>
-		</section>
-		<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp" %>
-			</div>
-		</footer>
-</div>
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
+
 
 
 </body>
