@@ -90,12 +90,23 @@
 				</div>
 				<div class="inputArea">
 					<div class = "addCart">
-					<div class="wide">
-						<button type="button" id="order_btn" class="btn_buy">바로 주문하기</button>
-					</div>
-						<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
-						
-						<button type="button" id="wish_btn" class="itembtn">Wish</button>
+						<c:choose>
+							<c:when test="${dto.itemCount >0}">
+								<div class="wide">
+									<button type="button" id="order_btn" class="btn_buy">바로 구매하기</button>
+								</div>
+									<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+									<button type="button" id="wish_btn" class="itembtn">Wish</button>
+							</c:when>
+							<c:otherwise>
+								<div class="wide">
+									<button type="button" id="order_btn" class="btn_buy" disabled="disabled">품절되었습니다.</button>
+								</div>
+									<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+									<button type="button" id="wish_btn" class="itembtn">Wish</button>
+							</c:otherwise>
+						</c:choose>
+					
 						<script>
 							$("#back_btn").click(function () {
 								location.href="../index.do";

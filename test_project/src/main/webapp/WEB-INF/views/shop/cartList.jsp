@@ -41,7 +41,6 @@
 		<br />
 		<c:choose>
 			<c:when test="${map.count==0 }">
-				장바구니가 비어있습니다.
 			<br />
 				<br />
 				<table class="table table-hover">
@@ -77,6 +76,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<p align="center">장바구니가 비어있습니다.</p>
 				<br />
 				<br />
 				<br />

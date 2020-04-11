@@ -128,14 +128,8 @@ public class UsersServiceImpl implements UsersService {
 		//혜원수정
 		//해당 아이디,이름을 불러오기
 		String userId=request.getParameter("userId");
-	
 		String newPass=request.getParameter("newPass");
-	
 		String userPass = new BCryptPasswordEncoder().encode(newPass);
-		System.out.println(userId);
-
-		System.out.println(newPass);
-		System.out.println(userPass);
 		dto.setUserPass(userPass);
 		dto.setUserId(userId);
 

@@ -63,6 +63,7 @@
 			$("#newuserPass2").val("");
 			return false;
 		}
+		self.close();
 	})
 
 </script>

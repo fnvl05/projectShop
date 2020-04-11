@@ -108,7 +108,6 @@ public class UsersController {
 			
 		UsersDto test=(UsersDto)session.getAttribute("userDto");
 		dto.setUserId(test.getUserId());
-		System.out.println(dto.getNewPass());
 		service.updatePass(dto, mView);
 			
 		mView.setViewName("/Users/newPassform");
@@ -141,7 +140,6 @@ public class UsersController {
 		service.deleteUser(id);
 		//로그아웃 처리
 		session.invalidate();
-			
 		mView.addObject("id", id);
 		mView.setViewName("Users/delete");
 		return mView;

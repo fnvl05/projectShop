@@ -59,13 +59,12 @@
 			</a>
 		</div>
 		<div class="item">
-			<a href="/myshop/mileage/historyList.html">
-			<div class="mytitle">MILEAGE</div>
-			<div class="mytitle_kr">적립금 조회</div>
+			<a href="../shop/cartList.do">
+			<div class="mytitle">CART</div>
+			<div class="mytitle_kr">장바구니</div>
 			<div class="desc">
-				적립금은 상품 구매 시 사용하실 수 있습니다.
+				고객님의 장바구니를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
 			</div>
-
 			</a>
 		</div>
 		<div class="item">
@@ -89,14 +88,25 @@
 		</div>
 
 		<div class="item">
-			<a href="../shop/cartList.do">
-			<div class="mytitle">CART</div>
-			<div class="mytitle_kr">장바구니</div>
+			<a href="#" id="click">
+			<div class="mytitle">WITHDRWAL</div>
+			<div class="mytitle_kr">회원 탈퇴</div>
 			<div class="desc">
-				고객님의 장바구니를 관리하는 공간입니다.<br><!-- 최신 정보로 유지하시면 보다 간편히 쇼핑을 즐기실 수 있습니다. -->
+				회원 탈퇴를 하실 수 있습니다.
 			</div>
 			</a>
 		</div>
+		<script>
+			$("#click").on("click",function(){
+				var delConfirm = confirm('회원 탈퇴를 하시겠습니까?');
+				   if (delConfirm) {
+				      location.href="delete.do";
+				   }
+				   else {
+				      return false;
+				   }
+			})
+		</script>
 	</div>
 </div>
 </section>
