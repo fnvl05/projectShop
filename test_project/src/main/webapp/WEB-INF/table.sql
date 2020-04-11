@@ -1,4 +1,4 @@
-drop table tbl_member;
+drop table tbl_member CASCADE CONSTRAINTS;
 drop table tbl_items;
 drop table goods_category;
 drop table board_notice;
