@@ -58,7 +58,7 @@
 								   <td>${orderList.userAddr3 }</td>
 								   <td>${orderList.orderDate }</td>
 							   		<td>
-								    <select class="itemResult" name="itemResult" id="${orderList.orderNum}">	
+								    <select class="itemResult" name="itemResult" id="${orderList.orderNum}" style="height: 25px;">	
 								    	<option value="배송준비" <c:if test="${orderList.delivery eq '배송준비'}">selected</c:if>>배송준비</option>
 								    	<option value="배송중"<c:if test="${orderList.delivery eq '배송중'}">selected</c:if>>배송중</option>					
 								    	<option value="배송완료"<c:if test="${orderList.delivery eq '배송완료'}">selected</c:if>>배송완료</option>					

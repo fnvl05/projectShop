@@ -79,8 +79,10 @@
 												});
 							</script>
 						</div>
-						<button type="submit" id="starBtn" class="btn btn-default">수정확인</button>
-						<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+						<div class="sbtn">
+						<button type="submit" id="starBtn" class="btn">수정확인</button>
+						<button type="button" id="back_btn" class="btn">취소</button>
+						</div>
 						<script>
 							$("#starBtn")
 									.on(

@@ -58,8 +58,10 @@
 							<a href="#">★</a>
 						</p>
 					</div>
-					<button id="starBtn" type="submit" >등록</button>
-					<button type="button" id="back_btn">취소</button>
+					<div class="sbtn">
+					<button id="starBtn" class="btn" type="submit" >등록</button>
+					<button type="button" class="btn" id="back_btn">취소</button>
+					</div>
 					<script>
 						$("#back_btn").click(function () {
 							history.back();

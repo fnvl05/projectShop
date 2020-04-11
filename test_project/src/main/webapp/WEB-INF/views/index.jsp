@@ -67,6 +67,7 @@
 				      <span class="sr-only">Next</span>
 				    </a>
 				  </div>  
+				  <!-- 
 				  <div id="listBox" style="margin-top:100px;">
 					  <c:choose>
 					  	<c:when test="${not empty sessionScope.id }">
@@ -86,6 +87,7 @@
 							  </c:forEach>		
 							</div>
 					 		</div>
+					 		
 					 		<div id="newItemBox">
 							  <h4>최신상품 목록</h4>
 								<div class="row">
@@ -138,7 +140,7 @@
 							  </div>
 					  	</c:otherwise>
 					  </c:choose>	
-					</div>
+					</div> -->
 				 </div>
 		</section>
 		<footer id="footer">

@@ -308,7 +308,7 @@ vertical-align:middle;
 .orderbtn {
 	width: 100px;
 	height: 50px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	float: left;
 	text-align: center;
 	cursor: pointer;
@@ -332,10 +332,9 @@ vertical-align:middle;
 .shopbtn {
 	width: 100px;
 	height: 50px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	float: left;
-	text-align: center  
-	;
+	text-align: center;
 	cursor: pointer;
 	position: relative;
 	box-sizing: border-box;
@@ -442,7 +441,7 @@ padding:0 17px;
 .btn {
 	width: auto;
 	height: auto;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	text-align: center;
 	cursor: pointer;
 	position: relative;
@@ -453,7 +452,7 @@ padding:0 17px;
 .orderbtn {
 	width: 100px;
 	height: 50px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	float: left;
 	text-align: center;
 	cursor: pointer;
@@ -478,7 +477,7 @@ padding:0 17px;
 .shopbtn {
 	width: 100px;
 	height: 50px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	float: left;
 	text-align: center;
 	cursor: pointer;
@@ -686,6 +685,14 @@ padding:0 17px;
 
 #addrbtn{
 	width:114px;
+	height: 30px;
+	border: 1px solid #34495e;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	box-sizing: border-box;
+	overflow: hidden;
+	background: white;
 }
 .typeWrite .sbtn{
 	display: table;
@@ -695,7 +702,7 @@ padding:0 17px;
 .signbtn {
 	width: 100px;
 	height: 50px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	text-align: center;
 	cursor: pointer;
 	position: relative;
@@ -810,7 +817,7 @@ padding:0 17px;
 #container_box .detail .itemInfo .inputArea .addCarts .itembtn{
     background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;
@@ -834,14 +841,14 @@ padding:0 17px;
     width: 250px;
     height: 140px;
     font-size: 25px;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
 }
 
 #container_box .detail .itemInfo .inputArea .addCart .itembtn{
 	display: block;
     background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;
@@ -882,7 +889,7 @@ h4{
 #upPass_Btn{
 	background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;
@@ -898,7 +905,7 @@ h4{
 #searchId_btn{
 	background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;
@@ -975,7 +982,7 @@ h4{
 #update_Btn{
 	background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;
@@ -985,14 +992,13 @@ h4{
     width: 130px;
     height: 60px;
     margin-top: 10px;
-    margin-left:10px;
 }
 
 /* 비밀번호 수정 페이지 */
 #searchupPass_Btn{
 	background: #fff;
     color: #333;
-    border: 1px solid #aaa;
+    border: 1px solid #34495e;
     padding: 14px 0;
     min-width: 80px;
     font-weight: bold;

@@ -220,7 +220,7 @@
 					</tbody>
 				</table>
 				<div align="right">
-					<a class="btn btn-info" href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
+					<a class="btn" href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
 				</div>
 				<div class="page-display">
 					<ul class="pagination pagination-sm">

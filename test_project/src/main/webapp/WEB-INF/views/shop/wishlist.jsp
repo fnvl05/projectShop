@@ -59,7 +59,7 @@
             <tr>
                <td>
                		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
-               		<img src="../resources/${tmp.itemImg }" width="156px" height="120px"/> </a>
+               		<img src="../resources/${tmp.itemImg }" width="140px" height="120px"/> </a>
                </td>
                <td> 
                		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a>

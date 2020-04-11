@@ -46,7 +46,7 @@
 		<div id="container_box">
 			<div class="container">
 				<br/>
-				<h3>리뷰 상세보기</h3>
+				<h3 style="text-align: center;">리뷰 상세보기</h3>
 				<br/>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
@@ -123,12 +123,11 @@
 						<td>${dto.reviewContent }</td>
 					</tr>
 				</table>
-				<br /> 
-				<br />
+
 				<c:if test="${dto.reviewWriter eq userDto.userId }">
-					<div style="float: right;">
-					<button id="update" >수정</button>
-					<button id="delete" >삭제</button>
+					<div class="sbtn" style="float: right;">
+					<button class="btn" id="update" >수정</button>
+					<button class="btn" id="delete" >삭제</button>
 					</div>
 					<script>
 						$("#update").click(function() {
@@ -145,7 +144,7 @@
 						});
 					</script>
 				</c:if>
-				<br /> <br />
+				<br /> <br /><br />
 				<div class="comments">
 					<ul>
 						<c:forEach items="${commentList }" var="tmp">
@@ -212,8 +211,8 @@
 							<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
 							<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
 							<input type="hidden" name="target_id" value="${dto.reviewWriter}" />
-							<textarea name="content"><c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if></textarea>
-							<button type="submit">등록</button>
+							<textarea name="content" style="width: 973px;"><c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if></textarea>
+							<button class="btn" type="submit">등록</button>
 						</form>
 					</div>
 				</div>

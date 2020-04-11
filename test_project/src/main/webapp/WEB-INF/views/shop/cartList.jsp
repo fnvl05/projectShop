@@ -59,7 +59,7 @@
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
 								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
-								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}"></td>
+								<td><img src="../resources/${tmp.itemImg }" width="140px" height="120px" /><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}"></td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
 								<td><input type="hidden" id="itemPrice" /> 
 									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
@@ -106,7 +106,7 @@
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
 								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1"><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></a></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1"><img src="../resources/${tmp.itemImg }" width="140px" height="120px" /></a></td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td><input type="hidden" id="itemPrice" /> 
 									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>

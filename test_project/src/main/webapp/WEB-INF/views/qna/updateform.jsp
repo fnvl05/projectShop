@@ -47,7 +47,7 @@
 					id="num" value="${dto.num }" disabled />
 			</div>
 			<div class="form-group">
-				<label for="title">제목</label> <input class="form-control"
+				<label for="title" style="margin-right: 14px;">제목</label> <input class="form-control"
 					type="text" id="title" name="title" value="${dto.title }" />
 			</div>
 			<div class="form-group">
@@ -61,8 +61,10 @@
 					});
 				</script>
 			</div>
-			<button class="btn btn-primary" type="submit" id="updateBtn">수정</button>
-			<button class="btn btn-warning" href="${pageContext.request.contextPath }/qna/list.do">취소</button>
+			<div class="sbtn">
+			<button class="btn" type="submit" id="updateBtn">수정</button>
+			<button class="btn" href="${pageContext.request.contextPath }/qna/list.do">취소</button>
+			</div>
 			<script>
 				$("#updateBtn").on("click",function(){
 					//제출 전 제목을 변수에 저장

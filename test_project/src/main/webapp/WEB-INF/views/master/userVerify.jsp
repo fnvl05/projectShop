@@ -53,7 +53,7 @@
 									   <fmt:formatDate value="${birthday}"  pattern="yyyy.MM.dd"/>
 								   </td>
 								   <td>
-								   		<select id="${userAllList.userId }">
+								   		<select id="${userAllList.userId }"  style="height: 25px;">
 								   			<option value="0" <c:if test="${userAllList.verify eq '0'}">selected</c:if>>유저</option> 
 								   			<option value="1" <c:if test="${userAllList.verify eq '1'}">selected</c:if>>관리자</option> 
 								   		</select>

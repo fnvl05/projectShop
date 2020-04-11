@@ -94,8 +94,8 @@
 						</div>
 						
 						<div id="inputArea">
-							<button type="submit" id="update_btn" class="btn btn-primary">수정</button>
-							<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+							<button type="submit" id="update_btn" class="btn">수정</button>
+							<button type="button" id="back_btn" class="btn">취소</button>
 							<script>
 								/*취소 버튼을 눌렀을 때 뒤로가기*/
 								$("#back_btn").click(function(){
