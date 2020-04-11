@@ -26,8 +26,8 @@ public class HomeController {
 	
 	@RequestMapping("/index.do")
 	public ModelAndView index(ModelAndView mView) {
-	//	serviec.bestItemList(mView);
-	//	serviec.newItemList(mView);
+		serviec.bestItemList(mView);
+		serviec.newItemList(mView);
 		mView.setViewName("index");
 	return mView;
 	}

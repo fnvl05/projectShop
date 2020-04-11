@@ -40,17 +40,17 @@
 				      <li data-target="#myCarousel" data-slide-to="3"></li>
 				    </ol>
 			
-				    <div class="carousel-inner" style="width:1100px; height: 700px;">
+				    <div class="carousel-inner" style="width:1800px; height: 600px;">
 				      <div class="item active">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/KakaoTalk_20200410_175841743.png" alt="Los Angeles" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_1.jpg" alt="Los Angeles" style="width:100%; height: 100%;">
 				      </div>
 				
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/0b38bbbf-f2a8-4548-9d82-2287ee1e179d_p01fig0537_1l.jpg" alt="Chicago" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_2.jpg" alt="Chicago" style="width:100%; height: 100%;">
 				      </div>
 				    
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/96de0523-f1d4-4e8c-a258-501126ba6b87_999.jpg" alt="New york" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_3.jpg" alt="New york" style="width:100%; height: 100%;">
 				      </div>
 				      
 				      <div class="item">
@@ -138,7 +138,6 @@
 							  </div>
 					  	</c:otherwise>
 					  </c:choose>	
-					  
 					</div>
 				 </div>
 		</section>
