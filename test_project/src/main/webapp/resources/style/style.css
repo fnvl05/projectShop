@@ -296,13 +296,14 @@ vertical-align:middle;
 .btn {
 	width: 50px;
 	height: 30px;
-	border: 2px solid #34495e;
+	border: 1px solid #34495e;
 	text-align: center;
 	cursor: pointer;
 	position: relative;
 	box-sizing: border-box;
 	overflow: hidden;
 	margin: 0 0 0 20px;
+	background: white;
 }
 .orderbtn {
 	width: 100px;
@@ -333,7 +334,8 @@ vertical-align:middle;
 	height: 50px;
 	border: 2px solid #34495e;
 	float: left;
-	text-align: center;
+	text-align: center  
+	;
 	cursor: pointer;
 	position: relative;
 	box-sizing: border-box;
@@ -360,7 +362,7 @@ vertical-align:middle;
 	transition: all .5s ease;
 	z-index: 1;
 	box-sizing: border-box;
-}
+} 
 
 .orderbtn:hover .eff {
 	border: 70px solid #34495e;
@@ -459,6 +461,7 @@ padding:0 17px;
 	box-sizing: border-box;
 	overflow: hidden;
 	margin: 0 0 40px 50px;
+	background: white;
 }
 
 .orderbtn a {
@@ -982,7 +985,7 @@ h4{
     width: 130px;
     height: 60px;
     margin-top: 10px;
-    margin-left:200px;
+    margin-left:10px;
 }
 
 /* 비밀번호 수정 페이지 */
@@ -1058,6 +1061,18 @@ h4{
     margin-left: auto;
     margin-right: auto;
 }
+
+/* 결제 완료 */
+.sbtn{
+	display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ordermain{
+
+}
+
 /*----------------------------윤주-----------------------------*/
 
 #underline {

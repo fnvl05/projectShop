@@ -88,8 +88,14 @@
 	</form>
 	<br />
 <div class="sbtn">
-	<button class="signbtn" onclick="location.href='../index.do'">홈으로</button>
-	<button class="signbtn" onclick="location.href='updateform.do'">수정하기</button>
+	<div class="shopbtn" style="float: right">
+	<div class="eff"></div>
+	<a href="updateform.do">수정하기</a>
+</div>
+<div class="orderbtn" style="float: right">
+	<div class="eff"></div>
+	<a href="../index.do">홈으로</a>
+</div>
 </div>
 </div>
 

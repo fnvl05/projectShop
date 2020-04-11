@@ -154,6 +154,7 @@
 						<c:forEach var="tmp" items="${list2 }">
 							<tr>
 								<td>
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
 									<img src="../resources${tmp.itemImg }" id="itemImg"/>
 								</td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>
@@ -164,7 +165,7 @@
 								<input type="hidden" value=${tmp.itemNum } name="itemNum" id="${tmp.itemNum }" />
 								</td>
 								<td>
-									<button  type="button" id="${tmp.itemNum }">리뷰쓰기</button>
+									<button  type="button" class="btn" id="${tmp.itemNum }">리뷰쓰기</button>
 								</td>
 							</tr>
 						</c:forEach>

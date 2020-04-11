@@ -90,6 +90,13 @@
  	<div class="sbtn">
  		<button type="submit" class="signbtn" id="update_Btn" name="update_Btn">수정완료</button>
  	</div>
+ 	
+ 	<div class="sbtn">
+	<div class="shopbtn">
+	<div class="eff"></div>
+	<a href="updateform.do">수정하기</a>
+	</div>
+	</div>
  </form>	
  </div>
 </section>
