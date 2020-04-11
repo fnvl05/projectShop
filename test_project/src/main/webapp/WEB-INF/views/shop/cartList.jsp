@@ -59,25 +59,21 @@
 						<c:set var="sumMoney" value="0" />
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
-								<td><input type="checkbox" name="delBox"
-									value="${tmp.cartNum }" /></td>
-								<td><img src="../resources/${tmp.itemImg }" width="156px"
-									height="120px" /></td>
-								<td><a
-									href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
-								<td><input type="hidden" id="itemPrice" /> <fmt:formatNumber
-										value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
-								<td><input type="number" min="1" value="${tmp.cartStock }"
-									style="width: 40px" name="cartStock" id="${tmp.cartNum }" /> <input
-									type="hidden" name="itemNum" value="${tmp.itemNum }" />
+								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
+								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
+								<td><input type="hidden" id="itemPrice" /> 
+									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
+								<td>
+									<input type="number" min="1" value="${tmp.cartStock }" style="width: 40px" name="cartStock" id="${tmp.cartNum }" /> 
+									<input type="hidden" name="itemNum" value="${tmp.itemNum }" />
 									<button type="button" class="btn" id="${tmp.cartNum }">수정</button>
 								</td>
-								<td><fmt:formatNumber
-										value="${tmp.cartStock * tmp.itemPrice}" pattern="###,###,###" />원
+								<td>
+									<fmt:formatNumber value="${tmp.cartStock * tmp.itemPrice}" pattern="###,###,###" />원
 								</td>
 							</tr>
-							<c:set var="sumMoney"
-								value="${sumMoney+(tmp.cartStock * tmp.itemPrice) }" />
+							<c:set var="sumMoney" value="${sumMoney+(tmp.cartStock * tmp.itemPrice) }" />
 						</c:forEach>
 					</tbody>
 				</table>
@@ -111,7 +107,7 @@
 							<tr>
 								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
 								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td><input type="hidden" id="itemPrice" /> 
 									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
 								<td><input type="number" min="1" value="${tmp.cartStock }"

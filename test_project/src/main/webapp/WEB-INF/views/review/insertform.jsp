@@ -84,7 +84,7 @@
 						}
 						//내용이 30글자 미만인 경우
 						//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
-						if(content_len<18){
+						if(content_len<38){
 							alert("내용을  30자 이상 입력하세요.",function(){
 								//에디터 내용에 초기화
 								CKEDITOR.instances.reviewContent.setData("");
