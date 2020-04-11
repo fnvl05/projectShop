@@ -49,6 +49,50 @@
 		   	</div>
 		  </c:forEach>		
 		</div>
+			<div class="page-display">
+				<ul class="pagination">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<li>
+							<a href="itemAllList.do?pageNum=${startPageNum-1 }">
+								&laquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&laquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${startPageNum }" 
+					end="${endPageNum }" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li class="active"><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<li>
+							<a href="itemAllList.do?pageNum=${endPageNum+1 }">
+								&raquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&raquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				</ul>		
+			</div>
 	 </div>
 </section>
 

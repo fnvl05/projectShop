@@ -81,12 +81,16 @@ public class Unknown_serviceImpl implements Unknown_service{
 			if(totalPageCount < endPageNum) {
 				endPageNum = totalPageCount;
 			}
+			cateCodeRef = cateCode;
 			dto.setStartRowNum(startRowNum);
 			dto.setEndRowNum(endRowNum);
-		
-			cateCodeRef = cateCode;
-			List<Unknown_itemDto> list = dao.cateList1(cateCode, cateCodeRef);
+			dto.setCateCode(String.valueOf(cateCode));
+			dto.setCateCodeRef(String.valueOf(cateCodeRef));
+			
+			List<Unknown_itemDto> list = dao.cateList1(dto);
 			mView.addObject("list", JSONArray.fromObject(list));	
+			request.setAttribute("cateLevel", cateLevel);
+			request.setAttribute("cateCode", cateCode);
 			request.setAttribute("startPageNum", startPageNum);	
 			request.setAttribute("endPageNum", endPageNum);	
 			request.setAttribute("pageNum", pageNum);
@@ -101,7 +105,7 @@ public class Unknown_serviceImpl implements Unknown_service{
 			int startRowNum = 1+(pageNum - 1)*PAGE_ROW_COUNT;
 			int endRowNum = pageNum*PAGE_ROW_COUNT;
 			
-			int totalRow = dao.cateList1_Count(cateCode, cateCodeRef);
+			int totalRow = dao.cateList2_Count(cateCode);
 			int totalPageCount = (int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
 			int startPageNum = 1+((pageNum - 1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
 			int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
@@ -110,9 +114,12 @@ public class Unknown_serviceImpl implements Unknown_service{
 			}
 			dto.setStartRowNum(startRowNum);
 			dto.setEndRowNum(endRowNum);
+			dto.setCateCode(String.valueOf(cateCode));
 			
-			List<Unknown_itemDto> list = dao.cateList2(cateCode);
-			mView.addObject("list", JSONArray.fromObject(list));	
+			List<Unknown_itemDto> list = dao.cateList2(dto);
+			mView.addObject("list", JSONArray.fromObject(list));
+			request.setAttribute("cateLevel", cateLevel);
+			request.setAttribute("cateCode", cateCode);
 			request.setAttribute("startPageNum", startPageNum);	
 			request.setAttribute("endPageNum", endPageNum);	
 			request.setAttribute("pageNum", pageNum);

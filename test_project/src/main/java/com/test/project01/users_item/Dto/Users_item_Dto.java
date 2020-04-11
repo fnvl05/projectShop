@@ -15,8 +15,29 @@ public class Users_item_Dto {
 	
 	private String itemThumbImg;
 	
+	private int startRowNum;
+	private int endRowNum;
 
 	public Users_item_Dto() {}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
 
 
 	public int getItemNum() {

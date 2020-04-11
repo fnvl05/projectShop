@@ -1,7 +1,5 @@
 package com.test.project01.users_item.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.test.project01.qna.service.QnaService;
 import com.test.project01.review.service.ReviewService;
-import com.test.project01.users_item.Dto.Users_item_Dto;
 import com.test.project01.users_item.service.Users_item_service;
 
 @Controller
@@ -27,7 +24,7 @@ public class Users_item_Controller {
 	
 	@RequestMapping("/Users_Item/itemAllList")
 	public ModelAndView Users_itemList(ModelAndView mView, HttpServletRequest request) {
-		serviec.itemList(mView);
+		serviec.itemList(mView, request);
 		mView.setViewName("Users_Item/itemAllList");
 		return mView;
 	}
@@ -43,9 +40,7 @@ public class Users_item_Controller {
 	@RequestMapping("/Users_Item/itemList")
 	public ModelAndView Users_getCateList(@RequestParam int cateCode, @RequestParam int cateLevel, ModelAndView mView,
 			HttpServletRequest request) {
-		List<Users_item_Dto> cateList = null;
-		cateList = serviec.cateList(cateCode, cateLevel);
-		mView.addObject("cateList", cateList);
+		serviec.cateList(cateCode, cateLevel, mView, request);
 		mView.setViewName("Users_Item/itemList");
 		return mView;
 	}

@@ -54,7 +54,7 @@
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
 						<li>
-							<a href="itemAllList.do?pageNum=${startPageNum-1 }">
+							<a href="itemList.do?cateCode=${cateCode }&cateLevel=${cateLevel }&pageNum=${startPageNum-1 }">
 								&laquo;
 							</a>
 						</li>
@@ -69,10 +69,10 @@
 					end="${endPageNum }" step="1">
 					<c:choose>
 						<c:when test="${i eq pageNum }">
-							<li class="active"><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+							<li class="active"><a href="itemList.do?cateCode=${cateCode }&cateLevel=${cateLevel }&pageNum=${i }">${i }</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="itemAllList.do?pageNum=${i }">${i }</a></li>
+							<li><a href="itemList.do?cateCode=${cateCode }&cateLevel=${cateLevel }&pageNum=${i }">${i }</a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
@@ -80,7 +80,7 @@
 				<c:choose>
 					<c:when test="${endPageNum lt totalPageCount }">
 						<li>
-							<a href="itemAllList.do?pageNum=${endPageNum+1 }">
+							<a href="itemList.do?cateCode=${cateCode }&cateLevel=${cateLevel }&pageNum=${endPageNum+1 }">
 								&raquo;
 							</a>
 						</li>
