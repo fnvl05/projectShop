@@ -4,8 +4,6 @@
 <ul class="nav nav-tabs">
 	<li role="presentation"><a href="${pageContext.request.contextPath }/master/register_form.do">상품 등록</a></li>
 	<li role="presentation"><a href="${pageContext.request.contextPath }/master/itemList.do">상품 목록</a></li>
-	<li role="presentation"><a href="${pageContext.request.contextPath }/qna/list.do">QnA</a></li>
-	<li role="presentation"><a href="${pageContext.request.contextPath }/notice/list.do">Notice</a></li>
 	<li role="presentation"><a href="${pageContext.request.contextPath }/master/usersList.do">유저 상품관리</a></li>	
 	<li role="presentation"><a href="${pageContext.request.contextPath }/master/userVerify.do">유저 관리</a></li>	
 </ul>

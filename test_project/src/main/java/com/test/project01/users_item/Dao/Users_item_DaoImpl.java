@@ -32,7 +32,7 @@ public class Users_item_DaoImpl implements Users_item_Dao{
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("cateCode", cateCode);
 		map.put("cateCodeRef", cateCodeRef);		
-		return session.selectList("Users_item.cateList1", map);
+		return session.selectList("Users_item.cateList", map);
 	}
 
 	@Override

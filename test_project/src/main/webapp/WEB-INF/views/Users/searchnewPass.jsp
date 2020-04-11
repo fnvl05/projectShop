@@ -12,9 +12,9 @@
 <section id="content">
 <form action="changeNewPassData.do" method="post">
  <div class="input_area">
- 	<h2>비밀번호 수정 페이지</h2>
+ 	<h2 class="title">비밀번호 수정 페이지</h2>
+ 	<br /><br />
  	<input type="hidden" name="userId" value="${dto.userId }"/>
-
 	<div>
  		<label for="newuserPass1">신규 비밀번호</label>
  		<input type="password" name="newPass" id="newuserPass1"  />

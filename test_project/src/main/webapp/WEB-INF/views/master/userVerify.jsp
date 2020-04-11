@@ -21,7 +21,7 @@
 						<%@ include file="../include/header.jsp" %>
 					</div>
 					<div class="navbar-left">
-							<%@ include file="../include/master_aside.jsp" %>						
+						<%@ include file="../include/master_aside.jsp" %>						
 					</div>
 				</nav>
 			</div>
@@ -62,30 +62,74 @@
 						  </c:forEach>
 						 </tbody>
 					</table>
+					<div class="page-display">
+				<ul class="pagination">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<li>
+							<a href="userVerify.do?pageNum=${startPageNum-1 }">
+								&laquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&laquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${startPageNum }" 
+					end="${endPageNum }" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li class="active"><a href="userVerify.do?pageNum=${i }">${i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="userVerify.do?pageNum=${i }">${i }</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<li>
+							<a href="userVerify.do?pageNum=${endPageNum+1 }">
+								&raquo;
+							</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="disabled">
+							<a href="javascript:">&raquo;</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+				</ul>		
+			</div>
 					<script type="text/javascript">	
-						$("select").on("change",function(){
-								var verifyArray = [];
-								var tag=$(this).attr("id");
-								var target=$(this).val();
-								console.log(tag);
-								console.log(target);
-								verifyArray.push(tag);
-								verifyArray.push(target);
-					 		$.ajax({
-								url:"verifyUpDate.do",
-								type:"post",
-								data: {"verifyArray":verifyArray},
-								success:function(responseData){
-									if(responseData.isSuccess){	
-										alert("성공");
-										location.reload();	
-									}else {
-										alert("실패");
-									}
-								}	
-								});
+					$("select").on("change",function(){
+							var verifyArray = [];
+							var tag=$(this).attr("id");
+							var target=$(this).val();
+							console.log(tag);
+							console.log(target);
+							verifyArray.push(tag);
+							verifyArray.push(target);
+				 		$.ajax({
+							url:"verifyUpDate.do",
+							type:"post",
+							data: {"verifyArray":verifyArray},
+							success:function(responseData){
+								if(responseData.isSuccess){	
+									alert("성공");
+									location.reload();	
+								}else {
+									alert("실패");
+								}
+							}	
 							});
-					</script>
+						});
+				</script>
 				</div>
 			</div>
 		</section>
