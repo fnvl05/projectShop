@@ -67,10 +67,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }">
+				<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 					<%-- request에 담긴 list --%>
 					<tr>
-						<td>${tmp.num }</td>
+						<!-- <td>${tmp.num }</td> -->
+						<td>${status.count }</td>
 						<td><c:choose>
 								<c:when test="${tmp.noticeNum==1 }">
 									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}"> <strong
