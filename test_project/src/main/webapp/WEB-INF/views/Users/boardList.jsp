@@ -98,8 +98,8 @@
 					<c:forEach var="tmp2" items="${reviewlist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }"><img src="../resources${tmp2.itemImg }" id="itemImg"/></a></td>
-							<td>${tmp2.itemName }</td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }&pageNum=1&reviewNum=1"><img src="../resources${tmp2.itemImg }" id="itemImg"/></a></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }&pageNum=1&reviewNum=1">${tmp2.itemName }</a></td>
 							<td><a href="../review/detail.do?reviewNum=${tmp2.reviewNum }">${tmp2.reviewContent }</a></td>
 							<td>
 								<span class="wrap-star"> 

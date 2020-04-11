@@ -43,7 +43,9 @@
 		   		<a href="itemView_form.do?itemNum=${cateList.itemNum}&pageNum=1&reviewNum=1">
 				   <img id="indexItemImg" alt="이미지" src="../resources${cateList.itemImg}" class="thumbImg"/>
 		   		</a>
+		   		<a href="itemView_form.do?itemNum=${cateList.itemNum}&pageNum=1&reviewNum=1">
 			   		<p style="padding:10px;  text-align: center;">${cateList.itemName }</p>
+				</a>
 			   		<p style="padding:10px;  text-align: center;"><fmt:formatNumber value="${cateList.itemPrice}" pattern="###,###,###"/>원</p>
 		   		</div>
 		   	</div>

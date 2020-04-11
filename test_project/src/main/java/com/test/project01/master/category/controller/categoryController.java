@@ -33,6 +33,7 @@ import com.test.project01.master.category.serevice.categoryService;
 import com.test.project01.order.dto.OrdersDto;
 import com.test.project01.qna.service.QnaService;
 import com.test.project01.review.service.ReviewService;
+import com.test.project01.unknown.service.Unknown_service;
 import com.test.project01.users.Dto.UsersDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
@@ -45,12 +46,16 @@ public class categoryController{
 	ReviewService reviewService;
 	@Autowired
 	QnaService qnaService;
+	@Autowired
+	Unknown_service unknown_service;
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
 	@RequestMapping("/master/master_index")
 	public ModelAndView Master_master_index(HttpServletRequest request,ModelAndView mView) {
+		unknown_service.bestItemList(mView);
+		unknown_service.newItemList(mView);
 		mView.setViewName("master/master_index");
 		return mView;
 	}

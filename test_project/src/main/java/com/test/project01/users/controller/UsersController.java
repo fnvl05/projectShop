@@ -46,8 +46,8 @@ public class UsersController {
 	public ModelAndView signup(@ModelAttribute("dto") UsersDto dto, 
 			ModelAndView mView) {
 		service.addUser(dto);
-		mView.setViewName("index");
-		return mView;
+//		mView.setViewName("index");
+		return new ModelAndView("Users/login_form");
 	}
 	// 로그인
 	@RequestMapping("Users/login_form")
@@ -108,7 +108,6 @@ public class UsersController {
 			
 		UsersDto test=(UsersDto)session.getAttribute("userDto");
 		dto.setUserId(test.getUserId());
-		System.out.println(dto.getNewPass());
 		service.updatePass(dto, mView);
 			
 		mView.setViewName("/Users/newPassform");
@@ -141,7 +140,6 @@ public class UsersController {
 		service.deleteUser(id);
 		//로그아웃 처리
 		session.invalidate();
-			
 		mView.addObject("id", id);
 		mView.setViewName("Users/delete");
 		return mView;

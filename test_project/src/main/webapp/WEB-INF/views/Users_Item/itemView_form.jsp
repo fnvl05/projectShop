@@ -90,12 +90,23 @@
 				</div>
 				<div class="inputArea">
 					<div class = "addCart">
-					<div class="wide">
-						<button type="button" id="order_btn" class="btn_buy">바로 주문하기</button>
-					</div>
-						<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
-						
-						<button type="button" id="wish_btn" class="itembtn">Wish</button>
+						<c:choose>
+							<c:when test="${dto.itemCount >0}">
+								<div class="wide">
+									<button type="button" id="order_btn" class="btn_buy">바로 구매하기</button>
+								</div>
+									<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+									<button type="button" id="wish_btn" class="itembtn">Wish</button>
+							</c:when>
+							<c:otherwise>
+								<div class="wide">
+									<button type="button" id="order_btn" class="btn_buy" disabled="disabled">품절되었습니다.</button>
+								</div>
+									<button type="button" id="shop_btn" class="itembtn" <c:if test="${dto.itemCount eq 0}">disabled='disabled'</c:if>>장바구니</button>
+									<button type="button" id="wish_btn" class="itembtn">Wish</button>
+							</c:otherwise>
+						</c:choose>
+					
 						<script>
 							$("#back_btn").click(function () {
 								location.href="../index.do";
@@ -145,9 +156,9 @@
 			
 			<br/><br/><br /><br />
 			<div align="center" id="underline">
-				<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> <span><a
-					href="#qna">Q&A</a>&nbsp;&nbsp;&nbsp;</span> <span><a
-					href="#review">Review</a>&nbsp;</span>
+				<span><a href="#detail">Detail</a>&nbsp;&nbsp;&nbsp;</span> 
+				<span><a href="#qna">Q&A</a>&nbsp;&nbsp;&nbsp;</span> 
+				<span><a href="#review">Review</a>&nbsp;</span>
 			</div>
 			<br /> <br />
 			<div class="itemDes" id="detail">${dto.itemDes }</div>
@@ -186,11 +197,10 @@
 								<td><c:choose>
 										<c:when test="${not empty sessionScope.userDto.userId }">
 											<c:choose>
-												<c:when
-													test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-													<a
-														href="../qna/itemDetail.do?num=${tmp.num }&itemNum=${itemNum}">
-														${tmp.title }[${tmp.commentCount }] </a>
+												<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+													<a href="../qna/itemDetail.do?num=${tmp.num }&itemNum=${itemNum}">
+														${tmp.title }[${tmp.commentCount }] 
+													</a>
 												</c:when>
 												<c:otherwise>
 													비밀글입니다. <i class="fas fa-lock"></i>
@@ -210,8 +220,7 @@
 					</tbody>
 				</table>
 				<div align="right">
-					<a class="btn btn-info"
-						href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
+					<a class="btn btn-info" href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
 				</div>
 				<div class="page-display">
 					<ul class="pagination pagination-sm">
@@ -225,8 +234,7 @@
 								<li class="disabled"><a href="javascript:">&laquo;</a></li>
 							</c:otherwise>
 						</c:choose>
-						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
-							step="1">
+						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
 							<c:choose>
 								<c:when test="${i eq pageNum }">
 									<li class="active">
@@ -298,9 +306,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
-								<td><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
-										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<script>
@@ -313,7 +319,7 @@
 								</script>
 								<td><span class="wrap-star"> 
 									<span class='star-rating'> 
-									<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
+										<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
 									</span>
 								</span></td>
 								<td><span class="glyphicon glyphicon-thumbs-up"></span>

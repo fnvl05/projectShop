@@ -246,9 +246,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
-								<td><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
-										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<script>

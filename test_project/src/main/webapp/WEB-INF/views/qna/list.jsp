@@ -48,7 +48,7 @@
 		<table class="table">
 			<colgroup>
 				<col class="col-xs-1" />
-				<col class="col-xs-2" />
+				<col class="col-xs-1" />
 				<col class="col-xs-3" />
 				<col class="col-xs-1" />
 				<col class="col-xs-1" />
@@ -66,36 +66,72 @@
 			</thead>
 			<tbody>
 				<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
-					<tr>
-						<td>${status.count }</td>
-						<%-- <td>${tmp.num }</td> --%>
-						<td>
-							<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
-							<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
-						</td>
-						<td><c:choose>
-								<c:when test="${not empty sessionScope.userDto.userId }">
-									<c:choose>
-										<c:when
-											test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-											<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}&condition=${condition }&keyword=${encodedKeyword }">
-												${tmp.title } [${tmp.commentCount }] </a>
+					<c:choose>
+						<c:when test="${not empty sessionScope.id }">
+							<tr>
+								<td>${status.count }</td>
+								<%-- <td>${tmp.num }</td> --%>
+								<td>
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
+									<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
+								</td>
+								<td><c:choose>
+										<c:when test="${not empty sessionScope.userDto.userId }">
+											<c:choose>
+												<c:when
+													test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+													<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}&condition=${condition }&keyword=${encodedKeyword }">
+														${tmp.title } [${tmp.commentCount }] </a>
+												</c:when>
+												<c:otherwise>
+													비밀글입니다. <i class="fas fa-lock"></i>
+												</c:otherwise>
+											</c:choose>
+		
 										</c:when>
 										<c:otherwise>
 											비밀글입니다. <i class="fas fa-lock"></i>
 										</c:otherwise>
-									</c:choose>
-
-								</c:when>
-								<c:otherwise>
-									비밀글입니다. <i class="fas fa-lock"></i>
-								</c:otherwise>
-							</c:choose></td>
-						<td>${tmp.writer }</td>
-						<td>${tmp.viewCount }</td>
-						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
-						<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
-					</tr>
+									</c:choose></td>
+								<td>${tmp.writer }</td>
+								<td>${tmp.viewCount }</td>
+								<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+								<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>${status.count }</td>
+								<%-- <td>${tmp.num }</td> --%>
+								<td>
+									<a href="../Unknown/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
+									<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
+								</td>
+								<td><c:choose>
+										<c:when test="${not empty sessionScope.userDto.userId }">
+											<c:choose>
+												<c:when
+													test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+													<a href="detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}&pageNum=${pageNum}&condition=${condition }&keyword=${encodedKeyword }">
+														${tmp.title } [${tmp.commentCount }] </a>
+												</c:when>
+												<c:otherwise>
+													비밀글입니다. <i class="fas fa-lock"></i>
+												</c:otherwise>
+											</c:choose>
+		
+										</c:when>
+										<c:otherwise>
+											비밀글입니다. <i class="fas fa-lock"></i>
+										</c:otherwise>
+									</c:choose></td>
+								<td>${tmp.writer }</td>
+								<td>${tmp.viewCount }</td>
+								<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+								<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 			</tbody>
 		</table>

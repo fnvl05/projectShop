@@ -152,6 +152,16 @@
             <label for="userAddr3">상세 주소</label>
     	</td>
     </tr>
+    <script>
+	    $("#userAddrA").on("click",function(){
+	        sample4_execDaumPostcode();
+	        
+	     });
+	     $("#userAddr2").on("click",function(){
+	        sample4_execDaumPostcode();
+	     
+	     });
+    </script>
     <tr>
     	<th class="row"><label for="birthday">생년월일</label></th>
     	<td>

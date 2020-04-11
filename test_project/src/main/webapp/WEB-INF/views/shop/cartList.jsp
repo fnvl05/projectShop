@@ -41,7 +41,6 @@
 		<br />
 		<c:choose>
 			<c:when test="${map.count==0 }">
-				장바구니가 비어있습니다.
 			<br />
 				<br />
 				<table class="table table-hover">
@@ -60,8 +59,10 @@
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
 								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
-								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a></td>
+								<td>
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1"><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></a>
+								</td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td><input type="hidden" id="itemPrice" /> 
 									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>
 								<td>
@@ -77,6 +78,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<p align="center">장바구니가 비어있습니다.</p>
 				<br />
 				<br />
 				<br />
@@ -106,7 +108,7 @@
 						<c:forEach var="tmp" items="${map.list }" varStatus="i">
 							<tr>
 								<td><input type="checkbox" name="delBox" value="${tmp.cartNum }" /></td>
-								<td><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1"><img src="../resources/${tmp.itemImg }" width="156px" height="120px" /></a></td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td><input type="hidden" id="itemPrice" /> 
 									<fmt:formatNumber value="${tmp.itemPrice}" pattern="###,###,###" />원</td>

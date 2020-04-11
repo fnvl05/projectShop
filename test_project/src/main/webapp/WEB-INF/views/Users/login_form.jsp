@@ -65,11 +65,11 @@
 <script>
 	function searchId(){
 		window.open("searchIdForm.do", "searchId",
-				"width=500,height=400,top=250,left=550,resizable=no");
+				"width=600,height=400,top=250,left=550,resizable=no");
 	}
 	function searchPwd(){
 		window.open("searchPassForm.do", "searchPwd",
-				"width=500,height=400,top=250,left=550,resizable=no");
+				"width=600,height=400,top=250,left=550,resizable=no");
 	}
 </script>
 </div>

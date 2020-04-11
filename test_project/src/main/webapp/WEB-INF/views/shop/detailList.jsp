@@ -154,9 +154,11 @@
 						<c:forEach var="tmp" items="${list2 }">
 							<tr>
 								<td>
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
 									<img src="../resources${tmp.itemImg }" id="itemImg"/>
+									</a>
 								</td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td>${tmp.quantity }</td>
 								<td><fmt:formatNumber value="${ tmp.itemPrice}" pattern="###,###,###"/>원</td>
 								<td>

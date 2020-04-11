@@ -28,16 +28,16 @@
 	</header>
 	<section id="container">	
 	<div id="container_box">
-				<h1>결제가 완료되었습니다</h1>
-				<a href="../home.do">쇼핑 계속하기</a>
-				<a href="orderList.do">주문 상품 확인하기</a>
-			</div>
-		</section>
-		<footer id="footer">
-			<div id="footer_box">
-				<%@ include file="../include/footer.jsp" %>
-			</div>
-		</footer>
+		<h1>결제가 완료되었습니다</h1>
+		<a href="../home.do">쇼핑 계속하기</a>
+		<a href="orderList.do">주문 상품 확인하기</a>
+	</div>
+	</section>
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp" %>
+		</div>
+	</footer>
 	</div>
 </body>
 </html>
