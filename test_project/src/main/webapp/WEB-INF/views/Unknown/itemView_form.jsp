@@ -175,22 +175,19 @@
 								<td><c:choose>
 										<c:when test="${not empty sessionScope.userDto.userId }">
 											<c:choose>
-												<c:when
-													test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
-													<a
-														href="../qna/itemDetail.do?num=${tmp.num }&itemNum=${itemNum}">
+												<c:when test="${sessionScope.userDto.verify eq 1 || sessionScope.userDto.userId == tmp.writer}">
+													<a href="../qna/itemDetail.do?num=${tmp.num }&itemNum=${itemNum}">
 														${tmp.title }[${tmp.commentCount }] </a>
 												</c:when>
 												<c:otherwise>
-										비밀글입니다. <img
-														src="${pageContext.request.contextPath }/resources/images/keySmall.png" />
+													비밀글입니다. <i class="fas fa-lock"></i>
 												</c:otherwise>
 											</c:choose>
 
 										</c:when>
 										<c:otherwise>
-								로그인을 하세요.
-							</c:otherwise>
+											비밀글입니다. <i class="fas fa-lock"></i>
+										</c:otherwise>
 									</c:choose></td>
 								<td>${tmp.writer }</td>
 								<td>${tmp.viewCount }</td>
@@ -215,8 +212,7 @@
 								<li class="disabled"><a href="javascript:">&laquo;</a></li>
 							</c:otherwise>
 						</c:choose>
-						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }"
-							step="1">
+						<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }" step="1">
 							<c:choose>
 								<c:when test="${i eq pageNum }">
 									<li class="active">
@@ -264,7 +260,7 @@
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
-						<col class="col-xs-4" />
+						<col class="col-xs-3" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
 						<col class="col-xs-1" />
@@ -288,9 +284,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
-								<td><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
-										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<script>
@@ -302,9 +296,9 @@
 									})
 								</script>
 							<td>
-								<td><span class="wrap-star"> <span
-										class='star-rating'> <span
-											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
+								<td><span class="wrap-star"> 
+									<span class='star-rating'> 
+										<span style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>		
 									</span>
 								</span></td>
 								<td><span class="glyphicon glyphicon-thumbs-up"></span>

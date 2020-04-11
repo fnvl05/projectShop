@@ -57,9 +57,12 @@
          <tbody>
          <c:forEach var="tmp" items="${wishlist}" varStatus="1" >
             <tr>
-               <td><img src="../resources/${tmp.itemImg }" width="156px" height="120px"/></td>
+               <td>
+               		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
+               		<img src="../resources/${tmp.itemImg }" width="156px" height="120px"/> </a>
+               </td>
                <td> 
-               		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}">${tmp.itemName}</a>
+               		<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">${tmp.itemName}</a>
                		<input type="hidden" value="${tmp.itemName }" name="itemName">
                		<input type="hidden" value="${tmp.wishNum }" name="wishNum"/>
                </td>       
