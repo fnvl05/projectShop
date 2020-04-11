@@ -137,7 +137,7 @@
     <tr>
     	<th class="row">주소</th>
     	<td ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
-            <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
+            <input type="text" name="userAddr1" id="userAddrA" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
             
             <input id="addrbtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><label for="userAddr1"><strong id="required"></strong></label><br>
             
@@ -250,7 +250,7 @@
                           fullRoadAddr += extraRoadAddr; }
        
        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-       document.getElementById('userAddr1').value = data.zonecode; //5자리 새우편번호 사용
+       document.getElementById('userAddrA').value = data.zonecode; //5자리 새우편번호 사용
        document.getElementById('userAddr2').value = fullRoadAddr;
        //document.getElementById('userAddr3').value = data.jibunAddress;
                   

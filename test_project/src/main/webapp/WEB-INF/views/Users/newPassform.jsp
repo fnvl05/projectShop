@@ -12,11 +12,13 @@
 <section id="content">
 <form name="newPass" action="newPass.do" method="post">
  <div class="input_area">
- 	<h2>비밀번호 수정 페이지</h2>
+ 	<h2 class="title">비밀번호 수정 페이지</h2>
+ 	<br /><br />
  	<div>
  		<label for="userPass">기존 비밀번호</label>
  		<input type="password" name="userPass" id="userPass" />
  	</div>
+ 	<br />
  	<div>
  		<label for="newuserPass">신규 비밀번호</label>
  		<input type="password" name="newPass" id="newUserPass" />
@@ -26,9 +28,7 @@
 
  </div>
 </form>
-<script>
-	
-	
+<script>	
 	if(${isSuccess}){
 		parent.close();
 		window.close();
@@ -37,6 +37,7 @@
 		alert("비밀번호가 틀렸습니다. 다시 시도해주세요");
 	}
 </script>
+
 </section>
 </body>
 </html>
