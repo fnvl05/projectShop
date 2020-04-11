@@ -64,12 +64,10 @@
 </ul>
 <script>
 	function searchId(){
-		window.open("searchIdForm.do", "searchId",
-				"width=600,height=400,top=250,left=550,resizable=no");
+		window.open("searchIdForm.do", "searchId","width=550,height=450,top=250,left=550,resizable=no");
 	}
 	function searchPwd(){
-		window.open("searchPassForm.do", "searchPwd",
-				"width=600,height=400,top=250,left=550,resizable=no");
+		window.open("searchPassForm.do", "searchPwd","width=550,height=450,top=250,left=550,resizable=no");
 	}
 </script>
 </div>

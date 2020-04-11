@@ -32,7 +32,7 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1100px; height: 700px; margin: auto;">
+				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1800px; height: 600px; margin: auto;">
 				   <ol class="carousel-indicators">
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>

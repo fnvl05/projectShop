@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,16 +16,22 @@
  	<h2 class="title">비밀번호 수정 페이지</h2>
  	<br /><br />
  	<input type="hidden" name="userId" value="${dto.userId }"/>
-	<div>
- 		<label for="newuserPass1">신규 비밀번호</label>
- 		<input type="password" name="newPass" id="newuserPass1"  />
- 	</div>
- 	
- 	<div>
- 		<label for="newuserPass2">신규 비밀번호 확인</label>
- 		<input type="password" id="newuserPass2" />
- 	</div>
- 	
+ 	<table id="change">
+ 	<tbody id="changebody">
+ 		<tr>
+ 			<th><label for="newuserPass1">신규 비밀번호</label></th>
+ 			<td>
+ 				<input type="password" name="newPass" id="newuserPass1"  />
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<th><label for="newuserPass2">신규 비밀번호 확인</label></th>
+ 			<td>
+ 				<input type="password" id="newuserPass2" />
+ 			</td>
+ 		</tr>
+ 	</tbody>
+ 	</table>
  	<button type="submit" id="searchupPass_Btn" name="searchupPass_Btn">수정확인</button>
  </div>
 </form>
@@ -33,7 +40,7 @@
 	//비밀번호를 입력할때 실행할 함수 등록
 	$("#newuserPass1, #newuserPass2").on("input", function(){
 		//상태값을 바꿔준다. 
-		var isPwdDirty=true;
+		isPwdDirty=true;
 		
 		//입력한 비밀번호를 읽어온다.
 		var pwd=$("#newuserPass1").val();
@@ -52,8 +59,7 @@
 		}
 		//비밀번호 에러 여부 
 		var isError=!isPwdEqual || !isPwdInput;
-	});
-	
+	});	
 	$("#searchupPass_Btn").on("click",function(){
 		var pwd=$("#newuserPass1").val();
 		var pwd2=$("#newuserPass2").val();
@@ -65,7 +71,6 @@
 		}
 		self.close();
 	})
-
 </script>
 </body>
 </html>

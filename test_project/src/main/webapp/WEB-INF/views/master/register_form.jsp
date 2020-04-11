@@ -25,8 +25,9 @@
 	</header>
 	<section id="container">		
 				<div id="container_box">
+					<div class="reg">
 					<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
-						<h2>상품 등록</h2>
+						<h2 class="title">상품 등록</h2>
 						 <label>1차 분류</label>
 						 <select class="category1" id="cate1">
 						  <option value="">전체</option>
@@ -38,7 +39,7 @@
 						 </select>
 						 
 						<div class="inputArea">
-							<label for="itmeName">상품명</label>
+							<label for="itmeName" id="itemname">상품명</label>
 							<input type="text" id="itemName" name="itemName">
 						</div>
 						<div class="inputArea">
@@ -102,6 +103,7 @@
 							</script>
 						</div>
 						</form>
+						</div>
 					</div>
 				</section>
 	<footer id="footer">

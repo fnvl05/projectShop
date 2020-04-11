@@ -4,8 +4,10 @@
 	<c:choose>
 		<c:when test="${not empty id}">
 			<c:if test="${sessionScope.verify eq 1}">
-				<li role="presentation"><a href="${pageContext.request.contextPath }/master/master_index.do">관리자</a></li>
-			</c:if>
+				<li role="presentation">
+					<a id="ms" href="${pageContext.request.contextPath }/master/master_index.do">관리자</a>
+				</li> 
+			</c:if> 
 				<li role="presentation"><span class="navText"><strong>${id}님</strong> 환영합니다</span></li>
 				<li>
 					<a href="${pageContext.request.contextPath }/Users/logout.do">
