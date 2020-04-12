@@ -8,14 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<style>
- #underline {
-	text-decoration: underline;
-	text-underline-position: under;
-	text-decoration-style: solid;
-	text-decoration-color: darkred;
-}
-</style>
+
 </head>
 <body>
 	<header>
@@ -197,7 +190,7 @@
 					</tbody>
 				</table>
 				<div align="right">
-					<a class="btn btn-info"
+					<a class="btn"
 						href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>
 				</div>
 				<div class="page-display">
