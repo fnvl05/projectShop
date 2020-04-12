@@ -67,7 +67,7 @@
 				      <span class="sr-only">Next</span>
 				    </a>
 				  </div>  
-				  <!-- 
+
 				  <div id="listBox" style="margin-top:100px;">
 					  <c:choose>
 					  	<c:when test="${not empty sessionScope.id }">
@@ -140,7 +140,7 @@
 							  </div>
 					  	</c:otherwise>
 					  </c:choose>	
-					</div> -->
+					</div>
 				 </div>
 		</section>
 		<footer id="footer">
