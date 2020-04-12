@@ -52,7 +52,12 @@
 				      <div class="item">
 				        <img src="${pageContext.request.contextPath }/resources/images/best3_3.jpg" alt="New york" style="width:100%; height: 100%;">
 				      </div>
-				      
+				      <div class="item">
+				        <img src="${pageContext.request.contextPath }/resources/images/main_001.jpg" alt="New york" style="width:100%; height: 100%;">
+				      </div>
+				      <div class="item">
+				        <img src="${pageContext.request.contextPath }/resources/images/main-spring.jpg" alt="New york" style="width:100%; height: 100%;">
+				      </div>
 				      <div class="item">
 				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/KakaoTalk_20200410_180123960.gif" alt="New york" style="width:100%; height: 100%;">
 				      </div>
