@@ -53,7 +53,7 @@
 			<div class="form-group">
 				<label for="content">내용</label>
 				<textarea class="form-control" name="content" id="content" cols="30"
-					rows="10">${content }</textarea>
+					rows="10">${dto.content }</textarea>
 				<script type="text/javascript">
 					$(function() {CKEDITOR.replace('content',{
 							filebrowserUploadUrl : '${pageContext.request.contextPath }/fileupload.do'

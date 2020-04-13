@@ -87,9 +87,11 @@
 					즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
 				--%>
 				<c:if test="${dto.writer eq id }">
-					<a class="btn btn-info" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
+				<div class="sbtn">
+					<a class="btn" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>
-					<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
+					<a class="btn" href="javascript:deleteConfirm()">삭제</a>
+				</div>
 				</c:if>
 				<br/><br/>
 				<div class="comments">

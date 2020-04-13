@@ -189,6 +189,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${empty list  }">
+					<p style="text-align: center;">해당 아이템의 Q&A가 없습니다.</p>
+				</c:if>
 				<div align="right">
 					<a class="btn"
 						href="../qna/insertform.do?itemNum=${itemNum }">문의하기</a>

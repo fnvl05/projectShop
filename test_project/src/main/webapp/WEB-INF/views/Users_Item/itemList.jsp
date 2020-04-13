@@ -35,7 +35,7 @@
 </header>
 <section id="container">
 	<div id="container_box">
-		<h2 class="title">상품 목록</h2>
+		<h2 class="title">상품 목록</h2><br /><br />
 		<div class="row" style="width:1100px; height: 1500px; margin: auto;">
 		  <c:forEach items="${list}" var="cateList">
 		   	<div class="col-xs-6 col-md-3">

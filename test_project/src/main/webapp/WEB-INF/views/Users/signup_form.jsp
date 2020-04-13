@@ -49,8 +49,6 @@
     		<input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
     		<span id="idMsg">(영문소문자/숫자, 4~16자)</span>
     		<p class="help-block" id="id_check"></p>
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
     		</div>
     	</td>
     </tr>
@@ -145,8 +143,6 @@
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
             <span id="guide" style="color:#999;display:none"></span>
-            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
     		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
             <label for="userAddr3">상세 주소</label>

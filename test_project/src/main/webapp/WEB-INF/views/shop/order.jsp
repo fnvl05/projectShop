@@ -33,7 +33,7 @@
 		<div class="sbtn" style="float: center;">
 			<div class="shopbtn" >
 			<div class="eff"></div>
-			<a href="../home.do">쇼핑 계속</a>
+			<a href="../index.do">쇼핑 계속</a>
 		</div>
 		<div class="orderbtn">
 			<div class="eff"></div>

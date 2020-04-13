@@ -154,7 +154,7 @@
 						<c:forEach var="tmp" items="${list2 }">
 							<tr>
 								<td>
-									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
 									<img src="../resources${tmp.itemImg }" id="itemImg"/>
 									</a>
 								</td>

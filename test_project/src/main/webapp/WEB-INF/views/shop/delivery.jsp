@@ -17,7 +17,7 @@
 	</div>
 	<br/>
 	<br/>
-		<div class="container">
+		<div class="container" style="text-align: center;">
 		<c:forEach var="tmp" items="${list }">
 			<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${tmp.orderNum} 의  배송현황입니다.</p>
 			<br/>

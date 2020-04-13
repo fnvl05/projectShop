@@ -27,7 +27,7 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
-				<h2 class="title">상품 목록</h2>
+				<h2 class="title">상품 목록</h2><br /><br />
 					<table class="table table-hover" style="width: 1200px; margin-left: auto; margin-right: auto;">
 						 <thead>
 							 <tr>
