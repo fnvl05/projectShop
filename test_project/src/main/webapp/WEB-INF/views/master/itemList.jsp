@@ -46,11 +46,11 @@
 								   <td><a href="itemView_form.do?itemNum=${list.itemNum}">${list.itemName}</a></td>
 								   <td> <!-- 목록을 바꾼다면 카테코드 내용도 바꾸기 !! -->
 								   	<c:choose>
-								   		<c:when test="${list.cateCode eq 101}">악세사리-반지</c:when>
-								   		<c:when test="${list.cateCode eq 102}">악세사리-귀걸이</c:when>
-								   		<c:when test="${list.cateCode eq 103}">악세사리-목걸이</c:when>
-								   		<c:when test="${list.cateCode eq 200}">여성의류</c:when>
-								   		<c:when test="${list.cateCode eq 300}">남성의류</c:when>
+								   		<c:when test="${list.cateCode eq 101}">귀걸이-수제작</c:when>
+								   		<c:when test="${list.cateCode eq 102}">귀걸이-롱 귀걸이</c:when>
+								   		<c:when test="${list.cateCode eq 103}">귀걸이-링 귀걸이</c:when>
+								   		<c:when test="${list.cateCode eq 200}">반지</c:when>
+								   		<c:when test="${list.cateCode eq 300}">목걸이</c:when>
 								   		<c:otherwise>카테코드를 지정해주세요</c:otherwise>
 								   	</c:choose>
 								   </td>

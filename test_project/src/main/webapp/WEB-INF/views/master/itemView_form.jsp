@@ -59,11 +59,11 @@
 					<span class="dd">상품 분류</span> 
 					<span class="num2">
 						<c:choose>
-					   		<c:when test="${dto.cateCode eq 101}">악세사리 - 반지</c:when>
-					   		<c:when test="${dto.cateCode eq 102}">악세사리 - 귀걸이</c:when>
-					   		<c:when test="${dto.cateCode eq 103}">악세사리 - 목걸이</c:when>
-					   		<c:when test="${dto.cateCode eq 200}">여성의류</c:when>
-					   		<c:when test="${dto.cateCode eq 300}">남성의류</c:when>
+					   		<c:when test="${list.cateCode eq 101}">귀걸이-수제작</c:when>
+					   		<c:when test="${list.cateCode eq 102}">귀걸이-롱 귀걸이</c:when>
+					   		<c:when test="${list.cateCode eq 103}">귀걸이-링 귀걸이</c:when>
+					   		<c:when test="${list.cateCode eq 200}">반지</c:when>
+					   		<c:when test="${list.cateCode eq 300}">목걸이</c:when>
 					   		<c:otherwise>카테코드를 지정해주세요</c:otherwise>
 					   	</c:choose>
 					</span>

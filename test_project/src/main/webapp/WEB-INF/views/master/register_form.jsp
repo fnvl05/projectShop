@@ -62,7 +62,7 @@
 								}
 							</script>
 						<div class="inputArea">
-							<label for="itemDes">상품설명</label>
+							<label for="itemDes">상품 설명</label>
 							<textarea name="itemDes" id="itemDes"></textarea>
 						</div>
 							<script type="text/javascript">
@@ -74,7 +74,7 @@
 							</script>
 		
 						<div class="inputArea">
-							<label for="itemImg">이미지</label>
+							<label for="itemImg">상품 메인이미지</label>
 							<input type="file" id="itemImg" name="file"/>
 							<div class="select_img">
 								<img src="../resources"${dto.itemImg}/>
@@ -91,7 +91,7 @@
 								})
 							</script>
 						</div>
-						<%=request.getRealPath("/") %>
+						<!--<%=request.getRealPath("/") %> -->
 						<div id="inputArea">
 						<div class="sbtn">
 							<button type="submit" class="btn" id="register_Btn">등록</button>
