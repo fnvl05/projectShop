@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<title>회원탈퇴/Users/delete.jsp</title>
+<title>PROJECT</title>
 </head>
 <body>
 <div id="root">

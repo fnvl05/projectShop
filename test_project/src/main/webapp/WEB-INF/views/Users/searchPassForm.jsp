@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>PROJECT</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>

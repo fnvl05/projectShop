@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보 수정/Users/updateform.jsp</title>
+<title>PROJECT</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>

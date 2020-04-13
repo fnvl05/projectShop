@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<title>로그인/view/Users/login_form</title>
+<title>PROJECT</title>
 </head>
 <body>
 <div id="root">

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>view/Users/signup_form</title>
+<title>PROJECT</title>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/insert.jsp</title>
+<title>PROJECT</title>
 </head>
 <body>
 <div class="container">

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-<title>Home</title>
+<title>PROJECT</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
