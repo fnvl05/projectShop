@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/notice/list.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 
 </head>
 <body>
@@ -165,7 +165,11 @@
 			</ul>
 		</div>
 	</div>
-
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
+	</footer>
 
 </body>
 </html>

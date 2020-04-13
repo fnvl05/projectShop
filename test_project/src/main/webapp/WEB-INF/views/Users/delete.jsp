@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 <title>회원탈퇴/Users/delete.jsp</title>
 </head>
 <body>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>/shop/orderform.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
       <header>

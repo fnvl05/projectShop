@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 <title>/Users/boardList.jsp</title>
 </head>
 <body>

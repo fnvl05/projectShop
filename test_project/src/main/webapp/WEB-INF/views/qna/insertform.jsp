@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Q&A</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -113,7 +113,12 @@
 				});
 			</script>
 		</form>
+		
 	</div>
-
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp"%>
+	</div>
+</footer>
 </body>
 </html>

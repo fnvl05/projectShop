@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>개인정보 수정/Users/updateform.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -84,6 +84,16 @@
 	            <br /><br />
 	    	</td>
 	    </tr>
+	    <script>
+		    $("#userAddr1").on("click",function(){
+		        sample4_execDaumPostcode();
+		        
+		     });
+		     $("#userAddr2").on("click",function(){
+		        sample4_execDaumPostcode();
+		     
+		     });
+	    </script>
 	</tbody>
  	</table>
  	<br /><br />
@@ -144,5 +154,10 @@
               }).open();
           }        
 </script>
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </body>
 </html>

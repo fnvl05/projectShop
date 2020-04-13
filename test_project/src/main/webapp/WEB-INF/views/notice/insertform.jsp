@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>NOTICE</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 <header>
@@ -66,6 +66,11 @@
 			</script>
 		 -->
 	</form>
+	<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp"%>
+			</div>
+		</footer>
 	<script>
 		$("#insertBtn").on("click",function(){
 			//제출 전 제목을 변수에 저장
