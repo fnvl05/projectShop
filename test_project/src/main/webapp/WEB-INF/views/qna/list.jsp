@@ -91,7 +91,7 @@
 								<%-- <td>${tmp.num }</td> --%>
 								<td>
 									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum}&pageNum=1&reviewNum=1">
-									<img src="../resources${tmp.itemImg }" id="itemImg"/></a>
+									<img src="../resources${tmp.itemImg }" id="itemImg"  style="width: 100px;height: 100px;"/></a>
 								</td>
 								<td><c:choose>
 										<c:when test="${not empty sessionScope.userDto.userId }">

@@ -193,7 +193,7 @@
 							<tr>
 								<td>${status.count }</td>
 								<!-- <td>${tmp.num }</td>-->
-								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg"  style="width: 100px;height: 100px;"/></td>
 								<td><c:choose>
 										<c:when test="${not empty sessionScope.userDto.userId }">
 											<c:choose>
@@ -306,7 +306,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
-								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg"  style="width: 100px;height: 100px;"/></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<script>

@@ -67,7 +67,7 @@
 								<!--<td>${tmp.reviewNum }</td>-->
 								<td>${status.count }</td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
-										<img src="../resources${tmp.itemImg }" id="itemImg"/>
+										<img src="../resources${tmp.itemImg }" id="itemImg" style="width: 100px;height: 100px;"/>
 									</a>
 								</td>
 								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName }</a></td>
