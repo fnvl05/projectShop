@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<title>Insert title here</title>
+<title>PROJECT</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/style/style.css">
 </head>
 <body>

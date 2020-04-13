@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/delete.jsp</title>
+<title>PROJECT</title>
 </head>
 <body>
 <div class="container">

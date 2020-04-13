@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="../include/total.jsp"></jsp:include> 
-<title>Insert title here</title>
+<title>PROJECT</title>
 </head>
 <body>
 		<header>

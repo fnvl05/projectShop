@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/Users/newPassform.jsp</title>
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>

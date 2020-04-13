@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 수정 이후/Users/newPass.jsp</title>
+<title>PROJECTp</title>
 </head>
 <body>
 	<strong>${usersDto.userId } 님의 비밀번호를 수정하였습니다.</strong>

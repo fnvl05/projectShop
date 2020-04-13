@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/Users_item/itemView_form.jsp</title>
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>

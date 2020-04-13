@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>REVIEW</title>
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
-
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
 </head>
 

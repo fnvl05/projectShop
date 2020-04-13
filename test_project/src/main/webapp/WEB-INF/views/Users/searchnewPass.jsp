@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/Users/searchnewPass.jsp</title>
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>

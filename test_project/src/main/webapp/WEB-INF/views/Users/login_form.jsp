@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
-<title>로그인/view/Users/login_form</title>
 </head>
 <body>
 <div id="root">

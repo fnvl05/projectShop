@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/master/itemView_form.jsp</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
+<title>PROJECT</title>
 <style>
 
 </style>

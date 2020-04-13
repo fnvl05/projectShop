@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>PROJECT</title>
 <jsp:include page="../include/total.jsp"></jsp:include>
-<title>Insert title here</title>
 </head>
 <body>
 <div id="root">
