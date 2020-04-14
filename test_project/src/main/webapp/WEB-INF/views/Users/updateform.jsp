@@ -58,8 +58,36 @@
 	    <tr>
 	    	<th class="row"> <label for="userPhone">연락처</label></th>
 	    	<td>
-	    		<input type="text" id="login_input" name="userPhone" value="${dto.userPhone }" required="required" />
+	    		<input type="text" id="login_input" name="userPhone" value="${dto.userPhone }" required="required" onKeyup="inputPhoneNumber(this);" maxlength="13"/>
 	    	</td>
+	    	<script>
+			    function inputPhoneNumber(obj) {
+			        var number = obj.value.replace(/[^0-9]/g, "");
+			        var phone = "";
+			    	  
+			        if(number.length < 4) {
+			            return number;
+			        } else if(number.length < 7) {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3);
+			        } else if(number.length < 11) {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3, 3);
+			            phone += "-";
+			            phone += number.substr(6);
+			        } else {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3, 4);
+			            phone += "-";
+			            phone += number.substr(7);
+			        }
+			        obj.value = phone;
+			       
+			    }
+			   </script>
 	    </tr>
 	    <tr>
 	    	<th class="row"> <label for="email">이메일</label></th>

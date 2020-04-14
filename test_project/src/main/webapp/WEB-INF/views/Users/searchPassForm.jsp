@@ -49,7 +49,7 @@
     <tr>
     	<th><label for="userPhone">연락처</label></th>
     	<td>
-    		<input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요" required="required" />
+    		<input type="text" id="userPhone" name="userPhone" placeholder="연락처를 입력해주세요" onKeyup="inputPhoneNumber(this);" maxlength="13" required="required" />
     	</td>
     </tr>
     <tr>
@@ -65,6 +65,34 @@
  </div>
  </form>
 </section>
+ <script>
+    function inputPhoneNumber(obj) {
+        var number = obj.value.replace(/[^0-9]/g, "");
+        var phone = "";
+    	  
+        if(number.length < 4) {
+            return number;
+        } else if(number.length < 7) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3);
+        } else if(number.length < 11) {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 3);
+            phone += "-";
+            phone += number.substr(6);
+        } else {
+            phone += number.substr(0, 3);
+            phone += "-";
+            phone += number.substr(3, 4);
+            phone += "-";
+            phone += number.substr(7);
+        }
+        obj.value = phone;
+       
+    }
+   </script>
 <script>
 	if(${check}==false){
 		alert("입력하신 정보가 틀렸습니다. 다시 입력해주세요 :)");
