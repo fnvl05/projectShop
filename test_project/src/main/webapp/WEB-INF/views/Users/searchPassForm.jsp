@@ -60,8 +60,9 @@
     </tr>
  </tbody>
  </table>
-  
+  <div class="sbtn">
   <button type="submit" id="update_Btn" name="update_Btn">비밀번호 찾기</button>
+ </div>
  </form>
 </section>
 <script>

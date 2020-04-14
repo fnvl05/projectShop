@@ -105,7 +105,7 @@
 										/* reviewContent에 img가 있을 경우 삭제해줌*/
 										$(document).ready(function(){
 											$(".review${tmp.reviewNum} p img").remove();
-											var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
+											var text1=$(".review${tmp.reviewNum} p").text().substring(0,10);
 											$(".review${tmp.reviewNum} p").text(text1);
 										})
 									</script>
