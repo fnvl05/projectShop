@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -48,7 +48,7 @@
 					type="text" value="${id }" disabled />
 			</div>
 			<div class="form-group">
-				<label for="title">제목</label> <input class="form-control"
+				<label for="title" style="margin-right: 14px;">제목</label> <input class="form-control"
 					type="text" name="title" id="title" />
 			</div>
 			<div class="form-group">
@@ -62,8 +62,10 @@
 					});
 				</script>
 			</div>
-			<button class="btn btn-primary" type="submit" id="insertBtn">저장</button>
-			<button class="btn btn-warning" type="reset">초기화</button>
+			<div class="sbtn">
+			<button class="btn" type="submit" id="insertBtn">저장</button>
+			<button class="btn" type="reset">초기화</button>
+			</div>
 			<!--  뒤로가기 버튼 삭제
 			<button class="btn btn-danger" type="button" id="btn_back">뒤로가기</button>
 			<script>
@@ -99,7 +101,7 @@
 					}
 					//내용이 30글자 미만인 경우
 					//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
-					if(content_len<18){
+					if(content_len<38){
 						alert("내용을  30자 이상 입력하세요.",function(){
 							//에디터 내용에 초기화
 							CKEDITOR.instances.content.setData("");
@@ -111,7 +113,12 @@
 				});
 			</script>
 		</form>
+		
 	</div>
-
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp"%>
+	</div>
+</footer>
 </body>
 </html>

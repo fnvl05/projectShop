@@ -74,7 +74,7 @@ public class CartController {
 	//3. 장바구니 삭제
 	@ResponseBody
 	@RequestMapping(value="/shop/deleteEachCart", method=RequestMethod.POST)
-	public Map<String, Object> Users_deleteEachCart(HttpServletRequest request, @RequestParam(value="arrCheckBox[]")List<String> list) {
+	public Map<String, Object> Users_deleteEachCart(HttpServletRequest request , @RequestParam(value="arrCheckBox[]")List<String> list) {
 		for(int i=0; i<list.size(); i++) {
 			service.deleteCart(Integer.parseInt(list.get(i)));
 		}
@@ -86,7 +86,7 @@ public class CartController {
 	//4. 장바구니 수정
 	@ResponseBody
 	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
-	public Map<String, Object> Users_updateCart(HttpServletRequest request, @RequestParam(value="tarArray[]")List<Integer> dto) {
+	public Map<String, Object> Users_updateCart(HttpServletRequest request , @RequestParam(value="tarArray[]")List<Integer> dto) {
 		CartListDto cartDto=new CartListDto();
 		cartDto.setCartNum(dto.get(0));
 		cartDto.setCartStock(dto.get(1));

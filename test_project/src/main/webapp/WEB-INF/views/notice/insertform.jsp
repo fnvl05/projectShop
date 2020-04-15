@@ -4,10 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NOTICE</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
+<header>
+	<div class="header_box">
+		<nav id="nav">
+			<div class="navbar-right">
+				<%@ include file="../include/nav.jsp" %>
+			</div>
+			<div id="index_logo_div">
+				<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+			</div>
+			<div class="navbar-left">
+					<%@ include file="../include/users_aside.jsp" %>						
+			</div>
+		</nav>
+	</div>
+</header>
 <div class="container">
 	<ol class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/notice/list.do">목록</a></li>
@@ -19,11 +34,11 @@
 			<input class="form-control" type="text" name="writer" value="${id }" disabled/>
 		</div>
 		<div class="form-group">
-			<label for="title">제목</label>
+			<label for="title" style="margin-right: 14px;">제목</label>
 			<input class="form-control" type="text" name="title" id="title" />
 		</div>
 		<div class="form-group">
-			<label for="noticeNum">중요글</label>
+			<label for="noticeNum" style="margin-right:5px;">중요글</label>
 			<input type="radio" name="noticeNum" value=0 checked="checked"/> OFF
 			<input type="radio" name="noticeNum" value=1 /> ON
 		</div>
@@ -38,8 +53,10 @@
 			});
 			</script>
 		</div>
-		<button class="btn btn-primary" type="submit"  id="inserBtn">저장</button>
-		<button class="btn btn-warning" type="reset">초기화</button>
+		<div class="sbtn">
+		<button class="btn" type="submit"  id="inserBtn">저장</button>
+		<button class="btn" type="reset">초기화</button>
+		</div>
 		<!--  뒤로가기 버튼 삭제하기
 			<button class="btn btn-danger" type="button" id="back-btn">뒤로가기</button>
 			<script>
@@ -49,6 +66,11 @@
 			</script>
 		 -->
 	</form>
+	<footer id="footer">
+			<div id="footer_box">
+				<%@ include file="../include/footer.jsp"%>
+			</div>
+		</footer>
 	<script>
 		$("#insertBtn").on("click",function(){
 			//제출 전 제목을 변수에 저장

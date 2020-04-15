@@ -32,7 +32,7 @@
 	
 	<select id="getData" parameterType="String" resultType="UsersDto">
 		select userId, userPass, userName, userPhone, email, 
-		userAddr1, userAddr2, userAddr3, birthday,regiDate
+		userAddr1, userAddr2, userAddr3, TO_CHAR(birthday,'YYYY.MM.DD') AS birthday, TO_CHAR(regiDate,'YYYY.MM.DD') AS regiDate
 		from tbl_member
 		where userId=#{userId}
 	</select>
@@ -67,6 +67,8 @@
 	</select>
 
 	<update id="changeNewPassData" parameterType="UsersDto">
-		update tbl_member set userPass=#{newPass} where userId=#{userId} and userName=#{userName}
+		update tbl_member 
+		set userPass=#{userPass} 
+		where userId=#{userId} 
 	</update>
 </mapper>

@@ -10,11 +10,23 @@
 		insert into tbl_items (itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemThumbImg)
 		values (tbl_item_seq.nextval, #{itemName}, #{cateCode}, #{itemPrice}, #{itemCount}, #{itemDes}, #{itemImg}, #{itemThumbImg})
 	</insert>
-	<select id="itemSelect"  resultType="ItemDto">
+	
+	<select id="itemSelect"  resultType="ItemDto" parameterType="ItemDto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
+ 					from tbl_items
+ 					order by itemNum desc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+		
+	</select>
+	<select id="itemSelect_Count"  resultType="ItemDto">
 		select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
  		from tbl_items
  		order by itemNum desc
 	</select>
+	
 	<select id="itemViewContent" parameterType="ItemDto" resultType="ItemDto">
 		 select itemNum, itemName, cateCode, itemPrice, itemCount, itemDes, itemImg, itemDate
      	from tbl_Items
@@ -49,24 +61,51 @@
 		where itemNum=#{itemNum}
 	</update>
 	
-	<select id="select_user_orders" resultType="User_Orders_Dto">
-		select tbl_member.userId, tbl_member.verify, orders.delivery, orders.orderNum
-		from tbl_member left join orders on tbl_member.userId=orders.userId
-		where orders.delivery is not null
-		order by userId desc
+	<select id="select_orderList_Count" resultType="Orders_Dto">
+		select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			 TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		order by orderNum asc
 	</select>
-	<select id="select_item_order_detail" resultType="Item_OrderDetail_Dto">
-		select tbl_items.itemName, order_detail.result, order_detail.orderNum, order_detail.odNum
-		from order_detail left join tbl_items on tbl_items.itemNum=order_detail.itemNum 
-		where order_detail.result is not null
-		order by odnum desc
+	
+	<select id="select_orderList" resultType="Orders_Dto" parameterType="Orders_Dto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select
+		     o.orderNum, o.userId, o.orderRec, o.orderPhone1, o.orderPhone2 ,o.userAddr1, o.userAddr2, o.userAddr3, 
+			 TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS orderDate,o.payment,o.allPrice,o.delivery,
+		     d.odNum, d.itemNum, d.quantity,
+		     t.itemName, t.itemImg, t.itemPrice
+		 from orders o
+		         inner join order_detail d
+		             on o.orderNum = d.orderNum
+		         inner join tbl_items t
+		             on d.itemNum = t.itemNum
+		order by orderNum asc) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
-	<update id="resultItem" parameterType="orderDetailDto">
-		 update order_detail
-     	 set result = #{result}
-         where odNum = #{odNum}
+	
+	<update id="resultItem" parameterType="OrdersDto">
+		 update orders
+     	 set delivery = #{delivery}
+         where orderNum = #{orderNum}
 	</update>
-	<select id="userAllList" resultType="UsersDto">
+	<select id="userAllList" resultType="UsersDto" parameterType="UsersDto">
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 
+			FROM (select * from tbl_member) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	<select id="userAllList_Count" resultType="UsersDto">
 		select * from tbl_member
 	</select>
 	<update id="userVerify">
@@ -80,7 +119,7 @@
 		Where itemNum=#{itemNum}
 	</update>
 	<select id="bestItemList" resultType="ItemDto">
-		select * from tbl_items order by itemGetCount asc
+		select * from tbl_items order by itemGetCount desc
 	</select>
 	<select id="newItemLsit" resultType="ItemDto">
 		SELECT * FROM tbl_items ORDER BY itemdate DESC

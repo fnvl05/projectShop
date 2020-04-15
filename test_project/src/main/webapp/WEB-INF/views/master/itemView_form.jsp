@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/master/itemView_form.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include>
+<title>PROJECT</title>
 <style>
 
 </style>
@@ -59,11 +59,11 @@
 					<span class="dd">상품 분류</span> 
 					<span class="num2">
 						<c:choose>
-					   		<c:when test="${dto.cateCode eq 101}">악세사리 - 반지</c:when>
-					   		<c:when test="${dto.cateCode eq 102}">악세사리 - 귀걸이</c:when>
-					   		<c:when test="${dto.cateCode eq 103}">악세사리 - 목걸이</c:when>
-					   		<c:when test="${dto.cateCode eq 200}">여성의류</c:when>
-					   		<c:when test="${dto.cateCode eq 300}">남성의류</c:when>
+					   		<c:when test="${dto.cateCode eq 101}">귀걸이-수제작</c:when>
+					   		<c:when test="${dto.cateCode eq 102}">귀걸이-롱 귀걸이</c:when>
+					   		<c:when test="${dto.cateCode eq 103}">귀걸이-링 귀걸이</c:when>
+					   		<c:when test="${dto.cateCode eq 200}">반지</c:when>
+					   		<c:when test="${dto.cateCode eq 300}">목걸이</c:when>
 					   		<c:otherwise>카테코드를 지정해주세요</c:otherwise>
 					   	</c:choose>
 					</span>
@@ -134,7 +134,7 @@
 						<c:forEach var="tmp" items="${requestScope.list }">
 							<tr>
 								<td>${tmp.num }</td>
-								<td><img src="../resources${tmp.itemImg }" id="itemImg" /></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg"  style="width: 100px;height: 100px;"/></td>
 								<td><c:choose>
 										<c:when test="${not empty sessionScope.userDto.userId }">
 											<c:choose>
@@ -161,6 +161,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${empty list  }">
+					<p style="text-align: center;">해당 아이템의 Q&A가 없습니다.</p>
+				</c:if>
 				<div class="page-display">
 					<ul class="pagination pagination-sm">
 						<c:choose>
@@ -246,9 +249,7 @@
 							<tr>
 								<td>${status.count}</td>
 								<!-- <td>${tmp.reviewNum}</td> -->
-								<td><a
-									href="../review/detail.do?reviewNum=${tmp.reviewNum }&itemNum=${itemNum}&pageNum=${pageNum}"><img
-										src="../resources${tmp.itemImg }" id="itemImg" /></a></td>
+								<td><img src="../resources${tmp.itemImg }" id="itemImg" style="width: 100px;height: 100px;"/></td>
 								<td>${tmp.itemName }</td>
 								<td style="word-break:break-all"><a href="../review/detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
 								<script>

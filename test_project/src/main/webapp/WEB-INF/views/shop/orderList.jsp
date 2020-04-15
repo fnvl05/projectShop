@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/shop/orderList.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">

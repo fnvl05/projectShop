@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PROJECT</title>
 </head>
 <body>
 	<h1>마스터만 이용할 수 있습니다 :) 돌아가세요</h1>

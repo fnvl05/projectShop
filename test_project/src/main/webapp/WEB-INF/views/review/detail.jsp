@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>REVIEW</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 <style>
 	table{
 		width:100%;
@@ -46,7 +46,7 @@
 		<div id="container_box">
 			<div class="container">
 				<br/>
-				<h3>리뷰 상세보기</h3>
+				<h3 style="text-align: center;">리뷰 상세보기</h3>
 				<br/>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
@@ -123,23 +123,28 @@
 						<td>${dto.reviewContent }</td>
 					</tr>
 				</table>
-				<br /> 
-				<br />
+
 				<c:if test="${dto.reviewWriter eq userDto.userId }">
-					<div style="float: right;">
-					<button id="update" >수정</button>
-					<button id="delete" >삭제</button>
+					<div class="sbtn" style="float: right;">
+					<button class="btn" id="update" >수정</button>
+					<button class="btn" id="delete" >삭제</button>
 					</div>
 					<script>
 						$("#update").click(function() {
 							location.href ="updateform.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
 						});
 						$("#delete").click(function() {
-							location.href ="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+							var result = confirm("해당 리뷰를 삭제하시겠습니까?");
+							if(result){
+								location.href ="delete.do?reviewNum=${dto.reviewNum}&itemNum=${dto.itemNum }";
+							}else{
+							    return false;
+							}
+							
 						});
 					</script>
 				</c:if>
-				<br /> <br />
+				<br /> <br /><br />
 				<div class="comments">
 					<ul>
 						<c:forEach items="${commentList }" var="tmp">
@@ -175,22 +180,17 @@
 												<pre>${tmp.content }</pre>
 											</dd>
 										</dl>
-										<form class="comment-insert-form" action="comment_insert.do"
-											method="post">
+										<form class="comment-insert-form" action="comment_insert.do" method="post">
 											<!-- 덧글 그룹 -->
-											<input type="hidden" name="ref_group"
-												value="${dto.reviewNum }" />
+											<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
 											<!-- 덧글 대상 -->
 											<input type="hidden" name="target_id" value="${tmp.writer }" />
-											<input type="hidden" name="comment_group"
-												value="${tmp.comment_group }" />
-											<textarea name="content"><c:if
-													test="${empty userDto.userId }">로그인이 필요합니다.</c:if></textarea>
+											<input type="hidden" name="comment_group" value="${tmp.comment_group }" />
+											<textarea name="content"><c:if test="${empty userDto.userId }">로그인이 필요합니다.</c:if></textarea>
 											<button type="submit">등록</button>
-										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> <c:if
-											test="${userDto.userId eq tmp.writer }">
-											<form class="comment-update-form" action="comment_update.do"
-												method="post">
+										</form> <!-- 로그인한 아이디와 댓글의 작성자와 같으면 수정폼 출력 --> 
+										<c:if test="${userDto.userId eq tmp.writer }">
+											<form class="comment-update-form" action="comment_update.do" method="post">
 												<input type="hidden" name="num" value="${tmp.num }" />
 												<textarea name="content">${tmp.content }</textarea>
 												<button type="submit">수정</button>
@@ -198,11 +198,6 @@
 										</c:if>
 									</li>
 								</c:when>
-								<c:otherwise>
-									<li
-										<c:if test="${tmp.num ne tmp.comment_group }">style="padding-left:50px;"</c:if>>삭제된
-										댓글 입니다.</li>
-								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 					</ul>
@@ -216,10 +211,8 @@
 							<input type="hidden" name="ref_group" value="${dto.reviewNum }" />
 							<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
 							<input type="hidden" name="target_id" value="${dto.reviewWriter}" />
-							<textarea name="content">
-								<c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if>
-							</textarea>
-							<button type="submit">등록</button>
+							<textarea name="content" style="width: 973px;"><c:if test="${empty userDto.userId }">로그인이 필요합니다</c:if></textarea>
+							<button class="btn" type="submit">등록</button>
 						</form>
 					</div>
 				</div>
@@ -283,7 +276,7 @@
 				success:function(responseData){
 					if(responseData.isSuccess){
 						var sel="#comment"+num;  
-						$(sel).text("삭제된 댓글 입니다.");   //아이디가 comment${tmp.num}인 것을 삭제한다.
+						$(sel).hide();   //아이디가 comment${tmp.num}인 것을 삭제한다.
 					}
 				}
 			});

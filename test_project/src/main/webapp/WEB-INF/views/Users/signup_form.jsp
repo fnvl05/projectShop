@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>view/Users/signup_form</title>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -49,8 +49,6 @@
     		<input type="text" id="login_input" name="userId" placeholder="아이디를 입력하세요" required="required" />
     		<span id="idMsg">(영문소문자/숫자, 4~16자)</span>
     		<p class="help-block" id="id_check"></p>
-			<span class="glyphicon glyphicon-remove form-control-feedback"></span>
-			<span class="glyphicon glyphicon-ok form-control-feedback"></span>
     		</div>
     	</td>
     </tr>
@@ -97,7 +95,7 @@
     <tr>
     	<th class="row"> <label for="userPhone">연락처</label></th>
     	<td>
-    		<input type="text" id="login_input" name="userPhone" onKeyup="inputPhoneNumber(this);" placeholder="연락처를 입력해주세요" required="required" />
+    		<input type="text" id="login_input" name="userPhone" onKeyup="inputPhoneNumber(this);" placeholder="연락처를 입력해주세요" required="required" maxlength="13"/>
     		<script>
 	               function inputPhoneNumber(obj) {
 	                   var number = obj.value.replace(/[^0-9]/g, "");
@@ -137,7 +135,7 @@
     <tr>
     	<th class="row">주소</th>
     	<td ng-class="{'has-success':myForm.userAddr1.$valid,'has-error':myForm.userAddr1.$invalid &&myForm.userAddr1.$dirty}">
-            <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
+            <input type="text" name="userAddr1" id="userAddrA" placeholder="우편번호" ng-model="userAddr1" ng-required="true"/>
             
             <input id="addrbtn" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" ><label for="userAddr1"><strong id="required"></strong></label><br>
             
@@ -145,13 +143,21 @@
             <input type="text" name="userAddr2" id="userAddr2" placeholder="기본주소" ng-model="userAddr2" ng-required="true"/>
             <label for="userAddr2">기본 주소 <strong id="required"></strong></label>
             <span id="guide" style="color:#999;display:none"></span>
-            <span ng-show="myForm.userAddr2.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-            <span ng-show="myForm.userAddr2.$invalid && myForm.userAddr2.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
     		<br />
             <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
             <label for="userAddr3">상세 주소</label>
     	</td>
     </tr>
+    <script>
+	    $("#userAddrA").on("click",function(){
+	        sample4_execDaumPostcode();
+	        
+	     });
+	     $("#userAddr2").on("click",function(){
+	        sample4_execDaumPostcode();
+	     
+	     });
+    </script>
     <tr>
     	<th class="row"><label for="birthday">생년월일</label></th>
     	<td>
@@ -250,7 +256,7 @@
                           fullRoadAddr += extraRoadAddr; }
        
        // 우편번호와 주소 정보를 해당 필드에 넣는다.
-       document.getElementById('userAddr1').value = data.zonecode; //5자리 새우편번호 사용
+       document.getElementById('userAddrA').value = data.zonecode; //5자리 새우편번호 사용
        document.getElementById('userAddr2').value = fullRoadAddr;
        //document.getElementById('userAddr3').value = data.jibunAddress;
                   

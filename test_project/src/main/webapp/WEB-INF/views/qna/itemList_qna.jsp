@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -161,12 +161,12 @@
 			<button type="submit">검색</button>
 		</form>
 		<br/>
-		<footer id="footer">
+		
+	</div>
+<footer id="footer">
 		<div id="footer_box">
 			<%@ include file="../include/footer.jsp" %>
 		</div>
 	</footer>
-	</div>
-
 </body>
 </html>

@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
-<title>/Users/boardList.jsp</title>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -53,8 +53,8 @@
 					<c:forEach var="tmp" items="${qnalist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
-							<td><a href="../qna/detail.do?num=${tmp.num }">${tmp.title }</a></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1"><img src="../resources${tmp.itemImg }" id="itemImg"/></a></td>
+							<td><a href="../qna/detail.do?num=${tmp.num }&itemNum=${tmp.itemNum}">${tmp.title }</a></td>
 							<td>${tmp.viewCount }</td>
 							<td>
 								<fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yyyy-MM-dd HH:mm:ss.S" scope="page"/>
@@ -98,8 +98,8 @@
 					<c:forEach var="tmp2" items="${reviewlist }" varStatus="status">
 						<tr>
 							<td>${status.count }</td>
-							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }"><img src="../resources${tmp2.itemImg }" id="itemImg"/></a></td>
-							<td>${tmp2.itemName }</td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }&pageNum=1&reviewNum=1"><img src="../resources${tmp2.itemImg }" id="itemImg"/></a></td>
+							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp2.itemNum }&pageNum=1&reviewNum=1">${tmp2.itemName }</a></td>
 							<td><a href="../review/detail.do?reviewNum=${tmp2.reviewNum }">${tmp2.reviewContent }</a></td>
 							<td>
 								<span class="wrap-star"> 

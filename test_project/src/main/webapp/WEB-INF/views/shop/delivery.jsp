@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/shop/delivery.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<br/>
@@ -17,7 +17,7 @@
 	</div>
 	<br/>
 	<br/>
-		<div class="container">
+		<div class="container" style="text-align: center;">
 		<c:forEach var="tmp" items="${list }">
 			<p><strong>[${sessionScope.userDto.userName }]</strong> 님의 주문번호 : ${tmp.orderNum} 의  배송현황입니다.</p>
 			<br/>

@@ -48,7 +48,7 @@ create table tbl_member (
 
 create sequence tbl_member_seq;
 
-<<<<<<< HEAD
+
 -- 카테고리 테이블
 create table goods_category (
    cateLevel    varchar2(20)    not null,
@@ -58,11 +58,11 @@ create table goods_category (
     primary key(cateCode),
     foreign key(cateCodeRef) references goods_category(cateCode)
 );
-=======
+
 
 <마스터 유저 만들기 (일반유저:0 , 마스터유저:1)> 
 update tbl_member set verify=1 where userId='master';
->>>>>>> refs/heads/css_kang
+
 
 --<level1 카테고리 예시>
 insert into goods_category values('1', '악세서리', '100', '');
@@ -98,9 +98,8 @@ alter table tbl_items add
 
 create sequence tbl_item_seq;
 
-<<<<<<< HEAD
+
 -- 공지 게시판
-=======
 alter table tbl_items add(itemGetCount number);
 
 -별도의 테이블 쿼리-
@@ -181,7 +180,6 @@ select i.itemNum, i.itemName, i.cateCode, c.cateCodeRef, c.cateName,
 
  
 <공지 게시판>
->>>>>>> refs/heads/css_kang
 CREATE TABLE board_notice(
    num Number PRIMARY key,
    noticeNum number not null,
@@ -337,8 +335,7 @@ alter table orders
 
 -- 배송 정보 자세히보기 테이블
 
-<<<<<<< HEAD
-=======
+
 <!-- 일단 여기까지 -->
 
 <!-- 카테고리별 상품 리스트 : 1차 분류 -->
@@ -371,7 +368,6 @@ alter table orders modify(userAddr3 varchar2(100));
 
 
 --orders detail table
->>>>>>> refs/heads/css_kang
 create table order_detail(
    odNum number primary key,
    orderNum number,
@@ -383,19 +379,11 @@ create table order_detail(
 create sequence order_detail_seq;
 
 alter table order_detail 
-<<<<<<< HEAD
-   add constraint order_detail_orderNum_fk foreign key(orderNum)
-   references orders(orderNum) on delete cascade;
-=======
 	add constraint order_detail_orderNum_fk foreign key(orderNum)
 	references orders(orderNum) on delete cascade;
->>>>>>> refs/heads/css_kang
+
 
 alter table order_detail
-<<<<<<< HEAD
-   add constraint order_detail_itemNum_fk foreign key(itemNum)
-   references tbl_items(itemNum) on delete cascade;
-=======
 	add constraint order_detail_itemNum_fk foreign key(itemNum)
 	references tbl_items(itemNum) on delete cascade;
 
@@ -453,4 +441,4 @@ alter table [ 테이블 이름 ] add
     constraint [ 제약조건 이름 ]
     foreign key ([ 참조할 컬럼 이름 ])
         references [ 참조되는 테이블 이름 ]([ 참조되는 컬럼 이름 ]);
->>>>>>> refs/heads/css_kang
+

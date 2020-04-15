@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-<title>Insert title here</title>
+<title>PROJECT</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/style/style.css">
 </head>
 <body>
 	<div class="home_div">
-		<img alt="" src="resources/images/제목-없음-1.png" class="home_img1">
-		<img alt="" src="resources/images/제목-없음-111.gif" class="home_img2">
+		<img alt="" src="resources/images/KakaoTalk_20200413_153426973.jpg" class="home_img1">
+		<img alt="" src="resources/images/KakaoTalk_20200413_151758303.gif" class="home_img2">
 	</div>
 	
 	<script>

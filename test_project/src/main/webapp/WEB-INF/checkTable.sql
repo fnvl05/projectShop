@@ -39,6 +39,17 @@ insert into goods_category values('2', '반지', '101', '100');
 insert into goods_category values('2', '귀걸이', '102', '100');
 insert into goods_category values('2', '목걸이', '103', '100');
 
+--이거로 수정함--
+insert into goods_category values('1', '귀걸이', '100', '');
+insert into goods_category values('1', '반지', '200', '');
+insert into goods_category values('1', '목걸이', '300', '');
+
+
+insert into goods_category values('2', '수제작', '101', '100');
+insert into goods_category values('2', '롱귀걸이', '102', '100');
+insert into goods_category values('2', '링귀걸이', '103', '100');
+
+
 create sequence goods_category_seq;
 
 -- 상품 테이블

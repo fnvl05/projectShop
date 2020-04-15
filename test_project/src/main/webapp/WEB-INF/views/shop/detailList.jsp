@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/shop/detailList.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -154,9 +154,11 @@
 						<c:forEach var="tmp" items="${list2 }">
 							<tr>
 								<td>
+									<a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
 									<img src="../resources${tmp.itemImg }" id="itemImg"/>
+									</a>
 								</td>
-								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">${tmp.itemName}</a></td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName}</a></td>
 								<td>${tmp.quantity }</td>
 								<td><fmt:formatNumber value="${ tmp.itemPrice}" pattern="###,###,###"/>원</td>
 								<td>
@@ -164,7 +166,7 @@
 								<input type="hidden" value=${tmp.itemNum } name="itemNum" id="${tmp.itemNum }" />
 								</td>
 								<td>
-									<button  type="button" id="${tmp.itemNum }">리뷰쓰기</button>
+									<button  type="button" class="btn" id="${tmp.itemNum }">리뷰쓰기</button>
 								</td>
 							</tr>
 						</c:forEach>

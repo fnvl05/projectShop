@@ -12,14 +12,11 @@
 			FROM
     			(SELECT result1.*, ROWNUM AS rnum
     			FROM
-        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
+        			(select reviewNum,reviewWriter,reviewContent,tbl_items.itemNum,tbl_items.itemImg,tbl_items.itemName,likeCount,upCount,TO_CHAR(regdate,'YY.MM.DD') AS regdate
 					from board_review,tbl_items
 					where board_review.itemNum=tbl_items.itemNum
 					order by reviewNum desc) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
-		
-		
-
 	</select>
 	<select id="getCount2" resultType="int"
 		parameterType="reviewJoinDto">
@@ -38,9 +35,6 @@
 					where board_review.itemNum=tbl_items.itemNum and board_review.itemNum=#{itemNum}
 					order by reviewNum desc) result1)
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum} 
-		
-		
-
 	</select>
 	<insert id="insert" parameterType="reviewDto">
 		insert into board_review
@@ -73,8 +67,7 @@
 		where itemNum=#{itemNum}
 	</select>
 	<select id="isExist" resultType="int" parameterType="reviewDto">
-		select
-		reviewNum
+		select reviewNum
 		from board_review
 		where itemNum=#{itemNum} and
 		reviewWriter=#{reviewWriter}

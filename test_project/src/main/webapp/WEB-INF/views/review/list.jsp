@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>REVIEW</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 
@@ -61,32 +61,67 @@
 				</thead>
 				<tbody>
 					<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
-						<tr>
-							<!--<td>${tmp.reviewNum }</td>-->
-							<td>${status.count }</td>
-							<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }">
-									<img src="../resources${tmp.itemImg }" id="itemImg"/>
-								</a></td>
-							<td>${tmp.itemName }</td>
-							<td><a href="detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
-								<script>
-									/* reviewContent에 img가 있을 경우 삭제해줌*/
-									$(document).ready(function(){
-										$(".review${tmp.reviewNum} p img").remove();
-										var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
-										$(".review${tmp.reviewNum} p").text(text1);
-									})
-								</script>
-							<td><span class="wrap-star"> <span
-									class='star-rating'> <span
-										style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
-								</span>
-							</span></td>
-							<td><span class="glyphicon glyphicon-thumbs-up"></span>
-								${tmp.upCount }</td>
-							<td>${tmp.reviewWriter }</td>
-							<td>${tmp.regdate }</td>
-						</tr>
+						<c:choose>
+						 <c:when test="${not empty sessionScope.id }">
+						 	<tr>
+								<!--<td>${tmp.reviewNum }</td>-->
+								<td>${status.count }</td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
+										<img src="../resources${tmp.itemImg }" id="itemImg" style="width: 100px;height: 100px;"/>
+									</a>
+								</td>
+								<td><a href="../Users_Item/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName }</a></td>
+								<td><a href="detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+									<script>
+										/* reviewContent에 img가 있을 경우 삭제해줌*/
+										$(document).ready(function(){
+											$(".review${tmp.reviewNum} p img").remove();
+											var text1=$(".review${tmp.reviewNum} p").text().substring(0,15);
+											$(".review${tmp.reviewNum} p").text(text1);
+										})
+									</script>
+								<td><span class="wrap-star"> <span
+										class='star-rating'> <span
+											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
+									</span>
+								</span></td>
+								<td><span class="glyphicon glyphicon-thumbs-up"></span>
+									${tmp.upCount }</td>
+								<td>${tmp.reviewWriter }</td>
+								<td>${tmp.regdate }</td>
+							</tr>
+						 </c:when>
+						 <c:otherwise>
+						 	<tr>
+								<!--<td>${tmp.reviewNum }</td>-->
+								<td>${status.count }</td>
+								<td><a href="../Unknown/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">
+										<img src="../resources${tmp.itemImg }" id="itemImg"/>
+									</a>
+								</td>
+								<td><a href="../Unknown/itemView_form.do?itemNum=${tmp.itemNum }&pageNum=1&reviewNum=1">${tmp.itemName }</a></td>
+								<td><a href="detail.do?reviewNum=${tmp.reviewNum }" class="review${tmp.reviewNum }">${tmp.reviewContent }</a></td>
+									<script>
+										/* reviewContent에 img가 있을 경우 삭제해줌*/
+										$(document).ready(function(){
+											$(".review${tmp.reviewNum} p img").remove();
+											var text1=$(".review${tmp.reviewNum} p").text().substring(0,10);
+											$(".review${tmp.reviewNum} p").text(text1);
+										})
+									</script>
+								<td><span class="wrap-star"> <span
+										class='star-rating'> <span
+											style="width:<fmt:formatNumber value="${tmp.likeCount *10}" pattern=".0"/>%"></span>
+									</span>
+								</span></td>
+								<td><span class="glyphicon glyphicon-thumbs-up"></span>
+									${tmp.upCount }</td>
+								<td>${tmp.reviewWriter }</td>
+								<td>${tmp.regdate }</td>
+							</tr>
+						 </c:otherwise>
+						</c:choose>
+						
 					</c:forEach>
 				</tbody>
 			</table>
@@ -138,6 +173,8 @@
 			<%@ include file="../include/footer.jsp"%>
 		</div>
 	</footer>
+
+	
 
 </body>
 </html>

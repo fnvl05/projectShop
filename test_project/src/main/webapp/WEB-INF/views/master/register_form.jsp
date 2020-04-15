@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<header>
@@ -25,29 +25,30 @@
 	</header>
 	<section id="container">		
 				<div id="container_box">
+					<div class="reg">
 					<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
-						<h2>상품 등록</h2>
+						<h2 class="title">상품 등록</h2>
 						 <label>1차 분류</label>
-						 <select class="category1" id="cate1">
+						 <select class="category1" id="cate1" style="height: 25px;">
 						  <option value="">전체</option>
 						 </select>
 						 
 						 <label>2차 분류</label>
-						 <select class="category2" name="cateCode">
+						 <select class="category2" name="cateCode" style="height: 25px;">
 						  <option value="">전체</option>
 						 </select>
 						 
 						<div class="inputArea">
-							<label for="itmeName">상품명</label>
-							<input type="text" id="itemName" name="itemName">
+							<label for="itmeName" id="itemname">상품명</label>
+							<input type="text" id="itemName" name="itemName" style="height: 25px;">
 						</div>
 						<div class="inputArea">
 							<label for="itmePrice">상품가격</label>
-							<input type="text" name="itemPrice" id="itemPrice">
+							<input type="text" name="itemPrice" id="itemPrice" style="height: 25px;">
 						</div>
 						<div class="inputArea">
 							<label for="itemCount">상품수량</label>
-							<input type="text" name="itemCount" id="itemCount">
+							<input type="text" name="itemCount" id="itemCount" style="height: 25px;">
 						</div>
 							<script>
 								var regExp = /[^0-9]/gi;
@@ -61,7 +62,7 @@
 								}
 							</script>
 						<div class="inputArea">
-							<label for="itemDes">상품설명</label>
+							<label for="itemDes">상품 설명</label>
 							<textarea name="itemDes" id="itemDes"></textarea>
 						</div>
 							<script type="text/javascript">
@@ -73,7 +74,7 @@
 							</script>
 		
 						<div class="inputArea">
-							<label for="itemImg">이미지</label>
+							<label for="itemImg">상품 메인이미지</label>
 							<input type="file" id="itemImg" name="file"/>
 							<div class="select_img">
 								<img src="../resources"${dto.itemImg}/>
@@ -90,11 +91,13 @@
 								})
 							</script>
 						</div>
-						<%=request.getRealPath("/") %>
+						<!--<%=request.getRealPath("/") %> -->
 						<div id="inputArea">
-							<button type="submit" class="btn btn-primary" id="register_Btn">등록</button>
-							<button type="reset" class="btn btn-warning">초기화</button>
-							<button type="button" class="btn btn-danger" id="back-btn">뒤로가기</button>
+						<div class="sbtn">
+							<button type="submit" class="btn" id="register_Btn">등록</button>
+							<button type="reset" class="btn">초기화</button>
+							<button type="button" class="btn" id="back-btn">뒤로가기</button>
+						</div>
 							<script type="text/javascript">
 								$("#back-btn").click(function() {
 									location.href="itemList.do";
@@ -102,6 +105,7 @@
 							</script>
 						</div>
 						</form>
+						</div>
 					</div>
 				</section>
 	<footer id="footer">

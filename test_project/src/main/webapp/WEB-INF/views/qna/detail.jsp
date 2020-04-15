@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Q&A</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -94,9 +94,11 @@
 					즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
 				--%>
 				<c:if test="${dto.writer eq id }">
-					<a class="btn btn-info" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
+					<div class="sbtn">
+					<a class="btn" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>
-					<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
+					<a class="btn" href="javascript:deleteConfirm()">삭제</a>
+					</div>
 				</c:if>
 				<br/><br/>
 				<div class="comments">
@@ -170,17 +172,17 @@
 						</c:choose>
 					</div>
 				</div>
-				<footer id="footer">
-					<div id="footer_box">
-						<%@ include file="../include/footer.jsp"%>
-					</div>
-				</footer>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<h1>잘못된 접근입니다.</h1>
 		</c:otherwise>
 	</c:choose>
+	<footer id="footer">
+		<div id="footer_box">
+			<%@ include file="../include/footer.jsp"%>
+		</div>
+	</footer>
 	<script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
@@ -231,7 +233,7 @@
 				success:function(responseData){
 					if(responseData.isSuccess){
 						var sel="#comment"+num;
-						$(sel).text("");
+						$(sel).hide();
 					}
 				}
 			});

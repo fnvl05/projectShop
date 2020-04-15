@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보 수정/Users/updateform.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 <div id="root">
@@ -58,8 +58,36 @@
 	    <tr>
 	    	<th class="row"> <label for="userPhone">연락처</label></th>
 	    	<td>
-	    		<input type="text" id="login_input" name="userPhone" value="${dto.userPhone }" required="required" />
+	    		<input type="text" id="login_input" name="userPhone" value="${dto.userPhone }" required="required" onKeyup="inputPhoneNumber(this);" maxlength="13"/>
 	    	</td>
+	    	<script>
+			    function inputPhoneNumber(obj) {
+			        var number = obj.value.replace(/[^0-9]/g, "");
+			        var phone = "";
+			    	  
+			        if(number.length < 4) {
+			            return number;
+			        } else if(number.length < 7) {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3);
+			        } else if(number.length < 11) {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3, 3);
+			            phone += "-";
+			            phone += number.substr(6);
+			        } else {
+			            phone += number.substr(0, 3);
+			            phone += "-";
+			            phone += number.substr(3, 4);
+			            phone += "-";
+			            phone += number.substr(7);
+			        }
+			        obj.value = phone;
+			       
+			    }
+			   </script>
 	    </tr>
 	    <tr>
 	    	<th class="row"> <label for="email">이메일</label></th>
@@ -84,12 +112,23 @@
 	            <br /><br />
 	    	</td>
 	    </tr>
+	    <script>
+		    $("#userAddr1").on("click",function(){
+		        sample4_execDaumPostcode();
+		        
+		     });
+		     $("#userAddr2").on("click",function(){
+		        sample4_execDaumPostcode();
+		     
+		     });
+	    </script>
 	</tbody>
  	</table>
  	<br /><br />
  	<div class="sbtn">
- 		<button type="submit" class="signbtn" id="update_Btn" name="update_Btn">수정완료</button>
+ 		<button type="submit" id="update_Btn" name="update_Btn">수정완료</button>
  	</div>
+ 	<br /><br />
  </form>	
  </div>
 </section>
@@ -143,5 +182,10 @@
               }).open();
           }        
 </script>
+<footer id="footer">
+	<div id="footer_box">
+		<%@ include file="../include/footer.jsp" %>
+	</div>
+</footer>
 </body>
 </html>

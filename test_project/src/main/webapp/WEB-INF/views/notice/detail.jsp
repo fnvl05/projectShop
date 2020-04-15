@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NOTICE</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -89,8 +89,10 @@
 		--%>
 		<c:if test="${dto.writer eq id }">
 			<!-- 글 작성자와 session에 있는 아이디가 같을 때! -->
-			<a class="btn btn-info" href="updateform.do?num=${dto.num }"> 수정</a>
-			<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
+		<div class="sbtn">
+			<a class="btn" href="updateform.do?num=${dto.num }"> 수정</a>
+			<a class="btn" href="javascript:deleteConfirm()">삭제</a>
+		</div>
 		</c:if>
 		<br/><br/><br/>
 		<footer id="footer">

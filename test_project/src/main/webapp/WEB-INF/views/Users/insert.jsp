@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 이후/view/Users/insert</title>
+<title>PROJECT</title>
 </head>
 <body>
 	<strong>${dto.userId} 님 환영합니다.</strong>

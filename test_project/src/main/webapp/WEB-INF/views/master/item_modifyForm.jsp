@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<jsp:include page="../include/total.jsp"></jsp:include> 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PROJECT</title>
 </head>
 <body>
 	<header>
@@ -25,29 +25,30 @@
 	</header>
 		<section id="container">
 				<div id="container_box">
+				<div class="reg">
 					<form action="item_modify.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="itemNum" value="${dto.itemNum} "/>
-							<h2>상품 수정</h2>
+							<h2 class="title">상품 수정</h2>
 							 <label>1차 분류</label>
-							 <select class="category1" id="cate1">
+							 <select class="category1" id="cate1" style="height: 25px;">
 							  <option value="">전체</option>
 							 </select>
 							 
 							 <label>2차 분류</label>
-							 <select class="category2" name="cateCode">
+							 <select class="category2" name="cateCode" style="height: 25px;">
 							  <option value="">전체</option>
 							 </select>
-						<div id="inputArea">
-							<label for="itmeName">상품명</label>
-							<input type="text" id="itemName" name="itemName" value="${dto.itemName }"/>
+						<div class="inputArea">
+							<label for="itmeName" id="itemname">상품명</label>
+							<input type="text" id="itemName" name="itemName" value="${dto.itemName }" style="height: 25px;"/>
 						</div>
-						<div id="inputArea">
+						<div class="inputArea">
 							<label for="itmePrice">상품가격</label>
-							<input type="text" name="itemPrice" value="${dto.itemPrice }" id="itemPrice"/>
+							<input type="text" name="itemPrice" value="${dto.itemPrice }" id="itemPrice" style="height: 25px;"/>
 						</div>
-						<div id="inputArea">
+						<div class="inputArea">
 							<label for="itemCount">상품수량</label>
-							<input type="text" name="itemCount" value="${dto.itemCount }" id="itemCount"/>
+							<input type="text" name="itemCount" value="${dto.itemCount }" id="itemCount" style="height: 25px;"/>
 						</div>
 						<script>
 							var regExp = /[^0-9]/gi;
@@ -93,9 +94,11 @@
 							</script>
 						</div>
 						
-						<div id="inputArea">
-							<button type="submit" id="update_btn" class="btn btn-primary">수정</button>
-							<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+						<div class="inputArea">
+						<div class="sbtn">
+							<button type="submit" id="update_btn" class="btn">수정</button>
+							<button type="button" id="back_btn" class="btn">취소</button>
+						</div>
 							<script>
 								/*취소 버튼을 눌렀을 때 뒤로가기*/
 								$("#back_btn").click(function(){
@@ -153,6 +156,7 @@
 							
 						</div>
 					</form>
+					</div>
 				</div>
 		</section>
 		<footer id="footer">

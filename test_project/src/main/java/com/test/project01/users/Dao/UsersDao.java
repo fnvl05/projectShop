@@ -17,5 +17,6 @@ public interface UsersDao {
 	public String findId(UsersDto dto);
 	public String findPass(UsersDto dto);
 	public String newpass(UsersDto dto);
+	//아이디 찾은 후 비밀번호 변경 
 	public void changeNewPassData(UsersDto dto);
 }

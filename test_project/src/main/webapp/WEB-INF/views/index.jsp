@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-<title>Home</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="include/total.jsp"></jsp:include>
 </head>
 <body>
 	<div id="root">
@@ -32,33 +32,36 @@
 		</header>
 		<section id="container">
 			<div id="container_box">
- 
-
-				<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1100px; height: 700px; margin: auto;">
-				    <!-- Indicators -->
+				 <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:1800px; height: 600px; margin: auto;">
 				   <ol class="carousel-indicators">
-
 				      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				      <li data-target="#myCarousel" data-slide-to="1"></li>
 				      <li data-target="#myCarousel" data-slide-to="2"></li>
 				      <li data-target="#myCarousel" data-slide-to="3"></li>
+				      <li data-target="#myCarousel" data-slide-to="4"></li>
+				      <li data-target="#myCarousel" data-slide-to="5"></li>
 				    </ol>
 			
-				    <div class="carousel-inner" style="width:1100px; height: 700px;">
+				    <div class="carousel-inner" style="width:1800px; height: 600px;">
 				      <div class="item active">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/-4-2 (1).jpg" alt="Los Angeles" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_1.jpg" alt="Los Angeles" style="width:100%; height: 100%;">
 				      </div>
 				
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/0b38bbbf-f2a8-4548-9d82-2287ee1e179d_p01fig0537_1l.jpg" alt="Chicago" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_2.jpg" alt="Chicago" style="width:100%; height: 100%;">
 				      </div>
 				    
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/96de0523-f1d4-4e8c-a258-501126ba6b87_999.jpg" alt="New york" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/best3_3.jpg" alt="New york" style="width:100%; height: 100%;">
 				      </div>
-				      
 				      <div class="item">
-				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/c488eeea-dcd2-4cd6-b39e-cfd7bba679b2_jiayue-wu-fe3h-byleth2-small.jpg" alt="New york" style="width:100%; height: 100%;">
+				        <img src="${pageContext.request.contextPath }/resources/images/main_001.jpg" alt="New york" style="width:100%; height: 100%;">
+				      </div>
+				      <div class="item">
+				        <img src="${pageContext.request.contextPath }/resources/images/main-spring.jpg" alt="New york" style="width:100%; height: 100%;">
+				      </div>
+				      <div class="item">
+				        <img src="${pageContext.request.contextPath }/resources/imgUpLoad/KakaoTalk_20200410_180123960.gif" alt="New york" style="width:100%; height: 100%;">
 				      </div>
 				    </div>
 				    
@@ -71,6 +74,7 @@
 				      <span class="sr-only">Next</span>
 				    </a>
 				  </div>  
+
 				  <div id="listBox" style="margin-top:100px;">
 					  <c:choose>
 					  	<c:when test="${not empty sessionScope.id }">
@@ -90,6 +94,7 @@
 							  </c:forEach>		
 							</div>
 					 		</div>
+					 		
 					 		<div id="newItemBox">
 							  <h4>최신상품 목록</h4>
 								<div class="row">
@@ -142,9 +147,7 @@
 							  </div>
 					  	</c:otherwise>
 					  </c:choose>	
-					  
 					</div>
-					
 				 </div>
 		</section>
 		<footer id="footer">

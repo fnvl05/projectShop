@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/shop/orderform.jsp</title>
-<jsp:include page="/resources/style/total.jsp"></jsp:include>
+<title>PROJECT</title>
+<jsp:include page="../include/total.jsp"></jsp:include>
 </head>
 <body>
       <header>
@@ -142,12 +142,9 @@
             <br/>
             <br/>
         <div class="container">
-            <div style="float:left;">
+            <div style="float:right;">
                	<input type="checkbox" id="equal" /> 
                	<label for="check">주문자 정보 동일</label>
-            </div>
-            <div style="float:right;">
-           	 <p><strong id="required" >*</strong>은 필수 입력사항 입니다.</p>
             </div>
             <br/>
             <br/>
@@ -165,12 +162,11 @@
                   <span>${sessionScope.userDto.userPhone }</span>
                   <input type="hidden" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } disabled />
                </div>   -->
-               <input type="hidden" name="userName" id="userName" value=${sessionScope.userDto.userName } />
-               <input type="hidden" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } />
-               <input type="hidden" name="addr1" id="addr1" value=${sessionScope.userDto.userAddr1 } />
-               <input type="hidden" name="addr2" id="addr2" value=${sessionScope.userDto.userAddr2 } />
-               <input type="hidden" name="addr3" id="addr3" value=${sessionScope.userDto.userAddr3 } />
-               
+               <input type="hidden" name="userName" id="userName" value=${userDto.userName } />
+               <input type="hidden" name="userPhone" id="userPhone" value=${userDto.userPhone } />
+               <input type="hidden" name="addr1" id="addr1" value=${userDto.userAddr1 } />
+               <input type="hidden" name="addr2" id="addr2"  value='${userAddr2 }'/>
+               <input type="hidden" name="addr3" id="addr3" value=${userDto.userAddr3 } />
                <script>
                   var rec=null;
                   var phone1=null;
@@ -214,6 +210,7 @@
                   <div class="col-sm-2">
                   <input class="form-control" type="text" name="orderRec" id="orderRec" style="text-align:center;"/>
                	  </div>
+               	  <p style="float: right; margin-right:10px;"><strong id="required" >*</strong>은 필수 입력사항 입니다.</p>
                </div>
                
                <div class="form-group row" >
@@ -269,7 +266,7 @@
                   <input class="form-control" type="text" name="userAddr1" id="userAddr1" placeholder="우편번호"/>
                 </div>
                 <div class="col-sm-1">  
-                  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                  <input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                	</div>
                </div>
                
@@ -347,13 +344,13 @@
                <div class="form-group">
                	  <div class="col-sm-5">
                   <label for="msg">주문메세지</label>
-                  <textarea class="form-control" type="text" name="msg" id="msg" maxlength="100" style="text-align:center; height:100px;  resize: none;
+                  <textarea class="form-control" type="text" name="msg" id="msg" maxlength="100" style="text-align:center; width:1000px; height:120px;  resize: none;
                      padding-left:5px;padding-right:50px;padding-bottom:20px;padding-top:20px;word-break:break-all;" cols=100 rows=10"></textarea>
               	  <small class="form-text text-muted" >100자 이내로 입력해주세요</small>
               	  </div>
                </div>
-               <div class="form-group row">
-                  <div class="col-sm-1"><strong>결제수단</strong></div>
+               <div class="form-group" style="float: center;">
+                  <div class="col-sm-1" ><strong>결제수단</strong></div>
                   <div class="form-check form-check-inline col-sm-6">
                   	<input class="form-check-input" type="radio" name="payment" id="card" value="card" checked="checked" />
                   	<label class="form-check-label" for="card">카드결제</label>
@@ -367,8 +364,9 @@
                   	<label class="form-check-label" for="phone">휴대폰결제</label>
                   </div>
                </div>
-               <div align="center">
-               <button type="submit"  id="btn">결제하기</button>
+               </div>
+               <div class="sbtn" align="center">
+               <button type="submit" class="orderbtn" id="btn">결제하기</button>
                <script>
 	               $("#btn").on("click",function(){
 	            	  var orderRec=$("#orderRec").val();
@@ -418,7 +416,7 @@
                   
                </script>
                -->
-               <button type="button" id="back_btn">주문취소</button>
+               <button type="button" class="orderbtn" id="back_btn">주문취소</button>
                <script type="text/javascript">
                   $("#back_btn").click(function () {
                   location.href="cartList.do"; 
@@ -426,7 +424,7 @@
                </script>
                </div>
             </form>
-        </div>
+
             <!-- 다음 주소 API 사용 -->
             
             <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

@@ -41,6 +41,8 @@ public class OrderServiceImpl implements OrderService{
 		String userId=userDto.getUserId();
 		List<CartListDto> list=cartDao.cartList(userId);
 		request.setAttribute("list", list);
+		request.setAttribute("userAddr2", userDto.getUserAddr2());
+		System.out.println(userDto.getUserAddr2());
 
 	}	
 	
