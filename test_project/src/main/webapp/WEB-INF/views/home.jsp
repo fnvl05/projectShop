@@ -11,8 +11,8 @@
 </head>
 <body>
 	<div class="home_div">
-		<img alt="" src="resources/images/제목 없음.png" class="home_img1">
-		<img alt="" src="resources/images/9989C44A5DF0711827.gif" class="home_img2">
+		<img alt="" src="resources/images/KakaoTalk_20200509_015031542.jpg" class="home_img1">
+		<img alt="" src="resources/images/KakaoTalk_20200509_015031162.gif" class="home_img2">
 	</div>
 	
 	<script>

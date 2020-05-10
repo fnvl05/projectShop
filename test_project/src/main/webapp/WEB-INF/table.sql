@@ -334,7 +334,7 @@ create table cartList(
 	num number,
 	itemName varchar2(50),
 	itemPrice number,
-	itemImg varchar(200) null,
+	itemImg varchar2(200) null,
 	primary key(cartNum)
 );
 
