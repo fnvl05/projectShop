@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/updateform.jsp</title>
-
+<title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <style>
@@ -20,7 +19,7 @@
 						<%@ include file="../include/nav.jsp"%>
 					</div>
 					<div id="index_logo_div">
-						<a href="index.do"><img id="index_logo_img"
+						<a href="../index.do"><img id="index_logo_img"
 							src="${pageContext.request.contextPath }/resources/images/project.png" /></a>
 					</div>
 					<div class="navbar-left">
@@ -80,8 +79,10 @@
 												});
 							</script>
 						</div>
-						<button type="submit" id="starBtn" class="btn btn-default">수정확인</button>
-						<button type="button" id="back_btn" class="btn btn-warning">취소</button>
+						<div class="sbtn">
+						<button type="submit" id="starBtn" class="btn">수정확인</button>
+						<button type="button" id="back_btn" class="btn">취소</button>
+						</div>
 						<script>
 							$("#starBtn")
 									.on(
@@ -106,7 +107,7 @@
 												}
 												//내용이 30글자 미만인 경우
 												//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
-												if (content_len < 18) {
+												if (content_len < 38) {
 													alert(
 															"내용을  30자 이상 입력하세요.",
 															function() {

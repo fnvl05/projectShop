@@ -19,22 +19,27 @@
 		</choose>
 	</select>
 	<select id="getList" parameterType="qnaJoinDto" resultType="qnaJoinDto">
-				SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
-				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+		SELECT * 
+		FROM
+			(SELECT result1.*, ROWNUM AS rnum 						  <!-- 2. ROWNUM 부여하고 -->
+			FROM
+				(SELECT num, tbl_items.itemImg, tbl_items.itemName, writer, title, viewCount, 
+				TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,tbl_items.itemNum<!-- 1. board_file로 부터 정렬하고 -->
 				FROM board_qna,tbl_items
-				<choose>
+				where board_qna.itemNum=tbl_items.itemNum
+				<choose> <!-- mybatis가 지원하는 동적쿼리 -->
 					<when test="title != null and content != null">
-						WHERE title LIKE '%'||#{title}||'%' OR
-						content  LIKE '%'||#{content}||'%'
+						and title LIKE '%'||#{title}||'%' OR content LIKE '%${content}%' <!-- 조건이 트루면 이것만 추가한다. false면 아래로 내려간다. -->
 					</when>
 					<when test="title != null">
-						WHERE title LIKE '%'||#{title}||'%'
+						and title LIKE '%${title}%' <!-- '%'||#{title}||'%' 이것 과 같다.(EL이 아니고 mybatis 라이브러리가 해석해주는 것)[미리 만들어 놓고 실행한다] -->
 					</when>
 					<when test="writer != null">
-						WHERE writer LIKE '%'||#{writer}||'%'
+						and writer LIKE '%${writer}%' <!-- 모든 조건이 false면 where 절이 안들어가므로 모든 글이 검색된다. -->
 					</when>
 				</choose>
-				where board_qna.itemNum=tbl_items.itemNum
+				ORDER BY num DESC) result1)
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
 	
 	<select id="getCount2" resultType="int" parameterType="qnaJoinDto">
@@ -90,6 +95,7 @@
 			</choose>
 			ORDER BY num DESC) result1
 		WHERE num=#{num }
+		
 	</select>
 	<select id="getData2" parameterType="int"
 		resultType="qnaDto">
@@ -103,7 +109,18 @@
 			ORDER BY num DESC) result1
 		WHERE num=#{num }
 	</select>	
-	
+	<select id="getData3" parameterType="int" resultType="qnaDto">
+		SELECT result1.*
+		FROM
+			(SELECT num, writer, title, content, viewCount, 
+			TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate,
+			LAG(num, 1, 0) OVER(ORDER BY num DESC) AS prevNum,
+			LEAD(num, 1, 0) OVER(ORDER BY num DESC) AS nextNum
+			FROM board_qna
+			where itemNum=#{itemNum}
+			ORDER BY num DESC) result1
+		WHERE num=#{num}
+	</select>
 	<delete id="delete" parameterType="int">
 		DELETE FROM board_qna
 		WHERE num=#{num}

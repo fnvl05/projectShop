@@ -13,7 +13,7 @@
 	<c:choose>
 		<c:when test="${isSuccess }">
 			<script>
-				alert("저장 하였습니다.");
+				alert("공지가 등록되었습니다.");
 				location.href="${pageContext.request.contextPath }/notice/list.do";
 			</script>
 		</c:when>

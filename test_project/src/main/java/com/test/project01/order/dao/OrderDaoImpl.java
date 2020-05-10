@@ -34,6 +34,11 @@ public class OrderDaoImpl implements OrderDao {
 		return session.selectList("order.getOrderNum2",userId);
 	}
 
+	@Override
+	public void itemGetCount(int itemNum) {
+		session.update("category.addGetCount", itemNum);
+	}
+
 	
 	
 }

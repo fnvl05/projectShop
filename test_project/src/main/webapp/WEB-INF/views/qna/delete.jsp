@@ -13,7 +13,7 @@
 	<c:choose>
 		<c:when test="${isSuccess eq true }">
 			<script>
-				alert("${num }  번 글을 삭제 했습니다.");
+				alert("해당 글을 삭제 했습니다.");
 				location.href="${pageContext.request.contextPath }/qna/list.do";
 			</script>
 		</c:when>

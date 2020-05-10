@@ -25,28 +25,30 @@
 	</header>
 	<section id="container">		
 				<div id="container_box">
+					<div class="reg">
 					<form action="register.do" method="post" autocomplete="off" enctype="multipart/form-data">
-						<h2>상품 등록</h2>
+						<h2 class="title">상품 등록</h2>
 						 <label>1차 분류</label>
-						 <select class="category1">
+						 <select class="category1" id="cate1" style="height: 25px;">
 						  <option value="">전체</option>
 						 </select>
 						 
 						 <label>2차 분류</label>
-						 <select class="category2" name="cateCode">
+						 <select class="category2" name="cateCode" style="height: 25px;">
 						  <option value="">전체</option>
 						 </select>
+						 
 						<div class="inputArea">
-							<label for="itmeName">상품명</label>
-							<input type="text" id="itemName" name="itemName">
+							<label for="itmeName" id="itemname">상품명</label>
+							<input type="text" id="itemName" name="itemName" style="height: 25px;">
 						</div>
 						<div class="inputArea">
 							<label for="itmePrice">상품가격</label>
-							<input type="text" name="itemPrice" id="itemPrice">
+							<input type="text" name="itemPrice" id="itemPrice" style="height: 25px;">
 						</div>
 						<div class="inputArea">
 							<label for="itemCount">상품수량</label>
-							<input type="text" name="itemCount" id="itemCount">
+							<input type="text" name="itemCount" id="itemCount" style="height: 25px;">
 						</div>
 							<script>
 								var regExp = /[^0-9]/gi;
@@ -91,9 +93,11 @@
 						</div>
 						<%=request.getRealPath("/") %>
 						<div id="inputArea">
-							<button type="submit" class="btn btn-primary" id="register_Btn">등록</button>
-							<button type="reset" class="btn btn-warning">초기화</button>
-							<button type="button" class="btn btn-danger" id="back-btn">뒤로가기</button>
+						<div class="sbtn">
+							<button type="submit" class="btn" id="register_Btn">등록</button>
+							<button type="reset" class="btn">초기화</button>
+							<button type="button" class="btn" id="back-btn">뒤로가기</button>
+						</div>
 							<script type="text/javascript">
 								$("#back-btn").click(function() {
 									location.href="itemList.do";
@@ -101,6 +105,7 @@
 							</script>
 						</div>
 						</form>
+						</div>
 					</div>
 				</section>
 	<footer id="footer">
@@ -173,5 +178,55 @@
 		});
 	
 	</script>
+	<script>
+	$("#register_Btn").on("click",function(){
+		var cateSelect=document.getElementById("cate1");
+	 	var cate1=cateSelect.options[document.getElementById("cate1").selectedIndex].value;
+	 	if(cate1==""){
+	 		alert("1차 상품분류를 선택해주세요 :)",function(){
+                  $("#cate1").focus();
+            },"warning");
+            return false;
+	 	}
+	 	
+	 	//제출전 상품명,가격,수량 변수에 저장
+	 	var itemName=$("#itemName").val();
+	 	var itemPrice=$("#itemPrice").val();
+	 	var itemCount=$("#itemCount").val();
+	 	if(itemName==""){
+	 		alert("상품명을 입력해주세요 :)",function(){
+                $("#itemName").focus();
+          },"warning");
+          return false;
+	 	}
+	 	if(itemPrice==""){
+	 		alert("가격을 입력해주세요 :)",function(){
+                $("#itemPrice").focus();
+          },"warning");
+          return false;
+	 	}
+	 	if(itemCount==""){
+	 		alert("상품재고 수량을 입력해주세요 :)",function(){
+                $("#itemCount").focus();
+          },"warning");
+          return false;
+	 	}
+	 	//제출 전 에디터 내용을 변수에 저장
+		var content=CKEDITOR.instances.itemDes.getData();
+		//제출 전 에디터 내용 길이를 변수에 저장
+		var content_len=CKEDITOR.instances.itemDes.getData().length;
+		//내용이 없는 경우
+		if(content==""){
+			alert("상품설명을 입력해주세요 :)",function(){
+				//에디터 내용에 포커스 on
+				CKEDITOR.instances.itemDes.focus();
+				
+			},"warning");
+			return false;
+		}
+		
+	});
+		
+	 </script>
 </body>
 </html>

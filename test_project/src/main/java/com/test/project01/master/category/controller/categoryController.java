@@ -30,7 +30,10 @@ import com.google.gson.JsonObject;
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.master.category.serevice.categoryService;
-import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.order.dto.OrdersDto;
+import com.test.project01.qna.service.QnaService;
+import com.test.project01.review.service.ReviewService;
+import com.test.project01.unknown.service.Unknown_service;
 import com.test.project01.users.Dto.UsersDto;
 import com.test.project01.utils.UpLoadFileUtils;
 
@@ -39,12 +42,20 @@ public class categoryController{
 	
 	@Autowired
 	private categoryService service;
+	@Autowired
+	ReviewService reviewService;
+	@Autowired
+	QnaService qnaService;
+	@Autowired
+	Unknown_service unknown_service;
 	
 	@Resource(name="upLoadPath")
 	private String upLoadPath;
 	
 	@RequestMapping("/master/master_index")
 	public ModelAndView Master_master_index(HttpServletRequest request,ModelAndView mView) {
+		unknown_service.bestItemList(mView);
+		unknown_service.newItemList(mView);
 		mView.setViewName("master/master_index");
 		return mView;
 	}
@@ -80,13 +91,17 @@ public class categoryController{
 	@RequestMapping("/master/itemList")
 	public ModelAndView Master_itemList(@ModelAttribute categoryDto dto, 
 			ModelAndView mView, HttpServletRequest request, HttpServletResponse response) {
-		service.itemList(mView);
+		service.itemList(mView, request);
 		mView.setViewName("master/itemList");
 		return mView;
 	}
 	@RequestMapping("/master/itemView_form")
 	public ModelAndView Master_itemView_form(HttpServletRequest request, @RequestParam int itemNum, ModelAndView mView) {
 		service.getItemView(mView, itemNum);
+		/*리뷰,Q&A 추가*/
+		reviewService.list2(request);
+		String itemNum2=Integer.toString(itemNum);
+		qnaService.getList2(request, itemNum2);
 		mView.setViewName("master/itemView_form");
 		return mView;
 	}
@@ -184,29 +199,29 @@ public class categoryController{
 		mView.setViewName("master/no_master");
 		return mView;	
 	}
-	
-	@RequestMapping("/master/usersList")
-	public ModelAndView userList(ModelAndView mView) {
-		service.TotalList(mView);
-		mView.setViewName("master/usersList");
-		return mView;	
-	}
-	
+		
 	@ResponseBody
 	@RequestMapping(value="/master/resultUpDate", method=RequestMethod.POST)
-	public Map<String, Object> resultData(@RequestParam(value="resultArray[]")List<String> item) {
-		OrderDetailDto detailDto = new OrderDetailDto();
-		detailDto.setResult(item.get(0));
-		detailDto.setOdNum(Integer.parseInt(item.get(1)));
-		service.upResult(detailDto);
+	public Map<String, Object> resultUpData(@RequestParam(value="resultArray[]")List<String> item) {
+		OrdersDto orderDto = new OrdersDto();
+		orderDto.setDelivery(item.get(0));
+		orderDto.setOrderNum(Integer.parseInt(item.get(1)));
+		service.upResult(orderDto);
 		Map<String,Object> map=new HashMap<>();
 		map.put("isSuccess", true);
 		return map;
 	}
 	
+	@RequestMapping("/master/usersList")
+	public ModelAndView OrderAllList(ModelAndView mView, HttpServletRequest request) {
+		service.OrderList(mView, request);
+		mView.setViewName("master/usersList");
+		return mView;	
+	}
+	
 	@RequestMapping("/master/userVerify")
-	public ModelAndView userVerify(ModelAndView mView) {
-		service.getUserAllList(mView);
+	public ModelAndView userVerify(ModelAndView mView, HttpServletRequest request) {
+		service.getUserAllList(mView, request);
 		mView.setViewName("master/userVerify");
 		return mView;	
 	}

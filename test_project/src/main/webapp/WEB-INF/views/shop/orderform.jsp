@@ -8,16 +8,8 @@
 <meta charset="UTF-8">
 <title>/shop/orderform.jsp</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
-<style>
-   #required{
-      color: red;
-   }
-</style>
-
 </head>
-<body ng-app>
-   <div id="root">
+<body>
       <header>
       <div class="header_box">
          <nav id="nav">
@@ -25,7 +17,7 @@
                <%@ include file="../include/nav.jsp" %>
             </div>
             <div id="index_logo_div">
-               <a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+               <a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
             </div>
             <div class="navbar-left">
                   <%@ include file="../include/users_aside.jsp" %>                  
@@ -35,7 +27,19 @@
    </header>
    <section id="container">   
    <div id="container_box">
-            <table class="table table-striped table-condensed">
+ 		<br/>
+ 		<br/>
+ 			
+   		<div class="container">
+            <table class="table table-condensed" id="orderform_t">
+            	<caption id="caption">주문 상품</caption>
+            	<colgroup>
+            		<col class="col-xs-1" />
+					<col class="col-xs-2" />
+					<col class="col-xs-3" />
+					<col class="col-xs-1" />
+					<col class="col-xs-1" />
+            	</colgroup>
                <thead>
                   <tr>
                      <th>상품번호</th>
@@ -43,7 +47,6 @@
                      <th>상품명</th>
                      <th>수량</th>
                      <th>가격</th>
-                     
                   </tr>
                </thead>
 
@@ -51,21 +54,33 @@
                   <c:forEach var="tmp" items="${requestScope.list }">
                      <tr>
                         <td>${tmp.itemNum }</td>
-                        <td><img src="../resources${tmp.itemImg }"/></td>
+                        <td><img src="../resources${tmp.itemImg }" style="width: 50px;height: 50px"/></td>
                         <td>${tmp.itemName }</td>
-                        <td>${tmp.cartStock }</td>
-                        <td>${tmp.itemPrice *tmp.cartStock}</td>
+                        <td>
+                        	<fmt:formatNumber value="${tmp.cartStock }" pattern="###,###,###"/>개
+                        </td>
+                        <td>
+                        	<fmt:formatNumber value="${tmp.itemPrice *tmp.cartStock}" pattern="###,###,###"/> 원 
+                        </td>
                      </tr>
                      <c:set var="sumMoney" value="${sumMoney+(tmp.itemPrice * tmp.cartStock) }"/>
                   </c:forEach>
                </tbody>
-               </table>
-               <table class="table table-striped table-condensed">
+            </table>
+         </div>
+         <div class="container">
+             <table class="table table-condensed" id="orderform_t">
+             	<colgroup>
+            		<col class="col-xs-4" />
+					<col class="col-xs-4" />
+					<col class="col-xs-4" />
+					
+            	</colgroup>
                <thead>
                   <tr>
                      <th>총 상품금액</th>
                      <th>총 배송비</th>
-                     <th>결제예정금액</th>
+                     <th>결제 금액</th>
                   </tr>
                </thead>
                <tbody>
@@ -99,33 +114,59 @@
                   </tr>
                </tbody>
             </table>
-            <label for="allPrice">총 결제금액</label>
+         </div>
+            <!-- <label for="allPrice">총 결제금액</label>
             <fmt:formatNumber value="${allPrice }" 
-                        pattern="###,###,###"/>원
+                        pattern="###,###,###"/>원  -->
+         <br/>
+         <br/>
+         <br/>
+         <div class="container">
+            <table class="table" id="orderform_t">
+            	<caption id="caption">주문자 정보</caption>
+            	<colgroup>
+            		<col class="col-xs-1" />
+					<col class="col-xs-2" />
+					<col class="col-xs-1" />
+					<col class="col-xs-2" />
+            	</colgroup>
+            	<tr>
+            		<th>주문자</th>
+            		<td>${sessionScope.userDto.userId }</td>
+            		<th>연락처</th>
+            		<td>${sessionScope.userDto.userPhone }</td>
+            	</tr>
+            </table>
+         </div>
+         
             <br/>
             <br/>
+        <div class="container">
+            <div style="float:right;">
+               	<input type="checkbox" id="equal" /> 
+               	<label for="check">주문자 정보 동일</label>
+            </div>
             <br/>
-            <form action="order.do" method="post" name="myForm">
-               
-               <div class="container" >
-                  <label for="userName">주문자 </label>
-                  <input type="text" name="userName" id="userName" value=${sessionScope.userDto.userName } disabled/>
+            <br/>
+         </div>
+         <div class="container">   
+            <form action="order.do" method="post" name="myForm" class="form-horizontal">
+               <!-- 
+               <div class="container form-inline" >
+                  <label for="userName">주문자 &nbsp; </label>
+                  <spqn>${sessionScope.userDto.userId }</spqn>
+                  <input type="hidden" name="userName" id="userName" value=${sessionScope.userDto.userName } disabled/>
                </div>
                <div class="container">
-                  <label for="userPhone">연락처 </label>
-                  <input type="text" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } disabled />
-               </div>
-               <input type="hidden" name="addr1" id="addr1" value=${sessionScope.userDto.userAddr1 } />
-               <input type="hidden" name="addr2" id="addr2" value=${sessionScope.userDto.userAddr2 } />
-               <input type="hidden" name="addr3" id="addr3" value=${sessionScope.userDto.userAddr3 } />
-               <br/>
-               <br/>
-               <br/>
-               <script src="${pageContext.request.contextPath }/resources/js/jquery-3.4.1.js"></script>
-               <!--  <a href="javascript:check();">주문자 정보 동일</button>-->
-               <p style="text-align:right;"><strong id="required" >*</strong>은 필수 입력사항 입니다.</p>
-               <label for="check">주문자 정보 동일</label>
-                <input type="checkbox" id="equal" />
+                  <label for="userPhone">연락처&nbsp; </label>
+                  <span>${sessionScope.userDto.userPhone }</span>
+                  <input type="hidden" name="userPhone" id="userPhone" value=${sessionScope.userDto.userPhone } disabled />
+               </div>   -->
+               <input type="hidden" name="userName" id="userName" value=${userDto.userName } />
+               <input type="hidden" name="userPhone" id="userPhone" value=${userDto.userPhone } />
+               <input type="hidden" name="addr1" id="addr1" value=${userDto.userAddr1 } />
+               <input type="hidden" name="addr2" id="addr2"  value='${userAddr2 }'/>
+               <input type="hidden" name="addr3" id="addr3" value=${userDto.userAddr3 } />
                <script>
                   var rec=null;
                   var phone1=null;
@@ -161,71 +202,90 @@
                   });
                </script>
                <input type="hidden" name="allPrice" id="allPrice" value=${allPrice } />
-               <div class="container" ng-class="{'has-success':myForm.orderRec.$valid,'has-error':myForm.orderRec.$invalid &&myForm.orderRec.$dirty}">
-                  <label for="orderRec">수령인 <strong id="required">*</strong></label>
-                  <input type="text" name="orderRec" id="orderRec"  ng-model="orderRec" ng-required="true" style="text-align:center;"/>
-                  <span class="help-block" ng-show="myForm.orderRec.$invalid &&myForm.orderRec.$dirty">반드시 입력하세요</span>
-                  <span ng-show="myForm.orderRec.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-                  <span ng-show="myForm.orderRec.$invalid && myForm.orderRec.$dirty" class="glyphicon glyphicon-remove form-control-feedback"></span>
+               
+               <div class="form-group row">
+               	  <div class="col-sm-1">
+                  <label for="orderRec" class="col-form-label">수령인 <strong id="required">*</strong></label>
+                  </div>
+                  <div class="col-sm-2">
+                  <input class="form-control" type="text" name="orderRec" id="orderRec" style="text-align:center;"/>
+               	  </div>
+               	  <p style="float: right; margin-right:10px;"><strong id="required" >*</strong>은 필수 입력사항 입니다.</p>
                </div>
                
-               <div class="container" ng-class="{'has-success':myForm.orderPhone1.$valid,'has-error':myForm.orderPhone1.$invalid && myForm.orderPhone1.$dirty}" >
+               <div class="form-group row" >
+               	  <div class="col-sm-1">
                   <label for="orderPhone1">연락처1 <strong id="required">*</strong></label>
-                  <input type="tel" name="orderPhone1" id="orderPhone1"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" 
-                        ng-pattern="/^\d{3}-\d{3,4}-\d{4}$/"  ng-model="orderPhone1" />
-                  <span ng-show="myForm.orderPhone1.$error.pattern" class="help-block">정확히 입력해주세요.</span>
+                  </div>
+                  <div class="col-sm-2">
+                  <input class="form-control" type="tel" name="orderPhone1" id="orderPhone1"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" />
+                 </div>
                </div>
             
-               <div class="container" ng-class="{'has-success':myForm.orderPhone2.$valid,'has-error':myForm.orderPhone2.$invalid && myForm.orderPhone2.$dirty}">
+               <div class="form-group row" >
+               	  <div class="col-sm-1">
                   <label for="orderPhone2">연락처2</label>
-                  <input type="tel" name="orderPhone2" id="orderPhone2"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" 
-                     ng-pattern="/^\d{3}-\d{3,4}-\d{4}$/"  ng-model="orderPhone2"/>   
-                  <span ng-show="myForm.orderPhone2.$error.pattern" class="help-block">정확히 입력해주세요.</span>
+                  </div>
+                  <div class="col-sm-2">
+                  <input class="form-control" type="tel" name="orderPhone2" id="orderPhone2"  onKeyup="inputPhoneNumber(this);" maxlength="13" style="text-align:center;" />   
+                  </div>
                </div>
                <script>
-               function inputPhoneNumber(obj) {
-                  
-                   var number = obj.value.replace(/[^0-9]/g, "");
-                   var phone = "";
-               
-                   if(number.length < 4) {
-                       return number;
-                   } else if(number.length < 7) {
-                       phone += number.substr(0, 3);
-                       phone += "-";
-                       phone += number.substr(3);
-                   } else if(number.length < 11) {
-                       phone += number.substr(0, 3);
-                       phone += "-";
-                       phone += number.substr(3, 3);
-                       phone += "-";
-                       phone += number.substr(6);
-                   } else {
-                       phone += number.substr(0, 3);
-                       phone += "-";
-                       phone += number.substr(3, 4);
-                       phone += "-";
-                       phone += number.substr(7);
-                   }
-                   obj.value = phone;
-               }
-               
-      
+	               function inputPhoneNumber(obj) {
+	                   var number = obj.value.replace(/[^0-9]/g, "");
+	                   var phone = "";
+	               	  
+	                   if(number.length < 4) {
+	                       return number;
+	                   } else if(number.length < 7) {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3);
+	                   } else if(number.length < 11) {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3, 3);
+	                       phone += "-";
+	                       phone += number.substr(6);
+	                   } else {
+	                       phone += number.substr(0, 3);
+	                       phone += "-";
+	                       phone += number.substr(3, 4);
+	                       phone += "-";
+	                       phone += number.substr(7);
+	                   }
+	                   obj.value = phone;
+	                  
+	               }
                </script>
-               <div class="container" >
-                  <label for="userAddr1">우편 번호 <strong id="required">*</strong></label>
-                  <input type="text" name="userAddr1" id="userAddr1" placeholder="우편번호"/>
-                  <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+               <div class="form-group row" >
+               	<div class="col-sm-1">
+                  <label for="userAddr1">우편번호 <strong id="required">*</strong></label>
+                </div>
+                <div class="col-sm-2">
+                  <input class="form-control" type="text" name="userAddr1" id="userAddr1" placeholder="우편번호"/>
+                </div>
+                <div class="col-sm-1">  
+                  <input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+               	</div>
                </div>
                
-               <div class="container" >
-                  <label for="userAddr2">기본 주소 <strong id="required">*</strong></label>
-                  <input type="text" name="userAddr2" id="userAddr2"  placeholder="기본주소" />
+               <div class="form-group row">
+               	  <div class="col-sm-1">
+                  <label for="userAddr2">기본주소 <strong id="required">*</strong></label>
+                  </div>
+                  <div class="col-sm-4">
+                  <input class="form-control" type="text" name="userAddr2" id="userAddr2"  placeholder="기본주소" />
+               	  </div>
                </div>
                <span id="guide" style="color:#999;display:none"></span>
-               <div class="container">
-                  <label for="userAddr3">상세 주소</label>
-                  <input type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
+               <div class="form-group row">
+               	  <div class="col-sm-1">
+                  <label for="userAddr3">상세주소</label>
+                  </div>
+                  <div class="col-sm-4">
+                  <input class="form-control" type="text" name="userAddr3" id="userAddr3" placeholder="상세주소"/>
+               	  </div>
                </div>
                <script>
                   $("#orderRec").on("propertychange change keyup paste input",function(){
@@ -281,34 +341,70 @@
                   
                   
                </script>
-               <div class="container">
-                  <label for="msg">배송 메세지<br/>[100자 이내]</label>
-                  <textarea  type="text" name="msg" id="msg" maxlength="100" style="text-align:center; width:300px; height:100px;  resize: none;
+               <div class="form-group">
+               	  <div class="col-sm-5">
+                  <label for="msg">주문메세지</label>
+                  <textarea class="form-control" type="text" name="msg" id="msg" maxlength="100" style="text-align:center; width:1000px; height:120px;  resize: none;
                      padding-left:5px;padding-right:50px;padding-bottom:20px;padding-top:20px;word-break:break-all;" cols=100 rows=10"></textarea>
+              	  <small class="form-text text-muted" >100자 이내로 입력해주세요</small>
+              	  </div>
                </div>
-               <div class="container">
-                  <span><strong>결제 수단</strong></span>
-                  <input type="radio" name="payment" id="card" value="card" checked="checked" />
-                  <label for="card">카드결제</label>
-                  <input type="radio" name="payment" id="cash" value="cash"  />
-                  <label for="cash">계좌이체</label>
-                  <input type="radio" name="payment" id="phone" value="phone"  />
-                  <label for="phone">휴대폰결제</label>
+               <div class="form-group" style="float: center;">
+                  <div class="col-sm-1" ><strong>결제수단</strong></div>
+                  <div class="form-check form-check-inline col-sm-6">
+                  	<input class="form-check-input" type="radio" name="payment" id="card" value="card" checked="checked" />
+                  	<label class="form-check-label" for="card">카드결제</label>
+                 	&nbsp;
+                 	&nbsp;
+                  	<input class="form-check-input" type="radio" name="payment" id="cash" value="cash"  />
+                  	<label class="form-check-label" for="cash">계좌이체</label>
+                	&nbsp;
+                  	&nbsp;
+                  	<input class="form-check-input" type="radio" name="payment" id="phone" value="phone"  />
+                  	<label class="form-check-label" for="phone">휴대폰결제</label>
+                  </div>
                </div>
-               <button type="submit" ng-disabled="myForm.$invalid" id="btn">결제하기</button>
+               </div>
+               <div class="sbtn" align="center">
+               <button type="submit" class="orderbtn" id="btn">결제하기</button>
                <script>
-               $("#btn").on("click",function(){
-                  //제출 전 userAddr 값을 변수에 저장
-                  var userAddr1=$("#userAddr1").val();
-                  var userAddr2=$("#userAddr2").val();
-                  //내용이 없는 경우
-                  if(userAddr1==""||userAddr2==""){
-                     alert("주소를 입력하세요.",function(){
-                        $("#userAddr1").focus();
-                     },"warning");
-                     return false;
-                  }
-               });
+	               $("#btn").on("click",function(){
+	            	  var orderRec=$("#orderRec").val();
+	            	  var orderPhone1=$("#orderPhone1").val();
+	            	  var orderPhone2=$("#orderPhone2").val();
+	                  //제출 전 userAddr 값을 변수에 저장
+	                  var userAddr1=$("#userAddr1").val();
+	                  var userAddr2=$("#userAddr2").val();
+	                  var check=/^\d{3}-\d{3,4}-\d{4}$/;
+	                  
+	                   
+	                  if(orderRec==""||orderPhone1==""){  //수신자 이름을 안쓴경우
+	                	  alert("필수항목을 입력해주세요 :)",function(){
+	                		 $("#orderRec").focus(); 
+	                	  },"warning");
+	                	  return false;
+	                  }
+	                  if(!check.test(orderPhone1)){ //전화번호를 제대로 입력안한경우
+	                	  alert("전화번호를 정확히 입력해주세요 :)",function(){
+	                 		 $("#orderPhone1").focus(); 
+	                 	  },"warning");
+	                 	  return false;
+	                  }
+	                  if(userAddr1==""||userAddr2==""){   //내용이 없는 경우
+	                     alert("주소를 입력해주세요 :)",function(){
+	                        $("#userAddr1").focus();
+	                     },"warning");
+	                     return false;
+	                  }
+	                  if(orderPhone2!=""){
+	                	  if(!check.test(orderPhone2)){
+	                		  alert("전화번호를 정확히 입력해주세요 :)",function(){
+	 	                 		 $("#orderPhone2").focus(); 
+	 	                 	  },"warning");
+	 	                 	  return false; 
+	                	  };
+	                  }
+	               });
                </script>
                <!--  
                <button onclick="showPopup();">결제하기</button>
@@ -320,17 +416,18 @@
                   
                </script>
                -->
-               <button type="button" id="back_btn">주문취소</button>
+               <button type="button" class="orderbtn" id="back_btn">주문취소</button>
                <script type="text/javascript">
                   $("#back_btn").click(function () {
                   location.href="cartList.do"; 
                   })
                </script>
+               </div>
             </form>
-            
+
             <!-- 다음 주소 API 사용 -->
             
-            <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+            <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script>
                //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
                 function sample4_execDaumPostcode() {
@@ -384,8 +481,6 @@
                      
                     }).open();
                 }
-               
-               
             </script>
          </div>
       </section>
@@ -394,6 +489,5 @@
             <%@ include file="../include/footer.jsp" %>
          </div>
       </footer>
-   </div>
 </body>
 </html>

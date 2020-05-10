@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/qna/detail.jsp</title>
+<title>Q&A</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 </head>
 <body>
@@ -38,7 +39,8 @@
 		<c:when test="${sessionScope.userDto.verify eq 1 || dto.writer eq id}">
 			<div class="container">
 				<ol class="breadcrumb">
-					<li><a href="${pageContext.request.contextPath }/qna/list.do">목록</a></li>
+					<li><a href="${pageContext.request.contextPath }/qna/list.do">전체 목록</a></li>
+					<li><a href="${pageContext.request.contextPath }/Users_Item/itemView_form.do?itemNum=${itemNum}&pageNum=1&reviewNum=1">목록</a></li>
 					<li>글 상세 보기</li>
 				</ol>
 				<c:if test="${not empty keyword }">
@@ -50,12 +52,12 @@
 
 				<c:if test="${dto.prevNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.prevNum }&condition=${condition}&keyword=${encodedKeyword}">이전글</a>
+						href="detail.do?num=${dto.prevNum }&itemNum=${itemNum}">이전글</a>
 				</c:if>
 
 				<c:if test="${dto.nextNum ne 0 }">
 					<a
-						href="detail.do?num=${dto.nextNum }&condition=${condition}&keyword=${encodedKeyword}">다음글</a>
+						href="detail.do?num=${dto.nextNum }&itemNum=${itemNum}">다음글</a>
 				</c:if>
 				<table class="table table-bordered table-condensed">
 					<colgroup>
@@ -76,7 +78,10 @@
 					</tr>
 					<tr>
 						<th>등록일</th>
-						<td>${dto.regdate }</td>
+						<td>
+							<fmt:parseDate value="${dto.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+							<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/>
+						</td>
 					</tr>
 					<tr>
 						<th>내용</th>
@@ -85,14 +90,17 @@
 				</table>
 
 				<%-- 
-		글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
-		즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
-	--%>
+					글 작성자와 로그인 된 아이디가 같을때만 기능을 제공해 준다. 
+					즉, 본인이 작성한 글만 수정할수 있도록 하기 위해
+				--%>
 				<c:if test="${dto.writer eq id }">
-					<a class="btn btn-info" href="updateform.do?num=${dto.num }">
+					<div class="sbtn">
+					<a class="btn" href="updateform.do?num=${dto.num }&itemNum=${itemNum}">
 						수정 </a>
-					<a class="btn btn-warning" href="javascript:deleteConfirm()">삭제</a>
+					<a class="btn" href="javascript:deleteConfirm()">삭제</a>
+					</div>
 				</c:if>
+				<br/><br/>
 				<div class="comments">
 					<ul>
 						<c:forEach items="${commentList }" var="tmp">
@@ -104,10 +112,11 @@
 											test="${tmp.num ne tmp.comment_group }">
 									to <strong>${tmp.target_id }</strong>
 										</c:if> <span>${tmp.regdate }</span> <a href="javascript:"
-										class="reply_link">답글</a> <c:choose>
+										class="reply_link">답글</a>&nbsp;
+										<c:choose>
 											<%-- 로그인된 아이디와 댓글의 작성자가 같으면 --%>
 											<c:when test="${id eq tmp.writer }">
-												<a href="javascript:" class="comment-update-link">수정</a>&nbsp;&nbsp;
+												<a href="javascript:" class="comment-update-link">수정</a>&nbsp;
 										<a href="javascript:deleteComment(${tmp.num })">삭제</a>
 											</c:when>
 											<c:otherwise>
@@ -120,7 +129,7 @@
 												<pre>${tmp.content }</pre>
 											</dd>
 										</dl>
-										<form class="comment-insert-form" action="comment_insert.do"
+										<form class="comment-insert-form" action="comment_insert.do?itemNum=${itemNum}"
 											method="post">
 											<!-- 덧글 그룹 -->
 											<input type="hidden" name="ref_group" value="${dto.num }" />
@@ -150,7 +159,7 @@
 						<c:choose>
 							<c:when test="${not empty sessionScope.userDto.userId }">
 								<c:if test="${sessionScope.userDto.verify eq 1}">
-									<form action="comment_insert.do" method="post">
+									<form action="comment_insert.do?itemNum=${itemNum}" method="post">
 										<!-- 댓글의 그룹번호는 원글의 글번호가 된다.  -->
 										<input type="hidden" name="ref_group" value="${dto.num }" />
 										<!-- 댓글의 대상자는 원글의 작성자가 된다. -->
@@ -163,18 +172,22 @@
 						</c:choose>
 					</div>
 				</div>
+				<footer id="footer">
+					<div id="footer_box">
+						<%@ include file="../include/footer.jsp"%>
+					</div>
+				</footer>
 			</div>
 		</c:when>
 		<c:otherwise>
 			<h1>잘못된 접근입니다.</h1>
 		</c:otherwise>
 	</c:choose>
-	</section>
 	<script>
 	//댓글 수정 링크를 눌렀을때 호출되는 함수 등록
 	$(".comment-update-link").click(function(){
 		$(this)
-		.parent().parent().parent()
+		.parent()
 		.find(".comment-update-form")
 		.slideToggle(200);
 	});
@@ -220,7 +233,7 @@
 				success:function(responseData){
 					if(responseData.isSuccess){
 						var sel="#comment"+num;
-						$(sel).text("");
+						$(sel).hide();
 					}
 				}
 			});

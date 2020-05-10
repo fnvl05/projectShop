@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>/review/insertform.jsp</title>
+<title>REVIEW</title>
 <jsp:include page="/resources/style/total.jsp"></jsp:include>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
@@ -20,7 +20,7 @@
 					<%@ include file="../include/nav.jsp" %>
 				</div>
 				<div id="index_logo_div">
-					<a href="index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
+					<a href="../index.do"><img id="index_logo_img" src="${pageContext.request.contextPath }/resources/images/project.png"/></a>
 				</div>
 				<div class="navbar-left">
 						<%@ include file="../include/users_aside.jsp" %>						
@@ -58,20 +58,18 @@
 							<a href="#">★</a>
 						</p>
 					</div>
-					<button id="starBtn" type="submit" >등록</button>
-					<button type="reset">취소</button>
-					<button type="button" id="back_btn">돌아가기</button>
-				
-					<script type="text/javascript">
-					$("#back_btn").click(function () {
-						history.back();
-						/*location.href="itemList_review.do?itemNum=" + ${itemNum};*/
-					})
-					</script>
+					<div class="sbtn">
+					<button id="starBtn" class="btn" type="submit" >등록</button>
+					<button type="button" class="btn" id="back_btn">취소</button>
+					</div>
+					<script>
+						$("#back_btn").click(function () {
+							history.back();
+						});
+					</script>  
 
 				</form>
 				<script>
-				
 					$("#starBtn").on("click",function(){
 						//제출 전 에디터 내용을 변수에 저장
 						var content=CKEDITOR.instances.reviewContent.getData();
@@ -88,7 +86,7 @@
 						}
 						//내용이 30글자 미만인 경우
 						//기본적으로 8글자를 가짐 빈문자열+<p></p> =8글자
-						if(content_len<18){
+						if(content_len<38){
 							alert("내용을  30자 이상 입력하세요.",function(){
 								//에디터 내용에 초기화
 								CKEDITOR.instances.reviewContent.setData("");
@@ -118,6 +116,9 @@
 	    return false;
 	});
 </script>
-
+<script type="text/javascript">
+	 window.history.forward();
+	 function noBack(){window.history.forward();}
+	</script>
 </body>
 </html>

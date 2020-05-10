@@ -54,14 +54,17 @@ public class ReviewController {
 	@RequestMapping(value="/review/insert", method= RequestMethod.POST)
 	public ModelAndView Users_Insert(HttpServletRequest request,
 			ModelAndView mView,@ModelAttribute ("dto") ReviewDto dto,@RequestParam int itemNum) {
+		boolean isExist=service.isExist(request, itemNum);
+		request.setAttribute("isExist", isExist);
+		System.out.println(isExist);
 		service.insert(request, dto);
-		
-		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum) ;
+		return new ModelAndView("redirect:list.do");
+//		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum) ;
 	}
 	
 	//디테일
 	@RequestMapping("/review/detail")
-	public ModelAndView detail(ModelAndView mView,HttpServletRequest request) {
+	public ModelAndView Users_detail(ModelAndView mView,HttpServletRequest request) {
 		service.getReviewData(request);
 		mView.setViewName("review/detail");
 		return mView;
@@ -87,7 +90,7 @@ public class ReviewController {
 	@RequestMapping("/review/delete")
 	public ModelAndView Users_Delete(HttpServletRequest request,@RequestParam int reviewNum,@RequestParam int itemNum) {
 		service.delete(request, reviewNum);
-		return new ModelAndView("redirect:itemList_review.do?itemNum="+itemNum);
+		return new ModelAndView("redirect:list.do?itemNum="+itemNum);
 	}
 	//댓글 삭제
 	@ResponseBody
@@ -103,7 +106,7 @@ public class ReviewController {
 	}
 	//댓글등록
 	@RequestMapping(value="/review/comment_insert",method = RequestMethod.POST)
-	public ModelAndView authCommentInsert(HttpServletRequest request,
+	public ModelAndView Users_authCommentInsert(HttpServletRequest request,
 			@RequestParam int ref_group) {
 		service.saveComment(request);
 		return new ModelAndView("redirect:/review/detail.do?reviewNum="+ref_group);
@@ -120,7 +123,20 @@ public class ReviewController {
 		map.put("isSuccess", true);
 		return map;
 	}
+
+	//리뷰 좋아요 처리
+	@ResponseBody
+	@RequestMapping(value = "/review/reviewUpCount", method = RequestMethod.POST)
+	public Map<String, Object> Users_authAddUpCount(HttpServletRequest request,
+			@ModelAttribute("dto") ReviewUpCountDto dto,@RequestParam(value="arrEachItemNum[]")List<Integer> eachItemNum) {
+		dto.setItemNum(eachItemNum.get(0));
+		dto.setReviewNum(eachItemNum.get(1));
+		Map<String,Object> map=service.addUpCount(request,dto);
 	
+		return map;
+	}
+
+
 	//board_list 에서 qna목록, review 목록
 	@RequestMapping("/Users/boardList")
 	public ModelAndView User_boardList(HttpServletRequest request,ModelAndView mView) {
@@ -128,20 +144,6 @@ public class ReviewController {
 		qnaService.qnalist(request);
 		mView.setViewName("Users/boardList");
 		return mView;
-	}
-
-	//리뷰 좋아요 처리
-	@ResponseBody
-	@RequestMapping(value = "/review/reviewUpCount", 
-			method = RequestMethod.POST)
-	public Map<String, Object> authAddUpCount(HttpServletRequest request,
-			@ModelAttribute("dto") ReviewUpCountDto dto,@RequestParam(value="arrEachItemNum[]")List<Integer> eachItemNum) {
-		dto.setItemNum(eachItemNum.get(0));
-		dto.setReviewNum(eachItemNum.get(1));
-		Map<String,Object> map=service.addUpCount(request,dto);
-	
-	 
-		return map;
 	}
 	
 }

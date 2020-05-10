@@ -4,9 +4,10 @@
 	<c:choose>
 		<c:when test="${not empty id}">
 			<c:if test="${sessionScope.verify eq 1}">
-				<li role="presentation"><a href="${pageContext.request.contextPath }/master/master_index.do">관리자</a></li>
-				<li role="presentation"><a href="index.do">홈으로</a></li>		
-			</c:if>
+				<li role="presentation">
+					<a id="ms" href="${pageContext.request.contextPath }/master/master_index.do">관리자</a>
+				</li> 
+			</c:if> 
 				<li role="presentation"><span class="navText"><strong>${id}님</strong> 환영합니다</span></li>
 				<li>
 					<a href="${pageContext.request.contextPath }/Users/logout.do">
@@ -29,6 +30,7 @@
 					onmouseout="this.src='${pageContext.request.contextPath }/resources/images/header_mypage_icon.png'"/>	
 					</a>
 				</li>
+				 
 		</c:when>
 		<c:otherwise>
 			<li>
@@ -45,6 +47,12 @@
 						onmouseout="this.src='${pageContext.request.contextPath }/resources/images/header_join_icon.png'"/>
 				</a>
 			</li>
+
 		</c:otherwise>
 	</c:choose>
 </ul>
+
+
+
+
+

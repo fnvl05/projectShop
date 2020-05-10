@@ -14,7 +14,6 @@ public class ItemViewDto {
 	private String cateCodeRef;
 	
 	private String itemThumbImg;
-	
 
 	public ItemViewDto() {}
 	

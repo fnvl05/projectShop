@@ -31,17 +31,18 @@ public class OrderServiceImpl implements OrderService{
 	CartDao cartDao;
 	@Autowired
 	categoryDao categoryDao;
-	
 
 	
 	@Override
 	public void cartList_insertform(HttpServletRequest request) {
-		
+
 		//장바구니에 담긴 리스트
 		UsersDto userDto=(UsersDto)request.getSession().getAttribute("userDto");
 		String userId=userDto.getUserId();
 		List<CartListDto> list=cartDao.cartList(userId);
 		request.setAttribute("list", list);
+		request.setAttribute("userAddr2", userDto.getUserAddr2());
+		System.out.println(userDto.getUserAddr2());
 
 	}	
 	
@@ -91,6 +92,8 @@ public class OrderServiceImpl implements OrderService{
 			detailDao.detailInsert(detailDto);
 			//해당 아이템의 재고량 줄이기
 			categoryDao.minusCount(detailDto);
+			System.out.println(itemNum);
+			dao.itemGetCount(itemNum);
 		}
 		//해당 아이디의 장바구니 삭제하기
 		cartDao.deleteAll(userId);

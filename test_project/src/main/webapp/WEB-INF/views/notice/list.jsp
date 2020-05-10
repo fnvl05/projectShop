@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,9 +46,30 @@
 			</p>
 		</c:if>
 	</div>
+	<h1>Notice</h1>
+	<br /><br />
 	<div class="container">
-		<h1>Notice</h1>
-		<table class="table table-hover">
+	<!-- GET 방식으로 제출되므로 file/list.do?condition=x&keyword=xx 이런 형태로 주소창에 출력된다.-->
+		<form action="list.do" method="get">
+		<div class="searchbox" style="float: right;">
+			<label for="condition">검색조건</label> 
+			<select name="condition" id="condition" style="height: 30px;">
+				<option value="titlecontent"
+					<c:if test="${condition eq 'titlename' }">selected</c:if>>제목+내용</option>
+				<!-- selected 문자열을 조건문으로 찍어준다. -->
+				<option value="title"
+					<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
+				<!-- selected value 값을 적어주면 검색을 눌렀을 때 고정된다. -->
+				<option value="writer"
+					<c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
+			</select> <input type="text" name="keyword" id="keyword" style="height: 30px;"
+				placeholder="검색어 입력..." value="${keyword }" />
+			<!-- EL은 아무것도 들어있지 않으면 null이 아니라 빈문자열을 출력한다 -->
+			<button class="btn" type="submit" style="margin-left:2px;">검색</button>
+			</div>
+		</form>
+		<br /><br /><br /><br />
+		<table class="table">
 			<%-- 칼럼의 폭을 임의로 조절할 수 있다. 합이 12이여야 한다(12등분이므로) --%>
 			<colgroup>
 				<col class="col-xs-1" />
@@ -66,10 +88,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="tmp" items="${requestScope.list }">
+				<c:forEach var="tmp" items="${requestScope.list }" varStatus="status">
 					<%-- request에 담긴 list --%>
 					<tr>
-						<td>${tmp.num }</td>
+						<!-- <td>${tmp.num }</td> -->
+						<td>${status.count }</td>
 						<td><c:choose>
 								<c:when test="${tmp.noticeNum==1 }">
 									<a href="detail.do?num=${tmp.num }&pageNum=${pageNum}"> <strong
@@ -85,7 +108,8 @@
 							</c:choose></td>
 						<td>${tmp.writer }</td>
 						<td>${tmp.viewCount }</td>
-						<td>${tmp.regdate }</td>
+						<td><fmt:parseDate value="${tmp.regdate }" var="orderDate" pattern="yy.MM.dd HH:mm" scope="page"/>
+							<fmt:formatDate value="${orderDate }" pattern="yyyy.MM.dd"/></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -93,13 +117,14 @@
 		<c:choose>
 			<c:when test="${not empty sessionScope.userDto.userId }">
 				<c:if test="${sessionScope.userDto.verify eq 1}">
-					<a class="btn btn-info" href="insertform.do">새글 작성</a>
+					<a class="btn" style="float: right;" href="insertform.do">새글 작성</a>
 					<!-- cafe/private/* 로그인 안하면  사용 못하게 필터링! -->
 				</c:if>
 			</c:when>
 		</c:choose>
-		<div class="page-display">
-			<ul class="pagination pagination-sm" style="padding-left: 36%;">
+		<br /><br /><br />
+		<div class="page-display" align="center">
+			<ul class="pagination pagination-sm">
 				<c:choose>
 					<c:when test="${startPageNum ne 1 }">
 						<%-- startPageNum != 1 --%>
@@ -139,23 +164,6 @@
 				</c:choose>
 			</ul>
 		</div>
-		<!-- GET 방식으로 제출되므로 file/list.do?condition=x&keyword=xx 이런 형태로 주소창에 출력된다.-->
-		<form action="list.do" method="get">
-			<label for="condition">검색조건</label> <select name="condition"
-				id="condition">
-				<option value="titlecontent"
-					<c:if test="${condition eq 'titlename' }">selected</c:if>>제목+내용</option>
-				<!-- selected 문자열을 조건문으로 찍어준다. -->
-				<option value="title"
-					<c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
-				<!-- selected value 값을 적어주면 검색을 눌렀을 때 고정된다. -->
-				<option value="writer"
-					<c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
-			</select> <input type="text" name="keyword" id="keyword"
-				placeholder="검색어 입력..." value="${keyword }" />
-			<!-- EL은 아무것도 들어있지 않으면 null이 아니라 빈문자열을 출력한다 -->
-			<button type="submit">검색</button>
-		</form>
 	</div>
 
 

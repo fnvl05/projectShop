@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.test.project01.master.category.Dto.ItemDto;
 import com.test.project01.master.category.Dto.ItemViewDto;
-import com.test.project01.master.category.Dto.Item_OrderDetail_Dto;
-import com.test.project01.master.category.Dto.User_Orders_Dto;
+import com.test.project01.master.category.Dto.Orders_Dto;
 import com.test.project01.master.category.Dto.categoryDto;
 import com.test.project01.order.dto.OrderDetailDto;
+import com.test.project01.order.dto.OrdersDto;
 import com.test.project01.users.Dto.UsersDto;
 
 
@@ -33,11 +33,17 @@ public class categoryDaolmpl implements categoryDao{
 	}
 
 	@Override
-	public List<ItemDto> itemList() {
-		List<ItemDto> list = session.selectList("category.itemSelect");
+	public List<ItemDto> itemList(ItemDto dto) {
+		List<ItemDto> list = session.selectList("category.itemSelect", dto);
 		return list;
 	}
-
+	@Override
+	public int getItemListCount() {
+		List<ItemDto> list = session.selectList("category.itemSelect_Count");
+		int count = list.size();
+		return count;
+	}
+	
 	@Override
 	public ItemDto itemViewData(int itemNum) {
 		return session.selectOne("category.itemViewContent", itemNum);
@@ -65,26 +71,19 @@ public class categoryDaolmpl implements categoryDao{
 	}
 
 	@Override
-	public List<User_Orders_Dto> userList() {
-		List<User_Orders_Dto> userList = session.selectList("category.select_user_orders");
-		return userList;
+	public void upResult(OrdersDto Dto) {
+		session.update("category.resultItem", Dto);
 	}
 
 	@Override
-	public List<Item_OrderDetail_Dto> item_orderList() {
-		List<Item_OrderDetail_Dto> itemList = session.selectList("category.select_item_order_detail");
-		return itemList;
+	public List<UsersDto> userAllList(UsersDto dto) {
+		List<UsersDto> usersList = session.selectList("category.userAllList", dto);
+		return usersList;
 	}
-	
-	@Override
-	public void upResult(OrderDetailDto detailDto) {
-		session.update("category.resultItem", detailDto);
-	}
-
-	@Override
-	public List<UsersDto> userAllList() {
-		List<UsersDto> dto = session.selectList("category.userAllList");
-		return dto;
+	public int getUserAllCount() {
+		List<UsersDto> dto = session.selectList("category.userAllList_Count");
+		int count = dto.size();
+		return count;
 	}
 
 	@Override
@@ -92,4 +91,16 @@ public class categoryDaolmpl implements categoryDao{
 		session.update("category.userVerify", userDto);
 	}
 	
+	@Override
+	public List<Orders_Dto> orderList(Orders_Dto dto) {
+		List<Orders_Dto> orderList = session.selectList("category.select_orderList" , dto);
+		return orderList;
+	}
+
+	@Override
+	public int getOrderListCount() {
+		List<Orders_Dto> dto = session.selectList("category.select_orderList_Count");
+		int count = dto.size();
+		return count;
+	}	
 }

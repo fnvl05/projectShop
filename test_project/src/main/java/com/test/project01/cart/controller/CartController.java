@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.test.project01.cart.dao.CartDao;
 import com.test.project01.cart.dto.CartListDto;
 import com.test.project01.cart.dto.wishlistDto;
 import com.test.project01.cart.service.CartService;
@@ -28,10 +30,12 @@ import com.test.project01.users.Dto.UsersDto;
 public class CartController {
 	@Autowired
 	private CartService service;
+	@Autowired
+	CartDao cartDao;
 	
 	//1. 장바구니 추가
 	@RequestMapping(value = "/Users_Item/cart", method = RequestMethod.POST)
-	public String User_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//장바구니에 기존 상품 있나 검사
@@ -61,6 +65,7 @@ public class CartController {
 		map.put("sumMoney", sumMoney);
 		map.put("fee", fee);
 		map.put("allPrice", sumMoney+fee);
+		map.put("itemCount", list);
 		mView.setViewName("shop/cartList");
 		mView.addObject("map", map);
 		return mView;		
@@ -69,7 +74,7 @@ public class CartController {
 	//3. 장바구니 삭제
 	@ResponseBody
 	@RequestMapping(value="/shop/deleteEachCart", method=RequestMethod.POST)
-	public Map<String, Object> User_deleteEachCart(@RequestParam(value="arrCheckBox[]")List<String> list) {
+	public Map<String, Object> Users_deleteEachCart(HttpServletRequest request , @RequestParam(value="arrCheckBox[]")List<String> list) {
 		for(int i=0; i<list.size(); i++) {
 			service.deleteCart(Integer.parseInt(list.get(i)));
 		}
@@ -81,7 +86,7 @@ public class CartController {
 	//4. 장바구니 수정
 	@ResponseBody
 	@RequestMapping(value="/shop/updateCartStock", method=RequestMethod.POST)
-	public Map<String, Object> updateCart(@RequestParam(value="tarArray[]")List<Integer> dto) {
+	public Map<String, Object> Users_updateCart(HttpServletRequest request , @RequestParam(value="tarArray[]")List<Integer> dto) {
 		CartListDto cartDto=new CartListDto();
 		cartDto.setCartNum(dto.get(0));
 		cartDto.setCartStock(dto.get(1));
@@ -93,7 +98,7 @@ public class CartController {
 	
 	//5. 위시리스트  추가
 	@RequestMapping(value = "/Users_Item/addwish", method = RequestMethod.POST)
-	public String User_addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
+	public String Users_addWish(@ModelAttribute("dto") wishlistDto dto, HttpSession session) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();
 		//위시리스트에 기존 상품 있나 검사
@@ -106,7 +111,7 @@ public class CartController {
 	}
 	//6. 위시리스트 목록
 	@RequestMapping("/shop/wishlist")
-	public void User_getWishList(HttpSession session, Model model) {
+	public void Users_getWishList(HttpSession session, Model model) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		List<wishlistDto> wishlist=service.wishlist(userId);
@@ -114,26 +119,33 @@ public class CartController {
 	}
 	//7. 위시리스트 삭제
 	@RequestMapping("/shop/deleteWish")
-	public String User_deleteWish(@RequestParam int wishNum) {
+	public String Users_deleteWish(@RequestParam int wishNum) {
 		service.deleteWish(wishNum);
 		return "redirect:wishlist.do";
 	}
 	//8. 위시리스트에서 장바구니로 추가
 	@RequestMapping(value = "shop/insertCart", method = RequestMethod.POST)
-	public String User_insertCart(HttpSession session){
+	public String Users_insertCart(HttpSession session, @ModelAttribute("dto") CartListDto dto, @RequestParam int wishNum){
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();	
 		//장바구니에 기존 상품 있나 검사
-		service.wishList_addCart(userId);		
-//			int count=service.countCart(dto.getItemNum(), userId);
-//			if(count == 0) {		
-//			}
-
+//		service.wishList_addCart(userId);		
+//		int itemNum=Integer.parseInt(request.getParameter("itemNum"));
+		
+			int count=service.countCart(dto.getItemNum(), userId);
+			System.out.println(dto.getItemNum());
+			if(count == 0) {	
+				service.wishList_addCart(userId);
+			}else {
+				return "redirect:cartList.do";
+				
+			}
+		service.deleteWish(wishNum);
 		return "redirect:cartList.do";
 	}
 	//바로 주문폼으로 넘어가게 하기
 	@RequestMapping(value = "/Users_Item/cart2", method = RequestMethod.POST)
-	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session) {
+	public String Users_addCart(@ModelAttribute("dto") CartListDto dto, HttpSession session,HttpServletRequest request) {
 		UsersDto user=(UsersDto)session.getAttribute("userDto");
 		String userId=user.getUserId();		
 		//String userId=(String)session.getAttribute("userId");
@@ -147,7 +159,11 @@ public class CartController {
 			//있으면 update
 			service.updateCart(dto);
 		}
-		return "redirect:../shop/cartList.do";
+		
+		//장바구니에 담긴 리스트
+		List<CartListDto> list=cartDao.cartList(userId);
+		request.setAttribute("list", list);
+		return "redirect:../shop/orderform.do";
 	}
 }
 

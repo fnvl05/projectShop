@@ -10,17 +10,15 @@ import com.test.project01.qna.dto.QnaDto;
 import com.test.project01.qna.dto.QnaJoinDto;
 
 @Repository
-public class QnaDaoImpl implements QnaDao{
-	
+public class QnaDaoImpl implements QnaDao {
+
 	@Autowired
 	private SqlSession session;
-	
-
 
 	@Override
 	public void insert(QnaDto dto) {
 		session.insert("qna.insert", dto);
-		
+
 	}
 
 	@Override
@@ -50,32 +48,32 @@ public class QnaDaoImpl implements QnaDao{
 
 	@Override
 	public int getCount(QnaJoinDto dto) {
-		int count=session.selectOne("qna.getCount",dto);
+		int count = session.selectOne("qna.getCount", dto);
 		return count;
 	}
 
 	@Override
 	public List<QnaJoinDto> getList(QnaJoinDto dto) {
-		
-		return session.selectList("qna.getList",dto);
+
+		return session.selectList("qna.getList", dto);
 	}
 
 	@Override
 	public int getCount2(QnaJoinDto dto) {
-		int count=session.selectOne("qna.getCount2",dto);
+		int count = session.selectOne("qna.getCount2", dto);
 		return count;
 	}
 
 	@Override
 	public List<QnaJoinDto> getList2(QnaJoinDto dto) {
-		return session.selectList("qna.getList2",dto);
+		return session.selectList("qna.getList2", dto);
 	}
 
 	@Override
-
 	public List<QnaJoinDto> qnaList(String writer) {
 		return session.selectList("qna.qnalist",writer);
 	}
+
 	public int getCommentCount(int num) {
 		Object test=session.selectOne("qnaComment.getCommentCount",num);	
 		if(test==null) {
@@ -84,6 +82,9 @@ public class QnaDaoImpl implements QnaDao{
 			return (int)test;
 		}
 	}
-
+	@Override
+	public QnaDto getData3(QnaDto dto) {
+		return session.selectOne("qna.getData3",dto);
+	}
 
 }
