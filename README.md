@@ -7,3 +7,7 @@
 </br>
 # 메인화면
 </br>
+<div>
+<img width="300" src="">
+</div>
+
