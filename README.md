@@ -8,6 +8,6 @@
 # 메인화면
 </br>
 <div>
-<img width="300" src="">
+<img width="300" src="https://user-images.githubusercontent.com/61183586/84055960-85c8dc80-a9f0-11ea-99b5-21be8ac8c0fd.jpg">
 </div>
 
